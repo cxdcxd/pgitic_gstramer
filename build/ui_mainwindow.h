@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Apr 7 08:13:08 2016
+** Created: Thu Apr 7 11:44:22 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -39,6 +39,7 @@ public:
     QPushButton *btn_recstop;
     QTextEdit *txt_recname;
     QPushButton *btn_recstart;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -68,7 +69,7 @@ public:
         label_2->setAlignment(Qt::AlignCenter);
         lst_folder = new QListView(centralwidget);
         lst_folder->setObjectName(QString::fromUtf8("lst_folder"));
-        lst_folder->setGeometry(QRect(30, 200, 451, 192));
+        lst_folder->setGeometry(QRect(30, 200, 451, 91));
         btn_recstop = new QPushButton(centralwidget);
         btn_recstop->setObjectName(QString::fromUtf8("btn_recstop"));
         btn_recstop->setGeometry(QRect(170, 50, 131, 51));
@@ -78,6 +79,9 @@ public:
         btn_recstart = new QPushButton(centralwidget);
         btn_recstart->setObjectName(QString::fromUtf8("btn_recstart"));
         btn_recstart->setGeometry(QRect(30, 50, 131, 51));
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(30, 304, 451, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -111,6 +115,7 @@ public:
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">out.mp3</p></body></html>", 0, QApplication::UnicodeUTF8));
         btn_recstart->setText(QApplication::translate("MainWindow", "Record Start", 0, QApplication::UnicodeUTF8));
+        pushButton->setText(QApplication::translate("MainWindow", "TCP Sendt Test", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

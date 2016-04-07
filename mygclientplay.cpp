@@ -1,4 +1,6 @@
 #include "mygclientplay.h"
+#include "QDir"
+#include "iostream"
 
 mygclientplay::mygclientplay(QObject *parent) :
     QObject(parent)
@@ -36,6 +38,36 @@ void mygclientplay::play_start(std::string filename)
     gboolean bbool = gst_element_link (mad   , sink);
 
     /* Set up the parameters */
+    QDir directory("/media/");
+    QStringList txtFilesAndDirectories = directory.entryList();
+    std::string item = "";
+
+    for ( int i =0 ; i < txtFilesAndDirectories.size() ; i++)
+    {
+        QString a = txtFilesAndDirectories.at(i);
+        if ( a.size() > 2)
+        {
+            item = a.toStdString();
+            break;
+        }
+        //std::cout<< "See : "<<a.toStdString() << std::endl;
+    }
+
+    if ( item != "")
+    {
+        //Check records folder is exist or not , if no create records folder
+        std::string filedir = "/media/" + item + "/records/";
+        if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
+
+        filename = filedir + filename;
+        std::cout<< "UDB FOUND - PATH : "<<filename<< std::endl;
+    }
+    else
+    {
+         std::cout<< "UDB NotFound - DefaultPath "<<filename<< std::endl;
+    }
+
+
     g_object_set (G_OBJECT (source), "location", filename.c_str(), NULL);
     /* check the links */
     if ( abool && bbool )

@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QTcpSocket>
 #include <mygpio.h>
+#include <QProcess>
 
 class QThreadTCP : public QThread
 {
@@ -13,6 +14,8 @@ public:
     void run();
     void mainwrite(QByteArray buf,qint64 len);
     void connect();
+    QProcess *processclient;
+
 signals:
     
 public slots:

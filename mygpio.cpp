@@ -4,7 +4,7 @@
 #include <QCoreApplication>
 
 UnixSignalWatcher *sigwatch;
-QByteArray *send_buffer;
+//QByteArray *send_buffer;
 
 MyGpio::MyGpio(QObject *parent) :
     QObject(parent)
@@ -36,7 +36,7 @@ MyGpio::MyGpio(QObject *parent) :
     connect(sigwatch,SIGNAL(unixSignal(int)),this,SLOT(skill()));
 
 
-    send_buffer = new QByteArray();
+    //send_buffer = new QByteArray();
 
     mtimer->start(100);
 
@@ -70,36 +70,36 @@ void MyGpio::send_request(int code)
     if ( code == 1 )
     {
         //1 => om
-        send_buffer->clear();
-        send_buffer->push_back('1');
-        send_buffer->push_back('3');
-        send_buffer->push_back('9');
-        send_buffer->push_back('4');
-        send_buffer->push_back('1');
-        send_buffer->push_back('7');
-        send_buffer->push_back('8');
-        send_buffer->push_back('7');
-        send_buffer->push_back('8');
+//        send_buffer->clear();
+//        send_buffer->push_back('1');
+//        send_buffer->push_back('3');
+//        send_buffer->push_back('9');
+//        send_buffer->push_back('4');
+//        send_buffer->push_back('1');
+//        send_buffer->push_back('7');
+//        send_buffer->push_back('8');
+//        send_buffer->push_back('7');
+//        send_buffer->push_back('8');
 
-        qint64 l = 9;
-        tcpsocket->mainwrite(*send_buffer,l);
+//        qint64 l = 9;
+//        tcpsocket->mainwrite(*send_buffer,l);
     }
     else if ( code == 2 )
     {
         //2 => off
-        send_buffer->clear();
-        send_buffer->push_back('1');
-        send_buffer->push_back('3');
-        send_buffer->push_back('9');
-        send_buffer->push_back('4');
-        send_buffer->push_back('2');
-        send_buffer->push_back('7');
-        send_buffer->push_back('8');
-        send_buffer->push_back('7');
-        send_buffer->push_back('8');
+//        send_buffer->clear();
+//        send_buffer->push_back('1');
+//        send_buffer->push_back('3');
+//        send_buffer->push_back('9');
+//        send_buffer->push_back('4');
+//        send_buffer->push_back('2');
+//        send_buffer->push_back('7');
+//        send_buffer->push_back('8');
+//        send_buffer->push_back('7');
+//        send_buffer->push_back('8');
 
-        qint64 l = 9;
-        tcpsocket->mainwrite(*send_buffer,l);
+//        qint64 l = 9;
+//        tcpsocket->mainwrite(*send_buffer,l);
     }
 }
 

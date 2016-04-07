@@ -3,7 +3,7 @@
 #include "QProcess"
 #include "statics.h"
 
-QProcess *process;
+
 
 QThreadTCP::QThreadTCP(QObject *parent) :
     QThread(parent)
@@ -33,11 +33,10 @@ void QThreadTCP::update()
     {
         gpio->info_mode = 1;
 
-        process->start("ping",QStringList() << "-c 1" << "192.168.16.100");
-        process->waitForFinished();
-        int exitcode = process->exitCode();
+        processclient->start("ping",QStringList() << "-c 1" << "192.168.16.100");
+        processclient->waitForFinished();
+        int exitcode = processclient->exitCode();
 
-        //int exitcode = QProcess::execute("ping",QStringList() << "-c 1" << "192.168.16.100");
         if ( exitcode == 0 )
         {
            //qDebug("PING OK");
@@ -47,10 +46,6 @@ void QThreadTCP::update()
            gpio->info_mode = 0;
            socket->close();
         }
-
-
-        //process->kill();
-
     }
 
 
@@ -58,9 +53,9 @@ void QThreadTCP::update()
 
 void QThreadTCP::connect()
 {
-    process = new QProcess();
-    process->closeReadChannel(QProcess::StandardOutput);
-    process->closeReadChannel(QProcess::StandardError);
+    processclient = new QProcess();
+    processclient->closeReadChannel(QProcess::StandardOutput);
+    processclient->closeReadChannel(QProcess::StandardError);
 
     connection_loop = true;
     socket = new QTcpSocket();

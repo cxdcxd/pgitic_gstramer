@@ -18,6 +18,7 @@
 #include <QTimer>
 #include "statics.h"
 #include "mainwindow.h"
+#include "QDir"
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +36,8 @@ int main(int argc, char *argv[])
     //tcpsocket->connect();
     //tcpsocket->start(); //start internal thread for connection managment
 
-    //Test Thread
-    //_mainthread = new myMainThreadx();
-    //_mainthread->start();
+    mtserial = new myserialq();
+    mtserial->start();
 
     mtgclientrecord = new mythreadgclientrecord();
     mtgclientrecord->start();
@@ -45,8 +45,12 @@ int main(int argc, char *argv[])
     mtgclientplay = new mythreadgclientplay();
     mtgclientplay->start();
 
+    mttcpserver = new MyServer();
+    mttcpserver->startServer();
+
     int exit_code = a.exec();
     qDebug("PGITIC CORE DOWN");
+
     gpio->kill();
     return exit_code;
 }

@@ -19,6 +19,7 @@ LIBS += -L/usr/lib/arm-linux-gnueabihf -lglib-2.0
 QT       += core
 QT       += network
 QT       += gui
+QT       += serialport
 
 TARGET = main
 CONFIG   += console
@@ -36,7 +37,9 @@ SOURCES += main.cpp \
     mygclientrecord.cpp \
     mythreadgclientplay.cpp \
     mythreadgclientrecord.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    myserver.cpp \
+    myserial.cpp
 
 HEADERS += \
     mygpio.h \
@@ -48,7 +51,9 @@ HEADERS += \
     mygclientrecord.h \
     mythreadgclientplay.h \
     mythreadgclientrecord.h \
-    mainwindow.h
+    mainwindow.h \
+    myserver.h \
+    myserial.h
 
 FORMS += \
     mainwindow.ui

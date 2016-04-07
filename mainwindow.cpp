@@ -36,3 +36,8 @@ void MainWindow::on_btn_playstop_clicked()
 {
  mtgclientplay->play_stop();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    send_buffer = "send";
+}
