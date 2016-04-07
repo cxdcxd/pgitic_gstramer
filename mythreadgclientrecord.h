@@ -15,10 +15,11 @@ public:
     int port;
     std::string name;
     mygclientrecord *mgclient;
-    void recorde_start();
+    void recorde_start(std::string filenamee);
     void recorde_stop();
     bool app_exit;
     std::string state;
+    std::string filename;
 signals:
 
 public slots:

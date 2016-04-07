@@ -14,7 +14,7 @@ public:
      GstElement *pipeline, *source, *sink , *mad;
      GMainLoop *loop;
 
-     void play_start();
+     void play_start(std::string filename);
      void play_stop();
 
      bool app_exited ;

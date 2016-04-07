@@ -14,7 +14,7 @@ public:
      GstElement *pipeline, *source, *conv, *sink , *lamemp3enc;
      GMainLoop *loop;
 
-     void record_start();
+     void record_start(std::string filename);
      void record_stop();
 
      bool app_exited ;

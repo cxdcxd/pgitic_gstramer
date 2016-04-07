@@ -19,15 +19,18 @@ void mythreadgclientplay::run()
             {
               state = "loop";
               gpio->info_mode = 2;
-              mgclient->play_start();
+              qDebug("3");
+              mgclient->play_start(filename);
             }
 
         sleep(1);
     }
 }
 
-void mythreadgclientplay::play_start()
+void mythreadgclientplay::play_start( std::string filenamee)
 {
+    qDebug("2");
+    filename = filenamee;
    state = "start";
 }
 

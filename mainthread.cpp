@@ -18,17 +18,18 @@ void myMainThreadx::run()
     {
         if ( counter == 5 )
         {
-           mtgclientrecord->recorde_start();
+           mtgclientrecord->recorde_start("out.mp3");
         }
 
         if ( counter == 10 )
         {
+
           mtgclientrecord->recorde_stop();
         }
 
         if ( counter == 15 )
         {
-          mtgclientplay->play_start();
+          mtgclientplay->play_start("out.mp3");
         }
 
         if ( counter == 20 )

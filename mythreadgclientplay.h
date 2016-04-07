@@ -15,10 +15,11 @@ public:
     int port;
     std::string name;
     mygclientplay *mgclient;
-    void play_start();
+    void play_start(std::string filenamee);
     void play_stop();
     bool app_exit;
     std::string state;
+     std::string filename;
 signals:
 
 public slots:

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTextEdit" name="textEdit_2">
+   <widget class="QTextEdit" name="txt_playname">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -31,7 +31,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;out.mp3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btn_playstop">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Play Stop</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -60,7 +60,7 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btn_playstart">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -70,7 +70,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Play Start</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -89,7 +89,7 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QListView" name="listView">
+   <widget class="QListView" name="lst_folder">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -99,7 +99,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btn_recstop">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -109,10 +109,10 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Record Stop</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="txt_recname">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -129,7 +129,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;out.mp3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_recstart">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -139,7 +139,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Record Start</string>
     </property>
    </widget>
   </widget>

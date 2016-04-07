@@ -7,42 +7,8 @@ mygclientrecord::mygclientrecord(QObject *parent) :
 
 }
 
-void mygclientrecord::record_start()
+void mygclientrecord::record_start(std::string filename)
 {
-    qDebug("PGITICLOG - record_start");
-    GstStateChangeReturn ret;
-    ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
-
-    if (ret == GST_STATE_CHANGE_FAILURE) {
-        g_printerr ("Unable to set the pipeline to the playing state.\n");
-        return ;
-    }
-
-    g_print ("Recording...\n");
-
-    g_main_loop_run (loop);
-}
-
-void mygclientrecord::record_stop()
-{
-    /* Out of the main loop, clean up nicely */
-    g_print ("Returned, stopping recording\n");
-    gst_element_set_state (pipeline, GST_STATE_NULL);
-
-    g_print ("Deleting pipeline\n");
-    gst_object_unref (GST_OBJECT (pipeline));
-    //g_source_remove (bus_watch_id);
-    g_main_loop_unref (loop);
-
-    //==========================================================================
-    qDebug("PGITIC - Gstreamer Interface Finished");
-}
-
-void mygclientrecord::start()
-{
-    app_exited = false;
-    qDebug("PGITIC - Gstreamer Interface Client Start");
-    //==========================================================================
     /* Initialisation */
     loop = g_main_loop_new (NULL, FALSE);
     /* Create gstreamer elements */
@@ -70,7 +36,7 @@ void mygclientrecord::start()
     gboolean bbool = gst_element_link (conv   , lamemp3enc);
     gboolean cbool = gst_element_link (lamemp3enc , sink);
     /* Set up the parameters */
-    g_object_set (G_OBJECT (sink), "location", "out.mp3", NULL);
+    g_object_set (G_OBJECT (sink), "location", filename.c_str(), NULL);
     /* check the links */
     if ( abool && bbool && cbool )
     {
@@ -82,5 +48,41 @@ void mygclientrecord::start()
     }
 
     printf("Recorder Config Done\n");
+    qDebug("PGITICLOG - record_start");
+    GstStateChangeReturn ret;
+    ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
+
+    if (ret == GST_STATE_CHANGE_FAILURE) {
+        g_printerr ("Unable to set the pipeline to the playing state.\n");
+        return ;
+    }
+
+    g_print ("Recording...\n");
+
+    g_main_loop_run (loop);
+}
+
+void mygclientrecord::record_stop()
+{
+    g_main_loop_quit(loop);
+    /* Out of the main loop, clean up nicely */
+    g_print ("Returned, stopping recording\n");
+    gst_element_set_state (pipeline, GST_STATE_NULL);
+
+    g_print ("Deleting pipeline\n");
+    gst_object_unref (GST_OBJECT (pipeline));
+    //g_source_remove (bus_watch_id);
+    g_main_loop_unref (loop);
+
+    //==========================================================================
+    qDebug("PGITIC - Gstreamer Interface Finished");
+}
+
+void mygclientrecord::start()
+{
+    app_exited = false;
+    qDebug("PGITIC - Gstreamer Interface Client Start");
+    //==========================================================================
+
 
 }

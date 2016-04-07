@@ -19,15 +19,16 @@ void mythreadgclientrecord::run()
             {
               state = "loop";
                gpio->info_mode = 2;
-              mgclient->record_start();
+              mgclient->record_start(filename);
             }
 
         sleep(1);
     }
 }
 
-void mythreadgclientrecord::recorde_start()
+void mythreadgclientrecord::recorde_start( std::string filenamee)
 {
+   filename = filenamee;
    state = "start";
 }
 

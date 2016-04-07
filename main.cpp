@@ -1,6 +1,8 @@
 //PGITIC CO
 //Project Started : 1394/1/29
-//TCP/IP BASED DIGITAL MICROPHONE
+//Project Phase II Started : 1395/1/18
+
+//TCP/IP BASED DIGITAL MICROPHONE - RaspberyPi II
 //EDWIN BABAIANS - edwin.babaians@gmail.com
 
 //0.1 => project start
@@ -9,18 +11,23 @@
 //0.4 => add wiringPi GPIO library
 //0.5 => worked on raspberry II
 //0.6 => add multi thread for wiringPI for rasp I & II
+//1.0 => add record and play functionality to program
+//1,1 => add gui to application
 
-#include <QCoreApplication>
+#include <QApplication>
 #include <QTimer>
 #include "statics.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
     gst_init (0,0);
 
-    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 )");
+    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )");
 
     gpio = new MyGpio();
 
@@ -28,8 +35,9 @@ int main(int argc, char *argv[])
     //tcpsocket->connect();
     //tcpsocket->start(); //start internal thread for connection managment
 
-    _mainthread = new myMainThreadx();
-    _mainthread->start();
+    //Test Thread
+    //_mainthread = new myMainThreadx();
+    //_mainthread->start();
 
     mtgclientrecord = new mythreadgclientrecord();
     mtgclientrecord->start();
