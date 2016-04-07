@@ -1,7 +1,5 @@
 
 #include <qthreadtcp.h>
-#include "audioin.h"
-#include "audioout.h"
 #include "mygpio.h"
 #include "mygstreamer.h"
 #include "mygclient.h"
@@ -15,8 +13,6 @@ extern myThreadGclient *mtgclient3;
 
 extern myThreadGserver *mtgserver;
 
-extern InputTest *input;
-extern AudioTest *output;
 extern QThreadTCP *tcpsocket;
 extern MyGpio *gpio;
 extern MyGstreamer *mgstreamer;

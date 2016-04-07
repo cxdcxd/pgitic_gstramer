@@ -82,13 +82,13 @@ void myGclient::start(int port,std::string name)
     pipeline = gst_pipeline_new ("audio-player");
 
     //----------------------------------------------------------------------------------------
-    source   = gst_element_factory_make ("udpsrc",        "udp_in");
+    source   = gst_element_factory_make ("alsasrc",    "src");
     conv     = gst_element_factory_make ("audioconvert",  "converter");
-    rtppay   = gst_element_factory_make ("rtpL16depay" ,    "rtppay");
-    sink     = gst_element_factory_make ("alsasink",       "audio-output");
+    wavenc   = gst_element_factory_make ("wavenc" ,    "wav");
+    sink     = gst_element_factory_make ("filesink",       "audio-output");
     //----------------------------------------------------------------------------------------
 
-    if (!pipeline || !source || !conv || !sink || !rtppay ) {
+    if (!pipeline || !source || !conv || !sink || !wavenc ) {
         g_printerr ("One element could not be created. Exiting.\n");
         return;
     }
@@ -97,14 +97,16 @@ void myGclient::start(int port,std::string name)
         printf("OK\n");
     }
 
-    /* Set up the pipeline */
-    gst_bin_add_many (GST_BIN (pipeline),source, rtppay , conv, sink, NULL);
+   /* Set up the pipeline */
 
-    gboolean abool = link_elements_with_filter2 (source , rtppay );
-    gboolean bbool = gst_element_link ( rtppay , conv );
-    gboolean cbool = gst_element_link (conv , sink);
 
-    g_object_set (G_OBJECT (source), "port", port, NULL);
+     gst_bin_add_many (GST_BIN (pipeline),source, wavenc , conv, sink, NULL);
+
+    gboolean abool = gst_element_link (source , conv);
+    gboolean bbool = gst_element_link (conv   , wavenc);
+    gboolean cbool = gst_element_link (wavenc , sink);
+
+    g_object_set (G_OBJECT (sink), "location", "test.wav", NULL);
 
     if ( abool && bbool && cbool )
     {
@@ -118,7 +120,7 @@ void myGclient::start(int port,std::string name)
     GstStateChangeReturn ret;
     ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
 
-    if (ret == GST_STATE_CHANGE_FAILURE) {
+   if (ret == GST_STATE_CHANGE_FAILURE) {
         g_printerr ("Unable to set the pipeline to the playing state.\n");
         return ;
     }
@@ -128,12 +130,12 @@ void myGclient::start(int port,std::string name)
 
     printf("OK all run done\n");
 
-    /* we add a message handler */
+//    /* we add a message handler */
     bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
     bus_watch_id = gst_bus_add_watch (bus, bus_callc, loop);
     gst_object_unref (bus);
 
-    /* Out of the main loop, clean up nicely */
+//    /* Out of the main loop, clean up nicely */
     g_print ("Returned, stopping playback\n");
     gst_element_set_state (pipeline, GST_STATE_NULL);
 

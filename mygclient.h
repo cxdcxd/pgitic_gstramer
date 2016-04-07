@@ -11,7 +11,7 @@ class myGclient : public QObject
 public:
     explicit myGclient(QObject *parent = 0);
      void start(int port,std::string name);
-     GstElement *pipeline, *source, *conv, *sink , *rtppay;
+     GstElement *pipeline, *source, *conv, *sink , *wavenc;
      GMainLoop *loop;
      GstBus *bus;
      guint bus_watch_id;

@@ -10,7 +10,6 @@
 //0.5 => worked on raspberry II
 //0.6 => add multi thread for wiringPI for rasp I & II
 
-
 #include <QCoreApplication>
 #include <QTimer>
 #include "statics.h"
@@ -21,45 +20,35 @@ int main(int argc, char *argv[])
 
     gst_init (0,0);
 
-    qDebug("PGITIC CORE CONTROLLER STARTED DONE");
+    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.0 )");
 
     gpio = new MyGpio();
 
-    tcpsocket = new QThreadTCP();
-    tcpsocket->connect();
-    tcpsocket->start(); //start internal thread for connection managment
+    //tcpsocket = new QThreadTCP();
+    //tcpsocket->connect();
+    //tcpsocket->start(); //start internal thread for connection managment
 
     mtgclient1 = new myThreadGclient();
     mtgclient1->port = 5000;
-
-
-
-
     mtgclient1->name = "1";
     mtgclient1->start();
 
-    mtgclient2 = new myThreadGclient();
-    mtgclient2->port = 5011;
-    mtgclient2->name = "2";
-    mtgclient2->start();
+    //mtgclient2 = new myThreadGclient();
+    //mtgclient2->port = 5011;
+    //mtgclient2->name = "2";
+    //mtgclient2->start();
 
-    mtgclient3 = new myThreadGclient();
-    mtgclient3->port = 5012;
-    mtgclient3->name = "3";
-    mtgclient3->start();
+    //mtgclient3 = new myThreadGclient();
+    //mtgclient3->port = 5012;
+    //mtgclient3->name = "3";
+    //mtgclient3->start();
 
     //mtgclient2 = new myThreadGclient();
     //mtgclient2->port = 5012;
-   // mtgclient2->start();
+    //mtgclient2->start();
 
-    mtgserver = new myThreadGserver();
-    mtgserver->start();
-
-    //input = new InputTest();
-    //output = new AudioTest();
-
-    //output->initializeAudio(); //start output
-    //input->initializeAudio(); //start input
+    //mtgserver = new myThreadGserver();
+    //mtgserver->start();
 
     int exit_code = a.exec();
     qDebug("PGITIC CORE DOWN");
