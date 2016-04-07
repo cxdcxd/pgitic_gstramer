@@ -44,9 +44,7 @@ void QThreadTCP::update()
         }
         else
         {
-           mtgserver->xstop();
            gpio->info_mode = 0;
-           qDebug("Server Ping Error : Network Problem Detected...");
            socket->close();
         }
 
@@ -128,13 +126,11 @@ void QThreadTCP::readyRead()
     {
         qDebug() << "on";
         gpio->state = true;
-        mtgserver->xstart();
     }
     if ( x.at(0) == '4')
     {
         qDebug() << "off";
         gpio->state = false;
-        mtgserver->xstop();
     }
 
 }

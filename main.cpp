@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     gst_init (0,0);
 
-    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.0 )");
+    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 )");
 
     gpio = new MyGpio();
 
@@ -28,27 +28,14 @@ int main(int argc, char *argv[])
     //tcpsocket->connect();
     //tcpsocket->start(); //start internal thread for connection managment
 
-    mtgclient1 = new myThreadGclient();
-    mtgclient1->port = 5000;
-    mtgclient1->name = "1";
-    mtgclient1->start();
+    _mainthread = new myMainThreadx();
+    _mainthread->start();
 
-    //mtgclient2 = new myThreadGclient();
-    //mtgclient2->port = 5011;
-    //mtgclient2->name = "2";
-    //mtgclient2->start();
+    mtgclientrecord = new mythreadgclientrecord();
+    mtgclientrecord->start();
 
-    //mtgclient3 = new myThreadGclient();
-    //mtgclient3->port = 5012;
-    //mtgclient3->name = "3";
-    //mtgclient3->start();
-
-    //mtgclient2 = new myThreadGclient();
-    //mtgclient2->port = 5012;
-    //mtgclient2->start();
-
-    //mtgserver = new myThreadGserver();
-    //mtgserver->start();
+    mtgclientplay = new mythreadgclientplay();
+    mtgclientplay->start();
 
     int exit_code = a.exec();
     qDebug("PGITIC CORE DOWN");

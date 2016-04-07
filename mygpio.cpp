@@ -48,7 +48,7 @@ bool f3 = false;
 
 void MyGpio::kill()
 {
-    info_mode = 2;
+    info_mode = 3;
 
     state = false;
 
@@ -109,55 +109,46 @@ void MyGpio::update()
 {
     //10HZ pulling loop
 
-    if ( send_off )
-    {
-        send_off = false;
-        send_request(2);
-    }
-    if ( info_mode == 1 )
-    {
+//    if ( send_off )
+//    {
+//        send_off = false;
+//        send_request(2);
+//    }
 
-        int x = digitalRead(1);
+//    if ( info_mode == 1 )
+//    {
+//        int x = digitalRead(1);
 
-        if ( x == 1)
-        {
-            //user press the push button
-            //digitalWrite(4,LOW);
-
-            if ( state == false && f == false)
-            {
-                f = true;
-                //state = true;
-                send_request(1);
-            }
-            if ( state == true && f == false)
-            {
-                f = true;
-                state = false;
-                mtgserver->xstop();
-                send_off = true;
-            }
-        }
-        else
-        {
-            f = false;
-            //digitalWrite(4,HIGH);
-        }
-
-        digitalWrite(6,LOW);
-    }
+//        if ( x == 1)
+//        {
+//            if ( state == false && f == false)
+//            {
+//                f = true;
+//                state = true;
+//            }
+//            if ( state == true && f == false)
+//            {
+//                f = true;
+//                state = false;
+//            }
+//        }
+//        else
+//        {
+//            f = false;
+//        }
+//    }
 
 
-    if ( state )
-    {
-        digitalWrite(5,LOW);
-    }
-    else
-    {
-        digitalWrite(5,HIGH);
-    }
+//    if ( state )
+//    {
+//        digitalWrite(5,LOW);
+//    }
+//    else
+//    {
+//        digitalWrite(5,HIGH);
+//    }
 
-    if ( info_mode == 0 )
+    if ( info_mode == 2 )
     {
         state = false;
         //conneting...
@@ -172,6 +163,10 @@ void MyGpio::update()
 
         f2 = !f2;
 
+    }
+    else
+    {
+         digitalWrite(6,HIGH);
     }
 
 

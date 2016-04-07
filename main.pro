@@ -31,17 +31,19 @@ SOURCES += main.cpp \
     qthreadtcp.cpp \
     sigwatch.cpp \
     statics.cpp \
-    mythreadgclient.cpp \
-    mythreadgserver.cpp \
-    mygserver.cpp \
-    mygclient.cpp
+    mainthread.cpp \
+    mygclientplay.cpp \
+    mygclientrecord.cpp \
+    mythreadgclientplay.cpp \
+    mythreadgclientrecord.cpp
 
 HEADERS += \
     mygpio.h \
     qthreadtcp.h \
     sigwatch.h \
     statics.h \
-    mythreadgclient.h \
-    mythreadgserver.h \
-    mygserver.h \
-    mygclient.h
+    mainthread.h \
+    mygclientplay.h \
+    mygclientrecord.h \
+    mythreadgclientplay.h \
+    mythreadgclientrecord.h

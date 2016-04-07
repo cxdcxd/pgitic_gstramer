@@ -1,18 +1,16 @@
 
 #include <qthreadtcp.h>
 #include "mygpio.h"
-#include "mygstreamer.h"
-#include "mygclient.h"
-#include "mygserver.h"
-#include "mythreadgclient.h"
-#include "mythreadgserver.h"
+#include "mygclientrecord.h"
+#include "mygclientplay.h"
+#include "mythreadgclientrecord.h"
+#include "mythreadgclientplay.h"
+#include "mainthread.h"
 
-extern myThreadGclient *mtgclient1;
-extern myThreadGclient *mtgclient2;
-extern myThreadGclient *mtgclient3;
+extern mythreadgclientrecord *mtgclientrecord; //Thread => clientrecord
+extern mythreadgclientplay *mtgclientplay; //Thread => clientrecord
 
-extern myThreadGserver *mtgserver;
+extern QThreadTCP *tcpsocket; //TCP Client
+extern MyGpio *gpio; //GPIO
 
-extern QThreadTCP *tcpsocket;
-extern MyGpio *gpio;
-extern MyGstreamer *mgstreamer;
+extern myMainThreadx *_mainthread; //Therad => mainthread
