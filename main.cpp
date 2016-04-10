@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     //tcpsocket = new QThreadTCP();
     //tcpsocket->connect();
     //tcpsocket->start(); //start internal thread for connection managment
-
+    audio_mode = "idle";
 
 
     mtserial = new myserialq();

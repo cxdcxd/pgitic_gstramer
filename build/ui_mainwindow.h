@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun Apr 10 08:34:51 2016
+** Created: Sun Apr 10 12:26:16 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -19,11 +19,11 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QListView>
+#include <QtGui/QListWidget>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
-#include <QtGui/QSlider>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
 #include <QtGui/QTextEdit>
@@ -39,16 +39,20 @@ public:
     QWidget *centralwidget;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QListView *lst_folder;
     QLabel *label_2;
     QPushButton *btn_playstart;
     QPushButton *btn_playstop;
-    QPushButton *btn_recstop;
-    QTextEdit *txt_playname;
     QTextEdit *txt_recname;
     QPushButton *btn_recstart;
-    QTextEdit *textEdit;
+    QTextEdit *txt_info;
     QProgressBar *progressBar;
+    QFrame *img_usbstorage1;
+    QLabel *label_3;
+    QLabel *label_8;
+    QFrame *img_usbstorage0;
+    QListWidget *lst_folder_info;
+    QPushButton *btn_recstop;
+    QPushButton *btn_playpause;
     QWidget *tab_2;
     QPushButton *pushButton;
     QLabel *label_4;
@@ -57,11 +61,8 @@ public:
     QWidget *tab_4;
     QWidget *tab_7;
     QWidget *tab_8;
-    QSlider *verticalSlider;
-    QSlider *verticalSlider_2;
-    QSlider *verticalSlider_3;
-    QSlider *verticalSlider_4;
     QGraphicsView *graphicsView;
+    QFrame *frame_3;
     QWidget *tab_5;
     QWidget *tab_6;
     QFrame *frame;
@@ -90,7 +91,7 @@ public:
 "QWidget\n"
 "{\n"
 "    color: #b1b1b1;\n"
-"    background-color: #727272;\n"
+"    background-color: #909090;\n"
 "}\n"
 "\n"
 "QWidget:item:hover\n"
@@ -557,13 +558,10 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 50, 1151, 511));
+        tabWidget->setGeometry(QRect(20, 60, 1151, 511));
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
-        lst_folder = new QListView(tab);
-        lst_folder->setObjectName(QString::fromUtf8("lst_folder"));
-        lst_folder->setGeometry(QRect(10, 50, 351, 421));
         label_2 = new QLabel(tab);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(10, 20, 351, 21));
@@ -584,32 +582,83 @@ public:
         icon1.addFile(QString::fromUtf8(":/new/images/Resource/Play/x3.png"), QSize(), QIcon::Normal, QIcon::Off);
         btn_playstop->setIcon(icon1);
         btn_playstop->setIconSize(QSize(32, 32));
-        btn_recstop = new QPushButton(tab);
-        btn_recstop->setObjectName(QString::fromUtf8("btn_recstop"));
-        btn_recstop->setGeometry(QRect(700, 210, 131, 51));
-        btn_recstop->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        txt_playname = new QTextEdit(tab);
-        txt_playname->setObjectName(QString::fromUtf8("txt_playname"));
-        txt_playname->setGeometry(QRect(370, 170, 491, 31));
-        txt_playname->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_recname = new QTextEdit(tab);
         txt_recname->setObjectName(QString::fromUtf8("txt_recname"));
-        txt_recname->setGeometry(QRect(370, 130, 491, 31));
+        txt_recname->setGeometry(QRect(370, 150, 491, 31));
         txt_recname->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         btn_recstart = new QPushButton(tab);
         btn_recstart->setObjectName(QString::fromUtf8("btn_recstart"));
         btn_recstart->setGeometry(QRect(370, 50, 71, 41));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/images/Resource/Play/x2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QString::fromUtf8(":/new/images/Resource/Play/x10.png"), QSize(), QIcon::Normal, QIcon::Off);
         btn_recstart->setIcon(icon2);
         btn_recstart->setIconSize(QSize(32, 32));
-        textEdit = new QTextEdit(tab);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(610, 50, 251, 41));
+        txt_info = new QTextEdit(tab);
+        txt_info->setObjectName(QString::fromUtf8("txt_info"));
+        txt_info->setGeometry(QRect(610, 50, 251, 41));
+        QFont font;
+        font.setPointSize(12);
+        txt_info->setFont(font);
+        txt_info->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        txt_info->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         progressBar = new QProgressBar(tab);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(370, 100, 491, 16));
-        progressBar->setValue(24);
+        progressBar->setValue(0);
+        progressBar->setTextVisible(true);
+        progressBar->setOrientation(Qt::Horizontal);
+        progressBar->setInvertedAppearance(false);
+        img_usbstorage1 = new QFrame(tab);
+        img_usbstorage1->setObjectName(QString::fromUtf8("img_usbstorage1"));
+        img_usbstorage1->setGeometry(QRect(800, 190, 64, 64));
+        img_usbstorage1->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Play/x6.png) 0 0 0 0 100 stretch;\n"
+"\n"
+"\n"
+""));
+        img_usbstorage1->setFrameShape(QFrame::StyledPanel);
+        img_usbstorage1->setFrameShadow(QFrame::Raised);
+        label_3 = new QLabel(tab);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(370, 130, 351, 16));
+        label_3->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        label_8 = new QLabel(tab);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(370, 190, 121, 16));
+        label_8->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_8->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        img_usbstorage0 = new QFrame(tab);
+        img_usbstorage0->setObjectName(QString::fromUtf8("img_usbstorage0"));
+        img_usbstorage0->setGeometry(QRect(800, 190, 64, 64));
+        img_usbstorage0->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Play/x7.png) 0 0 0 0 100 stretch;\n"
+"\n"
+"\n"
+""));
+        img_usbstorage0->setFrameShape(QFrame::StyledPanel);
+        img_usbstorage0->setFrameShadow(QFrame::Raised);
+        lst_folder_info = new QListWidget(tab);
+        lst_folder_info->setObjectName(QString::fromUtf8("lst_folder_info"));
+        lst_folder_info->setGeometry(QRect(20, 50, 331, 401));
+        QFont font1;
+        font1.setPointSize(12);
+        font1.setBold(true);
+        font1.setWeight(75);
+        lst_folder_info->setFont(font1);
+        btn_recstop = new QPushButton(tab);
+        btn_recstop->setObjectName(QString::fromUtf8("btn_recstop"));
+        btn_recstop->setGeometry(QRect(370, 50, 71, 41));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/new/images/Resource/Play/x2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_recstop->setIcon(icon3);
+        btn_recstop->setIconSize(QSize(32, 32));
+        btn_playpause = new QPushButton(tab);
+        btn_playpause->setObjectName(QString::fromUtf8("btn_playpause"));
+        btn_playpause->setGeometry(QRect(450, 50, 71, 41));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/new/images/Resource/Play/x4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btn_playpause->setIcon(icon4);
+        btn_playpause->setIconSize(QSize(32, 32));
+        btn_playpause->setCheckable(false);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -635,25 +684,20 @@ public:
         tabWidget->addTab(tab_7, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
-        verticalSlider = new QSlider(tab_8);
-        verticalSlider->setObjectName(QString::fromUtf8("verticalSlider"));
-        verticalSlider->setGeometry(QRect(50, 60, 31, 271));
-        verticalSlider->setOrientation(Qt::Vertical);
-        verticalSlider_2 = new QSlider(tab_8);
-        verticalSlider_2->setObjectName(QString::fromUtf8("verticalSlider_2"));
-        verticalSlider_2->setGeometry(QRect(130, 60, 31, 271));
-        verticalSlider_2->setOrientation(Qt::Vertical);
-        verticalSlider_3 = new QSlider(tab_8);
-        verticalSlider_3->setObjectName(QString::fromUtf8("verticalSlider_3"));
-        verticalSlider_3->setGeometry(QRect(210, 60, 31, 271));
-        verticalSlider_3->setOrientation(Qt::Vertical);
-        verticalSlider_4 = new QSlider(tab_8);
-        verticalSlider_4->setObjectName(QString::fromUtf8("verticalSlider_4"));
-        verticalSlider_4->setGeometry(QRect(290, 60, 31, 271));
-        verticalSlider_4->setOrientation(Qt::Vertical);
         graphicsView = new QGraphicsView(tab_8);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(390, 60, 311, 271));
+        graphicsView->setGeometry(QRect(670, 140, 300, 300));
+        graphicsView->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcu_joystick.png) 0 0 0 0 100 stretch;\n"
+"\n"
+""));
+        frame_3 = new QFrame(tab_8);
+        frame_3->setObjectName(QString::fromUtf8("frame_3"));
+        frame_3->setGeometry(QRect(160, 140, 500, 300));
+        frame_3->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/control3.png) 0 0 0 0 100 stretch;\n"
+"\n"
+""));
+        frame_3->setFrameShape(QFrame::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Raised);
         tabWidget->addTab(tab_8, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
@@ -690,9 +734,9 @@ public:
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(60, 10, 481, 41));
-        QFont font;
-        font.setPointSize(16);
-        label_5->setFont(font);
+        QFont font2;
+        font2.setPointSize(16);
+        label_5->setFont(font2);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -705,7 +749,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -719,18 +763,23 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "Recording Folder", 0, QApplication::UnicodeUTF8));
         btn_playstart->setText(QString());
         btn_playstop->setText(QString());
-        btn_recstop->setText(QApplication::translate("MainWindow", "Record Stop", 0, QApplication::UnicodeUTF8));
-        txt_playname->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">out.mp3</p></body></html>", 0, QApplication::UnicodeUTF8));
         txt_recname->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">out.mp3</p></body></html>", 0, QApplication::UnicodeUTF8));
         btn_recstart->setText(QString());
+        txt_info->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt; font-weight:600;\">00:00:00</span></p>\n"
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\"><br /></span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        progressBar->setFormat(QApplication::translate("MainWindow", "%p%", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("MainWindow", "File Information :", 0, QApplication::UnicodeUTF8));
+        label_8->setText(QApplication::translate("MainWindow", "USB Storage :", 0, QApplication::UnicodeUTF8));
+        btn_recstop->setText(QString());
+        btn_playpause->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Recording And Playback", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "TCP Sendt Test", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("MainWindow", "Connected Clients", 0, QApplication::UnicodeUTF8));

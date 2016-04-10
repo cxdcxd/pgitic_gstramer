@@ -16,6 +16,8 @@ public:
 
      void play_start(std::string filename);
      void play_stop();
+     void play_pause();
+     void play_resume();
 
      bool app_exited ;
 

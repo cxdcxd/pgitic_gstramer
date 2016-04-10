@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <statics.h>
 #include <QTimer>
+#include <QListWidgetItem>
+
 
 
 namespace Ui {
@@ -18,8 +20,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void update_ui();
+    bool isusbconnected();
+    void update_folder_content();
 
 private slots:
+
 
     void TimerEvent();
 
@@ -33,9 +38,14 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lst_folder_info_itemClicked(QListWidgetItem *item);
+
+    void on_btn_playpause_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *_maintimer;
+    bool usbstatus_changed;
 };
 
 #endif // MAINWINDOW_H

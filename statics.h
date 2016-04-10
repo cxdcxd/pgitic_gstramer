@@ -34,4 +34,10 @@ extern std::string coutcolor_brown;
 
 
 extern QString send_buffer;
+extern std::string usb_storage_path;
+extern std::string audio_mode;
+
+extern int audio_max_seconds;
+extern int audio_current_second;
+extern std::string audio_info;
 

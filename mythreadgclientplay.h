@@ -17,9 +17,12 @@ public:
     mygclientplay *mgclient;
     void play_start(std::string filenamee);
     void play_stop();
+    void play_pause();
+    void play_resume();
     bool app_exit;
     std::string state;
      std::string filename;
+     bool played ;
 signals:
 
 public slots:

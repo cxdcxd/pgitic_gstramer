@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mythreadgclientplay.h'
 **
-** Created: Thu Apr 7 08:28:55 2016
+** Created: Sun Apr 10 10:45:50 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

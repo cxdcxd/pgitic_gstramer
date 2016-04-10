@@ -18,4 +18,11 @@ std::string coutcolor_brown = "\033[0;33m";
 
 QString send_buffer;
 
+std::string usb_storage_path;
+std::string audio_mode;
+
+int audio_max_seconds;
+int audio_current_second;
+std::string audio_info;
+
 

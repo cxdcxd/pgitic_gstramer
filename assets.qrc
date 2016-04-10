@@ -7,5 +7,47 @@
         <file>Resource/Play/x2.png</file>
         <file>Resource/Play/x3.png</file>
         <file>Resource/Play/x4.png</file>
+        <file>Resource/Dcu/control3.png</file>
+        <file>Resource/Dcu/core_about.png</file>
+        <file>Resource/Dcu/core_splash.png</file>
+        <file>Resource/Dcu/dcu_cam1_0.png</file>
+        <file>Resource/Dcu/dcu_cam1_1.png</file>
+        <file>Resource/Dcu/dcu_cam2_0.png</file>
+        <file>Resource/Dcu/dcu_cam2_1.png</file>
+        <file>Resource/Dcu/dcu_cam3_0.png</file>
+        <file>Resource/Dcu/dcu_cam3_1.png</file>
+        <file>Resource/Dcu/dcu_cam4_0.png</file>
+        <file>Resource/Dcu/dcu_cam4_1.png</file>
+        <file>Resource/Dcu/dcu_cam5_0.png</file>
+        <file>Resource/Dcu/dcu_cam5_1.png</file>
+        <file>Resource/Dcu/dcu_cam6_1.png</file>
+        <file>Resource/Dcu/dcu_joystick.png</file>
+        <file>Resource/Dcu/dcu_logo.png</file>
+        <file>Resource/Dcu/dcu_micpanasonic.png</file>
+        <file>Resource/Dcu/dcu_SCAM.png</file>
+        <file>Resource/Dcu/dcu_slider.png</file>
+        <file>Resource/Dcu/dcu_thumb2.png</file>
+        <file>Resource/Dcu/dcuconnect.png</file>
+        <file>Resource/Dcu/dcui10.png</file>
+        <file>Resource/Dcu/dcui11.png</file>
+        <file>Resource/Dcu/dcui20.png</file>
+        <file>Resource/Dcu/dcui21.png</file>
+        <file>Resource/Dcu/dcui30.png</file>
+        <file>Resource/Dcu/dcui31.png</file>
+        <file>Resource/Dcu/dcui40.png</file>
+        <file>Resource/Dcu/dcui41.png</file>
+        <file>Resource/Dcu/serialc.png</file>
+        <file>Resource/Dcu/serialc1.png</file>
+        <file>Resource/Dcu/seriald.png</file>
+        <file>Resource/Dcu/thumb3.png</file>
+        <file>Resource/Dcu/wific.png</file>
+        <file>Resource/Dcu/wific1.png</file>
+        <file>Resource/Dcu/wifid.png</file>
+        <file>Resource/Play/x10.png</file>
+        <file>Resource/Play/x9.png</file>
+        <file>Resource/Play/x6.png</file>
+        <file>Resource/Play/x7.png</file>
+        <file>Resource/Play/x8.png</file>
+        <file>Resource/Play/x5.png</file>
     </qresource>
 </RCC>

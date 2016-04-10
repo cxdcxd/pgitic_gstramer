@@ -10,7 +10,7 @@ QToolTip
 QWidget
 {
     color: #b1b1b1;
-    background-color: #323232;
+    background-color: #727272;
 }
 
 QWidget:item:hover

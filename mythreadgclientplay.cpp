@@ -5,6 +5,7 @@ mythreadgclientplay::mythreadgclientplay(QObject *parent) :
     QThread(parent)
 {
     printf("Client Thread RUN\n");
+    played = false;
     mgclient = new mygclientplay();
 }
 
@@ -17,6 +18,7 @@ void mythreadgclientplay::run()
     {
             if ( state ==  "start")
             {
+              played = true;
               state = "loop";
               gpio->info_mode = 2;
               qDebug("3");
@@ -31,12 +33,23 @@ void mythreadgclientplay::play_start( std::string filenamee)
 {
     qDebug("2");
     filename = filenamee;
-   state = "start";
+    state = "start";
+
+}
+
+void mythreadgclientplay::play_resume()
+{
+  mgclient->play_resume();
+}
+
+void mythreadgclientplay::play_pause()
+{
+   mgclient->play_pause();
 }
 
 void mythreadgclientplay::play_stop()
 {
   state = "stop";
-   gpio->info_mode = 3;
+  gpio->info_mode = 3;
   mgclient->play_stop();
 }
