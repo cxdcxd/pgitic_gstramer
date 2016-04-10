@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+    w.showFullScreen();
 
     gst_init (0,0);
 
@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     //tcpsocket = new QThreadTCP();
     //tcpsocket->connect();
     //tcpsocket->start(); //start internal thread for connection managment
+
+
 
     mtserial = new myserialq();
     mtserial->start();

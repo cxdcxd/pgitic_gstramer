@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Thu Apr 7 12:42:23 2016
+** Created: Sun Apr 10 06:38:54 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -31,18 +31,20 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      11,   37,   37,   37, 0x08,
-      38,   37,   37,   37, 0x08,
-      63,   37,   37,   37, 0x08,
-      90,   37,   37,   37, 0x08,
-     116,   37,   37,   37, 0x08,
+      11,   24,   24,   24, 0x08,
+      25,   24,   24,   24, 0x08,
+      51,   24,   24,   24, 0x08,
+      76,   24,   24,   24, 0x08,
+     103,   24,   24,   24, 0x08,
+     129,   24,   24,   24, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0on_btn_recstart_clicked()\0"
-    "\0on_btn_recstop_clicked()\0"
+    "MainWindow\0TimerEvent()\0\0"
+    "on_btn_recstart_clicked()\0"
+    "on_btn_recstop_clicked()\0"
     "on_btn_playstart_clicked()\0"
     "on_btn_playstop_clicked()\0"
     "on_pushButton_clicked()\0"
@@ -54,11 +56,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_ASSERT(staticMetaObject.cast(_o));
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->on_btn_recstart_clicked(); break;
-        case 1: _t->on_btn_recstop_clicked(); break;
-        case 2: _t->on_btn_playstart_clicked(); break;
-        case 3: _t->on_btn_playstop_clicked(); break;
-        case 4: _t->on_pushButton_clicked(); break;
+        case 0: _t->TimerEvent(); break;
+        case 1: _t->on_btn_recstart_clicked(); break;
+        case 2: _t->on_btn_recstop_clicked(); break;
+        case 3: _t->on_btn_playstart_clicked(); break;
+        case 4: _t->on_btn_playstop_clicked(); break;
+        case 5: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -97,9 +100,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

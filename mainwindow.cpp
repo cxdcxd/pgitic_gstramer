@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    _maintimer = new QTimer(this);
+    connect(_maintimer, SIGNAL(timeout()), this, SLOT(TimerEvent()));
+    this->_maintimer->start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -18,6 +21,17 @@ void MainWindow::on_btn_recstart_clicked()
 {
   QString item = ui->txt_recname->toPlainText();
   mtgclientrecord->recorde_start(item.toStdString());
+}
+
+void MainWindow::update_ui()
+{
+
+}
+
+void MainWindow::TimerEvent()
+{
+  std::cout << "Timer expired." << std::endl;
+
 }
 
 void MainWindow::on_btn_recstop_clicked()

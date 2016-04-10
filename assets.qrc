@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>Resource/Logo/core_logocore.png</file>
+        <file>Resource/Logo/core_logocore_main.png</file>
+        <file>Resource/Logo/favicon.ico</file>
+        <file>Resource/Play/x1.png</file>
+        <file>Resource/Play/x2.png</file>
+        <file>Resource/Play/x3.png</file>
+        <file>Resource/Play/x4.png</file>
+    </qresource>
+</RCC>
