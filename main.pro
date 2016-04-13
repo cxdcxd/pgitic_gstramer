@@ -20,6 +20,7 @@ QT       += core
 QT       += network
 QT       += gui
 QT       += serialport
+QT       += sql
 
 TARGET = main
 CONFIG   += console
@@ -39,7 +40,10 @@ SOURCES += main.cpp \
     mythreadgclientrecord.cpp \
     mainwindow.cpp \
     myserver.cpp \
-    myserial.cpp
+    myserial.cpp \
+    mytcpsocket.cpp \
+    pgiticlog.cpp \
+    joystickscene.cpp
 
 HEADERS += \
     mygpio.h \
@@ -53,7 +57,10 @@ HEADERS += \
     mythreadgclientrecord.h \
     mainwindow.h \
     myserver.h \
-    myserial.h
+    myserial.h \
+    mytcpsocket.h \
+    pgiticlog.h \
+    joystickscene.h
 
 FORMS += \
     mainwindow.ui

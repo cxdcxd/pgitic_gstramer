@@ -1,5 +1,6 @@
 #include "statics.h"
 
+pgiticlog *mtlog;
 mythreadgclientrecord *mtgclientrecord;
 mythreadgclientplay *mtgclientplay;
 QThreadTCP *tcpsocket;
@@ -24,5 +25,7 @@ std::string audio_mode;
 int audio_max_seconds;
 int audio_current_second;
 std::string audio_info;
-
-
+std::string tcp_client_remote_ip;
+int tcp_client_remote_port;
+bool isuserlogedin;
+//pgitic_log *mtlog;

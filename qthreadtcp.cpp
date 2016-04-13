@@ -2,8 +2,7 @@
 #include "qthreadtcp.h"
 #include "QProcess"
 #include "statics.h"
-
-
+#include "stdlib.h"
 
 QThreadTCP::QThreadTCP(QObject *parent) :
     QThread(parent)
@@ -19,8 +18,9 @@ void QThreadTCP::update()
         qDebug("TRY CONNECTING ...");
 
         gpio->info_mode = 0;
+        isconnected = false;
 
-        socket->connectToHost("192.168.16.100", 1234);
+        socket->connectToHost(tcp_client_remote_ip.c_str(), tcp_client_remote_port);
 
         if(!socket->waitForConnected(500))
         {
@@ -31,9 +31,10 @@ void QThreadTCP::update()
     }
     else
     {
+        isconnected = true;
         gpio->info_mode = 1;
 
-        processclient->start("ping",QStringList() << "-c 1" << "192.168.16.100");
+        processclient->start("ping",QStringList() << "-c 1" << tcp_client_remote_ip.c_str());
         processclient->waitForFinished();
         int exitcode = processclient->exitCode();
 
@@ -50,6 +51,70 @@ void QThreadTCP::update()
 
 
 }
+
+void QThreadTCP::set_camera_number(int number)
+{
+QString _num = QString::number(number);
+std::string _number = _num.toStdString();
+std::string command = "(SCAMN," + _number + ";" + "0" + ":" + "0" + "." + "0" + ")";
+
+QByteArray array = command.c_str();
+
+//QString item = QString::fromUtf8(array.data(),array.size());
+mainwrite(array,array.size());
+
+}
+
+void QThreadTCP::set_camera_mode(bool manual)
+{
+
+}
+
+void QThreadTCP::set_camera_model(std::string model)
+{
+
+}
+
+void QThreadTCP::set_home()
+{
+
+}
+
+void QThreadTCP::set_point(int mic_number)
+{
+
+}
+
+void QThreadTCP::call_home()
+{
+
+}
+
+void QThreadTCP::call_point(int mic_number)
+{
+
+}
+
+void QThreadTCP::read_mic_number()
+{
+
+}
+
+void QThreadTCP::debug_test_camera()
+{
+
+}
+
+void QThreadTCP::debug_test_serial()
+{
+
+}
+
+void QThreadTCP::debug_test_version()
+{
+
+}
+
 
 void QThreadTCP::connect()
 {

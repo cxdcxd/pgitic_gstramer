@@ -49,5 +49,14 @@
         <file>Resource/Play/x7.png</file>
         <file>Resource/Play/x8.png</file>
         <file>Resource/Play/x5.png</file>
+        <file>Resource/arrow/down.png</file>
+        <file>Resource/arrow/left.png</file>
+        <file>Resource/arrow/right.png</file>
+        <file>Resource/arrow/u1.png</file>
+        <file>Resource/arrow/u2.png</file>
+        <file>Resource/arrow/u3.png</file>
+        <file>Resource/arrow/u4.png</file>
+        <file>Resource/arrow/up.png</file>
+        <file>Resource/Dcu/dcu_cam6_0.png</file>
     </qresource>
 </RCC>

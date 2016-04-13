@@ -13,46 +13,68 @@
 //0.6 => add multi thread for wiringPI for rasp I & II
 //1.0 => add record and play functionality to program
 //1,1 => add gui to application
+//1.2 => add gstreamer recording & playback
+
 
 #include <QApplication>
 #include <QTimer>
 #include "statics.h"
 #include "mainwindow.h"
 #include "QDir"
+#include "userlogin.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    //Create Main Window
     MainWindow w;
     w.showFullScreen();
+    //w.show();
 
     gst_init (0,0);
 
+    //Config
+    //=============================================================
+    tcp_client_remote_ip = "192.168.0.102";
+    tcp_client_remote_port = 3000;
+
+    audio_mode = "idle";
+    //==============================================================
     qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )");
 
+    //Create gpio interface
     gpio = new MyGpio();
 
-    //tcpsocket = new QThreadTCP();
-    //tcpsocket->connect();
-    //tcpsocket->start(); //start internal thread for connection managment
-    audio_mode = "idle";
+    //Create TCP/IP Client Connection Interface
+    tcpsocket = new QThreadTCP();
+    tcpsocket->connect();
+    tcpsocket->start(); //start internal thread for connection managment
 
-
+    //Create USB/Serial Connection Interface
     mtserial = new myserialq();
     mtserial->start();
 
+    //Create gstreamer recording thread interface
     mtgclientrecord = new mythreadgclientrecord();
     mtgclientrecord->start();
 
+    //Create gstreamer playing thread interface
     mtgclientplay = new mythreadgclientplay();
     mtgclientplay->start();
 
+    //Create TCP/IP server
     mttcpserver = new MyServer();
     mttcpserver->startServer();
 
+    mtlog = new pgiticlog();
+    mtlog->start();
+
+    //Application Loop
     int exit_code = a.exec();
     qDebug("PGITIC CORE DOWN");
 
+    //Kill GPIO
     gpio->kill();
     return exit_code;
 }

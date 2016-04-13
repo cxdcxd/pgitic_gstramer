@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun Apr 10 12:26:16 2016
+** Created: Wed Apr 13 11:48:43 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
 #include <QtGui/QFrame>
 #include <QtGui/QGraphicsView>
 #include <QtGui/QHeaderView>
@@ -24,8 +25,10 @@
 #include <QtGui/QMenuBar>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QSlider>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
+#include <QtGui/QTableView>
 #include <QtGui/QTextEdit>
 #include <QtGui/QWidget>
 
@@ -53,17 +56,78 @@ public:
     QListWidget *lst_folder_info;
     QPushButton *btn_recstop;
     QPushButton *btn_playpause;
+    QWidget *tab_8;
+    QTabWidget *tabWidget_2;
+    QWidget *tab_10;
+    QFrame *frame_5;
+    QPushButton *cs5;
+    QPushButton *cs2;
+    QPushButton *cs6;
+    QPushButton *cs3;
+    QPushButton *cs1;
+    QPushButton *cs4;
+    QFrame *frame_4;
+    QGraphicsView *view_joystick;
+    QPushButton *sback;
+    QPushButton *s4;
+    QPushButton *s1;
+    QPushButton *s6;
+    QPushButton *s8;
+    QPushButton *sclear;
+    QPushButton *s3;
+    QPushButton *s2;
+    QPushButton *s5;
+    QPushButton *s0;
+    QPushButton *s7;
+    QPushButton *s9;
+    QPushButton *d1;
+    QPushButton *d5;
+    QPushButton *d3;
+    QPushButton *d7;
+    QPushButton *d2;
+    QPushButton *d4;
+    QPushButton *d6;
+    QPushButton *d8;
+    QGraphicsView *graphicsView;
+    QSlider *slider4;
+    QSlider *slider3;
+    QSlider *slider1;
+    QSlider *slider2;
+    QPushButton *soff;
+    QPushButton *sok;
+    QPushButton *sapreset;
+    QPushButton *ssmic;
+    QPushButton *smpreset;
+    QPushButton *shome;
+    QPushButton *sshome;
+    QTextEdit *txt_mode;
+    QTextEdit *txt_input;
+    QLabel *label_10;
+    QLabel *label_11;
+    QLabel *label_12;
+    QFrame *frame_6;
+    QFrame *status;
+    QLabel *label_13;
+    QLabel *txt_camnum;
+    QLabel *txt_totalnum;
+    QLabel *txt_micnum;
+    QLabel *label_17;
+    QLabel *label_18;
+    QComboBox *smodel;
+    QComboBox *cmodel;
+    QLabel *label;
+    QLabel *label_9;
+    QLabel *label_14;
+    QWidget *tab_7;
+    QWidget *tab_4;
     QWidget *tab_2;
     QPushButton *pushButton;
     QLabel *label_4;
     QListView *lst_folder_2;
+    QWidget *tab_9;
     QWidget *tab_3;
-    QWidget *tab_4;
-    QWidget *tab_7;
-    QWidget *tab_8;
-    QGraphicsView *graphicsView;
-    QFrame *frame_3;
     QWidget *tab_5;
+    QTableView *logtable;
     QWidget *tab_6;
     QFrame *frame;
     QLabel *label_6;
@@ -77,7 +141,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1185, 605);
+        MainWindow->resize(1357, 825);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8("QToolTip\n"
 "{\n"
@@ -558,7 +622,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 60, 1151, 511));
+        tabWidget->setGeometry(QRect(20, 70, 1321, 671));
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -660,6 +724,442 @@ public:
         btn_playpause->setIconSize(QSize(32, 32));
         btn_playpause->setCheckable(false);
         tabWidget->addTab(tab, QString());
+        tab_8 = new QWidget();
+        tab_8->setObjectName(QString::fromUtf8("tab_8"));
+        tabWidget_2 = new QTabWidget(tab_8);
+        tabWidget_2->setObjectName(QString::fromUtf8("tabWidget_2"));
+        tabWidget_2->setGeometry(QRect(10, 20, 1291, 611));
+        tabWidget_2->setTabPosition(QTabWidget::South);
+        tabWidget_2->setTabShape(QTabWidget::Rounded);
+        tabWidget_2->setElideMode(Qt::ElideMiddle);
+        tabWidget_2->setUsesScrollButtons(false);
+        tab_10 = new QWidget();
+        tab_10->setObjectName(QString::fromUtf8("tab_10"));
+        frame_5 = new QFrame(tab_10);
+        frame_5->setObjectName(QString::fromUtf8("frame_5"));
+        frame_5->setGeometry(QRect(220, 20, 60, 60));
+        frame_5->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcuconnect.png)  0 0 0 0 100 stretch;\n"
+""));
+        frame_5->setFrameShape(QFrame::StyledPanel);
+        frame_5->setFrameShadow(QFrame::Raised);
+        cs5 = new QPushButton(tab_10);
+        cs5->setObjectName(QString::fromUtf8("cs5"));
+        cs5->setGeometry(QRect(960, 30, 60, 60));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam5_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs5->setIcon(icon5);
+        cs5->setIconSize(QSize(50, 50));
+        cs2 = new QPushButton(tab_10);
+        cs2->setObjectName(QString::fromUtf8("cs2"));
+        cs2->setGeometry(QRect(750, 30, 60, 60));
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam2_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs2->setIcon(icon6);
+        cs2->setIconSize(QSize(50, 50));
+        cs6 = new QPushButton(tab_10);
+        cs6->setObjectName(QString::fromUtf8("cs6"));
+        cs6->setGeometry(QRect(1030, 30, 60, 60));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam6_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs6->setIcon(icon7);
+        cs6->setIconSize(QSize(50, 50));
+        cs3 = new QPushButton(tab_10);
+        cs3->setObjectName(QString::fromUtf8("cs3"));
+        cs3->setGeometry(QRect(820, 30, 60, 60));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam3_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs3->setIcon(icon8);
+        cs3->setIconSize(QSize(50, 50));
+        cs1 = new QPushButton(tab_10);
+        cs1->setObjectName(QString::fromUtf8("cs1"));
+        cs1->setGeometry(QRect(680, 30, 60, 60));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam1_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs1->setIcon(icon9);
+        cs1->setIconSize(QSize(50, 50));
+        cs4 = new QPushButton(tab_10);
+        cs4->setObjectName(QString::fromUtf8("cs4"));
+        cs4->setGeometry(QRect(890, 30, 60, 60));
+        QIcon icon10;
+        icon10.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam4_0.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cs4->setIcon(icon10);
+        cs4->setIconSize(QSize(50, 50));
+        frame_4 = new QFrame(tab_10);
+        frame_4->setObjectName(QString::fromUtf8("frame_4"));
+        frame_4->setGeometry(QRect(340, 20, 60, 60));
+        frame_4->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcu_micpanasonic.png)  0 0 0 0 100 stretch;\n"
+""));
+        frame_4->setFrameShape(QFrame::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Raised);
+        view_joystick = new QGraphicsView(tab_10);
+        view_joystick->setObjectName(QString::fromUtf8("view_joystick"));
+        view_joystick->setGeometry(QRect(970, 210, 291, 291));
+        view_joystick->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcu_joystick.png) 0 0 0 0 100 stretch;\n"
+"\n"
+""));
+        view_joystick->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view_joystick->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        sback = new QPushButton(tab_10);
+        sback->setObjectName(QString::fromUtf8("sback"));
+        sback->setGeometry(QRect(160, 390, 50, 50));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Sans Serif"));
+        font2.setPointSize(18);
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setWeight(50);
+        sback->setFont(font2);
+        sback->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        sback->setIconSize(QSize(12, 12));
+        sback->setFlat(false);
+        s4 = new QPushButton(tab_10);
+        s4->setObjectName(QString::fromUtf8("s4"));
+        s4->setGeometry(QRect(40, 270, 50, 50));
+        s4->setFont(font2);
+        s4->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s4->setIconSize(QSize(12, 12));
+        s4->setFlat(false);
+        s1 = new QPushButton(tab_10);
+        s1->setObjectName(QString::fromUtf8("s1"));
+        s1->setGeometry(QRect(40, 210, 50, 50));
+        s1->setFont(font2);
+        s1->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s1->setIconSize(QSize(12, 12));
+        s1->setFlat(false);
+        s6 = new QPushButton(tab_10);
+        s6->setObjectName(QString::fromUtf8("s6"));
+        s6->setGeometry(QRect(160, 270, 50, 50));
+        s6->setFont(font2);
+        s6->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s6->setIconSize(QSize(12, 12));
+        s6->setFlat(false);
+        s8 = new QPushButton(tab_10);
+        s8->setObjectName(QString::fromUtf8("s8"));
+        s8->setGeometry(QRect(100, 330, 50, 50));
+        s8->setFont(font2);
+        s8->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s8->setIconSize(QSize(12, 12));
+        s8->setFlat(false);
+        sclear = new QPushButton(tab_10);
+        sclear->setObjectName(QString::fromUtf8("sclear"));
+        sclear->setGeometry(QRect(40, 390, 50, 50));
+        sclear->setFont(font2);
+        sclear->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        sclear->setIconSize(QSize(12, 12));
+        sclear->setFlat(false);
+        s3 = new QPushButton(tab_10);
+        s3->setObjectName(QString::fromUtf8("s3"));
+        s3->setGeometry(QRect(160, 210, 50, 50));
+        s3->setFont(font2);
+        s3->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s3->setIconSize(QSize(12, 12));
+        s3->setFlat(false);
+        s2 = new QPushButton(tab_10);
+        s2->setObjectName(QString::fromUtf8("s2"));
+        s2->setGeometry(QRect(100, 210, 50, 50));
+        s2->setFont(font2);
+        s2->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s2->setIconSize(QSize(12, 12));
+        s2->setFlat(false);
+        s5 = new QPushButton(tab_10);
+        s5->setObjectName(QString::fromUtf8("s5"));
+        s5->setGeometry(QRect(100, 270, 50, 50));
+        s5->setFont(font2);
+        s5->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s5->setIconSize(QSize(12, 12));
+        s5->setFlat(false);
+        s0 = new QPushButton(tab_10);
+        s0->setObjectName(QString::fromUtf8("s0"));
+        s0->setGeometry(QRect(100, 390, 50, 50));
+        s0->setFont(font2);
+        s0->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s0->setIconSize(QSize(12, 12));
+        s0->setFlat(false);
+        s7 = new QPushButton(tab_10);
+        s7->setObjectName(QString::fromUtf8("s7"));
+        s7->setGeometry(QRect(40, 330, 50, 50));
+        s7->setFont(font2);
+        s7->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s7->setIconSize(QSize(12, 12));
+        s7->setFlat(false);
+        s9 = new QPushButton(tab_10);
+        s9->setObjectName(QString::fromUtf8("s9"));
+        s9->setGeometry(QRect(160, 330, 50, 50));
+        s9->setFont(font2);
+        s9->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        s9->setIconSize(QSize(12, 12));
+        s9->setFlat(false);
+        d1 = new QPushButton(tab_10);
+        d1->setObjectName(QString::fromUtf8("d1"));
+        d1->setGeometry(QRect(1080, 250, 75, 75));
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/new/images/Resource/arrow/up.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d1->setIcon(icon11);
+        d5 = new QPushButton(tab_10);
+        d5->setObjectName(QString::fromUtf8("d5"));
+        d5->setGeometry(QRect(1080, 410, 75, 75));
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/new/images/Resource/arrow/down.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d5->setIcon(icon12);
+        d3 = new QPushButton(tab_10);
+        d3->setObjectName(QString::fromUtf8("d3"));
+        d3->setGeometry(QRect(1160, 330, 75, 75));
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/new/images/Resource/arrow/right.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d3->setIcon(icon13);
+        d7 = new QPushButton(tab_10);
+        d7->setObjectName(QString::fromUtf8("d7"));
+        d7->setGeometry(QRect(1000, 330, 75, 75));
+        QIcon icon14;
+        icon14.addFile(QString::fromUtf8(":/new/images/Resource/arrow/left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d7->setIcon(icon14);
+        d2 = new QPushButton(tab_10);
+        d2->setObjectName(QString::fromUtf8("d2"));
+        d2->setGeometry(QRect(1160, 250, 75, 75));
+        QIcon icon15;
+        icon15.addFile(QString::fromUtf8(":/new/images/Resource/arrow/u2.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d2->setIcon(icon15);
+        d4 = new QPushButton(tab_10);
+        d4->setObjectName(QString::fromUtf8("d4"));
+        d4->setGeometry(QRect(1160, 410, 75, 75));
+        QIcon icon16;
+        icon16.addFile(QString::fromUtf8(":/new/images/Resource/arrow/u3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d4->setIcon(icon16);
+        d6 = new QPushButton(tab_10);
+        d6->setObjectName(QString::fromUtf8("d6"));
+        d6->setGeometry(QRect(1000, 410, 75, 75));
+        QIcon icon17;
+        icon17.addFile(QString::fromUtf8(":/new/images/Resource/arrow/u4.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d6->setIcon(icon17);
+        d8 = new QPushButton(tab_10);
+        d8->setObjectName(QString::fromUtf8("d8"));
+        d8->setGeometry(QRect(1000, 250, 75, 75));
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/new/images/Resource/arrow/u1.png"), QSize(), QIcon::Normal, QIcon::Off);
+        d8->setIcon(icon18);
+        graphicsView = new QGraphicsView(tab_10);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(443, 209, 501, 291));
+        graphicsView->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/control3.png) 0 0 0 0 100 stretch;\n"
+"\n"
+""));
+        slider4 = new QSlider(tab_10);
+        slider4->setObjectName(QString::fromUtf8("slider4"));
+        slider4->setGeometry(QRect(821, 248, 16, 221));
+        slider4->setOrientation(Qt::Vertical);
+        slider3 = new QSlider(tab_10);
+        slider3->setObjectName(QString::fromUtf8("slider3"));
+        slider3->setGeometry(QRect(728, 248, 16, 221));
+        slider3->setOrientation(Qt::Vertical);
+        slider1 = new QSlider(tab_10);
+        slider1->setObjectName(QString::fromUtf8("slider1"));
+        slider1->setGeometry(QRect(540, 248, 16, 221));
+        slider1->setOrientation(Qt::Vertical);
+        slider2 = new QSlider(tab_10);
+        slider2->setObjectName(QString::fromUtf8("slider2"));
+        slider2->setGeometry(QRect(634, 248, 16, 221));
+        slider2->setOrientation(Qt::Vertical);
+        soff = new QPushButton(tab_10);
+        soff->setObjectName(QString::fromUtf8("soff"));
+        soff->setGeometry(QRect(40, 450, 170, 50));
+        soff->setFont(font2);
+        soff->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        soff->setIconSize(QSize(12, 12));
+        soff->setFlat(false);
+        sok = new QPushButton(tab_10);
+        sok->setObjectName(QString::fromUtf8("sok"));
+        sok->setGeometry(QRect(220, 450, 191, 50));
+        sok->setFont(font2);
+        sok->setStyleSheet(QString::fromUtf8("font: 18pt \"Sans Serif\";"));
+        sok->setIconSize(QSize(12, 12));
+        sok->setFlat(false);
+        sapreset = new QPushButton(tab_10);
+        sapreset->setObjectName(QString::fromUtf8("sapreset"));
+        sapreset->setGeometry(QRect(220, 210, 91, 51));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Sans Serif"));
+        font3.setPointSize(14);
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
+        sapreset->setFont(font3);
+        sapreset->setStyleSheet(QString::fromUtf8("font: 14pt \"Sans Serif\";"));
+        sapreset->setIconSize(QSize(12, 12));
+        sapreset->setFlat(false);
+        ssmic = new QPushButton(tab_10);
+        ssmic->setObjectName(QString::fromUtf8("ssmic"));
+        ssmic->setGeometry(QRect(220, 270, 191, 51));
+        ssmic->setFont(font3);
+        ssmic->setStyleSheet(QString::fromUtf8("font: 14pt \"Sans Serif\";"));
+        ssmic->setIconSize(QSize(12, 12));
+        ssmic->setFlat(false);
+        smpreset = new QPushButton(tab_10);
+        smpreset->setObjectName(QString::fromUtf8("smpreset"));
+        smpreset->setGeometry(QRect(320, 210, 91, 51));
+        smpreset->setFont(font3);
+        smpreset->setStyleSheet(QString::fromUtf8("font: 14pt \"Sans Serif\";"));
+        smpreset->setIconSize(QSize(12, 12));
+        smpreset->setFlat(false);
+        shome = new QPushButton(tab_10);
+        shome->setObjectName(QString::fromUtf8("shome"));
+        shome->setGeometry(QRect(320, 330, 91, 51));
+        shome->setFont(font3);
+        shome->setStyleSheet(QString::fromUtf8("font: 14pt \"Sans Serif\";"));
+        shome->setIconSize(QSize(12, 12));
+        shome->setFlat(false);
+        sshome = new QPushButton(tab_10);
+        sshome->setObjectName(QString::fromUtf8("sshome"));
+        sshome->setGeometry(QRect(220, 330, 91, 51));
+        sshome->setFont(font3);
+        sshome->setStyleSheet(QString::fromUtf8("font: 14pt \"Sans Serif\";"));
+        sshome->setIconSize(QSize(12, 12));
+        sshome->setFlat(false);
+        txt_mode = new QTextEdit(tab_10);
+        txt_mode->setObjectName(QString::fromUtf8("txt_mode"));
+        txt_mode->setGeometry(QRect(40, 150, 171, 41));
+        txt_input = new QTextEdit(tab_10);
+        txt_input->setObjectName(QString::fromUtf8("txt_input"));
+        txt_input->setGeometry(QRect(220, 150, 191, 41));
+        label_10 = new QLabel(tab_10);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setGeometry(QRect(40, 130, 57, 14));
+        label_10->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_11 = new QLabel(tab_10);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setGeometry(QRect(220, 130, 57, 14));
+        label_11->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_12 = new QLabel(tab_10);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setGeometry(QRect(590, 50, 81, 16));
+        label_12->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        frame_6 = new QFrame(tab_10);
+        frame_6->setObjectName(QString::fromUtf8("frame_6"));
+        frame_6->setGeometry(QRect(100, 20, 60, 60));
+        frame_6->setStyleSheet(QString::fromUtf8("border-image: \n"
+"url(:/new/images/Resource/Dcu/dcu_SCAM.png)  0 0 0 0 100 stretch;\n"
+""));
+        frame_6->setFrameShape(QFrame::StyledPanel);
+        frame_6->setFrameShadow(QFrame::Raised);
+        status = new QFrame(tab_10);
+        status->setObjectName(QString::fromUtf8("status"));
+        status->setGeometry(QRect(1220, 50, 31, 31));
+        status->setStyleSheet(QString::fromUtf8("border-image: \n"
+"url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;\n"
+""));
+        status->setFrameShape(QFrame::StyledPanel);
+        status->setFrameShadow(QFrame::Raised);
+        label_13 = new QLabel(tab_10);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setGeometry(QRect(40, 40, 51, 16));
+        label_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        txt_camnum = new QLabel(tab_10);
+        txt_camnum->setObjectName(QString::fromUtf8("txt_camnum"));
+        txt_camnum->setGeometry(QRect(180, 60, 21, 16));
+        txt_camnum->setFont(font1);
+        txt_camnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        txt_totalnum = new QLabel(tab_10);
+        txt_totalnum->setObjectName(QString::fromUtf8("txt_totalnum"));
+        txt_totalnum->setGeometry(QRect(300, 60, 21, 16));
+        txt_totalnum->setFont(font1);
+        txt_totalnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        txt_micnum = new QLabel(tab_10);
+        txt_micnum->setObjectName(QString::fromUtf8("txt_micnum"));
+        txt_micnum->setGeometry(QRect(420, 60, 21, 16));
+        txt_micnum->setFont(font1);
+        txt_micnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_17 = new QLabel(tab_10);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+        label_17->setGeometry(QRect(460, 180, 91, 16));
+        label_17->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_18 = new QLabel(tab_10);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+        label_18->setGeometry(QRect(1000, 180, 91, 16));
+        label_18->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        smodel = new QComboBox(tab_10);
+        smodel->setObjectName(QString::fromUtf8("smodel"));
+        smodel->setGeometry(QRect(320, 410, 91, 31));
+        cmodel = new QComboBox(tab_10);
+        cmodel->setObjectName(QString::fromUtf8("cmodel"));
+        cmodel->setGeometry(QRect(220, 410, 91, 31));
+        label = new QLabel(tab_10);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(220, 390, 91, 16));
+        label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_9 = new QLabel(tab_10);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setGeometry(QRect(320, 390, 91, 16));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_14 = new QLabel(tab_10);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setGeometry(QRect(1130, 50, 81, 16));
+        label_14->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        tabWidget_2->addTab(tab_10, QString());
+        graphicsView->raise();
+        frame_5->raise();
+        cs5->raise();
+        cs2->raise();
+        cs6->raise();
+        cs3->raise();
+        cs1->raise();
+        cs4->raise();
+        frame_4->raise();
+        view_joystick->raise();
+        sback->raise();
+        s4->raise();
+        s1->raise();
+        s6->raise();
+        s8->raise();
+        sclear->raise();
+        s3->raise();
+        s2->raise();
+        s5->raise();
+        s0->raise();
+        s7->raise();
+        s9->raise();
+        d1->raise();
+        d5->raise();
+        d3->raise();
+        d7->raise();
+        d2->raise();
+        d4->raise();
+        d6->raise();
+        d8->raise();
+        slider4->raise();
+        slider3->raise();
+        slider1->raise();
+        slider2->raise();
+        soff->raise();
+        sok->raise();
+        sapreset->raise();
+        ssmic->raise();
+        smpreset->raise();
+        shome->raise();
+        sshome->raise();
+        txt_mode->raise();
+        txt_input->raise();
+        label_10->raise();
+        label_11->raise();
+        label_12->raise();
+        frame_6->raise();
+        status->raise();
+        label_13->raise();
+        txt_camnum->raise();
+        txt_totalnum->raise();
+        txt_micnum->raise();
+        label_17->raise();
+        label_18->raise();
+        smodel->raise();
+        cmodel->raise();
+        label->raise();
+        label_9->raise();
+        label_14->raise();
+        tabWidget->addTab(tab_8, QString());
+        tab_7 = new QWidget();
+        tab_7->setObjectName(QString::fromUtf8("tab_7"));
+        tabWidget->addTab(tab_7, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        tabWidget->addTab(tab_4, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         pushButton = new QPushButton(tab_2);
@@ -673,34 +1173,17 @@ public:
         lst_folder_2->setObjectName(QString::fromUtf8("lst_folder_2"));
         lst_folder_2->setGeometry(QRect(20, 70, 371, 331));
         tabWidget->addTab(tab_2, QString());
+        tab_9 = new QWidget();
+        tab_9->setObjectName(QString::fromUtf8("tab_9"));
+        tabWidget->addTab(tab_9, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         tabWidget->addTab(tab_3, QString());
-        tab_4 = new QWidget();
-        tab_4->setObjectName(QString::fromUtf8("tab_4"));
-        tabWidget->addTab(tab_4, QString());
-        tab_7 = new QWidget();
-        tab_7->setObjectName(QString::fromUtf8("tab_7"));
-        tabWidget->addTab(tab_7, QString());
-        tab_8 = new QWidget();
-        tab_8->setObjectName(QString::fromUtf8("tab_8"));
-        graphicsView = new QGraphicsView(tab_8);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(670, 140, 300, 300));
-        graphicsView->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcu_joystick.png) 0 0 0 0 100 stretch;\n"
-"\n"
-""));
-        frame_3 = new QFrame(tab_8);
-        frame_3->setObjectName(QString::fromUtf8("frame_3"));
-        frame_3->setGeometry(QRect(160, 140, 500, 300));
-        frame_3->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/control3.png) 0 0 0 0 100 stretch;\n"
-"\n"
-""));
-        frame_3->setFrameShape(QFrame::StyledPanel);
-        frame_3->setFrameShadow(QFrame::Raised);
-        tabWidget->addTab(tab_8, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
+        logtable = new QTableView(tab_5);
+        logtable->setObjectName(QString::fromUtf8("logtable"));
+        logtable->setGeometry(QRect(40, 80, 501, 192));
         tabWidget->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -734,14 +1217,14 @@ public:
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(60, 10, 481, 41));
-        QFont font2;
-        font2.setPointSize(16);
-        label_5->setFont(font2);
+        QFont font4;
+        font4.setPointSize(16);
+        label_5->setFont(font4);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1185, 22));
+        menubar->setGeometry(QRect(0, 0, 1357, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -749,7 +1232,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
+        tabWidget_2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -781,13 +1265,82 @@ public:
         btn_recstop->setText(QString());
         btn_playpause->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Recording And Playback", 0, QApplication::UnicodeUTF8));
+        cs5->setText(QString());
+        cs2->setText(QString());
+        cs6->setText(QString());
+        cs3->setText(QString());
+        cs1->setText(QString());
+        cs4->setText(QString());
+        sback->setText(QApplication::translate("MainWindow", "<", 0, QApplication::UnicodeUTF8));
+        s4->setText(QApplication::translate("MainWindow", "4", 0, QApplication::UnicodeUTF8));
+        s1->setText(QApplication::translate("MainWindow", "1", 0, QApplication::UnicodeUTF8));
+        s6->setText(QApplication::translate("MainWindow", "6", 0, QApplication::UnicodeUTF8));
+        s8->setText(QApplication::translate("MainWindow", "8", 0, QApplication::UnicodeUTF8));
+        sclear->setText(QApplication::translate("MainWindow", "C", 0, QApplication::UnicodeUTF8));
+        s3->setText(QApplication::translate("MainWindow", "3", 0, QApplication::UnicodeUTF8));
+        s2->setText(QApplication::translate("MainWindow", "2", 0, QApplication::UnicodeUTF8));
+        s5->setText(QApplication::translate("MainWindow", "5", 0, QApplication::UnicodeUTF8));
+        s0->setText(QApplication::translate("MainWindow", "0", 0, QApplication::UnicodeUTF8));
+        s7->setText(QApplication::translate("MainWindow", "7", 0, QApplication::UnicodeUTF8));
+        s9->setText(QApplication::translate("MainWindow", "9", 0, QApplication::UnicodeUTF8));
+        d1->setText(QString());
+        d5->setText(QString());
+        d3->setText(QString());
+        d7->setText(QString());
+        d2->setText(QString());
+        d4->setText(QString());
+        d6->setText(QString());
+        d8->setText(QString());
+        soff->setText(QApplication::translate("MainWindow", "Cancle", 0, QApplication::UnicodeUTF8));
+        sok->setText(QApplication::translate("MainWindow", "Ok", 0, QApplication::UnicodeUTF8));
+        sapreset->setText(QApplication::translate("MainWindow", "APreset", 0, QApplication::UnicodeUTF8));
+        ssmic->setText(QApplication::translate("MainWindow", "S.Mic", 0, QApplication::UnicodeUTF8));
+        smpreset->setText(QApplication::translate("MainWindow", "MPreset", 0, QApplication::UnicodeUTF8));
+        shome->setText(QApplication::translate("MainWindow", "Home", 0, QApplication::UnicodeUTF8));
+        sshome->setText(QApplication::translate("MainWindow", "S.Home", 0, QApplication::UnicodeUTF8));
+        txt_mode->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0, QApplication::UnicodeUTF8));
+        txt_input->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0, QApplication::UnicodeUTF8));
+        label_10->setText(QApplication::translate("MainWindow", "Mode :", 0, QApplication::UnicodeUTF8));
+        label_11->setText(QApplication::translate("MainWindow", "Input :", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("MainWindow", "Set Camera :", 0, QApplication::UnicodeUTF8));
+        label_13->setText(QApplication::translate("MainWindow", "Status :", 0, QApplication::UnicodeUTF8));
+        txt_camnum->setText(QApplication::translate("MainWindow", "00", 0, QApplication::UnicodeUTF8));
+        txt_totalnum->setText(QApplication::translate("MainWindow", "00", 0, QApplication::UnicodeUTF8));
+        txt_micnum->setText(QApplication::translate("MainWindow", "00", 0, QApplication::UnicodeUTF8));
+        label_17->setText(QApplication::translate("MainWindow", "Settings :", 0, QApplication::UnicodeUTF8));
+        label_18->setText(QApplication::translate("MainWindow", "Joystick :", 0, QApplication::UnicodeUTF8));
+        smodel->clear();
+        smodel->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Panasonic", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Sony", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bosch", 0, QApplication::UnicodeUTF8)
+        );
+        cmodel->clear();
+        cmodel->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "Model 1", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Model 2", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Model 3", 0, QApplication::UnicodeUTF8)
+        );
+        label->setText(QApplication::translate("MainWindow", "CAM. Model:", 0, QApplication::UnicodeUTF8));
+        label_9->setText(QApplication::translate("MainWindow", "CON. Model:", 0, QApplication::UnicodeUTF8));
+        label_14->setText(QApplication::translate("MainWindow", "Connection :", 0, QApplication::UnicodeUTF8));
+        tabWidget_2->setTabText(tabWidget_2->indexOf(tab_10), QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "Camera Control DCU", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "TCP Sendt Test", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("MainWindow", "Connected Clients", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "TCP/IP Server", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_9), QApplication::translate("MainWindow", "TCP/IP Client", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "USB/Serial Communication", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "Camera Control DCU", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "LOG Engine", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "www.pgitic.com", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "PGITIC Co. 2005-2016 All Rights Reserved", 0, QApplication::UnicodeUTF8));

@@ -11,8 +11,6 @@ MyTcpSocket::MyTcpSocket(QObject *parent) :
     connect(socket, SIGNAL(disconnected()),this, SLOT(disconnected()));
     connect(socket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
     connect(socket, SIGNAL(readyRead()),this, SLOT(readyRead()));
-
-
 }
 
 
@@ -57,6 +55,7 @@ void MyTcpSocket::bytesWritten(qint64 bytes)
 {
     qDebug() << bytes << " bytes written... ";
 }
+
 
 void MyTcpSocket::readyRead()
 {
