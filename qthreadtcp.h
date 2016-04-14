@@ -30,6 +30,12 @@ public:
     void set_point(int mic_number);
     void call_point(int mic_number);
     void set_camera_dir(int mode);
+
+    void stop_cam();
+    void stop_focus();
+    void stop_iris();
+    void stop_zoom();
+
     bool isconnected;
 
 

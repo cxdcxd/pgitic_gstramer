@@ -55,8 +55,23 @@ extern bool joyx_reversed;
 extern bool joyy_reversed;
 extern std::string user_mode;
 extern std::string mic_number;
+extern std::string cam_number;
+extern std::string total_number;
+
 extern std::string last_command;
+extern std::string temp_command;
 extern bool camera_loop_mode;
+
+extern bool camera_stop_zoom;
+extern bool camera_stop_focus;
+extern bool camera_stop_iris;
+extern bool camera_stop_dir;
+
 extern std::string controller_model;
 extern std::string bar_info;
-
+extern int camera_send_tick;
+extern bool sended;
+extern int cmd_loop_value ;
+extern bool cmd_loop;
+extern std::string username;
+extern std::string password;

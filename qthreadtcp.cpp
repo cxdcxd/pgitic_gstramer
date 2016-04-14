@@ -341,9 +341,56 @@ void QThreadTCP::mainwrite(QByteArray buf, qint64 len)
 {
     //QByteArray a;
     socket->write(buf.data(),len);
-
 }
 
+void QThreadTCP::stop_cam()
+{
+    QString _num1 = QString::number(camera_id);
+    std::string _number1 = _num1.toStdString();
+
+    QString _num2 = QString::number(camera_speed);
+    std::string _number2 = _num2.toStdString();
+    std::string command = "(CAM," + camera_model + ";" + _number1 + ":S." + _number2 + ")";
+    QByteArray array = command.c_str();
+    mainwrite(array,array.size());
+}
+
+void QThreadTCP::stop_focus()
+{
+    QString _num1 = QString::number(camera_id);
+    std::string _number1 = _num1.toStdString();
+
+    QString _num2 = QString::number(camera_speed);
+    std::string _number2 = _num2.toStdString();
+    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":FS." + _number2 + ")";
+    QByteArray array = command.c_str();
+    mainwrite(array,array.size());
+}
+
+void QThreadTCP::stop_iris()
+{
+    QString _num1 = QString::number(camera_id);
+    std::string _number1 = _num1.toStdString();
+
+    QString _num2 = QString::number(camera_speed);
+    std::string _number2 = _num2.toStdString();
+    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":IS." + _number2 + ")";
+    QByteArray array = command.c_str();
+    mainwrite(array,array.size());
+}
+
+void QThreadTCP::stop_zoom()
+{
+    QString _num1 = QString::number(camera_id);
+    std::string _number1 = _num1.toStdString();
+
+    QString _num2 = QString::number(camera_speed);
+    std::string _number2 = _num2.toStdString();
+    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":ZS." +  _number2 + ")";
+    QByteArray array = command.c_str();
+    mainwrite(array,array.size());
+
+}
 void QThreadTCP::connected()
 {
     qDebug() << "connected...";
@@ -355,7 +402,6 @@ void QThreadTCP::disconnected()
     qDebug() << "disconnected...";
     gpio->info_mode = 0;
     socket->close();
-
 }
 
 void QThreadTCP::bytesWritten(qint64 bytes)
@@ -365,25 +411,86 @@ void QThreadTCP::bytesWritten(qint64 bytes)
 
 void QThreadTCP::readyRead()
 {
-    QByteArray x = socket->readAll();
+    QByteArray array = socket->readAll();
+    QString item = QString::fromUtf8(array.data(),array.size());
 
-    qDebug() << "reading..." << x;
-    // qDebug() << x.size();
-    // qDebug() << x.at(0);
-    //     qDebug() << x.at(1);
+    qDebug() << "TCP GET : " << item;
 
-    if ( x.at(0) == '2')
+    //=====================================
+    item = item.replace("(", "");
+    item = item.replace(")", "");
+    item = item.trimmed();
+
+    if (item.contains("Cam Mode"))
     {
-        qDebug() << "on";
-        gpio->state = true;
+        total_number = "CM";
+        bar_info = "Cam Mode";
     }
-    if ( x.at(0) == '4')
-    {
-        qDebug() << "off";
-        gpio->state = false;
-    }
+    else
+        if (item.contains("RMICN"))
+        {
+            QStringList pieces = item.split(",");
 
-    //QString item = QString::fromUtf8(array.data(),array.size());
+            if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
+            mic_number = pieces.value(1).toStdString();
 
+        }
+        else
+            if (item.contains("Active Mic:*"))
+            {
+                mic_number = "00";
+                QStringList pieces = item.split(",");
+                if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
+                total_number = pieces.value(1).toStdString();
+                cam_number = "00";
+                mic_number = "00";
+
+            }
+            else
+                if (item.contains("Mic:"))
+                {
+                    QStringList pieces = item.split(",");
+
+                    if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
+                    if (pieces.value(3).length() == 1) pieces.value(3) = "0" + pieces.value(3);
+
+                    mic_number = pieces.value(1).toStdString();
+                    cam_number = pieces.value(3).toStdString();
+                }
+                else
+                    if (item.contains("Call point"))
+                    {
+                        QStringList pieces = item.split(",");
+
+                        if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
+                        if (pieces.value(3).length() == 1) pieces.value(3) = "0" + pieces.value(3);
+
+                        mic_number = pieces.value(1).toStdString();
+                        cam_number = pieces.value(3).toStdString();
+                    }
+                    else
+                    {
+                        if (item.contains("OK"))
+                        {
+                            bar_info = "OK";
+                        }
+                        else
+                            if (item.contains("TCAM"))
+                            {
+                                QStringList pieces = item.split(",");
+                                std::string rx = pieces.value(1).toStdString() + " | " + pieces.value(2).toStdString() + " | " + pieces.value(3).toStdString() + " | " + pieces.value(4).toStdString();
+                                bar_info = rx;
+                            }
+                            else
+                            {
+                                if (item.contains("RHADV"))
+                                {
+                                    QStringList pieces = item.split(",");
+                                    std::string rx = pieces.value(1).toStdString();
+                                    bar_info = rx;
+                                }
+                            }
+
+                    }
 }
 

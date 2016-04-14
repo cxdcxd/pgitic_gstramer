@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Thu Apr 14 09:15:24 2016
+** Created: Thu Apr 14 12:59:19 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      62,   14, // methods
+      70,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,6 +93,14 @@ static const uint qt_meta_data_MainWindow[] = {
     1251, 1245,   24,   24, 0x08,
     1280, 1245,   24,   24, 0x08,
     1309, 1245,   24,   24, 0x08,
+    1338,   24,   24,   24, 0x08,
+    1354,   24,   24,   24, 0x08,
+    1370,   24,   24,   24, 0x08,
+    1386,   24,   24,   24, 0x08,
+    1402,   24,   24,   24, 0x08,
+    1418,   24,   24,   24, 0x08,
+    1434,   24,   24,   24, 0x08,
+    1450,   24,   24,   24, 0x08,
 
        0        // eod
 };
@@ -139,6 +147,10 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_slider2_valueChanged(int)\0"
     "on_slider3_valueChanged(int)\0"
     "on_slider4_valueChanged(int)\0"
+    "on_d1_pressed()\0on_d2_pressed()\0"
+    "on_d3_pressed()\0on_d4_pressed()\0"
+    "on_d5_pressed()\0on_d6_pressed()\0"
+    "on_d7_pressed()\0on_d8_pressed()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -209,6 +221,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 59: _t->on_slider2_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 60: _t->on_slider3_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 61: _t->on_slider4_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 62: _t->on_d1_pressed(); break;
+        case 63: _t->on_d2_pressed(); break;
+        case 64: _t->on_d3_pressed(); break;
+        case 65: _t->on_d4_pressed(); break;
+        case 66: _t->on_d5_pressed(); break;
+        case 67: _t->on_d6_pressed(); break;
+        case 68: _t->on_d7_pressed(); break;
+        case 69: _t->on_d8_pressed(); break;
         default: ;
         }
     }
@@ -246,9 +266,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 62)
+        if (_id < 70)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 62;
+        _id -= 70;
     }
     return _id;
 }

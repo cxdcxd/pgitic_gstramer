@@ -195,6 +195,22 @@ private slots:
 
     void on_slider4_valueChanged(int value);
 
+    void on_d1_pressed();
+
+    void on_d2_pressed();
+
+    void on_d3_pressed();
+
+    void on_d4_pressed();
+
+    void on_d5_pressed();
+
+    void on_d6_pressed();
+
+    void on_d7_pressed();
+
+    void on_d8_pressed();
+
 private:
     Ui::MainWindow *ui;
     QTimer *_maintimer;
