@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _maintimer = new QTimer(this);
     connect(_maintimer, SIGNAL(timeout()), this, SLOT(TimerEvent()));
-    this->_maintimer->start(1000);
+    this->_maintimer->start(100);
 
     pic_cam_10 = new QPixmap(":/new/images/Resource/Dcu/dcu_cam1_0");
     pic_cam_20 = new QPixmap(":/new/images/Resource/Dcu/dcu_cam2_0");
@@ -59,6 +59,47 @@ MainWindow::MainWindow(QWidget *parent) :
     icon41 = new QIcon(*pic_cam_41);
     icon51 = new QIcon(*pic_cam_51);
     icon61 = new QIcon(*pic_cam_61);
+
+    //add models
+    list_camera_models.push_back("CS-CW");
+    list_camera_models.push_back("AU-HE");
+    list_camera_models.push_back("SC385");
+    list_camera_models.push_back("SC385EXT");
+    list_camera_models.push_back("CS580");
+    list_camera_models.push_back("SONY");
+    list_camera_models.push_back("SONYEXT");
+    list_camera_models.push_back("BOSCH");
+
+    list_controller_models.push_back("Panasonic");
+    list_controller_models.push_back("Bosch-CS900");
+    list_controller_models.push_back("Bosch-CCU2");
+    list_controller_models.push_back("Bosch-CS1000");
+
+    status = "S";
+    user_mode = "admin";
+    mode = "IDLE";
+    input = "";
+    camera_id = 1;
+    camera_speed = 4;
+    camera_loop_mode = false;
+    timer_tick_counter = 0;
+    camera_model = "CS-CW";
+    bar_info = "Ready";
+    bar_show_counter = 0;
+
+    updatecs();
+    //NOTE: add this in code not ui
+    //   for ( int i = 0 ; i < list_camera_models.size() ; i++)
+    //   {
+    //       std::string _item = list_camera_models.at(i);
+    //       QString item = _item.c_str();
+    //       ui->cmodel->insertItem(0,"1");
+    //   }
+
+
+    //    for ( int j = 0 ; j < list_controller_models.size() ; j++)
+    //        ui->smodel->addItem(list_controller_models.at(j).c_str());
+
 }
 
 MainWindow::~MainWindow()
@@ -179,13 +220,35 @@ void MainWindow::update_ui()
     int index = item.indexOf(".",0);
     QString subString = item.mid(0,index);
     ui->txt_info->setText(subString.toStdString().c_str());
+
+    ui->txt_mode->setText(mode.c_str());
+    ui->txt_input->setText(input.c_str());
+
+     ui->txt_bar_info->setText(bar_info.c_str());
 }
 
+int update_counter;
 void MainWindow::TimerEvent()
 {
     //std::cout << "Timer expired." << std::endl;
-    update_ui();
+    timer_tick_counter++;
+    if ( timer_tick_counter > 3)
+    {
+        timer_tick_counter=0;
+        update_ui();
+    }
 
+    if ( bar_info != "Ready")
+    {
+        bar_show_counter++;
+        if ( bar_show_counter > 20)
+        {
+            bar_show_counter =0;
+            bar_info = "Ready";
+        }
+    }
+
+    //======================================== camera_loop 100ms
 }
 
 void MainWindow::on_btn_recstop_clicked()
@@ -196,16 +259,11 @@ void MainWindow::on_btn_recstop_clicked()
     usbstatus_changed = false;
 }
 
-
-
-
 void MainWindow::on_btn_playstart_clicked()
 {
     ui->btn_playstop->setEnabled(true);
     ui->btn_playstart->hide();
     ui->btn_playpause->show();
-
-
 
     QString item = ui->txt_recname->toPlainText();
     mtgclientplay->play_start(item.toStdString());
@@ -299,9 +357,8 @@ void MainWindow::updatecs()
         ui->cs6->setIcon(*icon61);
     }
 
-
-     if ( tcpsocket != 0)
-     tcpsocket->set_camera_number(camera_id);
+    if ( tcpsocket != 0)
+        tcpsocket->set_camera_number(camera_id);
 
 }
 
@@ -340,4 +397,416 @@ void MainWindow::on_cs6_clicked()
 {
     camera_id = 6;
     updatecs();
+}
+
+void MainWindow::on_s1_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "1";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s2_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "2";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s3_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "3";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s4_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "4";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s5_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "5";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s6_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "6";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s7_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "7";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s8_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "8";
+    }
+    update_ui();
+}
+
+void MainWindow::on_s9_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "9";
+    }
+    update_ui();
+}
+
+void MainWindow::on_sclear_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input == "255 " ) return;
+    if ( mode == "APRESET" ) return;
+
+    input = "";
+    update_ui();
+
+}
+
+void MainWindow::on_s0_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() < 2)
+    {
+        input += "0";
+    }
+    update_ui();
+}
+
+void MainWindow::on_sback_clicked()
+{
+    if (user_mode != "admin") return;
+    if ( input.size() == 2)
+    {
+        input = input.substr(0,1);
+    }
+    else if ( input.size() == 1)
+    {
+        input = "";
+    }
+    update_ui();
+}
+
+void MainWindow::on_soff_clicked()
+{
+    input = "";
+    mode = "IDLE";
+    update_ui();
+}
+
+void MainWindow::on_sok_clicked()
+{
+    if (user_mode != "admin") return;
+
+    if ( tcpsocket->isconnected == false)
+    {
+        mode = "IDLE";
+        input = "";
+        show_message("Please Check your server connection");
+        return;
+    }
+
+    if (mode == "IDLE" || input == "" || input == "00")
+    {
+        input = "";
+        mode = "IDLE";
+        show_message("please selecet a valid command");
+        return;
+    }
+
+    if (mode == "APRESET")
+    {
+        if (input != "00" && input != "")
+        {
+            QString x = input.c_str();
+            tcpsocket->set_point(x.toInt());
+            show_message("Send done...");
+        }
+        else
+        {
+            show_message("There is't any active microphone");
+        }
+
+    }
+    else
+        if (mode == "MPRESET")
+        {
+            QString x = input.c_str();
+            tcpsocket->set_point(x.toInt());
+            show_message("Send done...");
+        }
+        else if (mode == "MIC")
+        {
+            QString x = input.c_str();
+            tcpsocket->call_point(x.toInt());
+            show_message("Send done...");
+        }
+        else if (mode == "HOME")
+        {
+            tcpsocket->call_home();
+            show_message("Send done...");
+        }
+        else if (mode == "SHOME")
+        {
+            tcpsocket->set_home();
+            show_message("Send done...");
+        }
+
+    mode = "IDLE";
+    input = "";
+    update_ui();
+}
+
+void MainWindow::on_sshome_clicked()
+{
+    if (user_mode != "admin") return;
+    input = "255";
+    mode = "SHOME";
+    update_ui();
+}
+
+void MainWindow::on_shome_clicked()
+{
+    if (user_mode != "admin") return;
+    input = "255";
+    mode = "HOME";
+    update_ui();
+}
+
+void MainWindow::on_ssmic_clicked()
+{
+    if (user_mode != "admin") return;
+    input = "";
+    mode = "MIC";
+    update_ui();
+}
+
+void MainWindow::on_sapreset_clicked()
+{
+    if (user_mode != "admin") return;
+    input = mic_number;
+    mode = "APRESET";
+    update_ui();
+}
+
+void MainWindow::on_smpreset_clicked()
+{
+    if (user_mode != "admin") return;
+    input = "";
+    mode = "MPRESET";
+    update_ui();
+}
+
+void MainWindow::on_d1_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(1);
+}
+
+void MainWindow::on_d2_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(2);
+}
+
+void MainWindow::on_d3_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(3);
+}
+
+void MainWindow::on_d4_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(4);
+}
+
+void MainWindow::on_d5_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(5);
+}
+
+void MainWindow::on_d6_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(6);
+}
+
+void MainWindow::on_d7_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(7);
+}
+
+void MainWindow::on_d8_clicked()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(8);
+}
+
+void MainWindow::on_cmodel_textChanged(const QString &arg1)
+{
+    //dummy
+}
+
+void MainWindow::on_smodel_textChanged(const QString &arg1)
+{
+    //dummy
+}
+
+void MainWindow::on_cmodel_currentIndexChanged(const QString &arg1)
+{
+    if (user_mode != "admin") return;
+    camera_model = arg1.toStdString();
+    tcpsocket->set_camera_model(arg1.toStdString());
+}
+
+void MainWindow::on_smodel_currentIndexChanged(const QString &arg1)
+{
+    if (user_mode != "admin") return;
+    controller_model = arg1.toStdString();
+    tcpsocket->set_controller_model(arg1.toStdString());
+}
+
+void MainWindow::on_d1_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d2_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d3_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d4_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d5_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d6_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d7_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::on_d8_released()
+{
+    if (user_mode != "admin") return;
+    tcpsocket->set_camera_dir(0);
+    camera_loop_mode = false;
+}
+
+void MainWindow::show_message(QString msg)
+{
+    //QMessageBox msgBox;
+    //msgBox.setText(msg);
+    //msgBox.exec();
+
+    bar_info = msg.toStdString();
+}
+
+void MainWindow::on_slider1_sliderReleased()
+{
+  ui->slider1->setValue(2);
+}
+
+void MainWindow::on_slider2_sliderReleased()
+{
+ ui->slider2->setValue(2);
+}
+
+void MainWindow::on_slider3_sliderReleased()
+{
+ ui->slider3->setValue(2);
+}
+
+void MainWindow::on_slider4_sliderReleased()
+{
+
+}
+
+void MainWindow::on_slider1_valueChanged(int value)
+{
+
+}
+
+void MainWindow::on_slider2_valueChanged(int value)
+{
+
+}
+
+void MainWindow::on_slider3_valueChanged(int value)
+{
+
+}
+
+void MainWindow::on_slider4_valueChanged(int value)
+{
+   camera_speed = value;
 }

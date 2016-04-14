@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed Apr 13 12:59:12 2016
+** Created: Thu Apr 14 09:15:24 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      62,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -46,6 +46,53 @@ static const uint qt_meta_data_MainWindow[] = {
      308,   24,   24,   24, 0x08,
      325,   24,   24,   24, 0x08,
      342,   24,   24,   24, 0x08,
+     359,   24,   24,   24, 0x08,
+     375,   24,   24,   24, 0x08,
+     391,   24,   24,   24, 0x08,
+     407,   24,   24,   24, 0x08,
+     423,   24,   24,   24, 0x08,
+     439,   24,   24,   24, 0x08,
+     455,   24,   24,   24, 0x08,
+     471,   24,   24,   24, 0x08,
+     487,   24,   24,   24, 0x08,
+     503,   24,   24,   24, 0x08,
+     523,   24,   24,   24, 0x08,
+     539,   24,   24,   24, 0x08,
+     558,   24,   24,   24, 0x08,
+     576,   24,   24,   24, 0x08,
+     593,   24,   24,   24, 0x08,
+     613,   24,   24,   24, 0x08,
+     632,   24,   24,   24, 0x08,
+     651,   24,   24,   24, 0x08,
+     673,   24,   24,   24, 0x08,
+     695,   24,   24,   24, 0x08,
+     711,   24,   24,   24, 0x08,
+     727,   24,   24,   24, 0x08,
+     743,   24,   24,   24, 0x08,
+     759,   24,   24,   24, 0x08,
+     775,   24,   24,   24, 0x08,
+     791,   24,   24,   24, 0x08,
+     807,   24,   24,   24, 0x08,
+     823,  854,   24,   24, 0x08,
+     859,  854,   24,   24, 0x08,
+     890,  854,   24,   24, 0x08,
+     929,  854,   24,   24, 0x08,
+     968,   24,   24,   24, 0x08,
+     985,   24,   24,   24, 0x08,
+    1002,   24,   24,   24, 0x08,
+    1019,   24,   24,   24, 0x08,
+    1036,   24,   24,   24, 0x08,
+    1053,   24,   24,   24, 0x08,
+    1070,   24,   24,   24, 0x08,
+    1087,   24,   24,   24, 0x08,
+    1104,   24,   24,   24, 0x08,
+    1132,   24,   24,   24, 0x08,
+    1160,   24,   24,   24, 0x08,
+    1188,   24,   24,   24, 0x08,
+    1216, 1245,   24,   24, 0x08,
+    1251, 1245,   24,   24, 0x08,
+    1280, 1245,   24,   24, 0x08,
+    1309, 1245,   24,   24, 0x08,
 
        0        // eod
 };
@@ -62,7 +109,36 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_btn_login_clicked()\0on_cs1_clicked()\0"
     "on_cs2_clicked()\0on_cs3_clicked()\0"
     "on_cs4_clicked()\0on_cs5_clicked()\0"
-    "on_cs6_clicked()\0"
+    "on_cs6_clicked()\0on_s1_clicked()\0"
+    "on_s2_clicked()\0on_s3_clicked()\0"
+    "on_s4_clicked()\0on_s5_clicked()\0"
+    "on_s6_clicked()\0on_s7_clicked()\0"
+    "on_s8_clicked()\0on_s9_clicked()\0"
+    "on_sclear_clicked()\0on_s0_clicked()\0"
+    "on_sback_clicked()\0on_soff_clicked()\0"
+    "on_sok_clicked()\0on_sshome_clicked()\0"
+    "on_shome_clicked()\0on_ssmic_clicked()\0"
+    "on_sapreset_clicked()\0on_smpreset_clicked()\0"
+    "on_d1_clicked()\0on_d2_clicked()\0"
+    "on_d3_clicked()\0on_d4_clicked()\0"
+    "on_d5_clicked()\0on_d6_clicked()\0"
+    "on_d7_clicked()\0on_d8_clicked()\0"
+    "on_cmodel_textChanged(QString)\0arg1\0"
+    "on_smodel_textChanged(QString)\0"
+    "on_cmodel_currentIndexChanged(QString)\0"
+    "on_smodel_currentIndexChanged(QString)\0"
+    "on_d1_released()\0on_d2_released()\0"
+    "on_d3_released()\0on_d4_released()\0"
+    "on_d5_released()\0on_d6_released()\0"
+    "on_d7_released()\0on_d8_released()\0"
+    "on_slider1_sliderReleased()\0"
+    "on_slider2_sliderReleased()\0"
+    "on_slider3_sliderReleased()\0"
+    "on_slider4_sliderReleased()\0"
+    "on_slider1_valueChanged(int)\0value\0"
+    "on_slider2_valueChanged(int)\0"
+    "on_slider3_valueChanged(int)\0"
+    "on_slider4_valueChanged(int)\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -86,6 +162,53 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->on_cs4_clicked(); break;
         case 13: _t->on_cs5_clicked(); break;
         case 14: _t->on_cs6_clicked(); break;
+        case 15: _t->on_s1_clicked(); break;
+        case 16: _t->on_s2_clicked(); break;
+        case 17: _t->on_s3_clicked(); break;
+        case 18: _t->on_s4_clicked(); break;
+        case 19: _t->on_s5_clicked(); break;
+        case 20: _t->on_s6_clicked(); break;
+        case 21: _t->on_s7_clicked(); break;
+        case 22: _t->on_s8_clicked(); break;
+        case 23: _t->on_s9_clicked(); break;
+        case 24: _t->on_sclear_clicked(); break;
+        case 25: _t->on_s0_clicked(); break;
+        case 26: _t->on_sback_clicked(); break;
+        case 27: _t->on_soff_clicked(); break;
+        case 28: _t->on_sok_clicked(); break;
+        case 29: _t->on_sshome_clicked(); break;
+        case 30: _t->on_shome_clicked(); break;
+        case 31: _t->on_ssmic_clicked(); break;
+        case 32: _t->on_sapreset_clicked(); break;
+        case 33: _t->on_smpreset_clicked(); break;
+        case 34: _t->on_d1_clicked(); break;
+        case 35: _t->on_d2_clicked(); break;
+        case 36: _t->on_d3_clicked(); break;
+        case 37: _t->on_d4_clicked(); break;
+        case 38: _t->on_d5_clicked(); break;
+        case 39: _t->on_d6_clicked(); break;
+        case 40: _t->on_d7_clicked(); break;
+        case 41: _t->on_d8_clicked(); break;
+        case 42: _t->on_cmodel_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 43: _t->on_smodel_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 44: _t->on_cmodel_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 45: _t->on_smodel_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 46: _t->on_d1_released(); break;
+        case 47: _t->on_d2_released(); break;
+        case 48: _t->on_d3_released(); break;
+        case 49: _t->on_d4_released(); break;
+        case 50: _t->on_d5_released(); break;
+        case 51: _t->on_d6_released(); break;
+        case 52: _t->on_d7_released(); break;
+        case 53: _t->on_d8_released(); break;
+        case 54: _t->on_slider1_sliderReleased(); break;
+        case 55: _t->on_slider2_sliderReleased(); break;
+        case 56: _t->on_slider3_sliderReleased(); break;
+        case 57: _t->on_slider4_sliderReleased(); break;
+        case 58: _t->on_slider1_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 59: _t->on_slider2_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 60: _t->on_slider3_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 61: _t->on_slider4_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -123,9 +246,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 62)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 62;
     }
     return _id;
 }

@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QListWidgetItem>
 #include <joystickscene.h>
+#include "vector"
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +23,8 @@ public:
     bool isusbconnected();
     void update_folder_content();
     joystickscene *joyscene;
-    int camera_id;
+
+    void show_message(QString msg);
     void updatecs();
 
     QPixmap *pic_cam_10;
@@ -59,6 +61,13 @@ public:
     QIcon *icon_connected;
     QIcon *icon_disconnected;
 
+    std::string mode;
+    std::string input;
+    int timer_tick_counter;
+    int bar_show_counter;
+
+
+
 private slots:
 
 
@@ -91,6 +100,100 @@ private slots:
     void on_cs5_clicked();
 
     void on_cs6_clicked();
+
+    void on_s1_clicked();
+
+    void on_s2_clicked();
+
+    void on_s3_clicked();
+
+    void on_s4_clicked();
+
+    void on_s5_clicked();
+
+    void on_s6_clicked();
+
+    void on_s7_clicked();
+
+    void on_s8_clicked();
+
+    void on_s9_clicked();
+
+    void on_sclear_clicked();
+
+    void on_s0_clicked();
+
+    void on_sback_clicked();
+
+    void on_soff_clicked();
+
+    void on_sok_clicked();
+
+    void on_sshome_clicked();
+
+    void on_shome_clicked();
+
+    void on_ssmic_clicked();
+
+    void on_sapreset_clicked();
+
+    void on_smpreset_clicked();
+
+    void on_d1_clicked();
+
+    void on_d2_clicked();
+
+    void on_d3_clicked();
+
+    void on_d4_clicked();
+
+    void on_d5_clicked();
+
+    void on_d6_clicked();
+
+    void on_d7_clicked();
+
+    void on_d8_clicked();
+
+    void on_cmodel_textChanged(const QString &arg1);
+
+    void on_smodel_textChanged(const QString &arg1);
+
+    void on_cmodel_currentIndexChanged(const QString &arg1);
+
+    void on_smodel_currentIndexChanged(const QString &arg1);
+
+    void on_d1_released();
+
+    void on_d2_released();
+
+    void on_d3_released();
+
+    void on_d4_released();
+
+    void on_d5_released();
+
+    void on_d6_released();
+
+    void on_d7_released();
+
+    void on_d8_released();
+
+    void on_slider1_sliderReleased();
+
+    void on_slider2_sliderReleased();
+
+    void on_slider3_sliderReleased();
+
+    void on_slider4_sliderReleased();
+
+    void on_slider1_valueChanged(int value);
+
+    void on_slider2_valueChanged(int value);
+
+    void on_slider3_valueChanged(int value);
+
+    void on_slider4_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

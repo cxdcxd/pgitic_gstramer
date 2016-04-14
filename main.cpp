@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
     //Config
     //=============================================================
-    tcp_client_remote_ip = "192.168.0.102";
+    tcp_client_remote_ip = "192.168.0.100";
     tcp_client_remote_port = 3000;
 
     audio_mode = "idle";

@@ -44,3 +44,19 @@ extern std::string tcp_client_remote_ip;
 extern int tcp_client_remote_port;
 extern bool isuserlogedin;
 
+extern std::vector<std::string> list_camera_models;
+extern std::vector<std::string> list_controller_models;
+
+extern int camera_id;
+extern int camera_speed;
+extern std::string camera_model;
+extern std::string status;
+extern bool joyx_reversed;
+extern bool joyy_reversed;
+extern std::string user_mode;
+extern std::string mic_number;
+extern std::string last_command;
+extern bool camera_loop_mode;
+extern std::string controller_model;
+extern std::string bar_info;
+

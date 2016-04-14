@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 13 11:48:43 2016
+** Created: Thu Apr 14 09:07:45 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -134,6 +134,7 @@ public:
     QLabel *label_7;
     QFrame *frame_2;
     QLabel *label_5;
+    QLabel *txt_bar_info;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -946,18 +947,34 @@ public:
         slider4 = new QSlider(tab_10);
         slider4->setObjectName(QString::fromUtf8("slider4"));
         slider4->setGeometry(QRect(821, 248, 16, 221));
+        slider4->setCursor(QCursor(Qt::PointingHandCursor));
+        slider4->setMinimum(1);
+        slider4->setMaximum(7);
+        slider4->setValue(4);
         slider4->setOrientation(Qt::Vertical);
         slider3 = new QSlider(tab_10);
         slider3->setObjectName(QString::fromUtf8("slider3"));
         slider3->setGeometry(QRect(728, 248, 16, 221));
+        slider3->setCursor(QCursor(Qt::PointingHandCursor));
+        slider3->setMinimum(1);
+        slider3->setMaximum(3);
+        slider3->setValue(2);
         slider3->setOrientation(Qt::Vertical);
         slider1 = new QSlider(tab_10);
         slider1->setObjectName(QString::fromUtf8("slider1"));
         slider1->setGeometry(QRect(540, 248, 16, 221));
+        slider1->setCursor(QCursor(Qt::PointingHandCursor));
+        slider1->setMinimum(1);
+        slider1->setMaximum(3);
+        slider1->setValue(2);
         slider1->setOrientation(Qt::Vertical);
         slider2 = new QSlider(tab_10);
         slider2->setObjectName(QString::fromUtf8("slider2"));
         slider2->setGeometry(QRect(634, 248, 16, 221));
+        slider2->setCursor(QCursor(Qt::PointingHandCursor));
+        slider2->setMinimum(1);
+        slider2->setMaximum(3);
+        slider2->setValue(2);
         slider2->setOrientation(Qt::Vertical);
         soff = new QPushButton(tab_10);
         soff->setObjectName(QString::fromUtf8("soff"));
@@ -1017,9 +1034,11 @@ public:
         txt_mode = new QTextEdit(tab_10);
         txt_mode->setObjectName(QString::fromUtf8("txt_mode"));
         txt_mode->setGeometry(QRect(40, 150, 171, 41));
+        txt_mode->setReadOnly(true);
         txt_input = new QTextEdit(tab_10);
         txt_input->setObjectName(QString::fromUtf8("txt_input"));
         txt_input->setGeometry(QRect(220, 150, 191, 41));
+        txt_input->setReadOnly(true);
         label_10 = new QLabel(tab_10);
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setGeometry(QRect(40, 130, 57, 14));
@@ -1078,9 +1097,11 @@ public:
         smodel = new QComboBox(tab_10);
         smodel->setObjectName(QString::fromUtf8("smodel"));
         smodel->setGeometry(QRect(320, 410, 91, 31));
+        smodel->setCursor(QCursor(Qt::PointingHandCursor));
         cmodel = new QComboBox(tab_10);
         cmodel->setObjectName(QString::fromUtf8("cmodel"));
         cmodel->setGeometry(QRect(220, 410, 91, 31));
+        cmodel->setCursor(QCursor(Qt::PointingHandCursor));
         label = new QLabel(tab_10);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(220, 390, 91, 16));
@@ -1221,6 +1242,11 @@ public:
         font4.setPointSize(16);
         label_5->setFont(font4);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        txt_bar_info = new QLabel(centralwidget);
+        txt_bar_info->setObjectName(QString::fromUtf8("txt_bar_info"));
+        txt_bar_info->setGeometry(QRect(60, 710, 581, 16));
+        txt_bar_info->setFont(font1);
+        txt_bar_info->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -1320,14 +1346,20 @@ public:
         smodel->clear();
         smodel->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "Panasonic", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Sony", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Bosch", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bosch-CS900", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bosch-CCU2", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "Bosch-CS1000", 0, QApplication::UnicodeUTF8)
         );
         cmodel->clear();
         cmodel->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Model 1", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Model 2", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Model 3", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "CS-CW", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "AU-HE", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "SC385", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "SC385EXT", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "CS580", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "SONY", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "SONYEXT", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "BOSCH", 0, QApplication::UnicodeUTF8)
         );
         label->setText(QApplication::translate("MainWindow", "CAM. Model:", 0, QApplication::UnicodeUTF8));
         label_9->setText(QApplication::translate("MainWindow", "CON. Model:", 0, QApplication::UnicodeUTF8));
@@ -1346,6 +1378,7 @@ public:
         label_7->setText(QApplication::translate("MainWindow", "PGITIC Co. 2005-2016 All Rights Reserved", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "PGITIC - Audio Manager v 0.1.0", 0, QApplication::UnicodeUTF8));
+        txt_bar_info->setText(QApplication::translate("MainWindow", "Ready", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

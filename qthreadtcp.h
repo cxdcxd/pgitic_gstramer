@@ -29,6 +29,7 @@ public:
     void call_home();
     void set_point(int mic_number);
     void call_point(int mic_number);
+    void set_camera_dir(int mode);
     bool isconnected;
 
 
