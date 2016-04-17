@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 
     //Config
     //=============================================================
-    tcp_client_remote_ip = "192.168.0.100";
-    tcp_client_remote_port = 3000;
+    tcp_client_remote_ip = "192.168.0.107";
+    tcp_client_remote_port = 8000;
 
     audio_mode = "idle";
     //==============================================================
@@ -50,6 +50,10 @@ int main(int argc, char *argv[])
     tcpsocket = new QThreadTCP();
     tcpsocket->connect();
     tcpsocket->start(); //start internal thread for connection managment
+
+    //PGITIC Settings
+    //mtsettings = new data_settings();
+    //mtsettings->load_config();
 
     //Create USB/Serial Connection Interface
     mtserial = new myserialq();
@@ -69,6 +73,7 @@ int main(int argc, char *argv[])
 
     mtlog = new pgiticlog();
     mtlog->start();
+    mtlog->load_config();
 
     //Application Loop
     int exit_code = a.exec();

@@ -75,6 +75,12 @@ MainWindow::MainWindow(QWidget *parent) :
     list_controller_models.push_back("Bosch-CCU2");
     list_controller_models.push_back("Bosch-CS1000");
 
+    for ( int i = 0 ; i < list_camera_models.size() ; i++)
+        ui->cmodel->addItem(list_camera_models.at(i).c_str());
+
+    for ( int i = 0 ; i < list_controller_models.size() ; i++)
+        ui->smodel->addItem(list_controller_models.at(i).c_str());
+
     status = "S";
     user_mode = "admin";
     mode = "IDLE";
@@ -88,31 +94,27 @@ MainWindow::MainWindow(QWidget *parent) :
     camera_stop_zoom = false;
 
     timer_tick_counter = 0;
-    camera_model = "CS-CW";
+
     bar_info = "Ready";
     bar_show_counter = 0;
-    cmd_loop_value = 250;
-    cmd_loop = true;
 
     mic_number = "00";
     cam_number = "00";
     total_number = "00";
 
-    username = "admin";
-    password = "1234";
+
 
     updatecs();
+
     //NOTE: add this in code not ui
     //   for ( int i = 0 ; i < list_camera_models.size() ; i++)
     //   {
-    //       std::string _item = list_camera_models.at(i);
-    //       QString item = _item.c_str();
-    //       ui->cmodel->insertItem(0,"1");
+    //      std::string _item = list_camera_models.at(i);
+    //      QString item = _item.c_str();
+    //      ui->cmodel->insertItem(0,"1");
     //   }
-
-
-    //    for ( int j = 0 ; j < list_controller_models.size() ; j++)
-    //        ui->smodel->addItem(list_controller_models.at(j).c_str());
+    //   for ( int j = 0 ; j < list_controller_models.size() ; j++)
+    //      ui->smodel->addItem(list_controller_models.at(j).c_str());
 
 }
 
@@ -299,9 +301,9 @@ void MainWindow::TimerEvent()
                 }
 
     //=================================
-    if (cmd_loop)
+    if (mtlog->cmd_loop)
     {
-        if (camera_send_tick >= (cmd_loop_value / 50)) //250ms default
+        if (camera_send_tick >= (mtlog->loop_value / 50)) //250ms default
         {
             camera_send_tick = 0;
 
@@ -401,14 +403,16 @@ void MainWindow::on_btn_login_clicked()
    if ( a == "" ) { bar_info = "please fill all blanks"; return; }
    if ( b == "" ) { bar_info = "please fill all blanks"; return; }
 
-   if ( a.toStdString() == username && b.toStdString() == password )
+   if ( a.toStdString() == "admin" && b.toStdString() == mtlog->admin_pass )
    {
        ui->frm_lock->hide();
+       tcpsocket->set_camera_mode(true);
    }
    else
    {
       bar_info = "Invalid Username or Password";
    }
+
 }
 
 void MainWindow::updatecs()
@@ -798,15 +802,17 @@ void MainWindow::on_smodel_textChanged(const QString &arg1)
 void MainWindow::on_cmodel_currentIndexChanged(const QString &arg1)
 {
     if (user_mode != "admin") return;
-    camera_model = arg1.toStdString();
+    mtlog->camera_model = arg1.toStdString();
     tcpsocket->set_camera_model(arg1.toStdString());
+    mtlog->save_config();
 }
 
 void MainWindow::on_smodel_currentIndexChanged(const QString &arg1)
 {
     if (user_mode != "admin") return;
-    controller_model = arg1.toStdString();
+    mtlog->controller_model = arg1.toStdString();
     tcpsocket->set_controller_model(arg1.toStdString());
+    mtlog->save_config();
 }
 
 void MainWindow::on_d1_released()
@@ -893,7 +899,7 @@ void MainWindow::on_slider1_sliderReleased()
     QString num2 = QString::number(camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
 
 }
 
@@ -908,7 +914,7 @@ void MainWindow::on_slider2_sliderReleased()
     QString num2 = QString::number(camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
 
 }
 
@@ -923,7 +929,7 @@ void MainWindow::on_slider3_sliderReleased()
     QString num2 = QString::number(camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
 }
 
 void MainWindow::on_slider4_sliderReleased()
@@ -944,17 +950,17 @@ void MainWindow::on_slider1_valueChanged(int value)
     if ( value == 3  )
     {
         //up
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":ZI." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZI." + _num2 + ")";
     }
     if ( value == 2 )
     {
         //mid
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":ZS." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZS." + _num2 + ")";
     }
     if ( value == 1)
     {
         //down
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":ZO." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZO." + _num2 + ")";
     }
 }
 
@@ -971,17 +977,17 @@ void MainWindow::on_slider2_valueChanged(int value)
     if ( value == 3  )
     {
         //up
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":FF." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FF." + _num2 + ")";
     }
     if ( value == 2 )
     {
         //mid
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":FS." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FS." + _num2 + ")";
     }
     if ( value == 1)
     {
         //down
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":FN." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FN." + _num2 + ")";
     }
 }
 
@@ -998,17 +1004,17 @@ void MainWindow::on_slider3_valueChanged(int value)
     if (value == 3)
     {
         //up
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":II." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":II." + _num2 + ")";
     }
     if (value == 2)
     {
         //mid
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":IS." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IS." + _num2 + ")";
     }
     if (value == 1)
     {
         //down
-        last_command = "(CAM," + camera_model + ";" + _num1 + ":IO." + _num2 + ")";
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IO." + _num2 + ")";
     }
 }
 
@@ -1072,3 +1078,95 @@ void MainWindow::on_d8_pressed()
     camera_loop_mode = true;
     tcpsocket->set_camera_dir(8);
 }
+
+void MainWindow::on_btn_save_clicked()
+{
+
+ mtlog->remote_ip = ui->txt_ip->toPlainText().toStdString().c_str();
+ mtlog->remote_port = ui->txt_port->toPlainText().toStdString().c_str();
+ mtlog->cmd_loop = ui->chm_loop->isChecked();
+ mtlog->joyx = ui->chm_joyx->isChecked();
+ mtlog->joyy = ui->chm_joyy->isChecked();
+ mtlog->logout_idle = ui->chm_logout->isChecked();
+ mtlog->loop_value = ui->txt_loop_value->toPlainText().toInt();
+ mtlog->camera_model = ui->cmodel->currentText().toStdString();
+ mtlog->controller_model = ui->smodel->currentText().toStdString();
+
+  bool r = mtlog->save_config();
+  if ( r )
+  {
+      bar_info = "Config Saved !";
+  }
+  else
+  {
+      bar_info = "Failed";
+  }
+
+}
+
+void MainWindow::on_btn_change_admin_clicked()
+{
+
+}
+
+void MainWindow::on_btn_change_user_clicked()
+{
+
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+}
+
+void MainWindow::on_btn_refresh_clicked()
+{
+    ui->lst_log->clear();
+    std::vector<std::string> data = mtlog->get_log();
+    for ( int i = 0 ; i < data.size() ; i++)
+    {
+        QString item = data.at(i).c_str();
+        ui->lst_log->addItem(item);
+    }
+}
+
+void MainWindow::on_tabWidget_selected(const QString &arg1)
+{
+
+
+        ui->txt_ip->setText( mtlog->remote_ip.c_str());
+        ui->txt_port->setText(mtlog->remote_port.c_str());
+        ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
+        ui->chm_joyx->setChecked(mtlog->joyx);
+        ui->chm_joyy->setChecked(mtlog->joyy);
+        ui->chm_logout->setChecked(mtlog->logout_idle);
+        ui->chm_loop->setChecked(mtlog->cmd_loop);
+        QString camera_model = mtlog->camera_model.c_str();
+        QString controller_model = mtlog->controller_model.c_str();
+
+        int index = -1;
+        for ( int i = 0 ; i < list_camera_models.size() ; i++)
+            if ( camera_model.toStdString() == list_camera_models.at(i)) {index = i; break;}
+
+        if ( index != -1)
+        ui->cmodel->setCurrentIndex(index);
+
+        index = -1;
+        for ( int i = 0 ; i < list_controller_models.size() ; i++)
+            if ( controller_model.toStdString() == list_controller_models.at(i)) {index = i; break;}
+
+        if ( index != -1)
+        ui->smodel->setCurrentIndex(index);
+
+
+
+}
+
+void MainWindow::on_btn_logout_clicked()
+{
+    ui->frm_lock->show();
+    bar_info = "Logged Out ! ";
+    tcpsocket->set_camera_mode(false);
+}
+
+

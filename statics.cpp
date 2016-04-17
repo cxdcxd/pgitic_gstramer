@@ -31,17 +31,13 @@ bool isuserlogedin;
 //pgitic_log *mtlog;
 std::vector<std::string> list_camera_models;
 std::vector<std::string> list_controller_models;
+
 int camera_id;
 int camera_speed;
-std::string camera_model;
 std::string status;
-bool joyx_reversed;
-bool joyy_reversed;
 std::string user_mode;
-
 std::string last_command;
 bool camera_loop_mode;
-std::string controller_model;
 std::string bar_info;
 bool camera_stop_zoom;
 bool camera_stop_focus;
@@ -49,13 +45,17 @@ bool camera_stop_iris;
 bool camera_stop_dir;
 int camera_send_tick;
 bool sended;
-int cmd_loop_value; //ms
-bool cmd_loop;
 std::string temp_command;
 std::string mic_number;
 std::string cam_number;
 std::string total_number;
-std::string username;
-std::string password;
+
+
+
+
+
+
+
+
 
 

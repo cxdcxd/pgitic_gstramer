@@ -1,5 +1,6 @@
 #include "mytcpsocket.h"
 #include "mygpiothread.h"
+#include "statics.h"
 
 MyGpio *gpiooo;
 
@@ -22,7 +23,7 @@ void MyTcpSocket::doConnect(MyGpio &xb)
 
     gpiooo->info_mode = 0;
 
-    socket->connectToHost("192.168.16.100", 1234);
+    socket->connectToHost(tcp_client_remote_ip.c_str(), tcp_client_remote_port);
 
     if(!socket->waitForConnected(5000))
     {

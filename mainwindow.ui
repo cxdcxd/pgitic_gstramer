@@ -431,51 +431,16 @@ QTabBar::tab:!selected:hover
     background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:0.4 #343434, stop:0.2 #343434, stop:0.1 #1a71d7);
 }
 
-QRadioButton::indicator:checked, QRadioButton::indicator:unchecked{
-    color: #b1b1b1;
-    background-color: #323232;
-    border: 1px solid #b1b1b1;
-    border-radius: 6px;
-}
 
-QRadioButton::indicator:checked
-{
-    background-color: qradialgradient(
-        cx: 0.5, cy: 0.5,
-        fx: 0.5, fy: 0.5,
-        radius: 1.0,
-        stop: 0.25 #1a71d7,
-        stop: 0.3 #323232
-    );
-}
 
-QCheckBox::indicator{
-    color: #b1b1b1;
-    background-color: #323232;
-    border: 1px solid #b1b1b1;
-    width: 9px;
-    height: 9px;
-}
 
-QRadioButton::indicator
-{
-    border-radius: 6px;
-}
 
-QRadioButton::indicator:hover, QCheckBox::indicator:hover
-{
-    border: 1px solid #1a71d7;
-}
 
-QCheckBox::indicator:checked
-{
-    image:url(:/images/checkbox.png);
-}
 
-QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
-{
-    border: 1px solid #444;
-}</string>
+
+
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -491,7 +456,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1004,7 +969,7 @@ p, li { white-space: pre-wrap; }
        <widget class="QFrame" name="frame_4">
         <property name="geometry">
          <rect>
-          <x>350</x>
+          <x>380</x>
           <y>20</y>
           <width>60</width>
           <height>60</height>
@@ -2147,7 +2112,7 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
          <rect>
           <x>300</x>
           <y>60</y>
-          <width>41</width>
+          <width>71</width>
           <height>16</height>
          </rect>
         </property>
@@ -2168,9 +2133,9 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
        <widget class="QLabel" name="txt_micnum">
         <property name="geometry">
          <rect>
-          <x>420</x>
+          <x>450</x>
           <y>60</y>
-          <width>41</width>
+          <width>91</width>
           <height>16</height>
          </rect>
         </property>
@@ -2242,26 +2207,6 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
-        <item>
-         <property name="text">
-          <string>Panasonic</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bosch-CS900</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bosch-CCU2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bosch-CS1000</string>
-         </property>
-        </item>
        </widget>
        <widget class="QComboBox" name="cmodel">
         <property name="geometry">
@@ -2275,46 +2220,6 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
-        <item>
-         <property name="text">
-          <string>CS-CW</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>AU-HE</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SC385</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SC385EXT</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>CS580</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SONY</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SONYEXT</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>BOSCH</string>
-         </property>
-        </item>
        </widget>
        <widget class="QLabel" name="label">
         <property name="geometry">
@@ -2385,9 +2290,9 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>10</y>
+          <y>20</y>
           <width>1261</width>
-          <height>571</height>
+          <height>551</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -2490,6 +2395,20 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
          </property>
         </widget>
        </widget>
+       <widget class="QPushButton" name="btn_logout">
+        <property name="geometry">
+         <rect>
+          <x>1170</x>
+          <y>530</y>
+          <width>91</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Logout</string>
+        </property>
+       </widget>
+       <zorder>btn_logout</zorder>
        <zorder>graphicsView</zorder>
        <zorder>frame_5</zorder>
        <zorder>cs5</zorder>
@@ -2537,7 +2456,6 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
        <zorder>label_11</zorder>
        <zorder>label_12</zorder>
        <zorder>frame_6</zorder>
-       <zorder>status</zorder>
        <zorder>label_13</zorder>
        <zorder>txt_camnum</zorder>
        <zorder>txt_totalnum</zorder>
@@ -2548,8 +2466,9 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
        <zorder>cmodel</zorder>
        <zorder>label</zorder>
        <zorder>label_9</zorder>
-       <zorder>label_14</zorder>
        <zorder>frm_lock</zorder>
+       <zorder>label_14</zorder>
+       <zorder>status</zorder>
       </widget>
      </widget>
     </widget>
@@ -2562,6 +2481,478 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
      <attribute name="title">
       <string>Settings</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>581</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="title">
+       <string>DCU Settings</string>
+      </property>
+      <widget class="QCheckBox" name="chm_joyx">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>161</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Joystic X reversed</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chm_joyy">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>161</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Joystic Y reversed</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chm_loop">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>30</y>
+         <width>161</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>CMD Loop</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_loop_value">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>30</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>32</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Value(ms) :</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chm_logout">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>60</y>
+         <width>231</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Auto logout after 5 mins idle</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>100</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Remote Server IP:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>100</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Remote Server Port:</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_ip">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>90</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_port">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>90</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>150</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Admin Password:</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_admin_pass">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>140</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>190</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>New Password :</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_admin_new">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>180</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>230</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Confirm Password :</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_admin_confirm">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>220</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_user_pass">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>140</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>150</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>User Password:</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_user_confirm">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>220</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="txt_user_new">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>180</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_26">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>230</y>
+         <width>151</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Confirm Password :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>190</y>
+         <width>141</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>New Password :</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_change_admin">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>260</y>
+         <width>101</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Change</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_change_user">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>260</y>
+         <width>101</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Change</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_save">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>290</y>
+         <width>541</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Save Settings</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -2621,13 +3012,26 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
      <attribute name="title">
       <string>LOG Engine</string>
      </attribute>
-     <widget class="QTableView" name="logtable">
+     <widget class="QPushButton" name="btn_refresh">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>50</y>
+        <width>611</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Refresh Logs</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="lst_log">
       <property name="geometry">
        <rect>
         <x>40</x>
         <y>80</y>
-        <width>501</width>
-        <height>192</height>
+        <width>611</width>
+        <height>341</height>
        </rect>
       </property>
      </widget>

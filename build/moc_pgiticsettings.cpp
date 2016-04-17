@@ -1,15 +1,15 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'pgiticlog.h'
+** Meta object code from reading C++ file 'pgiticsettings.h'
 **
-** Created: Sun Apr 17 12:48:11 2016
+** Created: Sun Apr 17 06:25:14 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../pgiticlog.h"
+#include "../pgiticsettings.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'pgiticlog.h' doesn't include <QObject>."
+#error "The header file 'pgiticsettings.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
 #error "This file was generated using the moc from 4.8.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_pgiticlog[] = {
+static const uint qt_meta_data_pgiticsettings[] = {
 
  // content:
        6,       // revision
@@ -33,11 +33,11 @@ static const uint qt_meta_data_pgiticlog[] = {
        0        // eod
 };
 
-static const char qt_meta_stringdata_pgiticlog[] = {
-    "pgiticlog\0"
+static const char qt_meta_stringdata_pgiticsettings[] = {
+    "pgiticsettings\0"
 };
 
-void pgiticlog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void pgiticsettings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -45,33 +45,33 @@ void pgiticlog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     Q_UNUSED(_a);
 }
 
-const QMetaObjectExtraData pgiticlog::staticMetaObjectExtraData = {
+const QMetaObjectExtraData pgiticsettings::staticMetaObjectExtraData = {
     0,  qt_static_metacall 
 };
 
-const QMetaObject pgiticlog::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_pgiticlog,
-      qt_meta_data_pgiticlog, &staticMetaObjectExtraData }
+const QMetaObject pgiticsettings::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_pgiticsettings,
+      qt_meta_data_pgiticsettings, &staticMetaObjectExtraData }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &pgiticlog::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &pgiticsettings::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *pgiticlog::metaObject() const
+const QMetaObject *pgiticsettings::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *pgiticlog::qt_metacast(const char *_clname)
+void *pgiticsettings::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_pgiticlog))
-        return static_cast<void*>(const_cast< pgiticlog*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_pgiticsettings))
+        return static_cast<void*>(const_cast< pgiticsettings*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int pgiticlog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int pgiticsettings::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)

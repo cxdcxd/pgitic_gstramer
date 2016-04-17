@@ -27,6 +27,10 @@ public:
     void show_message(QString msg);
     void updatecs();
 
+
+
+
+
     QPixmap *pic_cam_10;
     QPixmap *pic_cam_20;
     QPixmap *pic_cam_30;
@@ -210,6 +214,20 @@ private slots:
     void on_d7_pressed();
 
     void on_d8_pressed();
+
+    void on_btn_save_clicked();
+
+    void on_btn_change_admin_clicked();
+
+    void on_btn_change_user_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_btn_refresh_clicked();
+
+    void on_tabWidget_selected(const QString &arg1);
+
+    void on_btn_logout_clicked();
 
 private:
     Ui::MainWindow *ui;

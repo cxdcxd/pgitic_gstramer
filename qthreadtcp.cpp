@@ -122,7 +122,7 @@ void QThreadTCP::set_home()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    std::string command = "(SETP," + camera_model + ";" + _number1 + ":255.0)";
+    std::string command = "(SETP," + mtlog->camera_model + ";" + _number1 + ":255.0)";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -135,7 +135,7 @@ void QThreadTCP::set_point(int mic_number)
     QString _num2 = QString::number(mic_number);
     std::string _number2 = _num2.toStdString();
 
-    std::string command = "(SETP," + camera_model + ";" + _number1 + ":" + _number2 + ".0)";
+    std::string command = "(SETP," + mtlog->camera_model + ";" + _number1 + ":" + _number2 + ".0)";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -145,7 +145,7 @@ void QThreadTCP::call_home()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    std::string command ="(CALLP," + camera_model + ";" + _number1 + ":255.0)";
+    std::string command ="(CALLP," + mtlog->camera_model + ";" + _number1 + ":255.0)";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -158,7 +158,7 @@ void QThreadTCP::call_point(int mic_number)
     QString _num2 = QString::number(mic_number);
     std::string _number2 = _num2.toStdString();
 
-    std::string command = "(CALLP," + camera_model + ";" + _number1 + ":" + _number2 + ".0)";
+    std::string command = "(CALLP," + mtlog->camera_model + ";" + _number1 + ":" + _number2 + ".0)";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -175,7 +175,7 @@ void QThreadTCP::debug_test_camera()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    std::string command = "(CAMT," + camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
+    std::string command = "(CAMT," + mtlog->camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -185,7 +185,7 @@ void QThreadTCP::debug_test_serial()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    std::string command = "(PORTT," + camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
+    std::string command = "(PORTT," + mtlog->camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -195,7 +195,7 @@ void QThreadTCP::debug_test_version()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    std::string command = "(RHADV," + camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
+    std::string command = "(RHADV," + mtlog->camera_model + ";" + _number1 + ":" + "255" + "." + "0" + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -235,39 +235,39 @@ void QThreadTCP::set_camera_dir(int mode)
 
     if ( status == "R" )
     {
-        if (joyx_reversed)
+        if (mtlog->joyx)
             status = "L";
     }
     else
         if (status == "L")
         {
-            if (joyx_reversed)
+            if (mtlog->joyx)
                 status = "R";
         }
         else
             if (status == "U")
             {
-                if (joyy_reversed)
+                if (mtlog->joyy)
                     status = "D";
             }
             else
                 if (status == "D")
                 {
-                    if (joyy_reversed)
+                    if (mtlog->joyy)
                         status = "U";
                 }
                 else
                     if (status == "UR")
                     {
-                        if (joyx_reversed == true && joyy_reversed == false)
+                        if (mtlog->joyx == true && mtlog->joyy == false)
                         {
                             status = "UL";
                         }
-                        else if (joyx_reversed == false && joyy_reversed == true)
+                        else if (mtlog->joyx == false && mtlog->joyy == true)
                         {
                             status = "DR";
                         }
-                        else if (joyx_reversed == true && joyy_reversed == true)
+                        else if (mtlog->joyx == true && mtlog->joyy == true)
                         {
                             status = "DL";
                         }
@@ -275,15 +275,15 @@ void QThreadTCP::set_camera_dir(int mode)
                     else
                         if ( status == "UL")
                         {
-                            if (joyx_reversed == true && joyy_reversed == false)
+                            if (mtlog->joyx == true && mtlog->joyy == false)
                             {
                                 status = "UR";
                             }
-                            else if (joyx_reversed == false && joyy_reversed == true)
+                            else if (mtlog->joyx == false && mtlog->joyy == true)
                             {
                                 status = "DL";
                             }
-                            else if (joyx_reversed == true && joyy_reversed == true)
+                            else if (mtlog->joyx == true && mtlog->joyy == true)
                             {
                                 status = "DR";
                             }
@@ -292,15 +292,15 @@ void QThreadTCP::set_camera_dir(int mode)
                             if ( status == "DR")
                             {
 
-                                if (joyx_reversed == true && joyy_reversed == false)
+                                if (mtlog->joyx == true && mtlog->joyy == false)
                                 {
                                     status = "DL";
                                 }
-                                else if (joyx_reversed == false && joyy_reversed == true)
+                                else if (mtlog->joyx == false && mtlog->joyy == true)
                                 {
                                     status = "UR";
                                 }
-                                else if (joyx_reversed == true && joyy_reversed == true)
+                                else if (mtlog->joyx == true && mtlog->joyy == true)
                                 {
                                     status = "UL";
                                 }
@@ -308,15 +308,15 @@ void QThreadTCP::set_camera_dir(int mode)
                             else
                                 if ( status == "DL")
                                 {
-                                    if (joyx_reversed == true && joyy_reversed == false)
+                                    if (mtlog->joyx == true && mtlog->joyy == false)
                                     {
                                         status = "DR";
                                     }
-                                    else if (joyx_reversed == false && joyy_reversed == true)
+                                    else if (mtlog->joyx == false && mtlog->joyy == true)
                                     {
                                         status = "UL";
                                     }
-                                    else if (joyx_reversed == true && joyy_reversed == true)
+                                    else if (mtlog->joyx == true && mtlog->joyy == true)
                                     {
                                         status = "UR";
                                     }
@@ -327,7 +327,7 @@ void QThreadTCP::set_camera_dir(int mode)
     std::string _num1 = num1.toStdString();
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + camera_model + ";" + _num1 + ":" + status + "."  + _num2 + ")";
+    last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":" + status + "."  + _num2 + ")";
 
 }
 
@@ -350,7 +350,7 @@ void QThreadTCP::stop_cam()
 
     QString _num2 = QString::number(camera_speed);
     std::string _number2 = _num2.toStdString();
-    std::string command = "(CAM," + camera_model + ";" + _number1 + ":S." + _number2 + ")";
+    std::string command = "(CAM," + mtlog->camera_model + ";" + _number1 + ":S." + _number2 + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -362,7 +362,7 @@ void QThreadTCP::stop_focus()
 
     QString _num2 = QString::number(camera_speed);
     std::string _number2 = _num2.toStdString();
-    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":FS." + _number2 + ")";
+    std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":FS." + _number2 + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -374,7 +374,7 @@ void QThreadTCP::stop_iris()
 
     QString _num2 = QString::number(camera_speed);
     std::string _number2 = _num2.toStdString();
-    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":IS." + _number2 + ")";
+    std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":IS." + _number2 + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 }
@@ -386,7 +386,7 @@ void QThreadTCP::stop_zoom()
 
     QString _num2 = QString::number(camera_speed);
     std::string _number2 = _num2.toStdString();
-    std::string command = "(CAM," + camera_model + ";" +  _number1 + ":ZS." +  _number2 + ")";
+    std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":ZS." +  _number2 + ")";
     QByteArray array = command.c_str();
     mainwrite(array,array.size());
 

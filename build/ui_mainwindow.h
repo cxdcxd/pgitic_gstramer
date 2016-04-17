@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Apr 14 13:00:12 2016
+** Created: Sun Apr 17 13:50:48 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,9 +14,11 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QComboBox>
 #include <QtGui/QFrame>
 #include <QtGui/QGraphicsView>
+#include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QListView>
@@ -28,7 +30,6 @@
 #include <QtGui/QSlider>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTabWidget>
-#include <QtGui/QTableView>
 #include <QtGui/QTextEdit>
 #include <QtGui/QWidget>
 
@@ -124,8 +125,35 @@ public:
     QLabel *label_15;
     QLabel *label_16;
     QPushButton *btn_login;
+    QPushButton *btn_logout;
     QWidget *tab_7;
     QWidget *tab_4;
+    QGroupBox *groupBox;
+    QCheckBox *chm_joyx;
+    QCheckBox *chm_joyy;
+    QCheckBox *chm_loop;
+    QTextEdit *txt_loop_value;
+    QLabel *label_19;
+    QCheckBox *chm_logout;
+    QLabel *label_20;
+    QLabel *label_21;
+    QTextEdit *txt_ip;
+    QTextEdit *txt_port;
+    QLabel *label_22;
+    QTextEdit *txt_admin_pass;
+    QLabel *label_23;
+    QTextEdit *txt_admin_new;
+    QLabel *label_24;
+    QTextEdit *txt_admin_confirm;
+    QTextEdit *txt_user_pass;
+    QLabel *label_25;
+    QTextEdit *txt_user_confirm;
+    QTextEdit *txt_user_new;
+    QLabel *label_26;
+    QLabel *label_27;
+    QPushButton *btn_change_admin;
+    QPushButton *btn_change_user;
+    QPushButton *btn_save;
     QWidget *tab_2;
     QPushButton *pushButton;
     QLabel *label_4;
@@ -133,7 +161,8 @@ public:
     QWidget *tab_9;
     QWidget *tab_3;
     QWidget *tab_5;
-    QTableView *logtable;
+    QPushButton *btn_refresh;
+    QListWidget *lst_log;
     QWidget *tab_6;
     QFrame *frame;
     QLabel *label_6;
@@ -575,52 +604,16 @@ public:
 ""
                         "}\n"
 "\n"
-"QRadioButton::indicator:checked, QRadioButton::indicator:unchecked{\n"
-"    color: #b1b1b1;\n"
-"    background-color: #323232;\n"
-"    border: 1px solid #b1b1b1;\n"
-"    border-radius: 6px;\n"
-"}\n"
 "\n"
-"QRadioButton::indicator:checked\n"
-"{\n"
-"    background-color: qradialgradient(\n"
-"        cx: 0.5, cy: 0.5,\n"
-"        fx: 0.5, fy: 0.5,\n"
-"        radius: 1.0,\n"
-"        stop: 0.25 #1a71d7,\n"
-"        stop: 0.3 #323232\n"
-"    );\n"
-"}\n"
 "\n"
-"QCheckBox::indicator{\n"
-"    color: #b1b1b1;\n"
-"    background-color: #323232;\n"
-"    border: 1px solid #b1b1b1;\n"
-"    width: 9px;\n"
-"    height: 9px;\n"
-"}\n"
 "\n"
-"QRadioButton::indicator\n"
-"{\n"
-"    border-radius: 6px;\n"
-"}\n"
 "\n"
-"QRadioButton::indicator:hover, QCheckBox::indicator:hover\n"
-"{\n"
-"    border: 1px solid #1a71d7;\n"
-"}\n"
 "\n"
-"QCheckBox::indicator:checked\n"
-"{\n"
-"    image:url(:/images/checkbox.png);\n"
-"}\n"
 "\n"
-"QCheckBox::indicator:disabled, QRadioButton::indicator:disabled\n"
-"{\n"
-"    border: 1px solid #444;\n"
-""
-                        "}"));
+"\n"
+"\n"
+"\n"
+""));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionAbout = new QAction(MainWindow);
@@ -793,7 +786,7 @@ public:
         cs4->setIconSize(QSize(50, 50));
         frame_4 = new QFrame(tab_10);
         frame_4->setObjectName(QString::fromUtf8("frame_4"));
-        frame_4->setGeometry(QRect(350, 20, 60, 60));
+        frame_4->setGeometry(QRect(380, 20, 60, 60));
         frame_4->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/Dcu/dcu_micpanasonic.png)  0 0 0 0 100 stretch;\n"
 ""));
         frame_4->setFrameShape(QFrame::StyledPanel);
@@ -1096,12 +1089,12 @@ public:
         txt_camnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_totalnum = new QLabel(tab_10);
         txt_totalnum->setObjectName(QString::fromUtf8("txt_totalnum"));
-        txt_totalnum->setGeometry(QRect(300, 60, 41, 16));
+        txt_totalnum->setGeometry(QRect(300, 60, 71, 16));
         txt_totalnum->setFont(font1);
         txt_totalnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_micnum = new QLabel(tab_10);
         txt_micnum->setObjectName(QString::fromUtf8("txt_micnum"));
-        txt_micnum->setGeometry(QRect(420, 60, 41, 16));
+        txt_micnum->setGeometry(QRect(450, 60, 91, 16));
         txt_micnum->setFont(font1);
         txt_micnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_17 = new QLabel(tab_10);
@@ -1142,7 +1135,7 @@ public:
         label_14->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         frm_lock = new QFrame(tab_10);
         frm_lock->setObjectName(QString::fromUtf8("frm_lock"));
-        frm_lock->setGeometry(QRect(10, 10, 1261, 571));
+        frm_lock->setGeometry(QRect(10, 20, 1261, 551));
         frm_lock->setFrameShape(QFrame::NoFrame);
         frm_lock->setFrameShadow(QFrame::Plain);
         txt_username = new QTextEdit(frm_lock);
@@ -1170,7 +1163,11 @@ public:
         btn_login = new QPushButton(frm_lock);
         btn_login->setObjectName(QString::fromUtf8("btn_login"));
         btn_login->setGeometry(QRect(440, 280, 311, 41));
+        btn_logout = new QPushButton(tab_10);
+        btn_logout->setObjectName(QString::fromUtf8("btn_logout"));
+        btn_logout->setGeometry(QRect(1170, 530, 91, 25));
         tabWidget_2->addTab(tab_10, QString());
+        btn_logout->raise();
         graphicsView->raise();
         frame_5->raise();
         cs5->raise();
@@ -1218,7 +1215,6 @@ public:
         label_11->raise();
         label_12->raise();
         frame_6->raise();
-        status->raise();
         label_13->raise();
         txt_camnum->raise();
         txt_totalnum->raise();
@@ -1229,14 +1225,134 @@ public:
         cmodel->raise();
         label->raise();
         label_9->raise();
-        label_14->raise();
         frm_lock->raise();
+        label_14->raise();
+        status->raise();
         tabWidget->addTab(tab_8, QString());
         tab_7 = new QWidget();
         tab_7->setObjectName(QString::fromUtf8("tab_7"));
         tabWidget->addTab(tab_7, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        groupBox = new QGroupBox(tab_4);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(20, 20, 581, 331));
+        groupBox->setFont(font7);
+        groupBox->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        chm_joyx = new QCheckBox(groupBox);
+        chm_joyx->setObjectName(QString::fromUtf8("chm_joyx"));
+        chm_joyx->setGeometry(QRect(20, 30, 161, 20));
+        QFont font8;
+        font8.setFamily(QString::fromUtf8("Sans Serif"));
+        font8.setPointSize(10);
+        font8.setBold(true);
+        font8.setItalic(false);
+        font8.setWeight(75);
+        chm_joyx->setFont(font8);
+        chm_joyx->setStyleSheet(QString::fromUtf8("\n"
+"color: rgb(0, 0, 0);"));
+        chm_joyx->setChecked(true);
+        chm_joyx->setAutoRepeat(false);
+        chm_joyx->setTristate(false);
+        chm_joyy = new QCheckBox(groupBox);
+        chm_joyy->setObjectName(QString::fromUtf8("chm_joyy"));
+        chm_joyy->setGeometry(QRect(20, 60, 161, 20));
+        chm_joyy->setFont(font8);
+        chm_joyy->setStyleSheet(QString::fromUtf8("\n"
+"color: rgb(0, 0, 0);"));
+        chm_loop = new QCheckBox(groupBox);
+        chm_loop->setObjectName(QString::fromUtf8("chm_loop"));
+        chm_loop->setGeometry(QRect(210, 30, 161, 20));
+        chm_loop->setFont(font8);
+        chm_loop->setStyleSheet(QString::fromUtf8("\n"
+"color: rgb(0, 0, 0);"));
+        txt_loop_value = new QTextEdit(groupBox);
+        txt_loop_value->setObjectName(QString::fromUtf8("txt_loop_value"));
+        txt_loop_value->setGeometry(QRect(460, 30, 104, 31));
+        label_19 = new QLabel(groupBox);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setGeometry(QRect(360, 32, 91, 16));
+        label_19->setFont(font7);
+        label_19->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        chm_logout = new QCheckBox(groupBox);
+        chm_logout->setObjectName(QString::fromUtf8("chm_logout"));
+        chm_logout->setGeometry(QRect(210, 60, 231, 20));
+        chm_logout->setFont(font8);
+        chm_logout->setStyleSheet(QString::fromUtf8("\n"
+"color: rgb(0, 0, 0);"));
+        label_20 = new QLabel(groupBox);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
+        label_20->setGeometry(QRect(20, 100, 151, 16));
+        label_20->setFont(font7);
+        label_20->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label_21 = new QLabel(groupBox);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+        label_21->setGeometry(QRect(300, 100, 151, 16));
+        label_21->setFont(font7);
+        label_21->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_ip = new QTextEdit(groupBox);
+        txt_ip->setObjectName(QString::fromUtf8("txt_ip"));
+        txt_ip->setGeometry(QRect(170, 90, 104, 31));
+        txt_port = new QTextEdit(groupBox);
+        txt_port->setObjectName(QString::fromUtf8("txt_port"));
+        txt_port->setGeometry(QRect(460, 90, 104, 31));
+        label_22 = new QLabel(groupBox);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+        label_22->setGeometry(QRect(20, 150, 151, 16));
+        label_22->setFont(font7);
+        label_22->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_admin_pass = new QTextEdit(groupBox);
+        txt_admin_pass->setObjectName(QString::fromUtf8("txt_admin_pass"));
+        txt_admin_pass->setGeometry(QRect(170, 140, 104, 31));
+        label_23 = new QLabel(groupBox);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+        label_23->setGeometry(QRect(20, 190, 151, 16));
+        label_23->setFont(font7);
+        label_23->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_admin_new = new QTextEdit(groupBox);
+        txt_admin_new->setObjectName(QString::fromUtf8("txt_admin_new"));
+        txt_admin_new->setGeometry(QRect(170, 180, 104, 31));
+        label_24 = new QLabel(groupBox);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+        label_24->setGeometry(QRect(20, 230, 151, 16));
+        label_24->setFont(font7);
+        label_24->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_admin_confirm = new QTextEdit(groupBox);
+        txt_admin_confirm->setObjectName(QString::fromUtf8("txt_admin_confirm"));
+        txt_admin_confirm->setGeometry(QRect(170, 220, 104, 31));
+        txt_user_pass = new QTextEdit(groupBox);
+        txt_user_pass->setObjectName(QString::fromUtf8("txt_user_pass"));
+        txt_user_pass->setGeometry(QRect(460, 140, 104, 31));
+        label_25 = new QLabel(groupBox);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+        label_25->setGeometry(QRect(300, 150, 131, 16));
+        label_25->setFont(font7);
+        label_25->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_user_confirm = new QTextEdit(groupBox);
+        txt_user_confirm->setObjectName(QString::fromUtf8("txt_user_confirm"));
+        txt_user_confirm->setGeometry(QRect(460, 220, 104, 31));
+        txt_user_new = new QTextEdit(groupBox);
+        txt_user_new->setObjectName(QString::fromUtf8("txt_user_new"));
+        txt_user_new->setGeometry(QRect(460, 180, 104, 31));
+        label_26 = new QLabel(groupBox);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+        label_26->setGeometry(QRect(300, 230, 151, 16));
+        label_26->setFont(font7);
+        label_26->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label_27 = new QLabel(groupBox);
+        label_27->setObjectName(QString::fromUtf8("label_27"));
+        label_27->setGeometry(QRect(300, 190, 141, 16));
+        label_27->setFont(font7);
+        label_27->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btn_change_admin = new QPushButton(groupBox);
+        btn_change_admin->setObjectName(QString::fromUtf8("btn_change_admin"));
+        btn_change_admin->setGeometry(QRect(170, 260, 101, 25));
+        btn_change_user = new QPushButton(groupBox);
+        btn_change_user->setObjectName(QString::fromUtf8("btn_change_user"));
+        btn_change_user->setGeometry(QRect(460, 260, 101, 25));
+        btn_save = new QPushButton(groupBox);
+        btn_save->setObjectName(QString::fromUtf8("btn_save"));
+        btn_save->setGeometry(QRect(20, 290, 541, 25));
         tabWidget->addTab(tab_4, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -1259,9 +1375,12 @@ public:
         tabWidget->addTab(tab_3, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
-        logtable = new QTableView(tab_5);
-        logtable->setObjectName(QString::fromUtf8("logtable"));
-        logtable->setGeometry(QRect(40, 80, 501, 192));
+        btn_refresh = new QPushButton(tab_5);
+        btn_refresh->setObjectName(QString::fromUtf8("btn_refresh"));
+        btn_refresh->setGeometry(QRect(40, 50, 611, 25));
+        lst_log = new QListWidget(tab_5);
+        lst_log->setObjectName(QString::fromUtf8("lst_log"));
+        lst_log->setGeometry(QRect(40, 80, 611, 341));
         tabWidget->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -1295,9 +1414,9 @@ public:
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(60, 10, 481, 41));
-        QFont font8;
-        font8.setPointSize(16);
-        label_5->setFont(font8);
+        QFont font9;
+        font9.setPointSize(16);
+        label_5->setFont(font9);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_bar_info = new QLabel(centralwidget);
         txt_bar_info->setObjectName(QString::fromUtf8("txt_bar_info"));
@@ -1315,7 +1434,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -1400,39 +1519,40 @@ public:
         txt_micnum->setText(QApplication::translate("MainWindow", "00", 0, QApplication::UnicodeUTF8));
         label_17->setText(QApplication::translate("MainWindow", "Settings :", 0, QApplication::UnicodeUTF8));
         label_18->setText(QApplication::translate("MainWindow", "Joystick :", 0, QApplication::UnicodeUTF8));
-        smodel->clear();
-        smodel->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "Panasonic", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Bosch-CS900", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Bosch-CCU2", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "Bosch-CS1000", 0, QApplication::UnicodeUTF8)
-        );
-        cmodel->clear();
-        cmodel->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "CS-CW", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "AU-HE", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "SC385", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "SC385EXT", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "CS580", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "SONY", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "SONYEXT", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MainWindow", "BOSCH", 0, QApplication::UnicodeUTF8)
-        );
         label->setText(QApplication::translate("MainWindow", "CAM. Model:", 0, QApplication::UnicodeUTF8));
         label_9->setText(QApplication::translate("MainWindow", "CON. Model:", 0, QApplication::UnicodeUTF8));
         label_14->setText(QApplication::translate("MainWindow", "Connection :", 0, QApplication::UnicodeUTF8));
         label_15->setText(QApplication::translate("MainWindow", "Username :", 0, QApplication::UnicodeUTF8));
         label_16->setText(QApplication::translate("MainWindow", "Password :", 0, QApplication::UnicodeUTF8));
         btn_login->setText(QApplication::translate("MainWindow", "Login", 0, QApplication::UnicodeUTF8));
+        btn_logout->setText(QApplication::translate("MainWindow", "Logout", 0, QApplication::UnicodeUTF8));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_10), QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "Camera Control DCU", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QApplication::translate("MainWindow", "DCU Settings", 0, QApplication::UnicodeUTF8));
+        chm_joyx->setText(QApplication::translate("MainWindow", "Joystic X reversed", 0, QApplication::UnicodeUTF8));
+        chm_joyy->setText(QApplication::translate("MainWindow", "Joystic Y reversed", 0, QApplication::UnicodeUTF8));
+        chm_loop->setText(QApplication::translate("MainWindow", "CMD Loop", 0, QApplication::UnicodeUTF8));
+        label_19->setText(QApplication::translate("MainWindow", "Value(ms) :", 0, QApplication::UnicodeUTF8));
+        chm_logout->setText(QApplication::translate("MainWindow", "Auto logout after 5 mins idle", 0, QApplication::UnicodeUTF8));
+        label_20->setText(QApplication::translate("MainWindow", "Remote Server IP:", 0, QApplication::UnicodeUTF8));
+        label_21->setText(QApplication::translate("MainWindow", "Remote Server Port:", 0, QApplication::UnicodeUTF8));
+        label_22->setText(QApplication::translate("MainWindow", "Admin Password:", 0, QApplication::UnicodeUTF8));
+        label_23->setText(QApplication::translate("MainWindow", "New Password :", 0, QApplication::UnicodeUTF8));
+        label_24->setText(QApplication::translate("MainWindow", "Confirm Password :", 0, QApplication::UnicodeUTF8));
+        label_25->setText(QApplication::translate("MainWindow", "User Password:", 0, QApplication::UnicodeUTF8));
+        label_26->setText(QApplication::translate("MainWindow", "Confirm Password :", 0, QApplication::UnicodeUTF8));
+        label_27->setText(QApplication::translate("MainWindow", "New Password :", 0, QApplication::UnicodeUTF8));
+        btn_change_admin->setText(QApplication::translate("MainWindow", "Change", 0, QApplication::UnicodeUTF8));
+        btn_change_user->setText(QApplication::translate("MainWindow", "Change", 0, QApplication::UnicodeUTF8));
+        btn_save->setText(QApplication::translate("MainWindow", "Save Settings", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "TCP Sendt Test", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("MainWindow", "Connected Clients", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "TCP/IP Server", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_9), QApplication::translate("MainWindow", "TCP/IP Client", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("MainWindow", "USB/Serial Communication", 0, QApplication::UnicodeUTF8));
+        btn_refresh->setText(QApplication::translate("MainWindow", "Refresh Logs", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "LOG Engine", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "www.pgitic.com", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "PGITIC Co. 2005-2016 All Rights Reserved", 0, QApplication::UnicodeUTF8));
