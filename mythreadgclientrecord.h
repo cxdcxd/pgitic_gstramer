@@ -17,7 +17,7 @@ public:
     mygclientrecord *mgclient;
     void recorde_start(std::string filenamee);
     void recorde_stop();
-    bool app_exit;
+
      bool active;
     std::string state;
     std::string filename;

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 20 08:37:38 2016
+** Created: Wed Apr 20 11:55:43 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -156,23 +156,23 @@ public:
     QLabel *label_30;
     QPushButton *btn_manual_set;
     QWidget *tab_7;
-    QGroupBox *groupBox_4;
-    QTextEdit *textEdit_4;
-    QTextEdit *textEdit_5;
-    QLabel *label_37;
-    QLabel *label_38;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton;
-    QPushButton *pushButton_8;
     QGroupBox *groupBox_5;
     QPushButton *pushButton_9;
     QPushButton *pushButton_10;
     QPushButton *pushButton_11;
     QPushButton *pushButton_13;
     QProgressBar *progressBar_2;
-    QGroupBox *groupBox_7;
-    QPushButton *pushButton_12;
+    QPushButton *pushButton_14;
+    QPushButton *pushButton_16;
+    QPushButton *pushButton_15;
+    QPushButton *pushButton_17;
+    QTabWidget *tabWidget_3;
+    QWidget *tab_2;
+    QTextEdit *textEdit_4;
+    QLabel *label_38;
+    QLabel *label_37;
+    QTextEdit *textEdit_5;
+    QWidget *tab_3;
     QWidget *tab_4;
     QGroupBox *groupBox;
     QCheckBox *chm_joyx;
@@ -205,15 +205,17 @@ public:
     QListWidget *lst_log;
     QLabel *label_4;
     QListWidget *lst_clients;
-    QPushButton *pushButton_2;
-    QComboBox *comboBox;
-    QTextEdit *textEdit;
+    QPushButton *btn_log_delete;
+    QComboBox *cmb_log_type;
+    QTextEdit *txt_log_sender;
     QLabel *label_35;
     QLabel *label_39;
     QWidget *tab_6;
     QFrame *frame;
     QLabel *label_6;
     QLabel *label_7;
+    QLabel *label_40;
+    QLabel *label_41;
     QFrame *frame_2;
     QLabel *label_5;
     QLabel *txt_bar_info;
@@ -669,7 +671,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(30, 70, 1321, 671));
+        tabWidget->setGeometry(QRect(20, 60, 1321, 671));
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -767,7 +769,7 @@ public:
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
         tabWidget_2 = new QTabWidget(tab_8);
         tabWidget_2->setObjectName(QString::fromUtf8("tabWidget_2"));
-        tabWidget_2->setGeometry(QRect(10, 20, 1291, 611));
+        tabWidget_2->setGeometry(QRect(10, 20, 1301, 611));
         tabWidget_2->setTabPosition(QTabWidget::South);
         tabWidget_2->setTabShape(QTabWidget::Rounded);
         tabWidget_2->setElideMode(Qt::ElideMiddle);
@@ -1179,15 +1181,15 @@ public:
         frm_lock->setFrameShadow(QFrame::Plain);
         txt_username = new QTextEdit(frm_lock);
         txt_username->setObjectName(QString::fromUtf8("txt_username"));
-        txt_username->setGeometry(QRect(440, 150, 311, 41));
+        txt_username->setGeometry(QRect(480, 150, 311, 41));
         txt_username->setFont(font4);
         txt_password = new QTextEdit(frm_lock);
         txt_password->setObjectName(QString::fromUtf8("txt_password"));
-        txt_password->setGeometry(QRect(440, 220, 311, 41));
+        txt_password->setGeometry(QRect(480, 220, 311, 41));
         txt_password->setFont(font4);
         label_15 = new QLabel(frm_lock);
         label_15->setObjectName(QString::fromUtf8("label_15"));
-        label_15->setGeometry(QRect(440, 130, 141, 16));
+        label_15->setGeometry(QRect(480, 130, 141, 16));
         QFont font7;
         font7.setPointSize(10);
         font7.setBold(true);
@@ -1196,12 +1198,12 @@ public:
         label_15->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label_16 = new QLabel(frm_lock);
         label_16->setObjectName(QString::fromUtf8("label_16"));
-        label_16->setGeometry(QRect(440, 200, 141, 16));
+        label_16->setGeometry(QRect(480, 200, 141, 16));
         label_16->setFont(font7);
         label_16->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btn_login = new QPushButton(frm_lock);
         btn_login->setObjectName(QString::fromUtf8("btn_login"));
-        btn_login->setGeometry(QRect(440, 280, 311, 41));
+        btn_login->setGeometry(QRect(480, 280, 311, 41));
         btn_logout = new QPushButton(tab_10);
         btn_logout->setObjectName(QString::fromUtf8("btn_logout"));
         btn_logout->setGeometry(QRect(1170, 530, 91, 25));
@@ -1272,7 +1274,7 @@ public:
         tab_11->setObjectName(QString::fromUtf8("tab_11"));
         groupBox_2 = new QGroupBox(tab_11);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(50, 90, 361, 271));
+        groupBox_2->setGeometry(QRect(50, 90, 371, 271));
         groupBox_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         rad_manual = new QRadioButton(groupBox_2);
         rad_manual->setObjectName(QString::fromUtf8("rad_manual"));
@@ -1291,18 +1293,18 @@ public:
         rad_fifo->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         cmb_fifo = new QComboBox(groupBox_2);
         cmb_fifo->setObjectName(QString::fromUtf8("cmb_fifo"));
-        cmb_fifo->setGeometry(QRect(240, 45, 101, 24));
+        cmb_fifo->setGeometry(QRect(240, 45, 111, 24));
         cmb_fifo->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         btn_mic_set = new QPushButton(groupBox_2);
         btn_mic_set->setObjectName(QString::fromUtf8("btn_mic_set"));
-        btn_mic_set->setGeometry(QRect(30, 210, 311, 41));
+        btn_mic_set->setGeometry(QRect(30, 210, 321, 41));
         btn_mic_set->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_28 = new QLabel(groupBox_2);
         label_28->setObjectName(QString::fromUtf8("label_28"));
         label_28->setGeometry(QRect(130, 45, 81, 20));
         groupBox_3 = new QGroupBox(tab_11);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(430, 90, 541, 271));
+        groupBox_3->setGeometry(QRect(730, 90, 541, 271));
         groupBox_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         txt_Mmicnum = new QLabel(groupBox_3);
         txt_Mmicnum->setObjectName(QString::fromUtf8("txt_Mmicnum"));
@@ -1348,12 +1350,12 @@ public:
         txt_Mcamnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_32 = new QLabel(groupBox_3);
         label_32->setObjectName(QString::fromUtf8("label_32"));
-        label_32->setGeometry(QRect(20, 130, 131, 16));
+        label_32->setGeometry(QRect(50, 160, 131, 16));
         label_32->setFont(font5);
         label_32->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         monitor_dcu = new QFrame(groupBox_3);
         monitor_dcu->setObjectName(QString::fromUtf8("monitor_dcu"));
-        monitor_dcu->setGeometry(QRect(160, 120, 31, 31));
+        monitor_dcu->setGeometry(QRect(190, 150, 31, 31));
         monitor_dcu->setStyleSheet(QString::fromUtf8("border-image: \n"
 "url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;\n"
 ""));
@@ -1361,12 +1363,12 @@ public:
         monitor_dcu->setFrameShadow(QFrame::Raised);
         label_33 = new QLabel(groupBox_3);
         label_33->setObjectName(QString::fromUtf8("label_33"));
-        label_33->setGeometry(QRect(230, 130, 151, 16));
+        label_33->setGeometry(QRect(270, 160, 151, 16));
         label_33->setFont(font5);
         label_33->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         monitor_serial = new QFrame(groupBox_3);
         monitor_serial->setObjectName(QString::fromUtf8("monitor_serial"));
-        monitor_serial->setGeometry(QRect(390, 110, 51, 51));
+        monitor_serial->setGeometry(QRect(420, 140, 51, 51));
         monitor_serial->setStyleSheet(QString::fromUtf8("border-image: \n"
 "url(:/new/images/Resource/Play/x8.png)  0 0 0 0 100 stretch;\n"
 ""));
@@ -1374,22 +1376,22 @@ public:
         monitor_serial->setFrameShadow(QFrame::Raised);
         label_34 = new QLabel(groupBox_3);
         label_34->setObjectName(QString::fromUtf8("label_34"));
-        label_34->setGeometry(QRect(20, 190, 131, 16));
+        label_34->setGeometry(QRect(50, 220, 131, 16));
         label_34->setFont(font5);
         label_34->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         monitor_recording = new QLabel(groupBox_3);
         monitor_recording->setObjectName(QString::fromUtf8("monitor_recording"));
-        monitor_recording->setGeometry(QRect(160, 190, 31, 16));
+        monitor_recording->setGeometry(QRect(190, 220, 31, 16));
         monitor_recording->setFont(font5);
         monitor_recording->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_36 = new QLabel(groupBox_3);
         label_36->setObjectName(QString::fromUtf8("label_36"));
-        label_36->setGeometry(QRect(230, 190, 131, 16));
+        label_36->setGeometry(QRect(280, 220, 131, 16));
         label_36->setFont(font5);
         label_36->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         monitor_usb = new QFrame(groupBox_3);
         monitor_usb->setObjectName(QString::fromUtf8("monitor_usb"));
-        monitor_usb->setGeometry(QRect(390, 170, 51, 51));
+        monitor_usb->setGeometry(QRect(420, 200, 51, 51));
         monitor_usb->setStyleSheet(QString::fromUtf8("border-image: \n"
 "url(:/new/images/Resource/Play/x6.png)  0 0 0 0 100 stretch;\n"
 ""));
@@ -1397,15 +1399,15 @@ public:
         monitor_usb->setFrameShadow(QFrame::Raised);
         groupBox_6 = new QGroupBox(tab_11);
         groupBox_6->setObjectName(QString::fromUtf8("groupBox_6"));
-        groupBox_6->setGeometry(QRect(50, 370, 361, 80));
+        groupBox_6->setGeometry(QRect(430, 90, 291, 271));
         groupBox_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         cmb_micstatus = new QComboBox(groupBox_6);
         cmb_micstatus->setObjectName(QString::fromUtf8("cmb_micstatus"));
-        cmb_micstatus->setGeometry(QRect(130, 50, 101, 24));
+        cmb_micstatus->setGeometry(QRect(170, 50, 101, 24));
         cmb_micstatus->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         cmb_micnumber = new QComboBox(groupBox_6);
         cmb_micnumber->setObjectName(QString::fromUtf8("cmb_micnumber"));
-        cmb_micnumber->setGeometry(QRect(130, 20, 101, 24));
+        cmb_micnumber->setGeometry(QRect(170, 20, 101, 24));
         cmb_micnumber->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_29 = new QLabel(groupBox_6);
         label_29->setObjectName(QString::fromUtf8("label_29"));
@@ -1415,79 +1417,82 @@ public:
         label_30->setGeometry(QRect(20, 20, 101, 20));
         btn_manual_set = new QPushButton(groupBox_6);
         btn_manual_set->setObjectName(QString::fromUtf8("btn_manual_set"));
-        btn_manual_set->setGeometry(QRect(240, 20, 111, 51));
+        btn_manual_set->setGeometry(QRect(20, 210, 251, 41));
         btn_manual_set->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         tabWidget->addTab(tab_11, QString());
         tab_7 = new QWidget();
         tab_7->setObjectName(QString::fromUtf8("tab_7"));
-        groupBox_4 = new QGroupBox(tab_7);
-        groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
-        groupBox_4->setGeometry(QRect(20, 20, 491, 491));
-        groupBox_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        textEdit_4 = new QTextEdit(groupBox_4);
-        textEdit_4->setObjectName(QString::fromUtf8("textEdit_4"));
-        textEdit_4->setGeometry(QRect(20, 130, 451, 271));
-        textEdit_4->setFont(font7);
-        textEdit_4->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        textEdit_5 = new QTextEdit(groupBox_4);
-        textEdit_5->setObjectName(QString::fromUtf8("textEdit_5"));
-        textEdit_5->setGeometry(QRect(20, 50, 451, 41));
-        textEdit_5->setFont(font1);
-        textEdit_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        label_37 = new QLabel(groupBox_4);
-        label_37->setObjectName(QString::fromUtf8("label_37"));
-        label_37->setGeometry(QRect(20, 30, 131, 16));
-        label_38 = new QLabel(groupBox_4);
-        label_38->setObjectName(QString::fromUtf8("label_38"));
-        label_38->setGeometry(QRect(20, 110, 81, 16));
-        pushButton_6 = new QPushButton(groupBox_4);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(20, 450, 221, 31));
-        pushButton_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        pushButton_7 = new QPushButton(groupBox_4);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(260, 410, 211, 31));
-        pushButton_7->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        pushButton = new QPushButton(groupBox_4);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(20, 410, 221, 31));
-        pushButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
-        pushButton_8 = new QPushButton(groupBox_4);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(260, 450, 211, 31));
-        pushButton_8->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         groupBox_5 = new QGroupBox(tab_7);
         groupBox_5->setObjectName(QString::fromUtf8("groupBox_5"));
-        groupBox_5->setGeometry(QRect(530, 20, 511, 131));
+        groupBox_5->setGeometry(QRect(20, 20, 1281, 61));
         groupBox_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         pushButton_9 = new QPushButton(groupBox_5);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setGeometry(QRect(10, 60, 491, 31));
+        pushButton_9->setGeometry(QRect(1040, 20, 231, 31));
         pushButton_9->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         pushButton_10 = new QPushButton(groupBox_5);
         pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(10, 20, 141, 31));
+        pushButton_10->setGeometry(QRect(10, 20, 81, 31));
         pushButton_10->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         pushButton_11 = new QPushButton(groupBox_5);
         pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
-        pushButton_11->setGeometry(QRect(180, 20, 141, 31));
+        pushButton_11->setGeometry(QRect(100, 20, 81, 31));
         pushButton_11->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         pushButton_13 = new QPushButton(groupBox_5);
         pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
-        pushButton_13->setGeometry(QRect(360, 20, 141, 31));
+        pushButton_13->setGeometry(QRect(190, 20, 131, 31));
         pushButton_13->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         progressBar_2 = new QProgressBar(groupBox_5);
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));
-        progressBar_2->setGeometry(QRect(10, 100, 491, 20));
+        progressBar_2->setGeometry(QRect(330, 20, 261, 31));
         progressBar_2->setValue(24);
-        groupBox_7 = new QGroupBox(tab_7);
-        groupBox_7->setObjectName(QString::fromUtf8("groupBox_7"));
-        groupBox_7->setGeometry(QRect(530, 160, 511, 351));
-        groupBox_7->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        pushButton_12 = new QPushButton(groupBox_7);
-        pushButton_12->setObjectName(QString::fromUtf8("pushButton_12"));
-        pushButton_12->setGeometry(QRect(410, 310, 91, 31));
-        pushButton_12->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        pushButton_14 = new QPushButton(groupBox_5);
+        pushButton_14->setObjectName(QString::fromUtf8("pushButton_14"));
+        pushButton_14->setGeometry(QRect(600, 20, 101, 31));
+        pushButton_14->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        pushButton_16 = new QPushButton(groupBox_5);
+        pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));
+        pushButton_16->setGeometry(QRect(820, 20, 101, 31));
+        pushButton_16->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        pushButton_15 = new QPushButton(groupBox_5);
+        pushButton_15->setObjectName(QString::fromUtf8("pushButton_15"));
+        pushButton_15->setGeometry(QRect(710, 20, 101, 31));
+        pushButton_15->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        pushButton_17 = new QPushButton(groupBox_5);
+        pushButton_17->setObjectName(QString::fromUtf8("pushButton_17"));
+        pushButton_17->setGeometry(QRect(930, 20, 101, 31));
+        pushButton_17->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        tabWidget_3 = new QTabWidget(tab_7);
+        tabWidget_3->setObjectName(QString::fromUtf8("tabWidget_3"));
+        tabWidget_3->setGeometry(QRect(20, 90, 1281, 511));
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        textEdit_4 = new QTextEdit(tab_2);
+        textEdit_4->setObjectName(QString::fromUtf8("textEdit_4"));
+        textEdit_4->setGeometry(QRect(30, 170, 1211, 281));
+        QFont font8;
+        font8.setPointSize(36);
+        font8.setBold(true);
+        font8.setWeight(75);
+        textEdit_4->setFont(font8);
+        textEdit_4->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_38 = new QLabel(tab_2);
+        label_38->setObjectName(QString::fromUtf8("label_38"));
+        label_38->setGeometry(QRect(30, 150, 81, 16));
+        label_38->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label_37 = new QLabel(tab_2);
+        label_37->setObjectName(QString::fromUtf8("label_37"));
+        label_37->setGeometry(QRect(30, 30, 131, 16));
+        label_37->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        textEdit_5 = new QTextEdit(tab_2);
+        textEdit_5->setObjectName(QString::fromUtf8("textEdit_5"));
+        textEdit_5->setGeometry(QRect(30, 50, 1211, 71));
+        textEdit_5->setFont(font8);
+        textEdit_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        tabWidget_3->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        tabWidget_3->addTab(tab_3, QString());
         tabWidget->addTab(tab_7, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
@@ -1499,13 +1504,13 @@ public:
         chm_joyx = new QCheckBox(groupBox);
         chm_joyx->setObjectName(QString::fromUtf8("chm_joyx"));
         chm_joyx->setGeometry(QRect(20, 30, 161, 20));
-        QFont font8;
-        font8.setFamily(QString::fromUtf8("Sans Serif"));
-        font8.setPointSize(10);
-        font8.setBold(true);
-        font8.setItalic(false);
-        font8.setWeight(75);
-        chm_joyx->setFont(font8);
+        QFont font9;
+        font9.setFamily(QString::fromUtf8("Sans Serif"));
+        font9.setPointSize(10);
+        font9.setBold(true);
+        font9.setItalic(false);
+        font9.setWeight(75);
+        chm_joyx->setFont(font9);
         chm_joyx->setStyleSheet(QString::fromUtf8("\n"
 "color: rgb(0, 0, 0);"));
         chm_joyx->setChecked(true);
@@ -1514,13 +1519,13 @@ public:
         chm_joyy = new QCheckBox(groupBox);
         chm_joyy->setObjectName(QString::fromUtf8("chm_joyy"));
         chm_joyy->setGeometry(QRect(20, 60, 161, 20));
-        chm_joyy->setFont(font8);
+        chm_joyy->setFont(font9);
         chm_joyy->setStyleSheet(QString::fromUtf8("\n"
 "color: rgb(0, 0, 0);"));
         chm_loop = new QCheckBox(groupBox);
         chm_loop->setObjectName(QString::fromUtf8("chm_loop"));
         chm_loop->setGeometry(QRect(210, 30, 161, 20));
-        chm_loop->setFont(font8);
+        chm_loop->setFont(font9);
         chm_loop->setStyleSheet(QString::fromUtf8("\n"
 "color: rgb(0, 0, 0);"));
         txt_loop_value = new QTextEdit(groupBox);
@@ -1534,7 +1539,7 @@ public:
         chm_logout = new QCheckBox(groupBox);
         chm_logout->setObjectName(QString::fromUtf8("chm_logout"));
         chm_logout->setGeometry(QRect(210, 60, 231, 20));
-        chm_logout->setFont(font8);
+        chm_logout->setFont(font9);
         chm_logout->setStyleSheet(QString::fromUtf8("\n"
 "color: rgb(0, 0, 0);"));
         label_20 = new QLabel(groupBox);
@@ -1627,15 +1632,15 @@ public:
         lst_clients = new QListWidget(tab_5);
         lst_clients->setObjectName(QString::fromUtf8("lst_clients"));
         lst_clients->setGeometry(QRect(680, 80, 361, 341));
-        pushButton_2 = new QPushButton(tab_5);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(570, 40, 81, 31));
-        comboBox = new QComboBox(tab_5);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(240, 40, 121, 31));
-        textEdit = new QTextEdit(tab_5);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(40, 40, 191, 31));
+        btn_log_delete = new QPushButton(tab_5);
+        btn_log_delete->setObjectName(QString::fromUtf8("btn_log_delete"));
+        btn_log_delete->setGeometry(QRect(570, 40, 81, 31));
+        cmb_log_type = new QComboBox(tab_5);
+        cmb_log_type->setObjectName(QString::fromUtf8("cmb_log_type"));
+        cmb_log_type->setGeometry(QRect(240, 40, 121, 31));
+        txt_log_sender = new QTextEdit(tab_5);
+        txt_log_sender->setObjectName(QString::fromUtf8("txt_log_sender"));
+        txt_log_sender->setGeometry(QRect(40, 40, 191, 31));
         label_35 = new QLabel(tab_5);
         label_35->setObjectName(QString::fromUtf8("label_35"));
         label_35->setGeometry(QRect(40, 20, 57, 14));
@@ -1649,23 +1654,35 @@ public:
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
         frame = new QFrame(tab_6);
         frame->setObjectName(QString::fromUtf8("frame"));
-        frame->setGeometry(QRect(20, 20, 100, 100));
+        frame->setGeometry(QRect(610, 180, 100, 100));
         frame->setAutoFillBackground(false);
         frame->setStyleSheet(QString::fromUtf8("background-image: url(:/new/images/Resource/Logo/core_logocore_main.png);"));
         frame->setFrameShape(QFrame::NoFrame);
         frame->setFrameShadow(QFrame::Plain);
         label_6 = new QLabel(tab_6);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(140, 30, 351, 41));
+        label_6->setGeometry(QRect(485, 280, 351, 41));
         label_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_6->setFrameShadow(QFrame::Plain);
         label_6->setAlignment(Qt::AlignCenter);
         label_7 = new QLabel(tab_6);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(140, 80, 351, 41));
+        label_7->setGeometry(QRect(480, 350, 351, 41));
         label_7->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_7->setFrameShadow(QFrame::Plain);
         label_7->setAlignment(Qt::AlignCenter);
+        label_40 = new QLabel(tab_6);
+        label_40->setObjectName(QString::fromUtf8("label_40"));
+        label_40->setGeometry(QRect(480, 320, 351, 41));
+        label_40->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_40->setFrameShadow(QFrame::Plain);
+        label_40->setAlignment(Qt::AlignCenter);
+        label_41 = new QLabel(tab_6);
+        label_41->setObjectName(QString::fromUtf8("label_41"));
+        label_41->setGeometry(QRect(1250, 600, 61, 41));
+        label_41->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_41->setFrameShadow(QFrame::Plain);
+        label_41->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_6, QString());
         frame_2 = new QFrame(centralwidget);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
@@ -1676,14 +1693,14 @@ public:
         frame_2->setFrameShadow(QFrame::Plain);
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(60, 10, 481, 41));
-        QFont font9;
-        font9.setPointSize(16);
-        label_5->setFont(font9);
+        label_5->setGeometry(QRect(60, 10, 571, 41));
+        QFont font10;
+        font10.setPointSize(16);
+        label_5->setFont(font10);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_bar_info = new QLabel(centralwidget);
         txt_bar_info->setObjectName(QString::fromUtf8("txt_bar_info"));
-        txt_bar_info->setGeometry(QRect(60, 710, 581, 16));
+        txt_bar_info->setGeometry(QRect(60, 700, 581, 16));
         txt_bar_info->setFont(font1);
         txt_bar_info->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         MainWindow->setCentralWidget(centralwidget);
@@ -1697,8 +1714,9 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(3);
         tabWidget_2->setCurrentIndex(0);
+        tabWidget_3->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1728,7 +1746,7 @@ public:
         label_3->setText(QApplication::translate("MainWindow", "File Information :", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("MainWindow", "USB Storage :", 0, QApplication::UnicodeUTF8));
         btn_recstop->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Recording And Playback", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Recording and Playback", 0, QApplication::UnicodeUTF8));
         cs5->setText(QString());
         cs2->setText(QString());
         cs6->setText(QString());
@@ -1811,21 +1829,30 @@ public:
         label_30->setText(QApplication::translate("MainWindow", "Mic. Number :", 0, QApplication::UnicodeUTF8));
         btn_manual_set->setText(QApplication::translate("MainWindow", "Set", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_11), QApplication::translate("MainWindow", "Michrophones", 0, QApplication::UnicodeUTF8));
-        groupBox_4->setTitle(QApplication::translate("MainWindow", "Questions", 0, QApplication::UnicodeUTF8));
-        label_37->setText(QApplication::translate("MainWindow", "Question Title :", 0, QApplication::UnicodeUTF8));
-        label_38->setText(QApplication::translate("MainWindow", "Option(s) :", 0, QApplication::UnicodeUTF8));
-        pushButton_6->setText(QApplication::translate("MainWindow", "Show Number", 0, QApplication::UnicodeUTF8));
-        pushButton_7->setText(QApplication::translate("MainWindow", "Show Chart", 0, QApplication::UnicodeUTF8));
-        pushButton->setText(QApplication::translate("MainWindow", "Show Clock", 0, QApplication::UnicodeUTF8));
-        pushButton_8->setText(QApplication::translate("MainWindow", "Show Text", 0, QApplication::UnicodeUTF8));
         groupBox_5->setTitle(QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
         pushButton_9->setText(QApplication::translate("MainWindow", "Voting Finished !", 0, QApplication::UnicodeUTF8));
         pushButton_10->setText(QApplication::translate("MainWindow", "Yes / No", 0, QApplication::UnicodeUTF8));
         pushButton_11->setText(QApplication::translate("MainWindow", "1/2/3", 0, QApplication::UnicodeUTF8));
         pushButton_13->setText(QApplication::translate("MainWindow", "agree/disag./dint.", 0, QApplication::UnicodeUTF8));
-        groupBox_7->setTitle(QApplication::translate("MainWindow", "Result", 0, QApplication::UnicodeUTF8));
-        pushButton_12->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
+        pushButton_14->setText(QApplication::translate("MainWindow", "Show Clock", 0, QApplication::UnicodeUTF8));
+        pushButton_16->setText(QApplication::translate("MainWindow", "show Chart", 0, QApplication::UnicodeUTF8));
+        pushButton_15->setText(QApplication::translate("MainWindow", "show Number", 0, QApplication::UnicodeUTF8));
+        pushButton_17->setText(QApplication::translate("MainWindow", "show Text", 0, QApplication::UnicodeUTF8));
+        textEdit_4->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:36pt; font-weight:600; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0, QApplication::UnicodeUTF8));
+        label_38->setText(QApplication::translate("MainWindow", "Option(s) :", 0, QApplication::UnicodeUTF8));
+        label_37->setText(QApplication::translate("MainWindow", "Question Title :", 0, QApplication::UnicodeUTF8));
+        textEdit_5->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:36pt; font-weight:600; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0, QApplication::UnicodeUTF8));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_2), QApplication::translate("MainWindow", "Question(s)", 0, QApplication::UnicodeUTF8));
+        tabWidget_3->setTabText(tabWidget_3->indexOf(tab_3), QApplication::translate("MainWindow", "Results", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting System", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "DCU Settings", 0, QApplication::UnicodeUTF8));
         chm_joyx->setText(QApplication::translate("MainWindow", "Joystic X reversed", 0, QApplication::UnicodeUTF8));
         chm_joyy->setText(QApplication::translate("MainWindow", "Joystic Y reversed", 0, QApplication::UnicodeUTF8));
@@ -1846,9 +1873,9 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         btn_refresh->setText(QApplication::translate("MainWindow", "Refresh", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("MainWindow", "TCPServer : Connected Clients", 0, QApplication::UnicodeUTF8));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Delete All", 0, QApplication::UnicodeUTF8));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        btn_log_delete->setText(QApplication::translate("MainWindow", "Delete All", 0, QApplication::UnicodeUTF8));
+        cmb_log_type->clear();
+        cmb_log_type->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "INFO", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "WARN", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "ERROR", 0, QApplication::UnicodeUTF8)
@@ -1859,8 +1886,10 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "LOG Engine", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "www.pgitic.com", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "PGITIC Co. 2005-2016 All Rights Reserved", 0, QApplication::UnicodeUTF8));
+        label_40->setText(QApplication::translate("MainWindow", "Advanced Conference Managment System", 0, QApplication::UnicodeUTF8));
+        label_41->setText(QApplication::translate("MainWindow", "v 1.0.0", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("MainWindow", "PGITIC - Audio Manager v 0.1.0", 0, QApplication::UnicodeUTF8));
+        label_5->setText(QApplication::translate("MainWindow", "PGITIC - Advanced Conference Managment System", 0, QApplication::UnicodeUTF8));
         txt_bar_info->setText(QApplication::translate("MainWindow", "Ready", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

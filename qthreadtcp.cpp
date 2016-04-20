@@ -220,7 +220,7 @@ void QThreadTCP::connect()
     QThreadTCP::QObject::connect(socket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
     QThreadTCP::QObject::connect(socket, SIGNAL(readyRead()),this, SLOT(readyRead()));
 
-    timer->start(1000);
+    timer->start(5000);
 }
 
 void QThreadTCP::set_camera_dir(int mode)

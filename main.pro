@@ -42,10 +42,10 @@ SOURCES += main.cpp \
     mythreadgclientrecord.cpp \
     mainwindow.cpp \
     myserver.cpp \
-    myserial.cpp \
     mytcpsocket.cpp \
     pgiticlog.cpp \
-    joystickscene.cpp
+    joystickscene.cpp \
+    serialthread.cpp
 
 HEADERS += \
     mygpio.h \
@@ -59,10 +59,10 @@ HEADERS += \
     mythreadgclientrecord.h \
     mainwindow.h \
     myserver.h \
-    myserial.h \
     mytcpsocket.h \
     pgiticlog.h \
-    joystickscene.h
+    joystickscene.h \
+    serialthread.h
 
 FORMS += \
     mainwindow.ui

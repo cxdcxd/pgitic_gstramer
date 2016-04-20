@@ -8,7 +8,7 @@ MyGpio *gpio;
 myMainThreadx *_mainthread;
 QSet<QTcpSocket*> clients;
 MyServer *mttcpserver;
-myserialq *mtserial;
+serialthread *mtserial;
 
 std::string coutcolor0 = "\033[0;0m";
 std::string coutcolor_red = "\033[0;31m";
@@ -53,6 +53,7 @@ std::string cam_number;
 std::string total_number;
 bool isusbconnected_bool;
 int tcp_server_port;
+bool app_exit;
 
 
 

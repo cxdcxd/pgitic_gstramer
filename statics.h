@@ -8,7 +8,7 @@
 #include "mainthread.h"
 #include "myserver.h"
 #include "QProcess"
-#include "myserial.h"
+#include "serialthread.h"
 #include "pgiticlog.h"
 #include "stdio.h"
 #include "iostream"
@@ -17,7 +17,7 @@
 //extern pgitic_log *mtlog;
 
 extern MyServer *mttcpserver;
-extern myserialq *mtserial;
+extern serialthread *mtserial;
 extern pgiticlog *mtlog;
 
 extern mythreadgclientrecord *mtgclientrecord; //Thread => clientrecord
@@ -71,6 +71,7 @@ extern int camera_send_tick;
 extern bool sended;
 extern bool isusbconnected_bool;
 extern int tcp_server_port;
+extern bool app_exit;
 
 
 

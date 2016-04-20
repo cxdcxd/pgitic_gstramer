@@ -19,7 +19,7 @@ public:
     void play_stop();
     void play_pause();
     void play_resume();
-    bool app_exit;
+
     std::string state;
      std::string filename;
      bool played ;

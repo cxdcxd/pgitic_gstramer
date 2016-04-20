@@ -27,25 +27,24 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //Create Main Window
+    app_exit = false;
+
     MainWindow w;
-    //w.showFullScreen();
-    w.show();
+    w.showFullScreen();
+    //w.show();
 
     tcp_server_port = 3000;
     gst_init (0,0);
-
-    //Config
-    //=============================================================
     audio_mode = "idle";
-    //==============================================================
+
     qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )");
 
+    //===========================================================================================
     //Create gpio interface
     gpio = new MyGpio();
 
     //Create USB/Serial Connection Interface
-    mtserial = new myserialq();
+    mtserial = new serialthread();
     mtserial->start();
     mtserial->open();
 
@@ -74,6 +73,7 @@ int main(int argc, char *argv[])
     int exit_code = a.exec();
     qDebug("PGITIC CORE DOWN");
 
+    app_exit = true;
     //Kill GPIO
     gpio->kill();
     return exit_code;
