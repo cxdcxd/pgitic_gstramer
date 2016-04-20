@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'myserial.h'
 **
-** Created: Wed Apr 13 11:28:50 2016
+** Created: Wed Apr 20 06:50:09 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

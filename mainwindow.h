@@ -229,6 +229,10 @@ private slots:
 
     void on_btn_logout_clicked();
 
+    void on_btn_mic_set_clicked();
+
+    void on_btn_manual_set_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *_maintimer;

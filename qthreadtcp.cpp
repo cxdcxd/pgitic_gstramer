@@ -17,7 +17,8 @@ void QThreadTCP::update()
     {
         qDebug("TRY CONNECTING ...");
         isconnected = false;
-        socket->connectToHost(tcp_client_remote_ip.c_str(), tcp_client_remote_port);
+        QString _port = mtlog->remote_port.c_str();
+        socket->connectToHost(mtlog->remote_ip.c_str(), _port.toInt());
 
         if(!socket->waitForConnected(500))
         {
@@ -29,7 +30,8 @@ void QThreadTCP::update()
     else
     {
         isconnected = true;
-        processclient->start("ping",QStringList() << "-c 1" << tcp_client_remote_ip.c_str());
+
+        processclient->start("ping",QStringList() << "-c 1" << mtlog->remote_ip.c_str());
         processclient->waitForFinished();
         int exitcode = processclient->exitCode();
 

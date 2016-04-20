@@ -10,7 +10,13 @@ class myserialq : public QObject
 public:
     explicit myserialq(QObject *parent = 0);
     void start();
-
+    bool open();
+    void close();
+    void send(std::string message);
+    int device_id;
+    bool active;
+    int baudrate;
+    std::string port_name;
 signals:
 
 public slots:

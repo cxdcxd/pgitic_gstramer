@@ -25,12 +25,14 @@ std::string audio_mode;
 int audio_max_seconds;
 int audio_current_second;
 std::string audio_info;
-std::string tcp_client_remote_ip;
-int tcp_client_remote_port;
 bool isuserlogedin;
 //pgitic_log *mtlog;
 std::vector<std::string> list_camera_models;
 std::vector<std::string> list_controller_models;
+std::vector<std::string> list_FIFO_MAX;
+std::vector<std::string> list_MICNUMBERS;
+std::vector<std::string> list_MICSTATUS;
+std::vector<std::string> list_tcpclientslist;
 
 int camera_id;
 int camera_speed;
@@ -49,6 +51,9 @@ std::string temp_command;
 std::string mic_number;
 std::string cam_number;
 std::string total_number;
+bool isusbconnected_bool;
+int tcp_server_port;
+
 
 
 

@@ -42,12 +42,16 @@ extern std::string audio_mode;
 extern int audio_max_seconds;
 extern int audio_current_second;
 extern std::string audio_info;
-extern std::string tcp_client_remote_ip;
-extern int tcp_client_remote_port;
 extern bool isuserlogedin;
 
 extern std::vector<std::string> list_camera_models;
 extern std::vector<std::string> list_controller_models;
+extern std::vector<std::string> list_FIFO_MAX;
+extern std::vector<std::string> list_MICNUMBERS;
+extern std::vector<std::string> list_MICSTATUS;
+
+extern std::vector<std::string> list_tcpclientslist;
+
 extern int camera_id;
 extern int camera_speed;
 extern std::string status;
@@ -65,6 +69,8 @@ extern bool camera_stop_dir;
 extern std::string bar_info;
 extern int camera_send_tick;
 extern bool sended;
+extern bool isusbconnected_bool;
+extern int tcp_server_port;
 
 
 

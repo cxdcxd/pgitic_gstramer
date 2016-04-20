@@ -18,10 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->view_joystick->setScene(joyscene);
 
     usbstatus_changed = false;
-    ui->btn_playstop->setEnabled(false);
 
     ui->btn_recstop->hide();
-    ui->btn_playpause->hide();
+    ui->btn_playstop->hide();
 
     _maintimer = new QTimer(this);
     connect(_maintimer, SIGNAL(timeout()), this, SLOT(TimerEvent()));
@@ -75,11 +74,39 @@ MainWindow::MainWindow(QWidget *parent) :
     list_controller_models.push_back("Bosch-CCU2");
     list_controller_models.push_back("Bosch-CS1000");
 
+    list_FIFO_MAX.push_back("1");
+    list_FIFO_MAX.push_back("2");
+    list_FIFO_MAX.push_back("3");
+    list_FIFO_MAX.push_back("4");
+
+    for ( int i = 1 ; i < 21 ; i++)
+    {
+        QString x = QString::number(i);
+        list_MICNUMBERS.push_back(x.toStdString().c_str());
+    }
+
+    list_MICSTATUS.push_back("OFF"); //0
+    list_MICSTATUS.push_back("ON");  //1
+
+
     for ( int i = 0 ; i < list_camera_models.size() ; i++)
         ui->cmodel->addItem(list_camera_models.at(i).c_str());
 
     for ( int i = 0 ; i < list_controller_models.size() ; i++)
         ui->smodel->addItem(list_controller_models.at(i).c_str());
+
+    //=========
+
+    for ( int i = 0 ; i < list_FIFO_MAX.size() ; i++)
+        ui->cmb_fifo->addItem(list_FIFO_MAX.at(i).c_str());
+
+    for ( int i = 0 ; i < list_MICNUMBERS.size() ; i++)
+        ui->cmb_micnumber->addItem(list_MICNUMBERS.at(i).c_str());
+
+    for ( int i = 0 ; i < list_MICSTATUS.size() ; i++)
+        ui->cmb_micstatus->addItem(list_MICSTATUS.at(i).c_str());
+
+    ui->rad_fifo->setChecked(true);
 
     status = "S";
     user_mode = "admin";
@@ -204,8 +231,9 @@ void MainWindow::update_ui()
     bool isusbconnected_result = isusbconnected();
     if ( isusbconnected_result )
     {
-        ui->img_usbstorage0->hide();
-        ui->img_usbstorage1->show();
+        isusbconnected_bool = true;
+        //ui->img_usbstorage0->hide();
+        //ui->img_usbstorage1->show();
         if ( usbstatus_changed == false )
         {
             update_folder_content();
@@ -214,8 +242,9 @@ void MainWindow::update_ui()
     }
     else
     {
-        ui->img_usbstorage1->hide();
-        ui->img_usbstorage0->show();
+         isusbconnected_bool = false;
+        //ui->img_usbstorage1->hide();
+        //ui->img_usbstorage0->show();
         ui->lst_folder_info->clear();
         usbstatus_changed = false;
     }
@@ -224,11 +253,46 @@ void MainWindow::update_ui()
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/wific.png)  0 0 0 0 100 stretch";
         ui->status->setStyleSheet(a);
+        ui->monitor_dcu->setStyleSheet(a);
     }
     else
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/wifid.png)  0 0 0 0 100 stretch";
         ui->status->setStyleSheet(a);
+        ui->monitor_dcu->setStyleSheet(a);
+    }
+
+    if ( mtserial->active)
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Play/x8.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Play/x9.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial->setStyleSheet(a);
+    }
+
+    if ( isusbconnected_bool )
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Play/x6.png)  0 0 0 0 100 stretch";
+        ui->img_usbstorage0->setStyleSheet(a);
+        ui->monitor_usb->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Play/x7.png)  0 0 0 0 100 stretch";
+        ui->img_usbstorage0->setStyleSheet(a);
+        ui->monitor_usb->setStyleSheet(a);
+    }
+
+    if ( mtgclientrecord->active)
+    {
+        ui->monitor_recording->setText("YES");
+    }
+    else
+    {
+        ui->monitor_recording->setText("NO");
     }
 
     QString item = audio_info.c_str();
@@ -245,6 +309,17 @@ void MainWindow::update_ui()
     ui->txt_micnum->setText(mic_number.c_str());
     ui->txt_camnum->setText(cam_number.c_str());
     ui->txt_totalnum->setText(total_number.c_str());
+
+    ui->txt_Mmicnum->setText(mic_number.c_str());
+    ui->txt_Mcamnum->setText(cam_number.c_str());
+    ui->txt_Mtotalnum->setText(total_number.c_str());
+
+    ui->lst_clients->clear();
+
+    for ( int i = 0 ; i < list_tcpclientslist.size() ; i++)
+    {
+        ui->lst_clients->addItem(list_tcpclientslist.at(i).c_str());
+    }
 }
 
 int update_counter;
@@ -361,10 +436,8 @@ void MainWindow::on_btn_recstop_clicked()
 
 void MainWindow::on_btn_playstart_clicked()
 {
-    ui->btn_playstop->setEnabled(true);
+    ui->btn_playstop->show();
     ui->btn_playstart->hide();
-    ui->btn_playpause->show();
-
     QString item = ui->txt_recname->toPlainText();
     mtgclientplay->play_start(item.toStdString());
 }
@@ -374,8 +447,7 @@ void MainWindow::on_btn_playstop_clicked()
     mtgclientplay->play_stop();
 
     ui->btn_playstart->show();
-    ui->btn_playpause->hide();
-    ui->btn_playstop->setEnabled(false);
+    ui->btn_playstop->hide();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -406,6 +478,8 @@ void MainWindow::on_btn_login_clicked()
    if ( a.toStdString() == "admin" && b.toStdString() == mtlog->admin_pass )
    {
        ui->frm_lock->hide();
+       ui->txt_username->setText("");
+       ui->txt_password->setText("");
        tcpsocket->set_camera_mode(true);
    }
    else
@@ -1081,7 +1155,6 @@ void MainWindow::on_d8_pressed()
 
 void MainWindow::on_btn_save_clicked()
 {
-
  mtlog->remote_ip = ui->txt_ip->toPlainText().toStdString().c_str();
  mtlog->remote_port = ui->txt_port->toPlainText().toStdString().c_str();
  mtlog->cmd_loop = ui->chm_loop->isChecked();
@@ -1101,7 +1174,6 @@ void MainWindow::on_btn_save_clicked()
   {
       bar_info = "Failed";
   }
-
 }
 
 void MainWindow::on_btn_change_admin_clicked()
@@ -1132,8 +1204,6 @@ void MainWindow::on_btn_refresh_clicked()
 
 void MainWindow::on_tabWidget_selected(const QString &arg1)
 {
-
-
         ui->txt_ip->setText( mtlog->remote_ip.c_str());
         ui->txt_port->setText(mtlog->remote_port.c_str());
         ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
@@ -1169,4 +1239,64 @@ void MainWindow::on_btn_logout_clicked()
     tcpsocket->set_camera_mode(false);
 }
 
+void MainWindow::on_btn_mic_set_clicked()
+{
+    std::string cmd;
+    cmd = "(MODE,";
 
+    if ( ui->rad_fifo->isChecked())
+    {
+       cmd.append("F;");
+       int index = ui->cmb_fifo->currentIndex();
+       if ( index == 0 )
+       cmd.append("1:");
+       if ( index == 1 )
+       cmd.append("2:");
+       if ( index == 2 )
+       cmd.append("3:");
+       if ( index == 3 )
+       cmd.append("4:");
+
+       cmd.append("0.0)");
+
+    }
+    if ( ui->rad_boss->isChecked())
+    {
+       cmd.append("R;");
+       cmd.append("0:0.0)");
+
+    }
+    if ( ui->rad_manual->isChecked())
+    {
+       cmd.append("M;");
+       cmd.append("0:0.0)");
+    }
+
+    std::cout<<"Send"<<std::endl;
+    mtserial->send(cmd);
+
+}
+
+void MainWindow::on_btn_manual_set_clicked()
+{
+    std::string cmd;
+    cmd = "(FORCE,";
+
+    int index = ui->cmb_micnumber->currentIndex();
+    if ( index == -1 ) {bar_info ="Select a mic number"; return;}
+    index++;
+
+    cmd.append(QString::number(index).toStdString().c_str());
+    cmd.append(";");
+
+    index = ui->cmb_micstatus->currentIndex();
+    if ( index == -1 ) {bar_info ="Select the mic status";return;}
+
+    cmd.append(QString::number(index).toStdString().c_str());
+    cmd.append(":");
+    cmd.append("0.0)");
+
+    mtserial->send(cmd);
+
+
+}

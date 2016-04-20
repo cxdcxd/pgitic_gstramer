@@ -17,13 +17,19 @@ MyServer::MyServer(QObject *parent) :
 
 void MyServer::print_client_list()
 {
+    list_tcpclientslist.clear();
+
     qDebug() << "PGITIC Clients : ["<< clients.size() << "]" << "Connected Client List : ";
     foreach ( QTcpSocket *item, clients)
     {
         QString remote_ip = item->peerAddress().toString();
+
         std::cout << coutcolor_brown << remote_ip.toStdString() << coutcolor0 << std::endl;
+        list_tcpclientslist.push_back(remote_ip.toStdString().c_str());
     }
     qDebug() << "============================================";
+
+
 }
 
 int MyServer::get_id(QString ip)
@@ -102,7 +108,7 @@ void MyServer::startServer()
     connect(ping_timer,SIGNAL(timeout()),this,SLOT(ping_checker()));
 
     qDebug() << "PGITIC SERVER START";
-    int port = 3000;
+    int port = tcp_server_port;
     if(!this->listen(QHostAddress::Any, port))
     {
         qDebug() << "Could not start server";
@@ -149,6 +155,7 @@ void MyServer::disconnected()
     QTcpSocket *client = (QTcpSocket*)sender();
     std::cout << coutcolor_red << "Client disconnected : " << client->peerAddress().toString().toStdString() << coutcolor0 << std::endl;
     clients.remove(client);
+    print_client_list();
 }
 
 

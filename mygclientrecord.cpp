@@ -144,6 +144,7 @@ void mygclientrecord::record_stop()
 
     //==========================================================================
     qDebug("PGITIC - Gstreamer Interface Finished");
+
 }
 
 void mygclientrecord::start()

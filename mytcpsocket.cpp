@@ -23,7 +23,8 @@ void MyTcpSocket::doConnect(MyGpio &xb)
 
     gpiooo->info_mode = 0;
 
-    socket->connectToHost(tcp_client_remote_ip.c_str(), tcp_client_remote_port);
+    QString _port = mtlog->remote_port.c_str();
+    socket->connectToHost(mtlog->remote_ip.c_str(),_port.toInt());
 
     if(!socket->waitForConnected(5000))
     {

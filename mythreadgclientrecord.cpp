@@ -6,6 +6,7 @@ mythreadgclientrecord::mythreadgclientrecord(QObject *parent) :
 {
     printf("Client Thread RUN\n");
     mgclient = new mygclientrecord();
+    active = false;
 }
 
 void mythreadgclientrecord::run()
@@ -19,6 +20,7 @@ void mythreadgclientrecord::run()
             {
               state = "loop";
                gpio->info_mode = 2;
+                active = true;
               mgclient->record_start(filename);
             }
 
@@ -36,5 +38,6 @@ void mythreadgclientrecord::recorde_stop()
 {
   state = "stop";
    gpio->info_mode = 3;
+    active = false;
   mgclient->record_stop();
 }

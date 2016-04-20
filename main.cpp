@@ -29,16 +29,14 @@ int main(int argc, char *argv[])
 
     //Create Main Window
     MainWindow w;
-    w.showFullScreen();
-    //w.show();
+    //w.showFullScreen();
+    w.show();
 
+    tcp_server_port = 3000;
     gst_init (0,0);
 
     //Config
     //=============================================================
-    tcp_client_remote_ip = "192.168.0.107";
-    tcp_client_remote_port = 8000;
-
     audio_mode = "idle";
     //==============================================================
     qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )");
@@ -46,18 +44,10 @@ int main(int argc, char *argv[])
     //Create gpio interface
     gpio = new MyGpio();
 
-    //Create TCP/IP Client Connection Interface
-    tcpsocket = new QThreadTCP();
-    tcpsocket->connect();
-    tcpsocket->start(); //start internal thread for connection managment
-
-    //PGITIC Settings
-    //mtsettings = new data_settings();
-    //mtsettings->load_config();
-
     //Create USB/Serial Connection Interface
     mtserial = new myserialq();
     mtserial->start();
+    mtserial->open();
 
     //Create gstreamer recording thread interface
     mtgclientrecord = new mythreadgclientrecord();
@@ -74,6 +64,11 @@ int main(int argc, char *argv[])
     mtlog = new pgiticlog();
     mtlog->start();
     mtlog->load_config();
+
+    //Create TCP/IP Client Connection Interface
+    tcpsocket = new QThreadTCP();
+    tcpsocket->connect();
+    tcpsocket->start(); //start internal thread for connection managment
 
     //Application Loop
     int exit_code = a.exec();
