@@ -20,6 +20,9 @@ public:
     bool active;
     int baudrate;
     std::string port_name;
+    void process();
+    std::vector<char> buffer;
+    int countert1;
 
 };
 
