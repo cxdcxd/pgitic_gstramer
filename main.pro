@@ -11,12 +11,14 @@ INCLUDEPATH += /usr/include/gstreamer-0.10
 INCLUDEPATH += /usr/include/QtMobility
 INCLUDEPATH += /usr/include/QtMultimediaKit
 INCLUDEPATH += /usr/include/boost
+INCLUDEPATH += /usr/include/qwt-qt4
 
 LIBS += -L/usr/local/lib -lwiringPi
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lgstreamer-0.10
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lgobject-2.0
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lglib-2.0
-LIBS += -L/usr/lib/ -lboost_system -lboost_serialization
+LIBS += -L/usr/lib/ -lboost_system -lboost_serialization -lboost_filesystem
+LIBS += -L/usr/lib/ -lqwt-qt4
 
 QT       += core
 QT       += network

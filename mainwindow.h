@@ -70,7 +70,7 @@ public:
     int timer_tick_counter;
     int bar_show_counter;
 
-
+    QProcess *volume_process;
 
 private slots:
 
@@ -233,10 +233,25 @@ private slots:
 
     void on_btn_manual_set_clicked();
 
+    void on_btn_log_delete_clicked();
+
+    void on_btn_refresh_all_clicked();
+
+    void on_btn_today_clicked();
+
+    void on_Knob_valueChanged(double value);
+
+    void on_Knob_sliderMoved(double value);
+
+    void on_pushButton_10_clicked();
+
+    void on_btn_vote1_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer *_maintimer;
     bool usbstatus_changed;
+
 
 };
 

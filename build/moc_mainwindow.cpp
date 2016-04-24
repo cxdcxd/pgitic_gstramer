@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed Apr 20 12:25:40 2016
+** Created: Sun Apr 24 12:58:16 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      79,   14, // methods
+      86,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -110,6 +110,13 @@ static const uint qt_meta_data_MainWindow[] = {
     1629,   24,   24,   24, 0x08,
     1653,   24,   24,   24, 0x08,
     1678,   24,   24,   24, 0x08,
+    1706,   24,   24,   24, 0x08,
+    1734,   24,   24,   24, 0x08,
+    1763,   24,   24,   24, 0x08,
+    1786, 1245,   24,   24, 0x08,
+    1815, 1245,   24,   24, 0x08,
+    1843,   24,   24,   24, 0x08,
+    1870,   24,   24,   24, 0x08,
 
        0        // eod
 };
@@ -169,6 +176,13 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_btn_logout_clicked()\0"
     "on_btn_mic_set_clicked()\0"
     "on_btn_manual_set_clicked()\0"
+    "on_btn_log_delete_clicked()\0"
+    "on_btn_refresh_all_clicked()\0"
+    "on_btn_today_clicked()\0"
+    "on_Knob_valueChanged(double)\0"
+    "on_Knob_sliderMoved(double)\0"
+    "on_pushButton_10_clicked()\0"
+    "on_btn_vote1_clicked()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -256,6 +270,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 76: _t->on_btn_logout_clicked(); break;
         case 77: _t->on_btn_mic_set_clicked(); break;
         case 78: _t->on_btn_manual_set_clicked(); break;
+        case 79: _t->on_btn_log_delete_clicked(); break;
+        case 80: _t->on_btn_refresh_all_clicked(); break;
+        case 81: _t->on_btn_today_clicked(); break;
+        case 82: _t->on_Knob_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 83: _t->on_Knob_sliderMoved((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 84: _t->on_pushButton_10_clicked(); break;
+        case 85: _t->on_btn_vote1_clicked(); break;
         default: ;
         }
     }
@@ -293,9 +314,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 79)
+        if (_id < 86)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 79;
+        _id -= 86;
     }
     return _id;
 }

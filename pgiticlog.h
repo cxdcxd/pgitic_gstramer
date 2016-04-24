@@ -20,6 +20,7 @@ public:
     void close();
     void deletealllogs();
     std::vector<std::string> get_log();
+    std::vector<std::string> get_log_query(std::string cmd);
     void insert_log(QString sender,QString info,QString type);
 
     QSqlDatabase db;

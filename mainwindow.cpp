@@ -7,6 +7,8 @@
 #include "joystickscene.h"
 #include "QPixmap"
 #include "statics.h"
+#include "boost/filesystem.hpp"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -79,6 +81,10 @@ MainWindow::MainWindow(QWidget *parent) :
     list_FIFO_MAX.push_back("3");
     list_FIFO_MAX.push_back("4");
 
+    volume_process = new QProcess();
+    volume_process->closeReadChannel(QProcess::StandardOutput);
+    volume_process->closeReadChannel(QProcess::StandardError);
+
     for ( int i = 1 ; i < 21 ; i++)
     {
         QString x = QString::number(i);
@@ -87,7 +93,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     list_MICSTATUS.push_back("OFF"); //0
     list_MICSTATUS.push_back("ON");  //1
-
 
     for ( int i = 0 ; i < list_camera_models.size() ; i++)
         ui->cmodel->addItem(list_camera_models.at(i).c_str());
@@ -128,6 +133,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mic_number = "00";
     cam_number = "00";
     total_number = "00";
+
 
 
 
@@ -299,7 +305,8 @@ void MainWindow::update_ui()
 
     int index = item.indexOf(".",0);
     QString subString = item.mid(0,index);
-    ui->txt_info->setText(subString.toStdString().c_str());
+    ui->lbl_info->setText(subString.toStdString().c_str());
+
 
     ui->txt_mode->setText(mode.c_str());
     ui->txt_input->setText(input.c_str());
@@ -320,6 +327,21 @@ void MainWindow::update_ui()
     {
         ui->lst_clients->addItem(list_tcpclientslist.at(i).c_str());
     }
+
+    QFileInfo info("data.db");
+    long size = info.size() / 1000;
+    QString _size = QString::number(size) + "Kb";
+    ui->lbl_db_size->setText(_size);
+
+    boost::filesystem3::space_info si = boost::filesystem3::space(".");
+    long _free = si.free / 1000000;
+    long _all = si.capacity / 1000000;
+    QString free = QString::number(_free) + "Mb";
+    QString all = QString::number(_all) + "Mb";
+
+    ui->lbl_freespace->setText(free);
+    ui->lbl_storage->setText(all);
+
 }
 
 int update_counter;
@@ -469,8 +491,8 @@ void MainWindow::on_btn_playpause_clicked()
 
 void MainWindow::on_btn_login_clicked()
 {
-   QString a = ui->txt_username->toPlainText().trimmed();
-   QString b = ui->txt_password->toPlainText().trimmed();
+   QString a = ui->txt_username->text().trimmed();
+   QString b = ui->txt_password->text().trimmed();
 
    if ( a == "" ) { bar_info = "please fill all blanks"; return; }
    if ( b == "" ) { bar_info = "please fill all blanks"; return; }
@@ -1160,7 +1182,7 @@ void MainWindow::on_btn_save_clicked()
  mtlog->cmd_loop = ui->chm_loop->isChecked();
  mtlog->joyx = ui->chm_joyx->isChecked();
  mtlog->joyy = ui->chm_joyy->isChecked();
- mtlog->logout_idle = ui->chm_logout->isChecked();
+ //mtlog->logout_idle = ui->chm_logout->isChecked();
  mtlog->loop_value = ui->txt_loop_value->toPlainText().toInt();
  mtlog->camera_model = ui->cmodel->currentText().toStdString();
  mtlog->controller_model = ui->smodel->currentText().toStdString();
@@ -1178,7 +1200,7 @@ void MainWindow::on_btn_save_clicked()
 
 void MainWindow::on_btn_change_admin_clicked()
 {
-
+ //change admin password
 }
 
 void MainWindow::on_btn_change_user_clicked()
@@ -1194,11 +1216,41 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_btn_refresh_clicked()
 {
     ui->lst_log->clear();
-    std::vector<std::string> data = mtlog->get_log();
+
+    std::string msg;
+    std::string _sender = ui->txt_log_sender->toPlainText().toStdString();
+    std::string _type = ui->cmb_log_type->currentText().toStdString();
+
+    QDateTime _from = ui->dt_from->dateTime();
+    QDateTime _to = ui->dt_to->dateTime();
+
+    if ( _sender != "")
+    {
+        msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "'";
+    }
+
+    std::vector<std::string> data =  mtlog->get_log_query(msg);
+    QString _WARN = "(WARN)";
+    QString _INFO = "(INFO)";
+    QString _ERROR = "(ERROR)";
+    QString _DEBUG = "(DEBUG)";
+
     for ( int i = 0 ; i < data.size() ; i++)
     {
+        QListWidgetItem *itemc = new QListWidgetItem("");
         QString item = data.at(i).c_str();
-        ui->lst_log->addItem(item);
+        itemc->setBackground(Qt::black);
+
+        if ( item.contains(_DEBUG))
+        itemc->setForeground(Qt::green);
+        if ( item.contains(_WARN))
+        itemc->setForeground(Qt::yellow);
+        if ( item.contains(_ERROR))
+        itemc->setForeground(Qt::red);
+        if ( item.contains(_INFO) )
+        itemc->setForeground(Qt::white);
+        itemc->setText(item);
+        ui->lst_log->addItem(itemc);
     }
 }
 
@@ -1209,7 +1261,7 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
         ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
         ui->chm_joyx->setChecked(mtlog->joyx);
         ui->chm_joyy->setChecked(mtlog->joyy);
-        ui->chm_logout->setChecked(mtlog->logout_idle);
+        //ui->chm_logout->setChecked(mtlog->logout_idle);
         ui->chm_loop->setChecked(mtlog->cmd_loop);
         QString camera_model = mtlog->camera_model.c_str();
         QString controller_model = mtlog->controller_model.c_str();
@@ -1227,8 +1279,6 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
 
         if ( index != -1)
         ui->smodel->setCurrentIndex(index);
-
-
 
 }
 
@@ -1299,4 +1349,67 @@ void MainWindow::on_btn_manual_set_clicked()
     mtserial->send(cmd);
 
 
+}
+
+void MainWindow::on_btn_log_delete_clicked()
+{
+    mtlog->deletealllogs();
+}
+
+void MainWindow::on_btn_refresh_all_clicked()
+{
+    ui->lst_log->clear();
+    std::vector<std::string> data = mtlog->get_log();
+
+    for ( int i = 0 ; i < data.size() ; i++)
+    {
+        QString item = data.at(i).c_str();
+        ui->lst_log->addItem(item);
+    }
+}
+
+void MainWindow::on_btn_today_clicked()
+{
+   QDateTime _time = QDateTime::currentDateTime();
+   ui->dt_from->setDateTime(_time);
+   ui->dt_to->setDateTime(_time);
+}
+
+void MainWindow::on_Knob_valueChanged(double value)
+{
+    int val = (value * 10);
+    std::cout<<"value :"<<val<<std::endl;
+    std::string _val = QString::number(val).toStdString() + "%";
+
+    volume_process->start("amixer",QStringList() << "sset" << "Master" <<  _val.c_str());
+    volume_process->waitForFinished();
+
+    std::cout<< volume_process->exitCode()<<std::endl;
+
+
+}
+
+void MainWindow::on_Knob_sliderMoved(double value)
+{
+    //int val = value;
+    //std::cout<<"slider :"<<val<<std::endl;
+
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+
+}
+
+void MainWindow::on_btn_vote1_clicked()
+{
+    int x = rand() % 100;
+    int chart_val = 350 - (x * 3.2 );
+    int label_val = chart_val - 20;
+    QString info = QString::number(x);
+    int x1 = ui->chart_1->geometry().left();
+    int x2 = ui->lbl_chart_1->geometry().left();
+    ui->chart_1->move(x1,chart_val);
+    ui->lbl_chart_1->move(x2,label_val);
+    ui->lbl_chart_1->setText(info);
 }

@@ -123,6 +123,35 @@ std::vector<std::string>  pgiticlog::get_log()
     }
 }
 
+std::vector<std::string>  pgiticlog::get_log_query(std::string cmd)
+{
+    std::vector<std::string> list;
+    QSqlQuery query;
+    if(query.exec(cmd.c_str()))
+    {
+        while(query.next())
+        {
+            int id = query.value(0).toInt();
+            QString _id = QString::number(id);
+            QDateTime datetime = query.value(1).toDateTime();
+            QString sender = query.value(2).toString();
+            QString type = query.value(3).toString();
+            QString info = query.value(4).toString();
+
+            std::string itemm = "(" + datetime.toString("yyyy-MM-dd HH:mm:ss").toStdString() + ") [" + sender.toStdString() + "] (" + type.toStdString() + ") => " + info.toStdString();
+            list.push_back(itemm);
+
+        }
+        return list;
+    }
+    else
+    {
+    }
+
+
+}
+
+
 void  pgiticlog::insert_log(QString sender,QString info,QString type)
 {
     QDateTime now = QDateTime::currentDateTime();
@@ -163,5 +192,8 @@ void pgiticlog::start()
 
     open();
 
-    insert_log("pgiticlog","started","INFO");
+    insert_log("pgiticlog","started_i","INFO");
+    insert_log("pgiticlog","started_d","DEBUG");
+    insert_log("pgiticlog","started_w","WARN");
+    insert_log("pgiticlog","started_e","ERROR");
 }
