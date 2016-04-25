@@ -44,9 +44,19 @@ int main(int argc, char *argv[])
     gpio = new MyGpio();
 
     //Create USB/Serial Connection Interface
+    //This Serial Interface is for communicating with PGITIC CU device
     mtserial = new serialthread();
+    mtserial->baudrate = 9600;
+    mtserial->port_name = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0";
     mtserial->start();
     mtserial->open();
+
+    //This Serial Interface is for communicationg with PGITIC Voting device
+    mtserial2 = new serialthread();
+    mtserial2->baudrate = 9600;
+    mtserial2->port_name = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0";
+    mtserial2->start();
+    mtserial2->open();
 
     //Create gstreamer recording thread interface
     mtgclientrecord = new mythreadgclientrecord();

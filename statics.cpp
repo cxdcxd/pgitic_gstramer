@@ -9,6 +9,7 @@ myMainThreadx *_mainthread;
 QSet<QTcpSocket*> clients;
 MyServer *mttcpserver;
 serialthread *mtserial;
+serialthread *mtserial2;
 
 std::string coutcolor0 = "\033[0;0m";
 std::string coutcolor_red = "\033[0;31m";

@@ -19,6 +19,7 @@
 extern MyServer *mttcpserver;
 extern serialthread *mtserial;
 extern pgiticlog *mtlog;
+extern serialthread *mtserial2;
 
 extern mythreadgclientrecord *mtgclientrecord; //Thread => clientrecord
 extern mythreadgclientplay *mtgclientplay; //Thread => clientrecord

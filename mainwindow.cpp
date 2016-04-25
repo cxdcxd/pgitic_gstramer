@@ -81,6 +81,11 @@ MainWindow::MainWindow(QWidget *parent) :
     list_FIFO_MAX.push_back("3");
     list_FIFO_MAX.push_back("4");
 
+
+    slider1_active = false;
+    slider2_active = false;
+    slider3_active = false;
+
     volume_process = new QProcess();
     volume_process->closeReadChannel(QProcess::StandardOutput);
     volume_process->closeReadChannel(QProcess::StandardError);
@@ -120,6 +125,12 @@ MainWindow::MainWindow(QWidget *parent) :
     camera_id = 1;
     camera_speed = 4;
 
+    ui->lbl_slider4->setText(QString::number(camera_speed));
+
+    ui->lbl_slider3->setText("-");
+    ui->lbl_slider2->setText("-");
+    ui->lbl_slider1->setText("-");
+
     camera_loop_mode = false;
     camera_stop_dir = false;
     camera_stop_focus = false;
@@ -134,10 +145,27 @@ MainWindow::MainWindow(QWidget *parent) :
     cam_number = "00";
     total_number = "00";
 
-
-
-
     updatecs();
+
+    for ( int i = 0 ; i < 5 ; i++)
+    {
+        chart_numbers[i] = 0;
+    }
+
+    for ( int i = 0 ; i < 5 ; i++ )
+    {
+        chart_rates[i] = 0;
+    }
+
+    for ( int i = 0 ; i < 5 ; i++)
+    {
+        chart_names[i] = "";
+    }
+
+    chart_mode = 0;
+    chart_max = 0;
+    update_chart();
+    update_table();
 
     //NOTE: add this in code not ui
     //   for ( int i = 0 ; i < list_camera_models.size() ; i++)
@@ -342,6 +370,19 @@ void MainWindow::update_ui()
     ui->lbl_freespace->setText(free);
     ui->lbl_storage->setText(all);
 
+    ui->lbl_camera_model->setText(mtlog->camera_model.c_str());
+    ui->lbl_controller_model->setText(mtlog->controller_model.c_str());
+
+
+
+
+
+
+
+
+    std::cout<<"called"<<std::endl;
+
+
 }
 
 int update_counter;
@@ -353,6 +394,24 @@ void MainWindow::TimerEvent()
     {
         timer_tick_counter=0;
         update_ui();
+    }
+
+    if ( !slider1_active )
+    {
+    ui->slider1->setSliderPosition(15);
+    ui->slider1->setValue(15);
+    }
+
+    if ( !slider2_active )
+    {
+    ui->slider2->setSliderPosition(15);
+    ui->slider2->setValue(15);
+    }
+
+    if ( !slider3_active )
+    {
+    ui->slider3->setSliderPosition(15);
+    ui->slider3->setValue(15);
     }
 
     if ( bar_info != "Ready")
@@ -986,7 +1045,11 @@ void MainWindow::show_message(QString msg)
 
 void MainWindow::on_slider1_sliderReleased()
 {
-    ui->slider1->setValue(2);
+    slider1_active = false;
+    //ui->slider1->resetInputContext();
+    ui->slider1->setValue(15);
+    ui->slider1->setSliderPosition(15);
+     ui->lbl_slider1->setText("-");
     camera_stop_zoom = true;
     camera_loop_mode = false;
     QString num1 = QString::number(camera_id);
@@ -1001,7 +1064,10 @@ void MainWindow::on_slider1_sliderReleased()
 
 void MainWindow::on_slider2_sliderReleased()
 {
-    ui->slider2->setValue(2);
+    slider2_active = false;
+    ui->slider2->setValue(15);
+    ui->slider2->setSliderPosition(15);
+     ui->lbl_slider2->setText("-");
     camera_stop_focus = true;
     camera_loop_mode = false;
     QString num1 = QString::number(camera_id);
@@ -1016,7 +1082,10 @@ void MainWindow::on_slider2_sliderReleased()
 
 void MainWindow::on_slider3_sliderReleased()
 {
-    ui->slider3->setValue(2);
+    slider3_active = false;
+    ui->slider3->setValue(15);
+    ui->slider3->setSliderPosition(15);
+     ui->lbl_slider3->setText("-");
     camera_stop_iris = true;
     camera_loop_mode = false;
     QString num1 = QString::number(camera_id);
@@ -1035,88 +1104,24 @@ void MainWindow::on_slider4_sliderReleased()
 
 void MainWindow::on_slider1_valueChanged(int value)
 {
-    camera_loop_mode = true;
 
-    QString num1 = QString::number(camera_id);
-    std::string _num1 = num1.toStdString();
-
-    QString num2 = QString::number(camera_speed);
-    std::string _num2 = num2.toStdString();
-
-    if ( value == 3  )
-    {
-        //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZI." + _num2 + ")";
-    }
-    if ( value == 2 )
-    {
-        //mid
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZS." + _num2 + ")";
-    }
-    if ( value == 1)
-    {
-        //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZO." + _num2 + ")";
-    }
 }
 
 void MainWindow::on_slider2_valueChanged(int value)
 {
-    camera_loop_mode = true;
 
-    QString num1 = QString::number(camera_id);
-    std::string _num1 = num1.toStdString();
-
-    QString num2 = QString::number(camera_speed);
-    std::string _num2 = num2.toStdString();
-
-    if ( value == 3  )
-    {
-        //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FF." + _num2 + ")";
-    }
-    if ( value == 2 )
-    {
-        //mid
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FS." + _num2 + ")";
-    }
-    if ( value == 1)
-    {
-        //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FN." + _num2 + ")";
-    }
 }
 
 void MainWindow::on_slider3_valueChanged(int value)
 {
-    camera_loop_mode = true;
 
-    QString num1 = QString::number(camera_id);
-    std::string _num1 = num1.toStdString();
-
-    QString num2 = QString::number(camera_speed);
-    std::string _num2 = num2.toStdString();
-
-    if (value == 3)
-    {
-        //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":II." + _num2 + ")";
-    }
-    if (value == 2)
-    {
-        //mid
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IS." + _num2 + ")";
-    }
-    if (value == 1)
-    {
-        //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IO." + _num2 + ")";
-    }
 }
 
 void MainWindow::on_slider4_valueChanged(int value)
 {
-    camera_speed = value;
+    value = (0.23333333) * value;
+    camera_speed = 7 - value;
+    ui->lbl_slider4->setText(QString::number(camera_speed));
 }
 
 void MainWindow::on_d1_pressed()
@@ -1201,6 +1206,53 @@ void MainWindow::on_btn_save_clicked()
 void MainWindow::on_btn_change_admin_clicked()
 {
  //change admin password
+   std::string pass = ui->txt_admin_pass->text().toStdString();
+   std::string newp = ui->txt_admin_new->text().toStdString();
+   std::string confirmp = ui->txt_admin_confirm->text().toStdString();
+
+   if ( pass == ""  )
+   {
+       bar_info = "Please all blanks";
+       return;
+   }
+
+   if ( newp == ""  )
+   {
+       bar_info = "Please fill all blanks";
+       return;
+   }
+
+   if ( confirmp == ""  )
+   {
+       bar_info = "Please fill all blanks";
+       return;
+   }
+
+
+
+   if ( pass == mtlog->admin_pass || pass == mtlog->superuser_pass)
+   {
+       if ( newp == confirmp)
+       {
+          bar_info = "Admin password changed";
+          mtlog->admin_pass = newp;
+          mtlog->save_config();
+
+          ui->txt_admin_pass->setText("");
+          ui->txt_admin_new->setText("");
+          ui->txt_admin_confirm->setText("");
+       }
+       else
+       {
+           bar_info = "Confirm mismatched";
+           return;
+       }
+   }
+   else
+   {
+       bar_info = "Invalid password for admin";
+       return;
+   }
 }
 
 void MainWindow::on_btn_change_user_clicked()
@@ -1401,15 +1453,447 @@ void MainWindow::on_pushButton_10_clicked()
 
 }
 
+void MainWindow::update_table()
+{
+   ui->table_result->setColumnCount(3);
+   ui->table_result->setRowCount(chart_max);
+   ui->table_result->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+   QStringList header;
+   header <<"Name"<<"Quantity"<<"Rate";
+   ui->table_result->setHorizontalHeaderLabels(header);
+   ui->table_result->setEditTriggers(QAbstractItemView::NoEditTriggers);
+   for ( int i = 0 ; i < chart_max ; i++)
+   {
+      QTableWidgetItem* x1 = new QTableWidgetItem(chart_names[i].c_str());
+      QTableWidgetItem* x2 = new QTableWidgetItem(QString::number(chart_numbers[i]));
+      QTableWidgetItem* x3 = new QTableWidgetItem(QString::number((int)chart_rates[i]) + " %");
+
+      x1->setTextAlignment(Qt::AlignCenter);
+      x2->setTextAlignment(Qt::AlignCenter);
+      x3->setTextAlignment(Qt::AlignCenter);
+
+      ui->table_result->setItem(i,0,x1);
+      ui->table_result->setItem(i,1,x2);
+      ui->table_result->setItem(i,2,x3);
+   }
+
+}
+
+void MainWindow::update_chart()
+{
+   //std::cout<<"update chart for :"<<chart_numbers[0]<<" "<<chart_numbers[1]<<" "<<chart_numbers[2]<<" "<<chart_numbers[3]<<" "<<chart_numbers[4]<<std::endl;
+   int total = 0;
+   int max_number = 0;
+
+   for ( int i = 0 ; i < chart_max ; i++)
+   {
+       total += chart_numbers[i];
+       if ( chart_numbers[i] > max_number )
+       {
+           max_number = chart_numbers[i];
+       }
+
+       if ( i == 0) ui->lbl_lable1->setText(chart_names[i].c_str());
+       if ( i == 1) ui->lbl_lable2->setText(chart_names[i].c_str());
+       if ( i == 2) ui->lbl_lable3->setText(chart_names[i].c_str());
+       if ( i == 3) ui->lbl_lable4->setText(chart_names[i].c_str());
+       if ( i == 4) ui->lbl_lable5->setText(chart_names[i].c_str());
+
+   }
+
+   for ( int k = 0 ; k < chart_max ; k++)
+   {
+       if ( total != 0 )
+       chart_rates[k] = ( ((float)chart_numbers[k]) / total ) * 100;
+       else
+       chart_rates[k] = 0;
+   }
+
+   //================================================================ SUM = 100 in rate
+   if ( total != 0 )
+   {
+   int total_rate = 0;
+   for ( int l = 0 ; l < chart_max ; l++)
+   {
+       total_rate += chart_rates[l];
+   }
+   total_rate = 100 - total_rate;
+   chart_rates[0] = chart_rates[0] + total_rate;
+   }
+   //================================================================
+   //show rates
+
+   for ( int m = 0 ; m < 5 ; m++)
+   {
+        int chart_val = 0;
+        int x = 0;
+        int label_val = 0;
+        QString info;
+
+       if ( chart_mode == 1)
+       {
+           ui->rate_box->setMaxValue(100);
+           x = chart_rates[m];
+           chart_val = 450 - (x * 420 / 100);
+           label_val = chart_val - 20;
+           info = QString::number(x) + "%";
+       }
+       if ( chart_mode == 0)
+       {
+
+           if ( max_number != 0)
+           ui->rate_box->setMaxValue(max_number);
+           else
+           ui->rate_box->setMaxValue(100);
+           x = chart_numbers[m];
+           if ( max_number != 0)
+           {
+           chart_val = 450 - (x * 420 / max_number);
+           label_val = chart_val - 20;
+           }
+           else
+           {
+           chart_val = 450;
+           label_val = chart_val - 20;
+           }
+           info = QString::number(x) ;
+       }
+
+       if ( m == 0)
+       {
+       int x1 = ui->chart_1->geometry().left();
+       int x2 = ui->lbl_chart_1->geometry().left();
+       ui->chart_1->move(x1,chart_val);
+       ui->lbl_chart_1->move(x2,label_val);
+       ui->lbl_chart_1->setText(info);
+       }
+       if ( m == 1)
+       {
+       int x1 = ui->chart_2->geometry().left();
+       int x2 = ui->lbl_chart_2->geometry().left();
+       ui->chart_2->move(x1,chart_val);
+       ui->lbl_chart_2->move(x2,label_val);
+       ui->lbl_chart_2->setText(info);
+       }
+       if ( m == 2)
+       {
+       int x1 = ui->chart_3->geometry().left();
+       int x2 = ui->lbl_chart_3->geometry().left();
+       ui->chart_3->move(x1,chart_val);
+       ui->lbl_chart_3->move(x2,label_val);
+       ui->lbl_chart_3->setText(info);
+       }
+       if ( m == 3)
+       {
+       int x1 = ui->chart_4->geometry().left();
+       int x2 = ui->lbl_chart_4->geometry().left();
+       ui->chart_4->move(x1,chart_val);
+       ui->lbl_chart_4->move(x2,label_val);
+       ui->lbl_chart_4->setText(info);
+       }
+       if ( m == 4)
+       {
+       int x1 = ui->chart_5->geometry().left();
+       int x2 = ui->lbl_chart_5->geometry().left();
+       ui->chart_5->move(x1,chart_val);
+       ui->lbl_chart_5->move(x2,label_val);
+       ui->lbl_chart_5->setText(info);
+       }
+
+   }
+
+
+}
+
 void MainWindow::on_btn_vote1_clicked()
 {
-    int x = rand() % 100;
-    int chart_val = 350 - (x * 3.2 );
-    int label_val = chart_val - 20;
-    QString info = QString::number(x);
-    int x1 = ui->chart_1->geometry().left();
-    int x2 = ui->lbl_chart_1->geometry().left();
-    ui->chart_1->move(x1,chart_val);
-    ui->lbl_chart_1->move(x2,label_val);
-    ui->lbl_chart_1->setText(info);
+    int x1 = rand() % 20;
+    int x2 = rand() % 20;
+    int x3 = rand() % 20;
+    int x4 = rand() % 10;
+    int x5 = rand() % 25;
+
+    chart_numbers[0] = x1;
+    chart_numbers[1] = x2;
+    chart_numbers[2] = x3;
+    chart_numbers[3] = x4;
+    chart_numbers[4] = x5;
+
+    chart_names[0] = "val1";
+    chart_names[1] = "val2";
+    chart_names[2] = "val3";
+    chart_names[3] = "val4";
+    chart_names[4] = "val5";
+
+    chart_max = 5;
+    update_chart();
+    update_table();
+}
+
+void MainWindow::on_rad_chart_rate_clicked()
+{
+   update_chart();
+}
+
+void MainWindow::on_rad_chart_number_clicked()
+{
+   update_chart();
+}
+
+void MainWindow::on_btn_vote2_clicked()
+{
+
+}
+
+void MainWindow::on_btn_vote3_clicked()
+{
+
+}
+
+void MainWindow::on_btn_show_clock_clicked()
+{
+
+}
+
+void MainWindow::on_btn_show_number_clicked()
+{
+
+}
+
+void MainWindow::on_btn_show_chart_clicked()
+{
+
+}
+
+void MainWindow::on_btn_show_text_clicked()
+{
+
+}
+
+void MainWindow::on_btn_start_vote_clicked()
+{
+
+}
+
+void MainWindow::on_btn_option_chart_clicked()
+{
+    ui->tabWidget_4->setCurrentIndex(0);
+}
+
+void MainWindow::on_btn_option_table_clicked()
+{
+    ui->tabWidget_4->setCurrentIndex(1);
+}
+
+void MainWindow::on_tabWidget_3_currentChanged(int index)
+{
+    if ( index == 0)
+    {
+        ui->btn_option_chart->hide();
+        ui->btn_option_table->hide();
+
+        ui->btn_option_quantity->hide();
+        ui->btn_option_rate->hide();
+    }
+    else
+    {
+        ui->btn_option_chart->show();
+        ui->btn_option_table->show();
+
+        if ( ui->tabWidget_4->currentIndex() == 0)
+        {
+           ui->btn_option_quantity->show();
+           ui->btn_option_rate->show();
+        }
+        else
+        {
+            ui->btn_option_quantity->hide();
+            ui->btn_option_rate->hide();
+        }
+    }
+}
+
+void MainWindow::on_btn_option_rate_clicked()
+{
+    chart_mode = 1;
+    update_chart();
+}
+
+void MainWindow::on_btn_option_quantity_clicked()
+{
+    chart_mode = 0;
+    update_chart();
+}
+
+void MainWindow::on_tabWidget_4_currentChanged(int index)
+{
+    if ( index == 0)
+    {
+       ui->btn_option_quantity->show();
+       ui->btn_option_rate->show();
+    }
+    else
+    {
+        ui->btn_option_quantity->hide();
+        ui->btn_option_rate->hide();
+    }
+}
+
+void MainWindow::on_slider1_sliderPressed()
+{
+    ui->slider1->setValue(15);
+    ui->slider1->setSliderPosition(15);
+     ui->lbl_slider1->setText("-");
+    camera_stop_zoom = true;
+    camera_loop_mode = false;
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
+}
+
+void MainWindow::on_slider1_sliderMoved(int position)
+{
+    slider1_active = true;
+    int value = position;
+    camera_loop_mode = true;
+
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    if ( value >= 0 && value <= 10  )
+    {
+        //up
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZI." + _num2 + ")";
+           ui->lbl_slider1->setText("I");
+    }
+    if ( value > 10 && value <= 20 )
+    {
+        //mid
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZS." + _num2 + ")";
+         ui->lbl_slider1->setText("-");
+    }
+    if ( value > 20 && value <= 30)
+    {
+        //down
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZO." + _num2 + ")";
+         ui->lbl_slider1->setText("O");
+    }
+}
+
+void MainWindow::on_slider2_sliderMoved(int position)
+{
+    slider2_active = true;
+    int value = position;
+    camera_loop_mode = true;
+
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    if ( value >= 0 && value <= 10 )
+    {
+         ui->lbl_slider2->setText("I");
+        //up
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FF." + _num2 + ")";
+    }
+    if ( value > 10 && value <= 20 )
+    {
+        //mid
+        ui->lbl_slider2->setText("-");
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FS." + _num2 + ")";
+    }
+    if ( value > 20 && value <= 30 )
+    {
+        //down
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FN." + _num2 + ")";
+         ui->lbl_slider2->setText("O");
+    }
+}
+
+bool MainWindow::eventFilter(QObject *o, QEvent *e)
+{
+    if ( e->type() == QEvent::MouseButtonRelease)
+    {
+
+    }
+
+    return true;
+}
+
+void MainWindow::on_slider3_sliderMoved(int position)
+{
+    slider3_active = true;
+      int value = position;
+    camera_loop_mode = true;
+
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    if (value >= 0 && value <= 10)
+    {
+        ui->lbl_slider3->setText("I");
+        //up
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":II." + _num2 + ")";
+    }
+    if (value > 10 && value <= 20)
+    {
+        ui->lbl_slider3->setText("-");
+        //mid
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IS." + _num2 + ")";
+    }
+    if (value > 20 && value <= 30)
+    {
+        ui->lbl_slider3->setText("O");
+        //down
+        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IO." + _num2 + ")";
+    }
+}
+
+void MainWindow::on_slider4_sliderMoved(int position)
+{
+
+}
+
+void MainWindow::on_slider2_sliderPressed()
+{
+    ui->slider2->setValue(15);
+    ui->slider2->setSliderPosition(15);
+     ui->lbl_slider2->setText("-");
+    camera_stop_focus = true;
+    camera_loop_mode = false;
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
+}
+
+void MainWindow::on_slider3_sliderPressed()
+{
+    ui->slider3->setValue(15);
+    ui->slider3->setSliderPosition(15);
+     ui->lbl_slider3->setText("-");
+    camera_stop_iris = true;
+    camera_loop_mode = false;
+    QString num1 = QString::number(camera_id);
+    std::string _num1 = num1.toStdString();
+
+    QString num2 = QString::number(camera_speed);
+    std::string _num2 = num2.toStdString();
+
+    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
 }

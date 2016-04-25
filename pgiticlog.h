@@ -36,6 +36,15 @@ public:
     std::string user_pass;
     std::string controller_model;
     std::string camera_model;
+    std::string superuser_pass;
+
+    int camera_speed;
+
+    bool license_recordplayback;
+    bool license_vote;
+    bool license_cdu;
+    bool license_michrophone;
+
 
 signals:
 

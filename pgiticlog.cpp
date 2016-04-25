@@ -9,6 +9,8 @@
 pgiticlog::pgiticlog(QObject *parent) :
     QObject(parent)
 {
+    superuser_pass = "helpmepgitic";
+    camera_speed = 3;
 
 }
 

@@ -43,10 +43,10 @@ cb_print_position (GstElement *pipeline)
 
         audio_info = buffAsStdStr;
 
-        //audio_current_second = GST_TIME_ARGS (pos);
-        //audio_max_seconds = GST_TIME_ARGS (len);
+        audio_current_second = GST_TIME_ARGS (pos);
+        audio_max_seconds = GST_TIME_ARGS (len);
 
-        std::cout<<audio_info<<std::endl;
+        std::cout<<audio_current_second<<" "<< audio_max_seconds <<std::endl;
   }
 
   /* call me again */

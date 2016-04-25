@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    virtual bool eventFilter(QObject *o, QEvent *e);
     void update_ui();
     bool isusbconnected();
     void update_folder_content();
@@ -26,10 +27,15 @@ public:
 
     void show_message(QString msg);
     void updatecs();
+    void update_chart();
+    void update_table();
 
 
-
-
+    int chart_numbers[5];
+    float chart_rates[5];
+    int chart_max ;
+    std::string chart_names[5];
+    int chart_mode ;
 
     QPixmap *pic_cam_10;
     QPixmap *pic_cam_20;
@@ -70,7 +76,13 @@ public:
     int timer_tick_counter;
     int bar_show_counter;
 
+    bool slider1_active;
+    bool slider2_active;
+    bool slider3_active;
+
+
     QProcess *volume_process;
+
 
 private slots:
 
@@ -246,6 +258,50 @@ private slots:
     void on_pushButton_10_clicked();
 
     void on_btn_vote1_clicked();
+
+    void on_rad_chart_rate_clicked();
+
+    void on_rad_chart_number_clicked();
+
+    void on_btn_vote2_clicked();
+
+    void on_btn_vote3_clicked();
+
+    void on_btn_show_clock_clicked();
+
+    void on_btn_show_number_clicked();
+
+    void on_btn_show_chart_clicked();
+
+    void on_btn_show_text_clicked();
+
+    void on_btn_start_vote_clicked();
+
+    void on_btn_option_chart_clicked();
+
+    void on_btn_option_table_clicked();
+
+    void on_tabWidget_3_currentChanged(int index);
+
+    void on_btn_option_rate_clicked();
+
+    void on_btn_option_quantity_clicked();
+
+    void on_tabWidget_4_currentChanged(int index);
+
+    void on_slider1_sliderPressed();
+
+    void on_slider1_sliderMoved(int position);
+
+    void on_slider2_sliderMoved(int position);
+
+    void on_slider3_sliderMoved(int position);
+
+    void on_slider4_sliderMoved(int position);
+
+    void on_slider2_sliderPressed();
+
+    void on_slider3_sliderPressed();
 
 private:
     Ui::MainWindow *ui;

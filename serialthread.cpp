@@ -81,8 +81,7 @@ bool serialthread::open()
     qDebug("Serial Interface Started");
     active = false;
     device_id = -1;
-    baudrate = 9600;
-    port_name = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0";
+
 
     device_id = serialOpen(port_name.c_str(),baudrate);
     std::cout<<"SerialOpen ? "<<device_id<<std::endl;
