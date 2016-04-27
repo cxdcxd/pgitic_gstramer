@@ -298,24 +298,24 @@ void MainWindow::update_ui()
 
     if ( mtserial->active)
     {
-        QString a = "border-image:  url(:/new/images/Resource/Play/x8.png)  0 0 0 0 100 stretch";
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
         ui->monitor_serial->setStyleSheet(a);
     }
     else
     {
-        QString a = "border-image:  url(:/new/images/Resource/Play/x9.png)  0 0 0 0 100 stretch";
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
         ui->monitor_serial->setStyleSheet(a);
     }
 
     if ( isusbconnected_bool )
     {
-        QString a = "border-image:  url(:/new/images/Resource/Play/x6.png)  0 0 0 0 100 stretch";
+        QString a = "border-image:  url(:/new/images/Resource/nico/storage1.png)  0 0 0 0 100 stretch";
         ui->img_usbstorage0->setStyleSheet(a);
         ui->monitor_usb->setStyleSheet(a);
     }
     else
     {
-        QString a = "border-image:  url(:/new/images/Resource/Play/x7.png)  0 0 0 0 100 stretch";
+        QString a = "border-image:  url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch";
         ui->img_usbstorage0->setStyleSheet(a);
         ui->monitor_usb->setStyleSheet(a);
     }
