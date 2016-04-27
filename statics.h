@@ -37,6 +37,11 @@ extern std::string coutcolor_blue;
 extern std::string coutcolor_magenta;
 extern std::string coutcolor_brown;
 
+extern bool _lic1;
+extern bool _lic2;
+extern bool _lic3;
+extern bool _lic4;
+
 extern QString send_buffer;
 extern std::string usb_storage_path;
 extern std::string audio_mode;
@@ -55,6 +60,7 @@ extern std::vector<std::string> list_tcpclientslist;
 
 extern int camera_id;
 extern int camera_speed;
+extern int speaker_volume;
 extern std::string status;
 extern std::string user_mode;
 extern std::string mic_number;
@@ -73,6 +79,7 @@ extern bool sended;
 extern bool isusbconnected_bool;
 extern int tcp_server_port;
 extern bool app_exit;
+extern std::string HID;
 
 
 

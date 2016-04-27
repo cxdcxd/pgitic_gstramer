@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
     mtlog = new pgiticlog();
     mtlog->start();
     mtlog->load_config();
+    mtlog->load_licenses();
 
     //Create TCP/IP Client Connection Interface
     tcpsocket = new QThreadTCP();

@@ -47,7 +47,8 @@ SOURCES += main.cpp \
     mytcpsocket.cpp \
     pgiticlog.cpp \
     joystickscene.cpp \
-    serialthread.cpp
+    serialthread.cpp \
+    aes.cpp
 
 HEADERS += \
     mygpio.h \
@@ -64,7 +65,8 @@ HEADERS += \
     mytcpsocket.h \
     pgiticlog.h \
     joystickscene.h \
-    serialthread.h
+    serialthread.h \
+    aes.h
 
 FORMS += \
     mainwindow.ui

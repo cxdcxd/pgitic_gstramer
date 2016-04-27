@@ -55,6 +55,12 @@ std::string total_number;
 bool isusbconnected_bool;
 int tcp_server_port;
 bool app_exit;
+std::string HID;
+
+ bool _lic1;
+ bool _lic2;
+ bool _lic3;
+ bool _lic4;
 
 
 

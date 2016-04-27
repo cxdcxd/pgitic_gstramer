@@ -16,6 +16,8 @@ public:
     void start();
     bool save_config();
     void load_config();
+    void load_licenses();
+
     void open();
     void close();
     void deletealllogs();
@@ -36,15 +38,21 @@ public:
     std::string user_pass;
     std::string controller_model;
     std::string camera_model;
-    std::string superuser_pass;
 
     int camera_speed;
+    int speaker_volume;
+    std::string superuser_pass;
 
     bool license_recordplayback;
     bool license_vote;
     bool license_cdu;
     bool license_michrophone;
 
+   QString _license1;
+   QString _license2;
+   QString _license3;
+   QString _license4;
+   QString _key;
 
 signals:
 

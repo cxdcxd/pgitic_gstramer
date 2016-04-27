@@ -4,7 +4,19 @@
 #include <QSqlQuery>
 #include <QVariant>
 #include <QDateTime>
+#include <aes.h>
+#include <QCryptographicHash>
+#include <QFile>
+#include <QTextStream>
+#include <statics.h>
 
+const uint8_t iv[] = { 0xf0, 0xe1, 0xd2, 0xc3, 0xb4, 0xa5, 0x96,
+                       0x87, 0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x5e, 0xaf };
+
+inline int getAlignedSize(int currSize, int alignment) {
+    int padding = (alignment - currSize % alignment) % alignment;
+    return currSize + padding;
+}
 
 pgiticlog::pgiticlog(QObject *parent) :
     QObject(parent)
@@ -13,6 +25,54 @@ pgiticlog::pgiticlog(QObject *parent) :
     camera_speed = 3;
 
 }
+
+QString encodeText(const QString &rawText, const QString &key) {
+        QCryptographicHash hash(QCryptographicHash::Md5);
+        hash.addData(key.toUtf8());
+        QByteArray keyData = hash.result();
+
+        const ushort *rawData = rawText.utf16();
+        void *rawDataVoid = (void*)rawData;
+        const char *rawDataChar = static_cast<char*>(rawDataVoid);
+        QByteArray inputData;
+        // ushort is 2*uint8_t + 1 byte for '\0'
+        inputData.append(rawDataChar, rawText.size() * 2 + 1);
+
+        const int length = inputData.size();
+        int encryptionLength = getAlignedSize(length, 16);
+
+        QByteArray encodingBuffer(encryptionLength, 0);
+        inputData.resize(encryptionLength);
+
+        AES128_CBC_encrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)inputData.data(),
+           encryptionLength, (const uint8_t*)keyData.data(), iv);
+
+        QByteArray data(encodingBuffer.data(), encryptionLength);
+        QString hex = QString::fromLatin1(data.toHex());
+        return hex;
+    }
+
+QString decodeText(const QString &hexEncodedText, const QString &key) {
+        QCryptographicHash hash(QCryptographicHash::Md5);
+        hash.addData(key.toUtf8());
+        QByteArray keyData = hash.result();
+
+        const int length = hexEncodedText.size();
+        int encryptionLength = getAlignedSize(length, 16);
+
+        QByteArray encodingBuffer(encryptionLength, 0);
+
+        QByteArray encodedText = QByteArray::fromHex(hexEncodedText.toLatin1());
+        encodedText.resize(encryptionLength);
+
+        AES128_CBC_decrypt_buffer((uint8_t*)encodingBuffer.data(), (uint8_t*)encodedText.data(),
+          encryptionLength, (const uint8_t*)keyData.data(), iv);
+
+        void *data = encodingBuffer.data();
+        const ushort *decodedData = static_cast<ushort*>(data);
+        QString result = QString::fromUtf16(decodedData);
+        return result;
+    }
 
 bool pgiticlog::save_config()
 {
@@ -56,6 +116,91 @@ bool pgiticlog::save_config()
     {qDebug(qry.lastError().text().toStdString().c_str()); return false;}
     else
     {qDebug( "Updated!" ); return true;}
+
+}
+
+void pgiticlog::load_licenses()
+{
+    _key  = "pgitickeyabcdefg";
+    QSqlQuery query;
+    if(query.exec("SELECT * FROM license"))
+    {
+        if(query.next())
+        {
+            int id = query.value(0).toInt();
+            QString _id = QString::number(id);
+
+            _license1 = query.value(1).toString();
+            _license2 = query.value(2).toString();
+            _license3 = query.value(3).toString();
+            _license4 = query.value(4).toString();
+
+            if ( _license1 != "none")
+            {
+            _license1 = decodeText(_license1,_key);
+
+                            if ( _license1 == (HID + "a").c_str())
+                            {
+                               _lic1 = true;
+                            }
+                            else
+                            {
+                               _lic1 = false;
+                            }
+            }
+
+            if ( _license2 != "none")
+            {
+            _license2 = decodeText(_license2,_key);
+
+                            if ( _license2 == (HID + "b").c_str())
+                            {
+                                 _lic2 = true;
+                            }
+                            else
+                            {
+                                  _lic2 = false;
+                            }
+            }
+
+            if ( _license3 != "none")
+            {
+            _license3 = decodeText(_license3,_key);
+
+                            if ( _license3 == (HID + "c").c_str())
+                            {
+                                _lic3 = true;
+                            }
+                            else
+                            {
+                               _lic3 = false;
+                            }
+            }
+
+            if ( _license4 != "none")
+            {
+            _license4 = decodeText(_license4,_key);
+
+                            if ( _license4 == (HID + "d").c_str())
+                            {
+                                  _lic4 = true;
+                            }
+                            else
+                            {
+                                  _lic4 = false;
+                            }
+            }
+
+
+            std::cout<<"license loaded done"<<std::endl;
+        }
+
+    }
+    else
+    {
+    }
+
+
 
 }
 
@@ -177,7 +322,7 @@ void  pgiticlog::insert_log(QString sender,QString info,QString type)
 
 void pgiticlog::open()
 {
-    db.setDatabaseName("data.db");
+    db.setDatabaseName("/home/pi/database/data.db");
     bool result = db.open();
     std::cout<<"DateBase Status : "<<result<<std::endl;
 }
@@ -198,4 +343,26 @@ void pgiticlog::start()
     insert_log("pgiticlog","started_d","DEBUG");
     insert_log("pgiticlog","started_w","WARN");
     insert_log("pgiticlog","started_e","ERROR");
+
+    //Read Hardware ID
+    QFile file("/proc/cpuinfo");
+    if(!file.open(QIODevice::ReadOnly)) {
+         std::cout<<"Error :"<<std::endl;
+    }
+    std::cout<<file.isOpen()<<std::endl;
+    std::cout<<file.isReadable()<<std::endl;
+
+    QTextStream in(&file);
+
+    QString line = in.readAll();
+    //std::cout<<"Read :"<<line.toStdString()<<std::endl;
+
+    int index = line.lastIndexOf("Serial		:");
+    QString sub = line.mid(index,line.length() - index);
+    sub = sub.replace("Serial		:","");
+    sub = sub.trimmed();
+
+    std::cout<<"HID :"<<sub.toStdString()<<std::endl;
+    HID = sub.toStdString();
+    file.close();
 }

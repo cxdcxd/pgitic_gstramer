@@ -320,6 +320,50 @@ void MainWindow::update_ui()
         ui->monitor_usb->setStyleSheet(a);
     }
 
+    if ( _lic1 )
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/ok.png)  0 0 0 0 100 stretch";
+        ui->img_lic1->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch";
+        ui->img_lic1->setStyleSheet(a);
+    }
+
+    if ( _lic2 )
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/ok.png)  0 0 0 0 100 stretch";
+        ui->img_lic2->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch";
+        ui->img_lic2->setStyleSheet(a);
+    }
+
+    if ( _lic3 )
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/ok.png)  0 0 0 0 100 stretch";
+        ui->img_lic3->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch";
+        ui->img_lic3->setStyleSheet(a);
+    }
+
+    if ( _lic4 )
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/ok.png)  0 0 0 0 100 stretch";
+        ui->img_lic4->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch";
+        ui->img_lic4->setStyleSheet(a);
+    }
+
     if ( mtgclientrecord->active)
     {
         ui->monitor_recording->setText("YES");
@@ -373,14 +417,8 @@ void MainWindow::update_ui()
     ui->lbl_camera_model->setText(mtlog->camera_model.c_str());
     ui->lbl_controller_model->setText(mtlog->controller_model.c_str());
 
-
-
-
-
-
-
-
-    std::cout<<"called"<<std::endl;
+    ui->lbl_HID->setText(HID.c_str());
+    //std::cout<<"called"<<std::endl;
 
 
 }
@@ -396,6 +434,8 @@ void MainWindow::TimerEvent()
         update_ui();
     }
 
+
+    //ignore user clicks
     if ( !slider1_active )
     {
     ui->slider1->setSliderPosition(15);

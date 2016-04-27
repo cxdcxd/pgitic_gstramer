@@ -456,7 +456,7 @@ QTabBar::tab:!selected:hover
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_13">
      <attribute name="title">
@@ -478,11 +478,20 @@ background-color: rgb(95, 95, 95);</string>
       <property name="title">
        <string>Monitoring</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
       <widget class="QLabel" name="txt_Mmicnum">
        <property name="geometry">
         <rect>
          <x>450</x>
-         <y>90</y>
+         <y>70</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -505,7 +514,7 @@ background-color: rgb(95, 95, 95);</string>
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>50</y>
+         <y>30</y>
          <width>60</width>
          <height>60</height>
         </rect>
@@ -526,7 +535,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>400</x>
-         <y>60</y>
+         <y>40</y>
          <width>50</width>
          <height>50</height>
         </rect>
@@ -546,7 +555,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>320</x>
-         <y>90</y>
+         <y>70</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -569,7 +578,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>270</x>
-         <y>60</y>
+         <y>40</y>
          <width>50</width>
          <height>50</height>
         </rect>
@@ -589,7 +598,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>70</y>
+         <y>50</y>
          <width>61</width>
          <height>16</height>
         </rect>
@@ -610,7 +619,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>180</x>
-         <y>90</y>
+         <y>70</y>
          <width>61</width>
          <height>16</height>
         </rect>
@@ -633,7 +642,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>160</y>
+         <y>140</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -654,7 +663,7 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>190</x>
-         <y>150</y>
+         <y>130</y>
          <width>31</width>
          <height>31</height>
         </rect>
@@ -674,8 +683,8 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
       <widget class="QLabel" name="label_33">
        <property name="geometry">
         <rect>
-         <x>270</x>
-         <y>160</y>
+         <x>280</x>
+         <y>140</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -695,8 +704,8 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
       <widget class="QFrame" name="monitor_serial">
        <property name="geometry">
         <rect>
-         <x>410</x>
-         <y>150</y>
+         <x>420</x>
+         <y>130</y>
          <width>31</width>
          <height>31</height>
         </rect>
@@ -717,7 +726,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>280</x>
-         <y>240</y>
+         <y>220</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -738,7 +747,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>230</y>
+         <y>210</y>
          <width>51</width>
          <height>41</height>
         </rect>
@@ -768,7 +777,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>240</y>
+         <y>220</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -789,7 +798,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>190</x>
-         <y>220</y>
+         <y>200</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -810,7 +819,7 @@ url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>580</x>
-         <y>60</y>
+         <y>40</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -831,7 +840,7 @@ url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>820</x>
-         <y>60</y>
+         <y>40</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -852,7 +861,7 @@ url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>580</x>
-         <y>90</y>
+         <y>70</y>
          <width>191</width>
          <height>31</height>
         </rect>
@@ -884,7 +893,7 @@ url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>820</x>
-         <y>90</y>
+         <y>70</y>
          <width>211</width>
          <height>31</height>
         </rect>
@@ -915,8 +924,8 @@ url(:/new/images/Resource/nico/storage0.png)  0 0 0 0 100 stretch;
       <widget class="QFrame" name="monitor_serial2">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>150</y>
+         <x>650</x>
+         <y>130</y>
          <width>31</width>
          <height>31</height>
         </rect>
@@ -937,7 +946,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>340</y>
+         <y>320</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -958,7 +967,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>195</x>
-         <y>325</y>
+         <y>305</y>
          <width>51</width>
          <height>41</height>
         </rect>
@@ -989,8 +998,8 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
       <widget class="QLabel" name="label_52">
        <property name="geometry">
         <rect>
-         <x>290</x>
-         <y>340</y>
+         <x>280</x>
+         <y>320</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -1011,7 +1020,7 @@ url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>290</y>
+         <y>270</y>
          <width>41</width>
          <height>41</height>
         </rect>
@@ -1031,8 +1040,8 @@ url(:/new/images/Resource/nico/speaker.png)  0 0 0 0 100 stretch;
       <widget class="QFrame" name="frame_14">
        <property name="geometry">
         <rect>
-         <x>330</x>
-         <y>290</y>
+         <x>320</x>
+         <y>270</y>
          <width>41</width>
          <height>41</height>
         </rect>
@@ -1052,8 +1061,8 @@ url(:/new/images/Resource/nico/tool.png)  0 0 0 0 100 stretch;
       <widget class="QLabel" name="label_51">
        <property name="geometry">
         <rect>
-         <x>500</x>
-         <y>160</y>
+         <x>510</x>
+         <y>140</y>
          <width>151</width>
          <height>16</height>
         </rect>
@@ -1070,11 +1079,11 @@ url(:/new/images/Resource/nico/tool.png)  0 0 0 0 100 stretch;
         <string>VCU Connection :</string>
        </property>
       </widget>
-      <widget class="QLabel" name="lbl_volume_2">
+      <widget class="QLabel" name="lbl_cameraspeed">
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>325</y>
+         <y>305</y>
          <width>51</width>
          <height>41</height>
         </rect>
@@ -1100,6 +1109,268 @@ url(:/new/images/Resource/nico/tool.png)  0 0 0 0 100 stretch;
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_56">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>210</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Hardware ID :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_HID">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>210</y>
+         <width>391</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+       <property name="text">
+        <string>&lt;name&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_57">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>300</y>
+         <width>131</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>License :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_58">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>320</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Record</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QFrame" name="img_lic1">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>280</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: 
+url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_59">
+       <property name="geometry">
+        <rect>
+         <x>740</x>
+         <y>320</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Microphones</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QFrame" name="img_lic2">
+       <property name="geometry">
+        <rect>
+         <x>780</x>
+         <y>280</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: 
+url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="img_lic3">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>280</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: 
+url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_60">
+       <property name="geometry">
+        <rect>
+         <x>860</x>
+         <y>320</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>DCU</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_61">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>320</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Voting</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QFrame" name="img_lic4">
+       <property name="geometry">
+        <rect>
+         <x>980</x>
+         <y>280</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: 
+url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
        </property>
       </widget>
       <zorder>txt_Mmicnum</zorder>
@@ -1128,7 +1399,18 @@ url(:/new/images/Resource/nico/tool.png)  0 0 0 0 100 stretch;
       <zorder>frame_14</zorder>
       <zorder>label_51</zorder>
       <zorder>monitor_serial2</zorder>
-      <zorder>lbl_volume_2</zorder>
+      <zorder>lbl_cameraspeed</zorder>
+      <zorder>label_56</zorder>
+      <zorder>lbl_HID</zorder>
+      <zorder>label_57</zorder>
+      <zorder>label_58</zorder>
+      <zorder>img_lic1</zorder>
+      <zorder>label_59</zorder>
+      <zorder>img_lic2</zorder>
+      <zorder>img_lic3</zorder>
+      <zorder>label_60</zorder>
+      <zorder>label_61</zorder>
+      <zorder>img_lic4</zorder>
      </widget>
      <widget class="QFrame" name="frame_12">
       <property name="geometry">
@@ -1272,13 +1554,13 @@ p, li { white-space: pre-wrap; }
        </size>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar">
+     <widget class="QProgressBar" name="progress_audio">
       <property name="geometry">
        <rect>
         <x>370</x>
         <y>100</y>
         <width>491</width>
-        <height>16</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="value">
@@ -5543,7 +5825,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>32</x>
       <y>700</y>
-      <width>1301</width>
+      <width>431</width>
       <height>27</height>
      </rect>
     </property>
