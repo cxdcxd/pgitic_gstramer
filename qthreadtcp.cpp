@@ -15,14 +15,15 @@ void QThreadTCP::update()
 {
     if ( socket->isOpen() == false )
     {
-        qDebug("TRY CONNECTING ...");
+        mtlog->insert_log("threadtcp","TRY CONNECTING ...","INFO");
         isconnected = false;
         QString _port = mtlog->remote_port.c_str();
         socket->connectToHost(mtlog->remote_ip.c_str(), _port.toInt());
 
         if(!socket->waitForConnected(500))
         {
-            qDebug() << "Error: " << socket->errorString();
+
+            mtlog->insert_log("threadtcp","Connection Failed","ERROR");
             socket->close();
             gpio->info_mode = 0;
         }
@@ -37,7 +38,7 @@ void QThreadTCP::update()
 
         if ( exitcode == 0 )
         {
-            //qDebug("PING OK");
+
         }
         else
         {
@@ -67,7 +68,7 @@ void QThreadTCP::set_camera_mode(bool manual)
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    QString _num2 = QString::number(camera_speed);
+    QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
 
     if (manual)
@@ -325,7 +326,7 @@ void QThreadTCP::set_camera_dir(int mode)
                                 }
 
     QString num1 = QString::number(camera_id);
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num1 = num1.toStdString();
     std::string _num2 = num2.toStdString();
 
@@ -350,7 +351,7 @@ void QThreadTCP::stop_cam()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    QString _num2 = QString::number(camera_speed);
+    QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
     std::string command = "(CAM," + mtlog->camera_model + ";" + _number1 + ":S." + _number2 + ")";
     QByteArray array = command.c_str();
@@ -362,7 +363,7 @@ void QThreadTCP::stop_focus()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    QString _num2 = QString::number(camera_speed);
+    QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
     std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":FS." + _number2 + ")";
     QByteArray array = command.c_str();
@@ -374,7 +375,7 @@ void QThreadTCP::stop_iris()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    QString _num2 = QString::number(camera_speed);
+    QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
     std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":IS." + _number2 + ")";
     QByteArray array = command.c_str();
@@ -386,7 +387,7 @@ void QThreadTCP::stop_zoom()
     QString _num1 = QString::number(camera_id);
     std::string _number1 = _num1.toStdString();
 
-    QString _num2 = QString::number(camera_speed);
+    QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
     std::string command = "(CAM," + mtlog->camera_model + ";" +  _number1 + ":ZS." +  _number2 + ")";
     QByteArray array = command.c_str();
@@ -395,20 +396,21 @@ void QThreadTCP::stop_zoom()
 }
 void QThreadTCP::connected()
 {
-    qDebug() << "connected...";
+    mtlog->insert_log("threadtcp","Connected...","INFO");
+
     gpio->info_mode = 1;
 }
 
 void QThreadTCP::disconnected()
 {
-    qDebug() << "disconnected...";
+    mtlog->insert_log("threadtcp","Disconnected","ERROR");
     gpio->info_mode = 0;
     socket->close();
 }
 
 void QThreadTCP::bytesWritten(qint64 bytes)
 {
-    //qDebug() << bytes << " bytes written... ";
+
 }
 
 void QThreadTCP::readyRead()
@@ -416,7 +418,6 @@ void QThreadTCP::readyRead()
     QByteArray array = socket->readAll();
     QString item = QString::fromUtf8(array.data(),array.size());
 
-    qDebug() << "TCP GET : " << item;
 
     //=====================================
     item = item.replace("(", "");

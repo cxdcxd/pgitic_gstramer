@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mygclientplay.h'
 **
-** Created: Wed Apr 13 11:28:25 2016
+** Created: Thu Apr 28 07:35:11 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

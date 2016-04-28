@@ -68,38 +68,6 @@ void mygclientrecord::record_start(std::string filename)
     gboolean abool = gst_element_link (source , conv);
     gboolean bbool = gst_element_link (conv   , lamemp3enc);
     gboolean cbool = gst_element_link (lamemp3enc , sink);
-    /* Set up the parameters */
-
-//    QDir directory("/media/");
-//    QStringList txtFilesAndDirectories = directory.entryList();
-//    std::string item = "";
-
-//    for ( int i =0 ; i < txtFilesAndDirectories.size() ; i++)
-//    {
-//        QString a = txtFilesAndDirectories.at(i);
-//        if ( a.size() > 2)
-//        {
-//            item = a.toStdString();
-//            break;
-//        }
-//        //std::cout<< "See : "<<a.toStdString() << std::endl;
-//    }
-
-//    if ( item != "")
-//    {
-//        //Check records folder is exist or not , if no create records folder
-//        std::string filedir = "/media/" + item + "/records/";
-//        if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
-
-//        filename = filedir + filename;
-//        std::cout<< "UDB FOUND - PATH : "<<filename<< std::endl;
-//    }
-//    else
-//    {
-//         std::cout<< "UDB NotFound - DefaultPath "<<filename<< std::endl;
-//    }
-
-
 
     g_object_set (G_OBJECT (sink), "location", filename.c_str(), NULL);
     /* check the links */
@@ -112,8 +80,9 @@ void mygclientrecord::record_start(std::string filename)
         printf("! link error\n");
     }
 
-    printf("Recorder Config Done\n");
-    qDebug("PGITICLOG - record_start");
+
+    mtlog->insert_log("gclientrecord","PGITIC - Gstreamer Interface record_start ","INFO");
+
     GstStateChangeReturn ret;
     ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
 
@@ -143,15 +112,12 @@ void mygclientrecord::record_stop()
     g_main_loop_unref (loop);
 
     //==========================================================================
-    qDebug("PGITIC - Gstreamer Interface Finished");
+    mtlog->insert_log("gclientrecord","PGITIC -  Gstreamer Interface Finished ","INFO");
 
 }
 
 void mygclientrecord::start()
 {
     app_exited = false;
-    qDebug("PGITIC - Gstreamer Interface Client Start");
-    //==========================================================================
-
-
+    mtlog->insert_log("gclientrecord","PGITIC - Gstreamer Interface Client Start","INFO");
 }

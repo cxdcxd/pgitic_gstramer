@@ -6,7 +6,7 @@
 myMainThreadx::myMainThreadx(QObject *parent) :
     QThread(parent)
 {
-    printf("Main Thread Start\n");
+
 }
 
 void myMainThreadx::run()
@@ -42,9 +42,9 @@ void myMainThreadx::run()
 
         sleep(1);
         counter++;
-        std::cout<<"Counter "<<counter<<std::endl;
+
 
     }
 
-     printf("Mainthread Exited\n");
+
 }

@@ -65,7 +65,7 @@ UnixSignalWatcherPrivate::UnixSignalWatcherPrivate(UnixSignalWatcher *q) :
 {
     // Create socket pair
     if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sockpair)) {
-        qDebug() << "UnixSignalWatcher: socketpair: " << ::strerror(errno);
+
         return;
     }
 
@@ -89,7 +89,7 @@ UnixSignalWatcherPrivate::~UnixSignalWatcherPrivate()
 void UnixSignalWatcherPrivate::watchForSignal(int signal)
 {
     if (watchedSignals.contains(signal)) {
-        qDebug() << "Already watching for signal" << signal;
+
         return;
     }
 
@@ -99,7 +99,7 @@ void UnixSignalWatcherPrivate::watchForSignal(int signal)
     ::sigemptyset(&sigact.sa_mask);
     sigact.sa_flags |= SA_RESTART;
     if (::sigaction(signal, &sigact, NULL)) {
-        qDebug() << "UnixSignalWatcher: sigaction: " << ::strerror(errno);
+
         return;
     }
 
@@ -127,7 +127,7 @@ void UnixSignalWatcherPrivate::_q_onNotify(int sockfd)
     int signal;
     ssize_t nBytes = ::read(sockfd, &signal, sizeof(signal));
     Q_UNUSED(nBytes);
-    qDebug() << "Caught signal:" << ::strsignal(signal);
+
     emit q->unixSignal(signal);
 }
 

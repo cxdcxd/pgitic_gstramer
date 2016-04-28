@@ -21,8 +21,6 @@ inline int getAlignedSize(int currSize, int alignment) {
 pgiticlog::pgiticlog(QObject *parent) :
     QObject(parent)
 {
-    superuser_pass = "helpmepgitic";
-    camera_speed = 3;
 
 }
 
@@ -82,16 +80,27 @@ bool pgiticlog::save_config()
 
     std::string _joyx = (joyx)?"1":"0";
     std::string _joyy = (joyy)?"1":"0";
+    std::string _rememberme = (rememberme)?"1":"0";
     std::string _logout_idle = (logout_idle)?"1":"0";
     std::string _cmdloop = (cmd_loop)?"1":"0";
     std::string _loopvalue = QString::number(loop_value).toStdString().c_str();
     std::string _remoteip = "'" + remote_ip + "'";
     std::string _remoteport = "'" + remote_port + "'";
-
     std::string _admin_pass = "'" + admin_pass + "'";
     std::string _user_pass = "'" + user_pass + "'";
     std::string _controller_model = "'" + controller_model + "'";
     std::string _camera_model = "'" + camera_model + "'";
+    std::string _camera_speed =  QString::number(camera_speed).toStdString().c_str();
+    std::string _speaker_volume =  QString::number(speaker_volume).toStdString().c_str();
+
+    std::string _serial1_name = "'" + serial1_name + "'";
+    std::string _serial2_name = "'" + serial2_name + "'";
+    std::string _serial3_name = "'" + serial3_name + "'";
+
+    std::string _serial1_baud = QString::number(serial1_baud).toStdString().c_str();
+    std::string _serial2_baud = QString::number(serial2_baud).toStdString().c_str();
+    std::string _serial3_baud = QString::number(serial3_baud).toStdString().c_str();
+
 
     command = "UPDATE config SET";
     command.append("  joyx = ")              ; command.append(_joyx);
@@ -105,17 +114,34 @@ bool pgiticlog::save_config()
     command.append(", user_pass = ")         ; command.append(_user_pass);
     command.append(", controller_model = ")  ; command.append(_controller_model);
     command.append(", camera_model = ")      ; command.append(_camera_model);
+    command.append(", cameraspeed = ")       ; command.append(_camera_speed);
+    command.append(", volume = ")            ; command.append(_speaker_volume);
+    command.append(", rememberme = ")        ; command.append(_rememberme);
+
+    command.append(", serial1name = ")        ; command.append(_serial1_name);
+    command.append(", serial2name = ")        ; command.append(_serial2_name);
+    command.append(", serial3name = ")        ; command.append(_serial3_name);
+    command.append(", serial1baudrate = ")    ; command.append(_serial1_baud);
+    command.append(", serial2baudrate = ")    ; command.append(_serial2_baud);
+    command.append(", serial3baudrate = ")    ; command.append(_serial3_baud);
+
+
     command.append(" WHERE id = 1" );
 
-    std::cout<<command<<std::endl;
+
+     mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
 
     qry.prepare(command.c_str());
 
 
     if( !qry.exec() )
-    {qDebug(qry.lastError().text().toStdString().c_str()); return false;}
+    {
+        mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR"); return false;
+    }
     else
-    {qDebug( "Updated!" ); return true;}
+    {
+        mtlog->insert_log("pgiticlog","Updated","DEBUG"); return true;
+    }
 
 }
 
@@ -192,7 +218,7 @@ void pgiticlog::load_licenses()
             }
 
 
-            std::cout<<"license loaded done"<<std::endl;
+           mtlog->insert_log("pgiticlog","Licenses loaded done","DEBUG");
         }
 
     }
@@ -224,7 +250,7 @@ void pgiticlog::load_config()
             user_pass = query.value(9).toString().toStdString();
             controller_model = query.value(10).toString().toStdString();
             camera_model = query.value(11).toString().toStdString();
-            std::cout<<"config loaded done"<<std::endl;
+            mtlog->insert_log("pgiticlog","Config loaded done","DEBUG");
         }
 
     }
@@ -238,11 +264,10 @@ void pgiticlog::deletealllogs()
     QSqlQuery qry;
     qry.prepare( "DELETE FROM log" );
     if( !qry.exec() )
-        qDebug(qry.lastError().text().toStdString().c_str());
+        mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
     else
-        qDebug( "All logs deleted!" );
+       mtlog->insert_log("pgiticlog","All logs deleted","DEBUG");
 }
-
 
 std::vector<std::string>  pgiticlog::get_log()
 {
@@ -298,7 +323,6 @@ std::vector<std::string>  pgiticlog::get_log_query(std::string cmd)
 
 }
 
-
 void  pgiticlog::insert_log(QString sender,QString info,QString type)
 {
     QDateTime now = QDateTime::currentDateTime();
@@ -315,16 +339,21 @@ void  pgiticlog::insert_log(QString sender,QString info,QString type)
     //qry.bindValue(0, 'now');
 
     if( !qry.exec() )
-        qDebug(qry.lastError().text().toStdString().c_str());
-    else
-        qDebug( "Inserted!" );
+         mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
+
 }
 
 void pgiticlog::open()
 {
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/pi/database/data.db");
     bool result = db.open();
-    std::cout<<"DateBase Status : "<<result<<std::endl;
+    if ( result )
+    mtlog->insert_log("pgiticlog","Database opened","DEBUG");
+    else
+    mtlog->insert_log("pgiticlog","Database read error","ERROR");
+
+
 }
 
 void pgiticlog::close()
@@ -334,35 +363,20 @@ void pgiticlog::close()
 
 void pgiticlog::start()
 {
-    qDebug("Serial Interface Started");
-    db = QSqlDatabase::addDatabase("QSQLITE");
-
-    open();
-
-    insert_log("pgiticlog","started_i","INFO");
-    insert_log("pgiticlog","started_d","DEBUG");
-    insert_log("pgiticlog","started_w","WARN");
-    insert_log("pgiticlog","started_e","ERROR");
+    mtlog->insert_log("pgiticlog","Serial Interface Started","INFO");
 
     //Read Hardware ID
     QFile file("/proc/cpuinfo");
     if(!file.open(QIODevice::ReadOnly)) {
-         std::cout<<"Error :"<<std::endl;
+         mtlog->insert_log("pgiticlog","CPU ID read error","ERROR");
     }
-    std::cout<<file.isOpen()<<std::endl;
-    std::cout<<file.isReadable()<<std::endl;
 
     QTextStream in(&file);
-
     QString line = in.readAll();
-    //std::cout<<"Read :"<<line.toStdString()<<std::endl;
-
     int index = line.lastIndexOf("Serial		:");
     QString sub = line.mid(index,line.length() - index);
     sub = sub.replace("Serial		:","");
     sub = sub.trimmed();
-
-    std::cout<<"HID :"<<sub.toStdString()<<std::endl;
     HID = sub.toStdString();
     file.close();
 }

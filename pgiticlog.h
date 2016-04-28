@@ -47,6 +47,15 @@ public:
     bool license_vote;
     bool license_cdu;
     bool license_michrophone;
+    bool rememberme;
+
+   std::string serial1_name;
+   std::string serial2_name;
+   std::string serial3_name;
+
+   int serial1_baud;
+   int serial2_baud;
+   int serial3_baud;
 
    QString _license1;
    QString _license2;

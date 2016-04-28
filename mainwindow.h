@@ -20,6 +20,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     virtual bool eventFilter(QObject *o, QEvent *e);
+    virtual void closeEvent(QCloseEvent * event);
+
     void update_ui();
     bool isusbconnected();
     void update_folder_content();
@@ -97,11 +99,7 @@ private slots:
 
     void on_btn_playstop_clicked();
 
-    void on_pushButton_clicked();
-
     void on_lst_folder_info_itemClicked(QListWidgetItem *item);
-
-    void on_btn_playpause_clicked();
 
     void on_btn_login_clicked();
 
@@ -231,10 +229,6 @@ private slots:
 
     void on_btn_change_admin_clicked();
 
-    void on_btn_change_user_clicked();
-
-    void on_pushButton_2_clicked();
-
     void on_btn_refresh_clicked();
 
     void on_tabWidget_selected(const QString &arg1);
@@ -253,15 +247,7 @@ private slots:
 
     void on_Knob_valueChanged(double value);
 
-    void on_Knob_sliderMoved(double value);
-
-    void on_pushButton_10_clicked();
-
     void on_btn_vote1_clicked();
-
-    void on_rad_chart_rate_clicked();
-
-    void on_rad_chart_number_clicked();
 
     void on_btn_vote2_clicked();
 
@@ -302,6 +288,12 @@ private slots:
     void on_slider2_sliderPressed();
 
     void on_slider3_sliderPressed();
+
+    void on_btn_save_serial_clicked();
+
+    void on_tabWidget_currentChanged(int index);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

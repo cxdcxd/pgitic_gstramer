@@ -11,12 +11,12 @@ MyServer *mttcpserver;
 serialthread *mtserial;
 serialthread *mtserial2;
 
-std::string coutcolor0 = "\033[0;0m";
-std::string coutcolor_red = "\033[0;31m";
-std::string coutcolor_green = "\033[0;32m";
-std::string coutcolor_blue = "\033[0;34m";
-std::string coutcolor_magenta = "\033[0;35m";
-std::string coutcolor_brown = "\033[0;33m";
+std::string xcoutcolor0 = "\033[0;0m";
+std::string xcoutcolor_red = "\033[0;31m";
+std::string xcoutcolor_green = "\033[0;32m";
+std::string xcoutcolor_blue = "\033[0;34m";
+std::string xcoutcolor_magenta = "\033[0;35m";
+std::string xcoutcolor_brown = "\033[0;33m";
 
 QString send_buffer;
 
@@ -36,7 +36,7 @@ std::vector<std::string> list_MICSTATUS;
 std::vector<std::string> list_tcpclientslist;
 
 int camera_id;
-int camera_speed;
+
 std::string status;
 std::string user_mode;
 std::string last_command;

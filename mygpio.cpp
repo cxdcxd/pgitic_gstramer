@@ -1,5 +1,5 @@
 #include "mygpio.h"
-#include <QDebug>
+
 #include <statics.h>
 #include <QCoreApplication>
 
@@ -15,7 +15,7 @@ MyGpio::MyGpio(QObject *parent) :
     mtimer = new QTimer();
     connect(mtimer, SIGNAL(timeout()), this, SLOT(update()));
 
-    qDebug("GPIO START ");
+    mtlog->insert_log("GPIO","GPIO START","INFO");
 
     wiringPiSetup();
 
@@ -59,7 +59,7 @@ void MyGpio::kill()
 
 void MyGpio::skill()
 {
-    qDebug() << "PGITIC SIGNAL DETECTED" ;
+
     kill();
     exit(0);
 }

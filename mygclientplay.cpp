@@ -46,7 +46,7 @@ cb_print_position (GstElement *pipeline)
         audio_current_second = GST_TIME_ARGS (pos);
         audio_max_seconds = GST_TIME_ARGS (len);
 
-        std::cout<<audio_current_second<<" "<< audio_max_seconds <<std::endl;
+        //std::cout<<audio_current_second<<" "<< audio_max_seconds <<std::endl;
   }
 
   /* call me again */
@@ -56,7 +56,7 @@ cb_print_position (GstElement *pipeline)
 
 void mygclientplay::play_start(std::string filename)
 {
-    qDebug("4");
+
     //==========================================================================
     /* Initialisation */
     loop = g_main_loop_new (NULL, FALSE);
@@ -83,37 +83,6 @@ void mygclientplay::play_start(std::string filename)
     gboolean abool = gst_element_link (source , mad);
     gboolean bbool = gst_element_link (mad   , sink);
 
-    /* Set up the parameters */
-//    QDir directory("/media/");
-//    QStringList txtFilesAndDirectories = directory.entryList();
-//    std::string item = "";
-
-//    for ( int i =0 ; i < txtFilesAndDirectories.size() ; i++)
-//    {
-//        QString a = txtFilesAndDirectories.at(i);
-//        if ( a.size() > 2)
-//        {
-//            item = a.toStdString();
-//            break;
-//        }
-//        //std::cout<< "See : "<<a.toStdString() << std::endl;
-//    }
-
-//    if ( item != "")
-//    {
-//        //Check records folder is exist or not , if no create records folder
-//        std::string filedir = "/media/" + item + "/records/";
-//        if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
-
-//        filename = filedir + filename;
-//        std::cout<< "UDB FOUND - PATH : "<<filename<< std::endl;
-//    }
-//    else
-//    {
-//         std::cout<< "UDB NotFound - DefaultPath "<<filename<< std::endl;
-//    }
-
-
     g_object_set (G_OBJECT (source), "location", filename.c_str(), NULL);
     /* check the links */
     if ( abool && bbool )
@@ -127,7 +96,8 @@ void mygclientplay::play_start(std::string filename)
 
     printf("Player Config Done\n");
 
-    qDebug("PGITICLOG - play_start");
+    mtlog->insert_log("gclientplay","PGITICLOG - play_start","INFO");
+
     GstStateChangeReturn ret;
     ret = gst_element_set_state (pipeline, GST_STATE_PLAYING);
 
@@ -161,13 +131,14 @@ void mygclientplay::play_stop()
     g_main_loop_unref (loop);
 
     //==========================================================================
-    qDebug("PGITIC - Gstreamer Interface Finished");
+    mtlog->insert_log("gclientplay","PGITIC - Gstreamer Interface Finished","INFO");
+
 }
 
 void mygclientplay::start()
 {
     app_exited = false;
-    qDebug("PGITIC - Player Interface Client Start");
+     mtlog->insert_log("gclientplay","PGITIC - Gstreamer Interface Started","INFO");
 
 
 }

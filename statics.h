@@ -30,12 +30,12 @@ extern MyGpio *gpio; //GPIO
 extern myMainThreadx *_mainthread; //Therad => mainthread
 extern QSet<QTcpSocket*> clients;
 
-extern std::string coutcolor0;
-extern std::string coutcolor_green;
-extern std::string coutcolor_red;
-extern std::string coutcolor_blue;
-extern std::string coutcolor_magenta;
-extern std::string coutcolor_brown;
+extern std::string xcoutcolor0;
+extern std::string xcoutcolor_green;
+extern std::string xcoutcolor_red;
+extern std::string xcoutcolor_blue;
+extern std::string xcoutcolor_magenta;
+extern std::string xcoutcolor_brown;
 
 extern bool _lic1;
 extern bool _lic2;
@@ -59,8 +59,7 @@ extern std::vector<std::string> list_MICSTATUS;
 extern std::vector<std::string> list_tcpclientslist;
 
 extern int camera_id;
-extern int camera_speed;
-extern int speaker_volume;
+
 extern std::string status;
 extern std::string user_mode;
 extern std::string mic_number;

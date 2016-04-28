@@ -81,5 +81,6 @@
         <file>Resource/nico/usb0.png</file>
         <file>Resource/nico/usb1.png</file>
         <file>Resource/nico/tool.png</file>
+        <file>Resource/nico/people.png</file>
     </qresource>
 </RCC>

@@ -4,7 +4,7 @@
 mythreadgclientplay::mythreadgclientplay(QObject *parent) :
     QThread(parent)
 {
-    printf("Client Thread RUN\n");
+
     played = false;
     mgclient = new mygclientplay();
 }

@@ -8,7 +8,7 @@
 #include "QPixmap"
 #include "statics.h"
 #include "boost/filesystem.hpp"
-
+#include "QCloseEvent"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -123,9 +123,9 @@ MainWindow::MainWindow(QWidget *parent) :
     mode = "IDLE";
     input = "";
     camera_id = 1;
-    camera_speed = 4;
+    mtlog->camera_speed = 4;
 
-    ui->lbl_slider4->setText(QString::number(camera_speed));
+    ui->lbl_slider4->setText(QString::number(mtlog->camera_speed));
 
     ui->lbl_slider3->setText("-");
     ui->lbl_slider2->setText("-");
@@ -226,7 +226,7 @@ bool MainWindow::isusbconnected()
             item = a.toStdString();
             break;
         }
-        //std::cout<< "See : "<<a.toStdString() << std::endl;
+
     }
 
     if ( item != "")
@@ -400,7 +400,7 @@ void MainWindow::update_ui()
         ui->lst_clients->addItem(list_tcpclientslist.at(i).c_str());
     }
 
-    QFileInfo info("data.db");
+    QFileInfo info("/home/pi/database/data.db");
     long size = info.size() / 1000;
     QString _size = QString::number(size) + "Kb";
     ui->lbl_db_size->setText(_size);
@@ -418,15 +418,17 @@ void MainWindow::update_ui()
     ui->lbl_controller_model->setText(mtlog->controller_model.c_str());
 
     ui->lbl_HID->setText(HID.c_str());
-    //std::cout<<"called"<<std::endl;
 
+
+    ui->lbl_cameraspeed->setText(QString::number(mtlog->camera_speed));
+    ui->lbl_volume->setText(QString::number(mtlog->speaker_volume));
 
 }
 
 int update_counter;
 void MainWindow::TimerEvent()
 {
-    //std::cout << "Timer expired." << std::endl;
+
     timer_tick_counter++;
     if ( timer_tick_counter > 6)
     {
@@ -571,11 +573,6 @@ void MainWindow::on_btn_playstop_clicked()
     ui->btn_playstop->hide();
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    send_buffer = "send";
-}
-
 void MainWindow::on_lst_folder_info_itemClicked(QListWidgetItem *item)
 {
     std::string item_path = usb_storage_path  + (item->text()).toStdString();
@@ -583,10 +580,7 @@ void MainWindow::on_lst_folder_info_itemClicked(QListWidgetItem *item)
     ui->txt_recname->setText(item_path.c_str());
 }
 
-void MainWindow::on_btn_playpause_clicked()
-{
 
-}
 
 void MainWindow::on_btn_login_clicked()
 {
@@ -737,6 +731,11 @@ void MainWindow::on_s3_clicked()
         input += "3";
     }
     update_ui();
+}
+
+void MainWindow::closeEvent(QCloseEvent * event)
+{
+   event->ignore();
 }
 
 void MainWindow::on_s4_clicked()
@@ -1095,7 +1094,7 @@ void MainWindow::on_slider1_sliderReleased()
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
@@ -1113,7 +1112,7 @@ void MainWindow::on_slider2_sliderReleased()
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
@@ -1131,7 +1130,7 @@ void MainWindow::on_slider3_sliderReleased()
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
@@ -1159,9 +1158,9 @@ void MainWindow::on_slider3_valueChanged(int value)
 
 void MainWindow::on_slider4_valueChanged(int value)
 {
-    value = (0.23333333) * value;
-    camera_speed = 7 - value;
-    ui->lbl_slider4->setText(QString::number(camera_speed));
+    value = (0.26666666) * value; //1-8
+    mtlog->camera_speed = 8 - value;
+    ui->lbl_slider4->setText(QString::number(mtlog->camera_speed));
 }
 
 void MainWindow::on_d1_pressed()
@@ -1268,8 +1267,6 @@ void MainWindow::on_btn_change_admin_clicked()
        return;
    }
 
-
-
    if ( pass == mtlog->admin_pass || pass == mtlog->superuser_pass)
    {
        if ( newp == confirmp)
@@ -1295,15 +1292,7 @@ void MainWindow::on_btn_change_admin_clicked()
    }
 }
 
-void MainWindow::on_btn_change_user_clicked()
-{
 
-}
-
-void MainWindow::on_pushButton_2_clicked()
-{
-
-}
 
 void MainWindow::on_btn_refresh_clicked()
 {
@@ -1414,7 +1403,6 @@ void MainWindow::on_btn_mic_set_clicked()
        cmd.append("0:0.0)");
     }
 
-    std::cout<<"Send"<<std::endl;
     mtserial->send(cmd);
 
 }
@@ -1469,28 +1457,12 @@ void MainWindow::on_btn_today_clicked()
 
 void MainWindow::on_Knob_valueChanged(double value)
 {
+    mtlog->speaker_volume = value;
     int val = (value * 10);
-    std::cout<<"value :"<<val<<std::endl;
+
     std::string _val = QString::number(val).toStdString() + "%";
-
     volume_process->start("amixer",QStringList() << "sset" << "Master" <<  _val.c_str());
-    volume_process->waitForFinished();
-
-    std::cout<< volume_process->exitCode()<<std::endl;
-
-
-}
-
-void MainWindow::on_Knob_sliderMoved(double value)
-{
-    //int val = value;
-    //std::cout<<"slider :"<<val<<std::endl;
-
-}
-
-void MainWindow::on_pushButton_10_clicked()
-{
-
+    volume_process->waitForFinished(); 
 }
 
 void MainWindow::update_table()
@@ -1521,7 +1493,6 @@ void MainWindow::update_table()
 
 void MainWindow::update_chart()
 {
-   //std::cout<<"update chart for :"<<chart_numbers[0]<<" "<<chart_numbers[1]<<" "<<chart_numbers[2]<<" "<<chart_numbers[3]<<" "<<chart_numbers[4]<<std::endl;
    int total = 0;
    int max_number = 0;
 
@@ -1670,16 +1641,6 @@ void MainWindow::on_btn_vote1_clicked()
     update_table();
 }
 
-void MainWindow::on_rad_chart_rate_clicked()
-{
-   update_chart();
-}
-
-void MainWindow::on_rad_chart_number_clicked()
-{
-   update_chart();
-}
-
 void MainWindow::on_btn_vote2_clicked()
 {
 
@@ -1789,7 +1750,7 @@ void MainWindow::on_slider1_sliderPressed()
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
@@ -1804,7 +1765,7 @@ void MainWindow::on_slider1_sliderMoved(int position)
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     if ( value >= 0 && value <= 10  )
@@ -1836,7 +1797,7 @@ void MainWindow::on_slider2_sliderMoved(int position)
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     if ( value >= 0 && value <= 10 )
@@ -1872,13 +1833,13 @@ bool MainWindow::eventFilter(QObject *o, QEvent *e)
 void MainWindow::on_slider3_sliderMoved(int position)
 {
     slider3_active = true;
-      int value = position;
+    int value = position;
     camera_loop_mode = true;
 
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     if (value >= 0 && value <= 10)
@@ -1916,7 +1877,7 @@ void MainWindow::on_slider2_sliderPressed()
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
@@ -1926,14 +1887,30 @@ void MainWindow::on_slider3_sliderPressed()
 {
     ui->slider3->setValue(15);
     ui->slider3->setSliderPosition(15);
-     ui->lbl_slider3->setText("-");
+    ui->lbl_slider3->setText("-");
     camera_stop_iris = true;
     camera_loop_mode = false;
     QString num1 = QString::number(camera_id);
     std::string _num1 = num1.toStdString();
 
-    QString num2 = QString::number(camera_speed);
+    QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
+}
+
+void MainWindow::on_btn_save_serial_clicked()
+{
+
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QApplication::quit();
+
 }

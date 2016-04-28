@@ -30,7 +30,7 @@ void serialthread::process()
     if (get_str == "\r") return;
     if (get_str == "\n") return;
 
-    std::cout<<"Serial Get :"<<get_str<<std::endl;
+
 }
 
 void serialthread::run()
@@ -78,20 +78,23 @@ void serialthread::run()
 
 bool serialthread::open()
 {
-    qDebug("Serial Interface Started");
+    mtlog->insert_log("Usbserial","Serial Interface Started","INFO");
+
     active = false;
     device_id = -1;
 
 
     device_id = serialOpen(port_name.c_str(),baudrate);
-    std::cout<<"SerialOpen ? "<<device_id<<std::endl;
+
     if ( device_id > 0 )
     {
+        mtlog->insert_log("Usbserial","Serial Interface OK","INFO");
         active = true;
         return true;
     }
     else
     {
+        mtlog->insert_log("Usbserial","Serial Interface Open Failed","ERROR");
         active = false;
         return false;
     }

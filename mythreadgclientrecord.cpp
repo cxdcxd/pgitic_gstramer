@@ -4,7 +4,7 @@
 mythreadgclientrecord::mythreadgclientrecord(QObject *parent) :
     QThread(parent)
 {
-    printf("Client Thread RUN\n");
+
     mgclient = new mygclientrecord();
     active = false;
 }

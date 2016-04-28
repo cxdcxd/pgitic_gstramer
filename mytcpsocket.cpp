@@ -18,9 +18,6 @@ MyTcpSocket::MyTcpSocket(QObject *parent) :
 void MyTcpSocket::doConnect(MyGpio &xb)
 {
     gpiooo = &xb;
-
-    qDebug() << "connecting  loop started ...";
-
     gpiooo->info_mode = 0;
 
     QString _port = mtlog->remote_port.c_str();
@@ -28,7 +25,6 @@ void MyTcpSocket::doConnect(MyGpio &xb)
 
     if(!socket->waitForConnected(5000))
     {
-        qDebug() << "Error: " << socket->errorString();
         gpiooo->info_mode = 2;
     }
 
@@ -43,19 +39,19 @@ void MyTcpSocket::mainwrite(QByteArray buf, qint64 len)
 
 void MyTcpSocket::connected()
 {
-    qDebug() << "connected...";
 
-    //socket->write("Hello From PGITIC rasberrypi :)");
+
+
 }
 
 void MyTcpSocket::disconnected()
 {
-   qDebug() << "disconnected...";
+
 }
 
 void MyTcpSocket::bytesWritten(qint64 bytes)
 {
-    qDebug() << bytes << " bytes written... ";
+    //qDebug() << bytes << " bytes written... ";
 }
 
 

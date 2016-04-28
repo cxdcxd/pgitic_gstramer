@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 27 10:17:59 2016
+** Created: Thu Apr 28 09:30:23 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -269,6 +269,7 @@ public:
     QComboBox *cmb_serial2;
     QTextEdit *txt_baudrate2;
     QLabel *label_55;
+    QPushButton *btn_save_serial;
     QWidget *tab_5;
     QListWidget *lst_log;
     QLabel *label_4;
@@ -298,6 +299,7 @@ public:
     QLabel *label_7;
     QLabel *label_40;
     QLabel *label_41;
+    QPushButton *pushButton;
     QFrame *frame_2;
     QLabel *label_5;
     QLabel *txt_bar_info;
@@ -767,7 +769,7 @@ public:
         groupBox_3->setCheckable(false);
         txt_Mmicnum = new QLabel(groupBox_3);
         txt_Mmicnum->setObjectName(QString::fromUtf8("txt_Mmicnum"));
-        txt_Mmicnum->setGeometry(QRect(450, 70, 71, 16));
+        txt_Mmicnum->setGeometry(QRect(460, 70, 71, 16));
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
@@ -791,13 +793,13 @@ public:
         frame_9->setFrameShadow(QFrame::Raised);
         txt_Mtotalnum = new QLabel(groupBox_3);
         txt_Mtotalnum->setObjectName(QString::fromUtf8("txt_Mtotalnum"));
-        txt_Mtotalnum->setGeometry(QRect(320, 70, 71, 16));
+        txt_Mtotalnum->setGeometry(QRect(330, 70, 71, 16));
         txt_Mtotalnum->setFont(font);
         txt_Mtotalnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         frame_8 = new QFrame(groupBox_3);
         frame_8->setObjectName(QString::fromUtf8("frame_8"));
         frame_8->setGeometry(QRect(270, 40, 50, 50));
-        frame_8->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/nico/plug.png)  0 0 0 0 100 stretch;\n"
+        frame_8->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/nico/people.png)  0 0 0 0 100 stretch;\n"
 ""));
         frame_8->setFrameShape(QFrame::StyledPanel);
         frame_8->setFrameShadow(QFrame::Raised);
@@ -810,7 +812,7 @@ public:
         label_31->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         txt_Mcamnum = new QLabel(groupBox_3);
         txt_Mcamnum->setObjectName(QString::fromUtf8("txt_Mcamnum"));
-        txt_Mcamnum->setGeometry(QRect(180, 70, 61, 16));
+        txt_Mcamnum->setGeometry(QRect(190, 70, 61, 16));
         txt_Mcamnum->setFont(font);
         txt_Mcamnum->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_32 = new QLabel(groupBox_3);
@@ -1195,7 +1197,7 @@ public:
         frame_5 = new QFrame(tab_10);
         frame_5->setObjectName(QString::fromUtf8("frame_5"));
         frame_5->setGeometry(QRect(250, 30, 50, 50));
-        frame_5->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/nico/plug.png)  0 0 0 0 100 stretch;\n"
+        frame_5->setStyleSheet(QString::fromUtf8("border-image: url(:/new/images/Resource/nico/people.png)  0 0 0 0 100 stretch;\n"
 ""));
         frame_5->setFrameShape(QFrame::StyledPanel);
         frame_5->setFrameShadow(QFrame::Raised);
@@ -2208,6 +2210,9 @@ public:
         label_55 = new QLabel(groupBox_7);
         label_55->setObjectName(QString::fromUtf8("label_55"));
         label_55->setGeometry(QRect(30, 250, 121, 16));
+        btn_save_serial = new QPushButton(groupBox_7);
+        btn_save_serial->setObjectName(QString::fromUtf8("btn_save_serial"));
+        btn_save_serial->setGeometry(QRect(30, 290, 361, 25));
         tabWidget->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
@@ -2334,6 +2339,9 @@ public:
         label_41->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_41->setFrameShadow(QFrame::Plain);
         label_41->setAlignment(Qt::AlignCenter);
+        pushButton = new QPushButton(tab_6);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(1220, 10, 83, 25));
         tabWidget->addTab(tab_6, QString());
         frame_2 = new QFrame(centralwidget);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
@@ -2368,7 +2376,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(7);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(1);
@@ -2571,6 +2579,7 @@ public:
         label_53->setText(QApplication::translate("MainWindow", "VCU Interface :", 0, QApplication::UnicodeUTF8));
         label_54->setText(QApplication::translate("MainWindow", "Port Name :", 0, QApplication::UnicodeUTF8));
         label_55->setText(QApplication::translate("MainWindow", "Baud Rate :", 0, QApplication::UnicodeUTF8));
+        btn_save_serial->setText(QApplication::translate("MainWindow", "Save Settings", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "Settings", 0, QApplication::UnicodeUTF8));
         label_4->setText(QApplication::translate("MainWindow", "TCPServer : Connected Clients", 0, QApplication::UnicodeUTF8));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Log Settings", 0, QApplication::UnicodeUTF8));
@@ -2600,6 +2609,7 @@ public:
         label_7->setText(QApplication::translate("MainWindow", "PGITIC Co. 2005-2016 All Rights Reserved", 0, QApplication::UnicodeUTF8));
         label_40->setText(QApplication::translate("MainWindow", "Advanced Conference Managment System", 0, QApplication::UnicodeUTF8));
         label_41->setText(QApplication::translate("MainWindow", "v 1.0.0", 0, QApplication::UnicodeUTF8));
+        pushButton->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "PGITIC - Advanced Conference Managment System", 0, QApplication::UnicodeUTF8));
         txt_bar_info->setText(QApplication::translate("MainWindow", "Ready", 0, QApplication::UnicodeUTF8));

@@ -27,18 +27,25 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    mtlog = new pgiticlog();
+    mtlog->open();
+    mtlog->start();
+    mtlog->load_config();
+    mtlog->load_licenses();
+
     app_exit = false;
 
     MainWindow w;
+    w.setWindowFlags(Qt::WindowStaysOnTopHint);
     w.showFullScreen();
+
     //w.show();
 
     tcp_server_port = 3000;
     gst_init (0,0);
     audio_mode = "idle";
 
-    qDebug("PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )");
-
+    mtlog->insert_log("core","PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )","INFO");
     //===========================================================================================
     //Create gpio interface
     gpio = new MyGpio();
@@ -70,10 +77,6 @@ int main(int argc, char *argv[])
     mttcpserver = new MyServer();
     mttcpserver->startServer();
 
-    mtlog = new pgiticlog();
-    mtlog->start();
-    mtlog->load_config();
-    mtlog->load_licenses();
 
     //Create TCP/IP Client Connection Interface
     tcpsocket = new QThreadTCP();
@@ -82,10 +85,11 @@ int main(int argc, char *argv[])
 
     //Application Loop
     int exit_code = a.exec();
-    qDebug("PGITIC CORE DOWN");
+
+    mtlog->insert_log("core","PGITIC CORE DOWN","INFO");
 
     app_exit = true;
-    //Kill GPIO
+
     gpio->kill();
     return exit_code;
 }
