@@ -12,7 +12,7 @@
 #include "pgiticlog.h"
 #include "stdio.h"
 #include "iostream"
-
+#include "volumethread.h"
 
 //extern pgitic_log *mtlog;
 
@@ -30,6 +30,7 @@ extern MyGpio *gpio; //GPIO
 extern myMainThreadx *_mainthread; //Therad => mainthread
 extern QSet<QTcpSocket*> clients;
 
+
 extern std::string xcoutcolor0;
 extern std::string xcoutcolor_green;
 extern std::string xcoutcolor_red;
@@ -45,8 +46,8 @@ extern bool _lic4;
 extern QString send_buffer;
 extern std::string usb_storage_path;
 extern std::string audio_mode;
-extern int audio_max_seconds;
-extern int audio_current_second;
+extern gint64 audio_max_seconds;
+extern gint64 audio_current_second;
 extern std::string audio_info;
 extern bool isuserlogedin;
 
@@ -79,6 +80,9 @@ extern bool isusbconnected_bool;
 extern int tcp_server_port;
 extern bool app_exit;
 extern std::string HID;
+extern bool init_done;
+extern int speaker_volume_temp;
+
 
 
 

@@ -15,7 +15,6 @@
 //1,1 => add gui to application
 //1.2 => add gstreamer recording & playback
 
-
 #include <QApplication>
 #include <QTimer>
 #include "statics.h"
@@ -27,6 +26,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    init_done = false;
     mtlog = new pgiticlog();
     mtlog->open();
     mtlog->start();
@@ -37,16 +37,19 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.setWindowFlags(Qt::WindowStaysOnTopHint);
-    w.showFullScreen();
+    //w.showFullScreen();
 
-    //w.show();
+    w.show();
+
+    volumethread mtvolume;
+    mtvolume.start();
 
     tcp_server_port = 3000;
     gst_init (0,0);
     audio_mode = "idle";
 
     mtlog->insert_log("core","PGITIC CORE CONTROLLER STARTED DONE ( PGITIC - GStreamer v1.1 GUI )","INFO");
-    //===========================================================================================
+    //=========================================================================================================
     //Create gpio interface
     gpio = new MyGpio();
 
@@ -76,7 +79,6 @@ int main(int argc, char *argv[])
     //Create TCP/IP server
     mttcpserver = new MyServer();
     mttcpserver->startServer();
-
 
     //Create TCP/IP Client Connection Interface
     tcpsocket = new QThreadTCP();

@@ -24,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btn_recstop->hide();
     ui->btn_playstop->hide();
 
+
+    speaker_volume_temp = mtlog->speaker_volume;
+
     _maintimer = new QTimer(this);
     connect(_maintimer, SIGNAL(timeout()), this, SLOT(TimerEvent()));
     this->_maintimer->start(50);
@@ -86,9 +89,7 @@ MainWindow::MainWindow(QWidget *parent) :
     slider2_active = false;
     slider3_active = false;
 
-    volume_process = new QProcess();
-    volume_process->closeReadChannel(QProcess::StandardOutput);
-    volume_process->closeReadChannel(QProcess::StandardError);
+
 
     for ( int i = 1 ; i < 21 ; i++)
     {
@@ -123,9 +124,15 @@ MainWindow::MainWindow(QWidget *parent) :
     mode = "IDLE";
     input = "";
     camera_id = 1;
-    mtlog->camera_speed = 4;
 
+    ui->slider4->setValue( mtlog->camera_speed);
+    ui->slider4->setSliderPosition(mtlog->camera_speed);
     ui->lbl_slider4->setText(QString::number(mtlog->camera_speed));
+
+    ui->slider5->setValue(mtlog->speaker_volume / 2);
+    ui->slider5->setSliderPosition(mtlog->speaker_volume / 2);
+    std::string _val = QString::number(mtlog->speaker_volume).toStdString() + "%";
+    ui->lbl_slider5->setText(_val.c_str());
 
     ui->lbl_slider3->setText("-");
     ui->lbl_slider2->setText("-");
@@ -177,6 +184,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //   for ( int j = 0 ; j < list_controller_models.size() ; j++)
     //      ui->smodel->addItem(list_controller_models.at(j).c_str());
 
+    init_done = true;
 }
 
 MainWindow::~MainWindow()
@@ -216,32 +224,48 @@ bool MainWindow::isusbconnected()
 {
     QDir directory("/media/");
     QStringList txtFilesAndDirectories = directory.entryList();
-    std::string item = "";
+    std::string itemv = "";
+    bool valid = false;
 
     for ( int i =0 ; i < txtFilesAndDirectories.size() ; i++)
     {
         QString a = txtFilesAndDirectories.at(i);
         if ( a.size() > 2)
         {
-            item = a.toStdString();
+            itemv = a.toStdString();
+            valid = true;
             break;
         }
 
     }
 
-    if ( item != "")
-    {
-        //Check records folder is exist or not , if no create records folder
-        std::string filedir = "/media/" + item + "/records/";
-        if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
 
-        usb_storage_path = filedir;
-        return true;
+    if ( valid )
+    {
+        std::string filedir2 = "/media/" + itemv;
+       // std::cout<<filedir2<<std::endl;
+
+        if ( QDir(filedir2.c_str()).exists())
+        {
+            //Check records folder is exist or not , if no create records folder
+            std::string filedir = "/media/" + itemv + "/records/";
+            if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
+
+            usb_storage_path = filedir;
+
+           // std::cout<<usb_storage_path<<std::endl;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     else
     {
-        return false;
+         return false;
     }
+
 }
 
 void MainWindow::update_folder_content()
@@ -423,19 +447,30 @@ void MainWindow::update_ui()
     ui->lbl_cameraspeed->setText(QString::number(mtlog->camera_speed));
     ui->lbl_volume->setText(QString::number(mtlog->speaker_volume));
 
+    if ( audio_max_seconds != 0)
+    {
+        gint64 a = ((gdouble)(audio_current_second) / (audio_max_seconds)) * 100;
+        ui->progress_audio->setValue(a);
+    }
+    else
+    {
+        ui->progress_audio->setValue(0);
+    }
+
 }
 
 int update_counter;
+
+
 void MainWindow::TimerEvent()
 {
-
     timer_tick_counter++;
+
     if ( timer_tick_counter > 6)
     {
         timer_tick_counter=0;
-        update_ui();
+        update_ui(); 
     }
-
 
     //ignore user clicks
     if ( !slider1_active )
@@ -596,6 +631,19 @@ void MainWindow::on_btn_login_clicked()
        ui->txt_username->setText("");
        ui->txt_password->setText("");
        tcpsocket->set_camera_mode(true);
+
+       if ( ui->chm_remember->isChecked() )
+       {
+          mtlog->rememberme = true;
+       }
+       else
+       {
+           mtlog->rememberme = false;
+       }
+
+       ui->chm_remember->setChecked(false);
+
+       mtlog->save_config();
    }
    else
    {
@@ -1138,7 +1186,7 @@ void MainWindow::on_slider3_sliderReleased()
 
 void MainWindow::on_slider4_sliderReleased()
 {
-
+   mtlog->save_config();
 }
 
 void MainWindow::on_slider1_valueChanged(int value)
@@ -1158,9 +1206,13 @@ void MainWindow::on_slider3_valueChanged(int value)
 
 void MainWindow::on_slider4_valueChanged(int value)
 {
-    value = (0.26666666) * value; //1-8
-    mtlog->camera_speed = 8 - value;
+    if ( init_done )
+    {
+    //value = (0.26666666) * value; //1-8
+    mtlog->camera_speed = value;
     ui->lbl_slider4->setText(QString::number(mtlog->camera_speed));
+    //mtlog->save_config();
+    }
 }
 
 void MainWindow::on_d1_pressed()
@@ -1361,6 +1413,68 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
         if ( index != -1)
         ui->smodel->setCurrentIndex(index);
 
+        if ( arg1 == "Recording and Playback")
+        {
+            if ( _lic1)
+            {
+                ui->liclock_1->hide();
+            }
+            else
+            {
+                ui->liclock_1->show();
+            }
+        }
+
+        if ( arg1 == "Camera Control DCU" )
+        {
+
+            if (_lic3)
+            {
+                ui->liclock_2->hide();
+
+                std::cout<<mtlog->rememberme<<std::endl;
+
+                if ( mtlog->rememberme )
+                {
+                    ui->frm_lock->hide();
+                    ui->txt_username->setText("");
+                    ui->txt_password->setText("");
+                    tcpsocket->set_camera_mode(true);
+                    std::cout<<"ok"<<std::endl;
+                }
+            }
+            else
+            {
+                ui->liclock_2->show();
+            }
+        }
+
+        if ( arg1 == "Michrophones")
+        {
+            if ( _lic2)
+            {
+                ui->liclock_3->hide();
+            }
+            else
+            {
+                ui->liclock_3->show();
+            }
+        }
+
+        if ( arg1 == "Voting System")
+        {
+            if (_lic4)
+            {
+                ui->liclock_4->hide();
+            }
+            else
+            {
+                ui->liclock_4->show();
+            }
+        }
+
+
+
 }
 
 void MainWindow::on_btn_logout_clicked()
@@ -1368,6 +1482,10 @@ void MainWindow::on_btn_logout_clicked()
     ui->frm_lock->show();
     bar_info = "Logged Out ! ";
     tcpsocket->set_camera_mode(false);
+
+    mtlog->rememberme = false;
+    ui->chm_remember->setChecked(false);
+    mtlog->save_config();
 }
 
 void MainWindow::on_btn_mic_set_clicked()
@@ -1457,12 +1575,7 @@ void MainWindow::on_btn_today_clicked()
 
 void MainWindow::on_Knob_valueChanged(double value)
 {
-    mtlog->speaker_volume = value;
-    int val = (value * 10);
 
-    std::string _val = QString::number(val).toStdString() + "%";
-    volume_process->start("amixer",QStringList() << "sset" << "Master" <<  _val.c_str());
-    volume_process->waitForFinished(); 
 }
 
 void MainWindow::update_table()
@@ -1912,5 +2025,22 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 void MainWindow::on_pushButton_clicked()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_slider5_valueChanged(int value)
+{
+    int val = value * 2;
+    std::string _val = QString::number(val).toStdString() + "%";
+    speaker_volume_temp = val;
+    ui->lbl_slider5->setText(_val.c_str());
+}
+
+void MainWindow::on_slider5_sliderReleased()
+{
+
+}
+
+void MainWindow::on_slider5_sliderMoved(int position)
+{
 
 }

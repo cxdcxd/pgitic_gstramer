@@ -456,7 +456,7 @@ QTabBar::tab:!selected:hover
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_13">
      <attribute name="title">
@@ -1235,7 +1235,7 @@ url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
       <widget class="QLabel" name="label_59">
        <property name="geometry">
         <rect>
-         <x>740</x>
+         <x>840</x>
          <y>320</y>
          <width>101</width>
          <height>16</height>
@@ -1261,7 +1261,7 @@ url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
       <widget class="QFrame" name="img_lic2">
        <property name="geometry">
         <rect>
-         <x>780</x>
+         <x>880</x>
          <y>280</y>
          <width>31</width>
          <height>31</height>
@@ -1282,7 +1282,7 @@ url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
       <widget class="QFrame" name="img_lic3">
        <property name="geometry">
         <rect>
-         <x>880</x>
+         <x>760</x>
          <y>280</y>
          <width>31</width>
          <height>31</height>
@@ -1303,7 +1303,7 @@ url(:/new/images/Resource/nico/error.png)  0 0 0 0 100 stretch;
       <widget class="QLabel" name="label_60">
        <property name="geometry">
         <rect>
-         <x>860</x>
+         <x>740</x>
          <y>320</y>
          <width>71</width>
          <height>16</height>
@@ -1583,7 +1583,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>800</x>
-        <y>190</y>
+        <y>200</y>
         <width>64</width>
         <height>64</height>
        </rect>
@@ -1643,7 +1643,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>800</x>
-        <y>190</y>
+        <y>200</y>
         <width>64</width>
         <height>64</height>
        </rect>
@@ -1705,7 +1705,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>370</x>
-        <y>280</y>
+        <y>220</y>
         <width>121</width>
         <height>16</height>
        </rect>
@@ -1718,28 +1718,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QwtKnob" name="Knob">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>270</y>
-        <width>121</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="knobWidth">
-       <number>60</number>
-      </property>
-      <property name="borderWidth">
-       <number>3</number>
-      </property>
-      <property name="symbol">
-       <enum>QwtKnob::Dot</enum>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_info">
@@ -1770,6 +1748,112 @@ p, li { white-space: pre-wrap; }
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QLabel" name="lbl_slider5">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>240</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+</string>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QScrollBar" name="slider5">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>240</y>
+        <width>211</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="singleStep">
+       <number>2</number>
+      </property>
+      <property name="value">
+       <number>10</number>
+      </property>
+      <property name="sliderPosition">
+       <number>10</number>
+      </property>
+      <property name="tracking">
+       <bool>true</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedControls">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QFrame" name="liclock_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1301</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <widget class="QLabel" name="label_62">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>200</y>
+         <width>481</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>License is not active !</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_8">
@@ -3466,10 +3550,10 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>30</number>
+         <number>8</number>
         </property>
         <property name="value">
-         <number>15</number>
+         <number>8</number>
         </property>
         <property name="tracking">
          <bool>true</bool>
@@ -3477,8 +3561,11 @@ url(:/new/images/Resource/Dcu/wific1.png)  0 0 0 0 100 stretch;
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="invertedControls">
+        <property name="invertedAppearance">
          <bool>true</bool>
+        </property>
+        <property name="invertedControls">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_slider4">
@@ -3561,6 +3648,48 @@ background-color: rgb(0, 0, 0);</string>
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <widget class="QFrame" name="liclock_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1351</width>
+          <height>561</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <widget class="QLabel" name="label_63">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>200</y>
+           <width>481</width>
+           <height>91</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>License is not active !</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
        <zorder>graphicsView</zorder>
        <zorder>lbl_slider1</zorder>
        <zorder>lbl_slider2</zorder>
@@ -3626,6 +3755,7 @@ background-color: rgb(0, 0, 0);</string>
        <zorder>frm_lock</zorder>
        <zorder>label_14</zorder>
        <zorder>status</zorder>
+       <zorder>liclock_2</zorder>
       </widget>
      </widget>
      <widget class="QFrame" name="frame_15">
@@ -3857,6 +3987,48 @@ background-color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>Set</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="liclock_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1301</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <widget class="QLabel" name="label_66">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>200</y>
+         <width>481</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>License is not active !</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
@@ -4752,6 +4924,48 @@ background-color: rgb(255, 255, 255);</string>
        <string>Quantity</string>
       </property>
      </widget>
+     <widget class="QFrame" name="liclock_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1301</width>
+        <height>631</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <widget class="QLabel" name="label_65">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>200</y>
+         <width>481</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>License is not active !</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -4763,7 +4977,7 @@ background-color: rgb(255, 255, 255);</string>
         <x>20</x>
         <y>20</y>
         <width>581</width>
-        <height>331</height>
+        <height>541</height>
        </rect>
       </property>
       <property name="font">
@@ -5050,9 +5264,9 @@ color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="btn_save">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>290</y>
-         <width>541</width>
+         <x>30</x>
+         <y>500</y>
+         <width>531</width>
          <height>25</height>
         </rect>
        </property>
@@ -5147,70 +5361,11 @@ color: rgb(0, 0, 0);</string>
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_7">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>20</y>
-        <width>411</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="title">
-       <string>USB/Serial Settings</string>
-      </property>
-      <widget class="QLabel" name="label_25">
+      <widget class="QLabel" name="label_55">
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MCU Interface :</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="cmb_serial1">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>80</y>
-         <width>361</width>
-         <height>24</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_26">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>60</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Port Name :</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_27">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>110</y>
+         <y>460</y>
          <width>121</width>
          <height>16</height>
         </rect>
@@ -5219,47 +5374,44 @@ color: rgb(0, 0, 0);</string>
         <string>Baud Rate :</string>
        </property>
       </widget>
-      <widget class="QTextEdit" name="txt_baudrate1">
+      <widget class="QTextEdit" name="txt_baudrate2">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>110</y>
+         <x>450</x>
+         <y>460</y>
          <width>111</width>
          <height>31</height>
         </rect>
-       </property>
-      </widget>
-      <widget class="Line" name="line">
-       <property name="geometry">
-        <rect>
-         <x>27</x>
-         <y>150</y>
-         <width>361</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
       <widget class="QLabel" name="label_53">
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>170</y>
-         <width>121</width>
+         <y>410</y>
+         <width>101</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>VCU Interface :</string>
+        <string>VCU Interface |</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_54">
+      <widget class="QTextEdit" name="txt_baudrate1">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>200</y>
+         <x>450</x>
+         <y>350</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_26">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>300</y>
          <width>121</width>
          <height>16</height>
         </rect>
@@ -5272,27 +5424,27 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>220</y>
-         <width>361</width>
+         <y>430</y>
+         <width>531</width>
          <height>24</height>
         </rect>
        </property>
       </widget>
-      <widget class="QTextEdit" name="txt_baudrate2">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>250</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_55">
+      <widget class="QComboBox" name="cmb_serial1">
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>250</y>
+         <y>320</y>
+         <width>531</width>
+         <height>24</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>350</y>
          <width>121</width>
          <height>16</height>
         </rect>
@@ -5301,17 +5453,43 @@ color: rgb(0, 0, 0);</string>
         <string>Baud Rate :</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_save_serial">
+      <widget class="QLabel" name="label_54">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>290</y>
-         <width>361</width>
-         <height>25</height>
+         <x>130</x>
+         <y>410</y>
+         <width>121</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>Save Settings</string>
+        <string>Port Name :</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>300</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>MCU Interface | </string>
+       </property>
+      </widget>
+      <widget class="Line" name="line">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>390</y>
+         <width>531</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </widget>
@@ -5900,11 +6078,6 @@ background-color: rgb(95, 95, 95);</string>
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QwtKnob</class>
-   <extends>QWidget</extends>
-   <header>qwt_knob.h</header>
-  </customwidget>
   <customwidget>
    <class>QwtThermo</class>
    <extends>QWidget</extends>

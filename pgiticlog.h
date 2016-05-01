@@ -43,10 +43,7 @@ public:
     int speaker_volume;
     std::string superuser_pass;
 
-    bool license_recordplayback;
-    bool license_vote;
-    bool license_cdu;
-    bool license_michrophone;
+
     bool rememberme;
 
    std::string serial1_name;

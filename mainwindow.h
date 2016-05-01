@@ -32,12 +32,11 @@ public:
     void update_chart();
     void update_table();
 
-
     int chart_numbers[5];
     float chart_rates[5];
-    int chart_max ;
+    int chart_max;
     std::string chart_names[5];
-    int chart_mode ;
+    int chart_mode;
 
     QPixmap *pic_cam_10;
     QPixmap *pic_cam_20;
@@ -83,7 +82,6 @@ public:
     bool slider3_active;
 
 
-    QProcess *volume_process;
 
 
 private slots:
@@ -294,6 +292,12 @@ private slots:
     void on_tabWidget_currentChanged(int index);
 
     void on_pushButton_clicked();
+
+    void on_slider5_valueChanged(int value);
+
+    void on_slider5_sliderReleased();
+
+    void on_slider5_sliderMoved(int position);
 
 private:
     Ui::MainWindow *ui;

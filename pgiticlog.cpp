@@ -117,7 +117,6 @@ bool pgiticlog::save_config()
     command.append(", cameraspeed = ")       ; command.append(_camera_speed);
     command.append(", volume = ")            ; command.append(_speaker_volume);
     command.append(", rememberme = ")        ; command.append(_rememberme);
-
     command.append(", serial1name = ")        ; command.append(_serial1_name);
     command.append(", serial2name = ")        ; command.append(_serial2_name);
     command.append(", serial3name = ")        ; command.append(_serial3_name);
@@ -129,7 +128,7 @@ bool pgiticlog::save_config()
     command.append(" WHERE id = 1" );
 
 
-     mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
+    // mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
 
     qry.prepare(command.c_str());
 
@@ -250,7 +249,19 @@ void pgiticlog::load_config()
             user_pass = query.value(9).toString().toStdString();
             controller_model = query.value(10).toString().toStdString();
             camera_model = query.value(11).toString().toStdString();
+            camera_speed = query.value(12).toInt();
+            speaker_volume = query.value(13).toInt();
+            rememberme = query.value(14).toBool();
+            superuser_pass = query.value(15).toString().toStdString();
+            serial1_name = query.value(16).toString().toStdString();
+            serial1_baud = query.value(17).toInt();
+            serial2_name = query.value(18).toString().toStdString();
+            serial2_baud = query.value(19).toInt();
+            serial3_name = query.value(20).toString().toStdString();
+            serial3_baud = query.value(21).toInt();
             mtlog->insert_log("pgiticlog","Config loaded done","DEBUG");
+
+
         }
 
     }

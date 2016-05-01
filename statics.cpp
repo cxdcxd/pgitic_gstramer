@@ -11,6 +11,7 @@ MyServer *mttcpserver;
 serialthread *mtserial;
 serialthread *mtserial2;
 
+
 std::string xcoutcolor0 = "\033[0;0m";
 std::string xcoutcolor_red = "\033[0;31m";
 std::string xcoutcolor_green = "\033[0;32m";
@@ -23,8 +24,8 @@ QString send_buffer;
 std::string usb_storage_path;
 std::string audio_mode;
 
-int audio_max_seconds;
-int audio_current_second;
+gint64 audio_max_seconds;
+gint64 audio_current_second;
 std::string audio_info;
 bool isuserlogedin;
 //pgitic_log *mtlog;
@@ -56,11 +57,13 @@ bool isusbconnected_bool;
 int tcp_server_port;
 bool app_exit;
 std::string HID;
+bool _lic1;
+bool _lic2;
+bool _lic3;
+bool _lic4;
+bool init_done;
+int speaker_volume_temp;
 
- bool _lic1;
- bool _lic2;
- bool _lic3;
- bool _lic4;
 
 
 

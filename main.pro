@@ -48,7 +48,8 @@ SOURCES += main.cpp \
     pgiticlog.cpp \
     joystickscene.cpp \
     serialthread.cpp \
-    aes.cpp
+    aes.cpp \
+    volumethread.cpp
 
 HEADERS += \
     mygpio.h \
@@ -66,7 +67,8 @@ HEADERS += \
     pgiticlog.h \
     joystickscene.h \
     serialthread.h \
-    aes.h
+    aes.h \
+    volumethread.h
 
 FORMS += \
     mainwindow.ui

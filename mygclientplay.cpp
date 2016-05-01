@@ -31,10 +31,10 @@ cb_print_position (GstElement *pipeline)
   GstFormat c = GST_FORMAT_TIME;
 
   if (gst_element_query_position (pipeline,&c, &pos)
-    && gst_element_query_duration (pipeline, &c, &len)) {
-//   g_print ("Time: %" GST_TIME_FORMAT " / %" GST_TIME_FORMAT "\r",
-//         GST_TIME_ARGS (pos), GST_TIME_ARGS (len));
+    && gst_element_query_duration (pipeline, &c, &len))
+  {
 
+        //g_print ("Time: %" GST_TIME_FORMAT " / %" GST_TIME_FORMAT "\r",GST_TIME_ARGS (pos), GST_TIME_ARGS (len));
 
          char buff[100];
         snprintf(buff, sizeof(buff), "%" GST_TIME_FORMAT "", GST_TIME_ARGS (pos));
@@ -43,10 +43,11 @@ cb_print_position (GstElement *pipeline)
 
         audio_info = buffAsStdStr;
 
-        audio_current_second = GST_TIME_ARGS (pos);
-        audio_max_seconds = GST_TIME_ARGS (len);
+        audio_current_second = pos;
+        audio_max_seconds = len;
 
-        //std::cout<<audio_current_second<<" "<< audio_max_seconds <<std::endl;
+
+       // std::cout<<pos<<" "<< len<<" "<<a <<std::endl;
   }
 
   /* call me again */
@@ -56,7 +57,8 @@ cb_print_position (GstElement *pipeline)
 
 void mygclientplay::play_start(std::string filename)
 {
-
+    audio_current_second = 0;
+    audio_max_seconds = 0;
     //==========================================================================
     /* Initialisation */
     loop = g_main_loop_new (NULL, FALSE);
@@ -130,6 +132,8 @@ void mygclientplay::play_stop()
     //g_source_remove (bus_watch_id);
     g_main_loop_unref (loop);
 
+    audio_current_second = 0;
+    audio_max_seconds = 0;
     //==========================================================================
     mtlog->insert_log("gclientplay","PGITIC - Gstreamer Interface Finished","INFO");
 
@@ -137,6 +141,9 @@ void mygclientplay::play_stop()
 
 void mygclientplay::start()
 {
+    audio_current_second = 0;
+    audio_max_seconds = 0;
+
     app_exited = false;
      mtlog->insert_log("gclientplay","PGITIC - Gstreamer Interface Started","INFO");
 
