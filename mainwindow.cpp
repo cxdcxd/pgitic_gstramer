@@ -9,12 +9,16 @@
 #include "statics.h"
 #include "boost/filesystem.hpp"
 #include "QCloseEvent"
+#include "QRect"
+#include "QDesktopWidget"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    isresize_ui = false;
 
     joyscene = new joystickscene(ui->view_joystick);
     ui->view_joystick->setScene(joyscene);
@@ -30,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     _maintimer = new QTimer(this);
     connect(_maintimer, SIGNAL(timeout()), this, SLOT(TimerEvent()));
     this->_maintimer->start(50);
+
+    ui->tabWidget->setCurrentIndex(0);
 
     pic_cam_10 = new QPixmap(":/new/images/Resource/Dcu/dcu_cam1_0");
     pic_cam_20 = new QPixmap(":/new/images/Resource/Dcu/dcu_cam2_0");
@@ -89,7 +95,7 @@ MainWindow::MainWindow(QWidget *parent) :
     slider2_active = false;
     slider3_active = false;
 
-
+    audio_info = "0:00:00";
 
     for ( int i = 1 ; i < 21 ; i++)
     {
@@ -220,6 +226,37 @@ void MainWindow::on_btn_recstart_clicked()
     mtgclientrecord->recorde_start(item.toStdString());
 }
 
+int old_serials = 0;
+
+void MainWindow::update_serial_ports()
+{
+    QDir directory("/dev/serial/by-id/");
+    QStringList txtFilesAndDirectories = directory.entryList();
+
+    int serial_detected = txtFilesAndDirectories.size() - 2;
+
+    if ( serial_detected != old_serials )
+    {
+        ui->cmb_serial1->clear();
+        ui->cmb_serial2->clear();
+        list_serials.clear();
+
+        for ( int i = 0 ; i < txtFilesAndDirectories.size() ; i++ )
+        {
+            QString a = txtFilesAndDirectories.at(i);
+
+            if ( a.size() > 2)
+            {
+            ui->cmb_serial1->addItem(a);
+            ui->cmb_serial2->addItem(a);
+            list_serials.push_back(a.toStdString());
+            }
+        }
+
+        old_serials = serial_detected;
+    }
+}
+
 bool MainWindow::isusbconnected()
 {
     QDir directory("/media/");
@@ -268,6 +305,36 @@ bool MainWindow::isusbconnected()
 
 }
 
+
+void MainWindow::resize_ui()
+{
+    QRect rec = QApplication::desktop()->screenGeometry();
+    int w = rec.width() - 40;
+    int h = rec.height();
+    int offset = ui->tabWidget->geometry().x();
+
+    ui->tabWidget->setGeometry(ui->tabWidget->geometry().x(),ui->tabWidget->geometry().y(),w,ui->tabWidget->geometry().height());
+    ui->tabWidget_2->setGeometry(ui->tabWidget_2->geometry().x(),ui->tabWidget_2->geometry().y(),w-20,ui->tabWidget_2->geometry().height());
+
+
+
+    ui->mid_1->setGeometry(  (w / 2) - (ui->mid_1->geometry().width() / 2) ,ui->mid_1->geometry().y(),ui->mid_1->geometry().width(),ui->mid_1->geometry().height());
+    ui->mid_2->setGeometry(  (w / 2) - (ui->mid_2->geometry().width() / 2) ,ui->mid_2->geometry().y(),ui->mid_2->geometry().width(),ui->mid_2->geometry().height());
+    ui->mid_3->setGeometry(  (w / 2) - ((w-20) / 2) ,ui->mid_3->geometry().y(),w - 20,ui->mid_3->geometry().height());
+    ui->mid_4->setGeometry(  (w / 2) - (ui->mid_4->geometry().width() / 2) ,ui->mid_4->geometry().y(),ui->mid_4->geometry().width(),ui->mid_4->geometry().height());
+    ui->mid_5->setGeometry(  (w / 2) - (ui->mid_5->geometry().width() / 2) ,ui->mid_5->geometry().y(),ui->mid_5->geometry().width(),ui->mid_5->geometry().height());
+    ui->mid_6->setGeometry(  (w / 2) - (ui->mid_6->geometry().width() / 2) ,ui->mid_6->geometry().y(),ui->mid_6->geometry().width(),ui->mid_6->geometry().height());
+    ui->mid_7->setGeometry(  (w / 2) - (ui->mid_7->geometry().width() / 2) ,ui->mid_7->geometry().y(),ui->mid_7->geometry().width(),ui->mid_7->geometry().height());
+    ui->mid_11->setGeometry( -10 + (w / 2) - (ui->mid_11->geometry().width() / 2) ,ui->mid_11->geometry().y(),ui->mid_11->geometry().width(),ui->mid_11->geometry().height());
+
+    ui->mid_13->setGeometry( -10 + (w / 2) - (ui->mid_13->geometry().width() / 2) ,ui->mid_13->geometry().y(),ui->mid_13->geometry().width(),ui->mid_13->geometry().height());
+    ui->mid_14->setGeometry( -10 + (w / 2) - (ui->mid_14->geometry().width() / 2) ,ui->mid_14->geometry().y(),ui->mid_14->geometry().width(),ui->mid_14->geometry().height());
+
+    ui->groupBox_5->setGeometry(-5 + (w / 2) - (ui->groupBox_5->geometry().width() / 2) ,ui->groupBox_5->geometry().y(),ui->groupBox_5->geometry().width(),ui->groupBox_5->geometry().height());
+    ui->tabWidget_4->setGeometry(  (w / 2) - (ui->tabWidget_4->geometry().width() / 2) ,ui->tabWidget_4->geometry().y(),ui->tabWidget_4->geometry().width(),ui->tabWidget_4->geometry().height());
+    //ui->mid_8->setGeometry( (w / 2) - (ui->mid_8->geometry().width() / 2) ,ui->mid_8->geometry().y(),ui->mid_8->geometry().width(),ui->mid_8->geometry().height());
+}
+
 void MainWindow::update_folder_content()
 {
     ui->lst_folder_info->clear();
@@ -297,6 +364,8 @@ void MainWindow::update_ui()
             update_folder_content();
             usbstatus_changed = true;
         }
+
+
     }
     else
     {
@@ -401,6 +470,7 @@ void MainWindow::update_ui()
 
     int index = item.indexOf(".",0);
     QString subString = item.mid(0,index);
+    subString = "0" + subString;
     ui->lbl_info->setText(subString.toStdString().c_str());
 
 
@@ -457,6 +527,8 @@ void MainWindow::update_ui()
         ui->progress_audio->setValue(0);
     }
 
+     update_serial_ports();
+
 }
 
 int update_counter;
@@ -466,10 +538,17 @@ void MainWindow::TimerEvent()
 {
     timer_tick_counter++;
 
+
     if ( timer_tick_counter > 6)
     {
         timer_tick_counter=0;
-        update_ui(); 
+        update_ui();
+
+        if ( isresize_ui == false )
+        {
+            isresize_ui = true;
+            resize_ui();
+        }
     }
 
     //ignore user clicks
@@ -590,6 +669,7 @@ void MainWindow::on_btn_recstop_clicked()
     ui->btn_recstart->show();
     mtgclientrecord->recorde_stop();
     usbstatus_changed = false;
+     audio_info = "0:00:00";
 }
 
 void MainWindow::on_btn_playstart_clicked()
@@ -606,6 +686,8 @@ void MainWindow::on_btn_playstop_clicked()
 
     ui->btn_playstart->show();
     ui->btn_playstop->hide();
+
+    audio_info = "0:00:00";
 }
 
 void MainWindow::on_lst_folder_info_itemClicked(QListWidgetItem *item)
@@ -1283,6 +1365,7 @@ void MainWindow::on_btn_save_clicked()
  mtlog->camera_model = ui->cmodel->currentText().toStdString();
  mtlog->controller_model = ui->smodel->currentText().toStdString();
 
+
   bool r = mtlog->save_config();
   if ( r )
   {
@@ -1357,9 +1440,32 @@ void MainWindow::on_btn_refresh_clicked()
     QDateTime _from = ui->dt_from->dateTime();
     QDateTime _to = ui->dt_to->dateTime();
 
-    if ( _sender != "")
+    QString date_1 = _from.toString("yyyy-MM-dd HH:mm:ss");
+    QString date_2 = _to.toString("yyyy-MM-dd HH:mm:ss");
+
+    bool c1 = ui->chk_1->isChecked();
+
+    if ( c1 == false )
     {
-        msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "'";
+            if ( _sender != "")
+            {
+                msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "'";
+            }
+            else
+            {
+                msg = "SELECT * FROM log Where type ='" + _type + "'";
+            }
+    }
+    else
+    {
+        if ( _sender != "")
+        {
+            msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
+        }
+        else
+        {
+            msg = "SELECT * FROM log Where type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
+        }
     }
 
     std::vector<std::string> data =  mtlog->get_log_query(msg);
@@ -1473,6 +1579,35 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
             }
         }
 
+        ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
+        ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
+
+        int index1 = -1;
+        for ( int i = 0 ; i < list_serials.size() ; i++)
+        {
+            if ( list_serials.at(i) == mtlog->serial1_name )
+            {
+                  index1 = i;
+                  break;
+            }
+        }
+
+        int index2 = -1;
+        for ( int i = 0 ; i < list_serials.size() ; i++)
+        {
+            if ( list_serials.at(i) == mtlog->serial2_name )
+            {
+                  index2 = i;
+                  break;
+            }
+        }
+
+        if ( index1 != -1)
+        ui->cmb_serial1->setCurrentIndex(index1);
+
+        if ( index2 != -1)
+        ui->cmb_serial2->setCurrentIndex(index2);
+
 
 
 }
@@ -1570,7 +1705,7 @@ void MainWindow::on_btn_today_clicked()
 {
    QDateTime _time = QDateTime::currentDateTime();
    ui->dt_from->setDateTime(_time);
-   ui->dt_to->setDateTime(_time);
+
 }
 
 void MainWindow::on_Knob_valueChanged(double value)
@@ -1791,40 +1926,17 @@ void MainWindow::on_btn_start_vote_clicked()
 
 void MainWindow::on_btn_option_chart_clicked()
 {
-    ui->tabWidget_4->setCurrentIndex(0);
+    ui->mid_8->setCurrentIndex(0);
 }
 
 void MainWindow::on_btn_option_table_clicked()
 {
-    ui->tabWidget_4->setCurrentIndex(1);
+    ui->mid_8->setCurrentIndex(1);
 }
 
 void MainWindow::on_tabWidget_3_currentChanged(int index)
 {
-    if ( index == 0)
-    {
-        ui->btn_option_chart->hide();
-        ui->btn_option_table->hide();
 
-        ui->btn_option_quantity->hide();
-        ui->btn_option_rate->hide();
-    }
-    else
-    {
-        ui->btn_option_chart->show();
-        ui->btn_option_table->show();
-
-        if ( ui->tabWidget_4->currentIndex() == 0)
-        {
-           ui->btn_option_quantity->show();
-           ui->btn_option_rate->show();
-        }
-        else
-        {
-            ui->btn_option_quantity->hide();
-            ui->btn_option_rate->hide();
-        }
-    }
 }
 
 void MainWindow::on_btn_option_rate_clicked()
@@ -1841,15 +1953,30 @@ void MainWindow::on_btn_option_quantity_clicked()
 
 void MainWindow::on_tabWidget_4_currentChanged(int index)
 {
+
     if ( index == 0)
     {
-       ui->btn_option_quantity->show();
-       ui->btn_option_rate->show();
+        ui->btn_option_chart->hide();
+        ui->btn_option_table->hide();
+
+        ui->btn_option_quantity->hide();
+        ui->btn_option_rate->hide();
     }
     else
     {
-        ui->btn_option_quantity->hide();
-        ui->btn_option_rate->hide();
+        ui->btn_option_chart->show();
+        ui->btn_option_table->show();
+
+        if ( ui->mid_8->currentIndex() == 0)
+        {
+           ui->btn_option_quantity->show();
+           ui->btn_option_rate->show();
+        }
+        else
+        {
+            ui->btn_option_quantity->hide();
+            ui->btn_option_rate->hide();
+        }
     }
 }
 
@@ -2043,4 +2170,42 @@ void MainWindow::on_slider5_sliderReleased()
 void MainWindow::on_slider5_sliderMoved(int position)
 {
 
+}
+
+void MainWindow::on_btn_save_2_clicked()
+{
+    mtlog->serial1_baud = ui->txt_baudrate1->toPlainText().toInt();
+    mtlog->serial2_baud = ui->txt_baudrate2->toPlainText().toInt();
+    mtlog->serial1_name = ui->cmb_serial1->currentText().toStdString();
+    mtlog->serial2_name = ui->cmb_serial2->currentText().toStdString();
+
+     bool r = mtlog->save_config();
+     if ( r )
+     {
+         bar_info = "Config Saved !";
+     }
+     else
+     {
+         bar_info = "Failed";
+     }
+}
+
+void MainWindow::on_btn_today_2_clicked()
+{
+    QDateTime _time = QDateTime::currentDateTime();
+    ui->dt_to->setDateTime(_time);
+}
+
+void MainWindow::on_mid_8_currentChanged(int index)
+{
+    if ( index == 0)
+    {
+       ui->btn_option_quantity->show();
+       ui->btn_option_rate->show();
+    }
+    else
+    {
+        ui->btn_option_quantity->hide();
+        ui->btn_option_rate->hide();
+    }
 }

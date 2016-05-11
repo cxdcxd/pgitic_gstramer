@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mytcpsocket.h'
 **
-** Created: Thu Apr 28 07:35:36 2016
+** Created: Wed May 11 11:38:56 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

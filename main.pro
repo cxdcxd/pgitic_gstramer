@@ -11,14 +11,16 @@ INCLUDEPATH += /usr/include/gstreamer-0.10
 INCLUDEPATH += /usr/include/QtMobility
 INCLUDEPATH += /usr/include/QtMultimediaKit
 INCLUDEPATH += /usr/include/boost
+INCLUDEPATH += /usr/include/QtGStreamer
 INCLUDEPATH += /usr/include/qwt-qt4
 
 LIBS += -L/usr/local/lib -lwiringPi
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lgstreamer-0.10
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lgobject-2.0
 LIBS += -L/usr/lib/arm-linux-gnueabihf -lglib-2.0
-LIBS += -L/usr/lib/ -lboost_system -lboost_serialization -lboost_filesystem
+LIBS += -L/usr/lib/ -lboost_system -lboost_serialization -lboost_filesystem -lboost_thread
 LIBS += -L/usr/lib/ -lqwt-qt4
+LIBS += -L/usr/lib/arm-linux-gnueabihf -lQtGStreamer-0.10 -lQtGStreamerUi-0.10
 
 QT       += core
 QT       += network
@@ -29,6 +31,15 @@ QT       += sql
 TARGET = main
 CONFIG   += console
 CONFIG   -= app_bundle
+
+# produce nice compilation output
+CONFIG += silent
+
+# Tell qmake to use pkg-config to find QtGStreamer.
+CONFIG += link_pkgconfig
+
+# Now tell qmake to link to QtGStreamer and also use its include path and Cflags.
+PKGCONFIG += QtGStreamer-0.10 QtGStreamerUi-0.10
 
 TEMPLATE = app
 
@@ -49,7 +60,9 @@ SOURCES += main.cpp \
     joystickscene.cpp \
     serialthread.cpp \
     aes.cpp \
-    volumethread.cpp
+    volumethread.cpp \
+    mediaapp.cpp \
+    player.cpp
 
 HEADERS += \
     mygpio.h \
@@ -68,7 +81,9 @@ HEADERS += \
     joystickscene.h \
     serialthread.h \
     aes.h \
-    volumethread.h
+    volumethread.h \
+    player.h \
+    mediaapp.h
 
 FORMS += \
     mainwindow.ui

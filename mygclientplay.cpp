@@ -128,7 +128,7 @@ void mygclientplay::play_stop()
     gst_element_set_state (pipeline, GST_STATE_NULL);
 
     g_print ("Deleting pipeline\n");
-    gst_object_unref (GST_OBJECT (pipeline));
+    //gst_object_unref (GST_OBJECT (pipeline));
     //g_source_remove (bus_watch_id);
     g_main_loop_unref (loop);
 

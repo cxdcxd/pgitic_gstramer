@@ -32,7 +32,7 @@ cb_print_position (GstElement *pipeline)
         //audio_current_second = GST_TIME_ARGS (pos);
         //audio_max_seconds = GST_TIME_ARGS (len);
 
-        std::cout<<audio_info<<std::endl;
+        //std::cout<<audio_info<<std::endl;
   }
 
   /* call me again */
@@ -107,7 +107,7 @@ void mygclientrecord::record_stop()
     gst_element_set_state (pipeline, GST_STATE_NULL);
 
     g_print ("Deleting pipeline\n");
-    gst_object_unref (GST_OBJECT (pipeline));
+    //gst_object_unref (GST_OBJECT (pipeline));
     //g_source_remove (bus_watch_id);
     g_main_loop_unref (loop);
 

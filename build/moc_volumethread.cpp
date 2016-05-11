@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'volumethread.h'
 **
-** Created: Sun May 1 14:05:59 2016
+** Created: Wed May 11 11:39:08 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

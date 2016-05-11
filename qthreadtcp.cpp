@@ -4,32 +4,42 @@
 #include "statics.h"
 #include "stdlib.h"
 
+
 QThreadTCP::QThreadTCP(QObject *parent) :
     QThread(parent)
 {
 
 
 }
-
+int flag = false;
 void QThreadTCP::update()
 {
     if ( socket->isOpen() == false )
     {
         mtlog->insert_log("threadtcp","TRY CONNECTING ...","INFO");
+
         isconnected = false;
         QString _port = mtlog->remote_port.c_str();
         socket->connectToHost(mtlog->remote_ip.c_str(), _port.toInt());
 
-        if(!socket->waitForConnected(500))
-        {
 
-            mtlog->insert_log("threadtcp","Connection Failed","ERROR");
+        if(!socket->waitForConnected(100))
+        {
+            //qDebug("waitForConnected error");
+
             socket->close();
             gpio->info_mode = 0;
         }
+        else
+        {
+            //qDebug("ok2");
+            isconnected = true;
+        }
+
     }
     else
     {
+        //qDebug("ok1");
         isconnected = true;
 
         processclient->start("ping",QStringList() << "-c 1" << mtlog->remote_ip.c_str());
@@ -42,10 +52,12 @@ void QThreadTCP::update()
         }
         else
         {
+            qDebug("PING ERROR");
             gpio->info_mode = 0;
             socket->close();
         }
     }
+
 
 
 }
@@ -203,23 +215,52 @@ void QThreadTCP::debug_test_version()
     mainwrite(array,array.size());
 }
 
+void QThreadTCP::boost_run()
+{
+
+
+
+
+
+    while ( app_exit == false)
+    {
+
+
+
+        update();
+
+
+       qDebug("brun");
+       boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
+    }
+}
 
 void QThreadTCP::connect()
 {
-    processclient = new QProcess();
-    processclient->closeReadChannel(QProcess::StandardOutput);
-    processclient->closeReadChannel(QProcess::StandardError);
 
-    connection_loop = true;
+    isconnected = false;
     socket = new QTcpSocket();
-
-    timer = new QTimer(this);
-    QThreadTCP::QObject:: connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
     QThreadTCP::QObject::connect(socket, SIGNAL(connected()),this, SLOT(connected()));
     QThreadTCP::QObject::connect(socket, SIGNAL(disconnected()),this, SLOT(disconnected()));
     QThreadTCP::QObject::connect(socket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
     QThreadTCP::QObject::connect(socket, SIGNAL(readyRead()),this, SLOT(readyRead()));
+
+
+    processclient = new QProcess();
+    processclient->closeReadChannel(QProcess::StandardOutput);
+    processclient->closeReadChannel(QProcess::StandardError);
+
+    connection_loop = true;
+
+
+    //boost::thread _thread_logic(&QThreadTCP::boost_run,this);
+
+
+
+    timer = new QTimer(this);
+    QThreadTCP::QObject:: connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+
 
     timer->start(10000);
 }
@@ -337,13 +378,21 @@ void QThreadTCP::set_camera_dir(int mode)
 void QThreadTCP::run()
 {
 
-
 }
 
 void QThreadTCP::mainwrite(QByteArray buf, qint64 len)
 {
     //QByteArray a;
+    if ( dcu_serial_mode == false )
     socket->write(buf.data(),len);
+    else
+    {
+
+        QString message(buf);
+        std::cout<<message.toStdString()<<std::endl;
+
+        mtserial->send(message.toStdString().c_str());
+    }
 }
 
 void QThreadTCP::stop_cam()
@@ -403,9 +452,11 @@ void QThreadTCP::connected()
 
 void QThreadTCP::disconnected()
 {
+    qDebug("disconnected");
     mtlog->insert_log("threadtcp","Disconnected","ERROR");
     gpio->info_mode = 0;
     socket->close();
+    isconnected = false;
 }
 
 void QThreadTCP::bytesWritten(qint64 bytes)
@@ -413,12 +464,9 @@ void QThreadTCP::bytesWritten(qint64 bytes)
 
 }
 
-void QThreadTCP::readyRead()
+
+void QThreadTCP::final_process(QString item)
 {
-    QByteArray array = socket->readAll();
-    QString item = QString::fromUtf8(array.data(),array.size());
-
-
     //=====================================
     item = item.replace("(", "");
     item = item.replace(")", "");
@@ -495,5 +543,13 @@ void QThreadTCP::readyRead()
                             }
 
                     }
+}
+
+void QThreadTCP::readyRead()
+{
+    QByteArray array = socket->readAll();
+    QString item = QString::fromUtf8(array.data(),array.size());
+    if ( dcu_serial_mode == false )
+    final_process(item);
 }
 

@@ -22,6 +22,8 @@ void serialthread::process()
 
     QString _get_str = get_str.c_str();
 
+     std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
+
     if (_get_str.contains("\n") && _get_str.contains("\r") && get_str.length() == 2)
     {
        return;
@@ -29,6 +31,14 @@ void serialthread::process()
 
     if (get_str == "\r") return;
     if (get_str == "\n") return;
+
+
+    std::cout<<_get_str.toStdString()<<std::endl;
+
+    if ( dcu_serial_mode == true )
+    {
+        tcpsocket->final_process(_get_str);
+    }
 
 
 }
@@ -42,8 +52,11 @@ void serialthread::run()
     {
         if ( device_id > 0 )
         {
+            //std::cout<< "read"<<std::endl;
+
             if ( serialDataAvail(device_id) != 0)
             {
+                //std::cout<<"check"<<std::endl;
                 countert1 = 0;
                 int a = serialGetchar(device_id);
                 char lc = (char)a;
@@ -68,7 +81,12 @@ void serialthread::run()
 
                 }
 
-            }
+                if ( countert1 > 55 )
+                {
+                    countert1 = 0;
+                }
+
+           }
         }
         msleep(1);
     }

@@ -22,9 +22,21 @@
 #include "QDir"
 #include "userlogin.h"
 
+
+#include "mediaapp.h"
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QtWidgets/QApplication>
+#else
+#include <QtGui/QApplication>
+#endif
+#include <QGst/Init>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QGst::init(&argc, &argv);
+
+    dcu_serial_mode = true;
 
     init_done = false;
     mtlog = new pgiticlog();
@@ -37,9 +49,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.setWindowFlags(Qt::WindowStaysOnTopHint);
-    //w.showFullScreen();
+    w.showFullScreen();
 
-    w.show();
+    //w.show();
 
     volumethread mtvolume;
     mtvolume.start();
@@ -56,17 +68,21 @@ int main(int argc, char *argv[])
     //Create USB/Serial Connection Interface
     //This Serial Interface is for communicating with PGITIC CU device
     mtserial = new serialthread();
-    mtserial->baudrate = 9600;
-    mtserial->port_name = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0";
-    mtserial->start();
+    mtserial->baudrate = mtlog->serial1_baud;
+    mtserial->port_name = "/dev/serial/by-id/" + mtlog->serial1_name;
+
+    std::cout<<mtserial->baudrate<<std::endl;
+    std::cout<<mtserial->port_name<<std::endl;
+
     mtserial->open();
+    mtserial->start();
 
     //This Serial Interface is for communicationg with PGITIC Voting device
     mtserial2 = new serialthread();
-    mtserial2->baudrate = 9600;
-    mtserial2->port_name = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0";
-    mtserial2->start();
-    mtserial2->open();
+    //mtserial2->baudrate = mtlog->serial2_baud;
+    //mtserial2->port_name = mtlog->serial2_name;
+    //mtserial2->start();
+    //mtserial2->open();
 
     //Create gstreamer recording thread interface
     mtgclientrecord = new mythreadgclientrecord();
@@ -85,6 +101,9 @@ int main(int argc, char *argv[])
     tcpsocket->connect();
     tcpsocket->start(); //start internal thread for connection managment
 
+    MediaApp media;
+    media.setWindowFlags(Qt::WindowStaysOnTopHint);
+    media.show();
     //Application Loop
     int exit_code = a.exec();
 

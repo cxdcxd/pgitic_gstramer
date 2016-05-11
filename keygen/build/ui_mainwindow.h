@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Apr 27 12:19:20 2016
+** Created: Wed May 4 06:01:54 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,6 +17,7 @@
 #include <QtGui/QCheckBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
@@ -36,12 +37,12 @@ public:
     QLabel *label_60;
     QLabel *label_56;
     QLabel *label_61;
-    QLabel *lbl_HID;
     QPushButton *pushButton;
     QCheckBox *chk1;
     QCheckBox *chk2;
     QCheckBox *chk3;
     QCheckBox *chk4;
+    QLineEdit *lbl_HID;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -50,7 +51,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(554, 304);
+        MainWindow->resize(536, 291);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         label_59 = new QLabel(centralWidget);
@@ -93,21 +94,9 @@ public:
         label_61->setFont(font);
         label_61->setStyleSheet(QString::fromUtf8("color: rgb(0,0, 0);"));
         label_61->setAlignment(Qt::AlignCenter);
-        lbl_HID = new QLabel(centralWidget);
-        lbl_HID->setObjectName(QString::fromUtf8("lbl_HID"));
-        lbl_HID->setGeometry(QRect(140, 30, 391, 41));
-        QFont font2;
-        font2.setPointSize(12);
-        font2.setBold(true);
-        font2.setWeight(75);
-        lbl_HID->setFont(font2);
-        lbl_HID->setStyleSheet(QString::fromUtf8("color: rgb(0,0, 0);"));
-        lbl_HID->setFrameShape(QFrame::Box);
-        lbl_HID->setFrameShadow(QFrame::Sunken);
-        lbl_HID->setAlignment(Qt::AlignCenter);
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(302, 190, 221, 51));
+        pushButton->setGeometry(QRect(22, 180, 501, 51));
         chk1 = new QCheckBox(centralWidget);
         chk1->setObjectName(QString::fromUtf8("chk1"));
         chk1->setGeometry(QRect(160, 100, 31, 31));
@@ -120,10 +109,17 @@ public:
         chk4 = new QCheckBox(centralWidget);
         chk4->setObjectName(QString::fromUtf8("chk4"));
         chk4->setGeometry(QRect(480, 100, 31, 31));
+        lbl_HID = new QLineEdit(centralWidget);
+        lbl_HID->setObjectName(QString::fromUtf8("lbl_HID"));
+        lbl_HID->setGeometry(QRect(130, 20, 391, 61));
+        QFont font2;
+        font2.setPointSize(16);
+        lbl_HID->setFont(font2);
+        lbl_HID->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 554, 22));
+        menuBar->setGeometry(QRect(0, 0, 536, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -146,12 +142,12 @@ public:
         label_60->setText(QApplication::translate("MainWindow", "DCU", 0, QApplication::UnicodeUTF8));
         label_56->setText(QApplication::translate("MainWindow", "Hardware ID :", 0, QApplication::UnicodeUTF8));
         label_61->setText(QApplication::translate("MainWindow", "Voting", 0, QApplication::UnicodeUTF8));
-        lbl_HID->setText(QApplication::translate("MainWindow", "<name>", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "Generate License for device", 0, QApplication::UnicodeUTF8));
         chk1->setText(QString());
         chk2->setText(QString());
         chk3->setText(QString());
         chk4->setText(QString());
+        lbl_HID->setText(QString());
     } // retranslateUi
 
 };

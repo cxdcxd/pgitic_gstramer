@@ -56,6 +56,7 @@ extern std::vector<std::string> list_controller_models;
 extern std::vector<std::string> list_FIFO_MAX;
 extern std::vector<std::string> list_MICNUMBERS;
 extern std::vector<std::string> list_MICSTATUS;
+extern std::vector<std::string> list_serials;
 
 extern std::vector<std::string> list_tcpclientslist;
 
@@ -82,6 +83,7 @@ extern bool app_exit;
 extern std::string HID;
 extern bool init_done;
 extern int speaker_volume_temp;
+extern bool dcu_serial_mode;
 
 
 

@@ -35,6 +35,7 @@ std::vector<std::string> list_FIFO_MAX;
 std::vector<std::string> list_MICNUMBERS;
 std::vector<std::string> list_MICSTATUS;
 std::vector<std::string> list_tcpclientslist;
+std::vector<std::string> list_serials;
 
 int camera_id;
 
@@ -63,7 +64,7 @@ bool _lic3;
 bool _lic4;
 bool init_done;
 int speaker_volume_temp;
-
+bool dcu_serial_mode;
 
 
 

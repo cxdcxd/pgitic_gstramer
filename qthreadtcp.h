@@ -5,6 +5,9 @@
 #include <QTcpSocket>
 #include <mygpio.h>
 #include <QProcess>
+#include "boost/thread.hpp"
+
+using namespace boost;
 
 class QThreadTCP : public QThread
 {
@@ -15,6 +18,7 @@ public:
     void mainwrite(QByteArray buf,qint64 len);
     void connect();
     QProcess *processclient;
+    void boost_run();
 
     //========================= commands
     void read_mic_number();
@@ -37,7 +41,7 @@ public:
     void stop_zoom();
 
     bool isconnected;
-
+    void final_process(QString item);
 
 signals:
     

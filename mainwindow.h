@@ -26,6 +26,8 @@ public:
     bool isusbconnected();
     void update_folder_content();
     joystickscene *joyscene;
+    void resize_ui();
+    void update_serial_ports();
 
     void show_message(QString msg);
     void updatecs();
@@ -37,6 +39,7 @@ public:
     int chart_max;
     std::string chart_names[5];
     int chart_mode;
+    bool isresize_ui;
 
     QPixmap *pic_cam_10;
     QPixmap *pic_cam_20;
@@ -298,6 +301,12 @@ private slots:
     void on_slider5_sliderReleased();
 
     void on_slider5_sliderMoved(int position);
+
+    void on_btn_save_2_clicked();
+
+    void on_btn_today_2_clicked();
+
+    void on_mid_8_currentChanged(int index);
 
 private:
     Ui::MainWindow *ui;
