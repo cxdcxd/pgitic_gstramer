@@ -280,6 +280,16 @@ void pgiticlog::deletealllogs()
        mtlog->insert_log("pgiticlog","All logs deleted","DEBUG");
 }
 
+void pgiticlog::deleteallhardlogs()
+{
+    QSqlQuery qry;
+    qry.prepare( "DELETE FROM hardlog" );
+    if( !qry.exec() )
+        mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
+    else
+       mtlog->insert_log("pgiticlog","All hard logs deleted","DEBUG");
+}
+
 std::vector<std::string>  pgiticlog::get_log()
 {
     std::vector<std::string> list;
@@ -296,6 +306,33 @@ std::vector<std::string>  pgiticlog::get_log()
             QString info = query.value(4).toString();
 
             std::string itemm = "(" + datetime.toString("yyyy-MM-dd HH:mm:ss").toStdString() + ") [" + sender.toStdString() + "] (" + type.toStdString() + ") => " + info.toStdString();
+            list.push_back(itemm);
+
+        }
+        return list;
+    }
+    else
+    {
+    }
+}
+
+std::vector<std::string>  pgiticlog::get_hard_log()
+{
+    std::vector<std::string> list;
+    QSqlQuery query;
+    if(query.exec("SELECT * FROM hardlog"))
+    {
+        while(query.next())
+        {
+            int id = query.value(0).toInt();
+            QString _id = QString::number(id);
+            QDateTime datetime = query.value(1).toDateTime();
+            QString sender = query.value(2).toString();
+            QString type = query.value(3).toString();
+            QString info = query.value(4).toString();
+            QString from = query.value(5).toString();
+
+            std::string itemm = "(" + datetime.toString("yyyy-MM-dd HH:mm:ss").toStdString() + ") [" + sender.toStdString() + "] (" + type.toStdString() + ")" + " (" + from.toStdString() + ")" + " => " + info.toStdString();
             list.push_back(itemm);
 
         }
@@ -334,10 +371,37 @@ std::vector<std::string>  pgiticlog::get_log_query(std::string cmd)
 
 }
 
+std::vector<std::string>  pgiticlog::get_hard_log_query(std::string cmd)
+{
+    std::vector<std::string> list;
+    QSqlQuery query;
+    if(query.exec(cmd.c_str()))
+    {
+        while(query.next())
+        {
+            int id = query.value(0).toInt();
+            QString _id = QString::number(id);
+            QDateTime datetime = query.value(1).toDateTime();
+            QString sender = query.value(2).toString();
+            QString type = query.value(3).toString();
+            QString info = query.value(4).toString();
+            QString from = query.value(5).toString();
+
+            std::string itemm = "(" + datetime.toString("yyyy-MM-dd HH:mm:ss").toStdString() + ") [" + sender.toStdString() + "] (" + type.toStdString() + ")" + " (" + from.toStdString() + ")" + " => " + info.toStdString();
+            list.push_back(itemm);
+
+        }
+        return list;
+    }
+    else
+    {
+    }
+
+
+}
+
 void  pgiticlog::insert_log(QString sender,QString info,QString type)
 {
-    QDateTime now = QDateTime::currentDateTime();
-
     QSqlQuery qry;
     std::string command;
     command = "INSERT INTO log (sender, info, type, timestamp) VALUES ('" +
@@ -354,17 +418,43 @@ void  pgiticlog::insert_log(QString sender,QString info,QString type)
 
 }
 
+void  pgiticlog::insert_hard_log(QString sender,QString info,QString type,QString from)
+{
+    QSqlQuery qry;
+    std::string command;
+    command = "INSERT INTO hardlog (info, type, source, timestamp) VALUES ('" +
+
+               from.toStdString() + "','" +
+               info.toStdString()   + "','" +
+               type.toStdString()   + "',"  +
+               "DateTime('now'))";
+
+    qry.prepare(command.c_str());
+    //qry.bindValue(0, 'now');
+
+    std::cout<<command<<std::endl;
+
+    if( !qry.exec() )
+    {
+         mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
+         std::cout<<"HARD ERROR"<<std::endl;
+    }
+
+
+}
+
 void pgiticlog::open()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/pi/database/data.db");
+    db.setDatabaseName("/home/pi/pgitic/oldproject/database/data.db");
     bool result = db.open();
     if ( result )
     mtlog->insert_log("pgiticlog","Database opened","DEBUG");
     else
     mtlog->insert_log("pgiticlog","Database read error","ERROR");
 
-
+    QSqlQuery qry;
+    qry.exec("VACUUM");
 }
 
 void pgiticlog::close()

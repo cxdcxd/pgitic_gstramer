@@ -22,7 +22,7 @@ void serialthread::process()
 
     QString _get_str = get_str.c_str();
 
-     std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
+   // std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
 
     if (_get_str.contains("\n") && _get_str.contains("\r") && get_str.length() == 2)
     {
@@ -32,13 +32,40 @@ void serialthread::process()
     if (get_str == "\r") return;
     if (get_str == "\n") return;
 
-
-    std::cout<<_get_str.toStdString()<<std::endl;
+    //std::cout<<_get_str.toStdString()<<std::endl;
 
     if ( dcu_serial_mode == true )
     {
         tcpsocket->final_process(_get_str);
     }
+
+    //======================= log data to hardware log
+
+    _get_str = _get_str.replace("(", "");
+    _get_str = _get_str.replace(")", "");
+    _get_str = _get_str.trimmed();
+
+    QStringList pieces = _get_str.split(",");
+
+    try
+    {
+        if ( pieces.length() > 0 )
+        {
+          //we have data
+          QString sender = pieces.at(0);
+          QString type = pieces.at(1);
+          QString from = pieces.at(2);
+          QString info = pieces.at(3);
+
+          mtlog->insert_hard_log(sender,info,type,from);
+
+        }
+    }
+    catch ( std::exception e)
+    {
+        mtlog->insert_log("pgiticlog","Bad serial format","WARN");
+    }
+
 
 
 }

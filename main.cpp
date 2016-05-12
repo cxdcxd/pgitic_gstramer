@@ -49,9 +49,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.setWindowFlags(Qt::WindowStaysOnTopHint);
-    w.showFullScreen();
+    //w.showFullScreen();
 
-    //w.show();
+    w.show();
 
     volumethread mtvolume;
     mtvolume.start();

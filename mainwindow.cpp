@@ -1468,28 +1468,63 @@ void MainWindow::on_btn_refresh_clicked()
         }
     }
 
-    std::vector<std::string> data =  mtlog->get_log_query(msg);
-    QString _WARN = "(WARN)";
-    QString _INFO = "(INFO)";
-    QString _ERROR = "(ERROR)";
-    QString _DEBUG = "(DEBUG)";
+     if ( ui->rad_soft->isChecked() )
+     {
+        std::vector<std::string> data = mtlog->get_log_query(msg);
 
-    for ( int i = 0 ; i < data.size() ; i++)
+        QString _WARN = "(WARN)";
+        QString _INFO = "(INFO)";
+        QString _ERROR = "(ERROR)";
+        QString _DEBUG = "(DEBUG)";
+
+        for ( int i = 0 ; i < data.size() ; i++)
+        {
+            QListWidgetItem *itemc = new QListWidgetItem("");
+            QString item = data.at(i).c_str();
+            itemc->setBackground(Qt::black);
+
+            if ( item.contains(_DEBUG))
+            itemc->setForeground(Qt::green);
+            if ( item.contains(_WARN))
+            itemc->setForeground(Qt::yellow);
+            if ( item.contains(_ERROR))
+            itemc->setForeground(Qt::red);
+            if ( item.contains(_INFO) )
+            itemc->setForeground(Qt::white);
+            itemc->setText(item);
+            ui->lst_log->addItem(itemc);
+        }
+     }
+
+
+
+    if ( ui->rad_hard->isChecked())
     {
-        QListWidgetItem *itemc = new QListWidgetItem("");
-        QString item = data.at(i).c_str();
-        itemc->setBackground(Qt::black);
+       std::vector<std::string> data = mtlog->get_hard_log_query(msg);
 
-        if ( item.contains(_DEBUG))
-        itemc->setForeground(Qt::green);
-        if ( item.contains(_WARN))
-        itemc->setForeground(Qt::yellow);
-        if ( item.contains(_ERROR))
-        itemc->setForeground(Qt::red);
-        if ( item.contains(_INFO) )
-        itemc->setForeground(Qt::white);
-        itemc->setText(item);
-        ui->lst_log->addItem(itemc);
+
+        QString _WARN = "(WARN)";
+        QString _INFO = "(INFO)";
+        QString _ERROR = "(ERROR)";
+        QString _DEBUG = "(DEBUG)";
+
+        for ( int i = 0 ; i < data.size() ; i++)
+        {
+            QListWidgetItem *itemc = new QListWidgetItem("");
+            QString item = data.at(i).c_str();
+            itemc->setBackground(Qt::black);
+
+            if ( item.contains(_DEBUG))
+            itemc->setForeground(Qt::green);
+            if ( item.contains(_WARN))
+            itemc->setForeground(Qt::yellow);
+            if ( item.contains(_ERROR))
+            itemc->setForeground(Qt::red);
+            if ( item.contains(_INFO) )
+            itemc->setForeground(Qt::white);
+            itemc->setText(item);
+            ui->lst_log->addItem(itemc);
+        }
     }
 }
 
@@ -1686,18 +1721,41 @@ void MainWindow::on_btn_manual_set_clicked()
 
 void MainWindow::on_btn_log_delete_clicked()
 {
+    ui->lst_log->clear();
+
+    if ( ui->rad_soft->isChecked() )
     mtlog->deletealllogs();
+
+    if ( ui->rad_hard->isChecked() )
+    mtlog->deleteallhardlogs();
+
+
 }
 
 void MainWindow::on_btn_refresh_all_clicked()
 {
     ui->lst_log->clear();
-    std::vector<std::string> data = mtlog->get_log();
 
-    for ( int i = 0 ; i < data.size() ; i++)
+    if ( ui->rad_soft->isChecked() )
     {
-        QString item = data.at(i).c_str();
-        ui->lst_log->addItem(item);
+        std::vector<std::string> data = mtlog->get_log();
+
+        for ( int i = 0 ; i < data.size() ; i++)
+        {
+            QString item = data.at(i).c_str();
+            ui->lst_log->addItem(item);
+        }
+    }
+
+    if ( ui->rad_hard->isChecked())
+    {
+        std::vector<std::string> data = mtlog->get_hard_log();
+
+        for ( int i = 0 ; i < data.size() ; i++)
+        {
+            QString item = data.at(i).c_str();
+            ui->lst_log->addItem(item);
+        }
     }
 }
 

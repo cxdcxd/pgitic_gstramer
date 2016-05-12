@@ -24,6 +24,10 @@ public:
     std::vector<std::string> get_log();
     std::vector<std::string> get_log_query(std::string cmd);
     void insert_log(QString sender,QString info,QString type);
+    void insert_hard_log(QString sender,QString info,QString type,QString from);
+    std::vector<std::string>  get_hard_log_query(std::string cmd);
+    void deleteallhardlogs();
+    std::vector<std::string> get_hard_log();
 
     QSqlDatabase db;
 
