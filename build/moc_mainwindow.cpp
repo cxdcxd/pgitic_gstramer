@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Thu May 12 10:32:15 2016
+** Created: Thu May 12 12:06:44 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-     109,   14, // methods
+     106,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -109,37 +109,34 @@ static const uint qt_meta_data_MainWindow[] = {
     1600,   24,   24,   24, 0x08,
     1628,   24,   24,   24, 0x08,
     1657,   24,   24,   24, 0x08,
-    1680, 1194,   24,   24, 0x08,
-    1709,   24,   24,   24, 0x08,
-    1732,   24,   24,   24, 0x08,
-    1755,   24,   24,   24, 0x08,
-    1778,   24,   24,   24, 0x08,
+    1680,   24,   24,   24, 0x08,
+    1703,   24,   24,   24, 0x08,
+    1726,   24,   24,   24, 0x08,
+    1749,   24,   24,   24, 0x08,
+    1777,   24,   24,   24, 0x08,
     1806,   24,   24,   24, 0x08,
-    1835,   24,   24,   24, 0x08,
-    1863,   24,   24,   24, 0x08,
-    1890,   24,   24,   24, 0x08,
-    1918,   24,   24,   24, 0x08,
-    1948,   24,   24,   24, 0x08,
-    1978, 2013,   24,   24, 0x08,
-    2019,   24,   24,   24, 0x08,
-    2048,   24,   24,   24, 0x08,
-    2081, 2013,   24,   24, 0x08,
-    2116,   24,   24,   24, 0x08,
-    2143, 2171,   24,   24, 0x08,
-    2180, 2171,   24,   24, 0x08,
-    2208, 2171,   24,   24, 0x08,
-    2236, 2171,   24,   24, 0x08,
-    2264,   24,   24,   24, 0x08,
-    2291,   24,   24,   24, 0x08,
-    2318,   24,   24,   24, 0x08,
-    2347, 2013,   24,   24, 0x08,
-    2380,   24,   24,   24, 0x08,
-    2404, 1194,   24,   24, 0x08,
-    2433,   24,   24,   24, 0x08,
-    2461, 2171,   24,   24, 0x08,
-    2489,   24,   24,   24, 0x08,
-    2513,   24,   24,   24, 0x08,
-    2538, 2013,   24,   24, 0x08,
+    1834,   24,   24,   24, 0x08,
+    1861,   24,   24,   24, 0x08,
+    1889,   24,   24,   24, 0x08,
+    1919,   24,   24,   24, 0x08,
+    1949,   24,   24,   24, 0x08,
+    1978,   24,   24,   24, 0x08,
+    2011, 2046,   24,   24, 0x08,
+    2052,   24,   24,   24, 0x08,
+    2079, 2107,   24,   24, 0x08,
+    2116, 2107,   24,   24, 0x08,
+    2144, 2107,   24,   24, 0x08,
+    2172, 2107,   24,   24, 0x08,
+    2200,   24,   24,   24, 0x08,
+    2227,   24,   24,   24, 0x08,
+    2254, 2046,   24,   24, 0x08,
+    2287,   24,   24,   24, 0x08,
+    2311, 1194,   24,   24, 0x08,
+    2340,   24,   24,   24, 0x08,
+    2368, 2107,   24,   24, 0x08,
+    2396,   24,   24,   24, 0x08,
+    2420,   24,   24,   24, 0x08,
+    2445, 2046,   24,   24, 0x08,
 
        0        // eod
 };
@@ -197,10 +194,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_btn_manual_set_clicked()\0"
     "on_btn_log_delete_clicked()\0"
     "on_btn_refresh_all_clicked()\0"
-    "on_btn_today_clicked()\0"
-    "on_Knob_valueChanged(double)\0"
-    "on_btn_vote1_clicked()\0on_btn_vote2_clicked()\0"
-    "on_btn_vote3_clicked()\0"
+    "on_btn_today_clicked()\0on_btn_vote1_clicked()\0"
+    "on_btn_vote2_clicked()\0on_btn_vote3_clicked()\0"
     "on_btn_show_clock_clicked()\0"
     "on_btn_show_number_clicked()\0"
     "on_btn_show_chart_clicked()\0"
@@ -208,18 +203,16 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_btn_start_vote_clicked()\0"
     "on_btn_option_chart_clicked()\0"
     "on_btn_option_table_clicked()\0"
-    "on_tabWidget_3_currentChanged(int)\0"
-    "index\0on_btn_option_rate_clicked()\0"
+    "on_btn_option_rate_clicked()\0"
     "on_btn_option_quantity_clicked()\0"
     "on_tabWidget_4_currentChanged(int)\0"
-    "on_slider1_sliderPressed()\0"
+    "index\0on_slider1_sliderPressed()\0"
     "on_slider1_sliderMoved(int)\0position\0"
     "on_slider2_sliderMoved(int)\0"
     "on_slider3_sliderMoved(int)\0"
     "on_slider4_sliderMoved(int)\0"
     "on_slider2_sliderPressed()\0"
     "on_slider3_sliderPressed()\0"
-    "on_btn_save_serial_clicked()\0"
     "on_tabWidget_currentChanged(int)\0"
     "on_pushButton_clicked()\0"
     "on_slider5_valueChanged(int)\0"
@@ -314,37 +307,34 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 75: _t->on_btn_log_delete_clicked(); break;
         case 76: _t->on_btn_refresh_all_clicked(); break;
         case 77: _t->on_btn_today_clicked(); break;
-        case 78: _t->on_Knob_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 79: _t->on_btn_vote1_clicked(); break;
-        case 80: _t->on_btn_vote2_clicked(); break;
-        case 81: _t->on_btn_vote3_clicked(); break;
-        case 82: _t->on_btn_show_clock_clicked(); break;
-        case 83: _t->on_btn_show_number_clicked(); break;
-        case 84: _t->on_btn_show_chart_clicked(); break;
-        case 85: _t->on_btn_show_text_clicked(); break;
-        case 86: _t->on_btn_start_vote_clicked(); break;
-        case 87: _t->on_btn_option_chart_clicked(); break;
-        case 88: _t->on_btn_option_table_clicked(); break;
-        case 89: _t->on_tabWidget_3_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 90: _t->on_btn_option_rate_clicked(); break;
-        case 91: _t->on_btn_option_quantity_clicked(); break;
-        case 92: _t->on_tabWidget_4_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 93: _t->on_slider1_sliderPressed(); break;
-        case 94: _t->on_slider1_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 95: _t->on_slider2_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 96: _t->on_slider3_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 97: _t->on_slider4_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 98: _t->on_slider2_sliderPressed(); break;
-        case 99: _t->on_slider3_sliderPressed(); break;
-        case 100: _t->on_btn_save_serial_clicked(); break;
-        case 101: _t->on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 102: _t->on_pushButton_clicked(); break;
-        case 103: _t->on_slider5_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 104: _t->on_slider5_sliderReleased(); break;
-        case 105: _t->on_slider5_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 106: _t->on_btn_save_2_clicked(); break;
-        case 107: _t->on_btn_today_2_clicked(); break;
-        case 108: _t->on_mid_8_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 78: _t->on_btn_vote1_clicked(); break;
+        case 79: _t->on_btn_vote2_clicked(); break;
+        case 80: _t->on_btn_vote3_clicked(); break;
+        case 81: _t->on_btn_show_clock_clicked(); break;
+        case 82: _t->on_btn_show_number_clicked(); break;
+        case 83: _t->on_btn_show_chart_clicked(); break;
+        case 84: _t->on_btn_show_text_clicked(); break;
+        case 85: _t->on_btn_start_vote_clicked(); break;
+        case 86: _t->on_btn_option_chart_clicked(); break;
+        case 87: _t->on_btn_option_table_clicked(); break;
+        case 88: _t->on_btn_option_rate_clicked(); break;
+        case 89: _t->on_btn_option_quantity_clicked(); break;
+        case 90: _t->on_tabWidget_4_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 91: _t->on_slider1_sliderPressed(); break;
+        case 92: _t->on_slider1_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 93: _t->on_slider2_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 94: _t->on_slider3_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 95: _t->on_slider4_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 96: _t->on_slider2_sliderPressed(); break;
+        case 97: _t->on_slider3_sliderPressed(); break;
+        case 98: _t->on_tabWidget_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 99: _t->on_pushButton_clicked(); break;
+        case 100: _t->on_slider5_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 101: _t->on_slider5_sliderReleased(); break;
+        case 102: _t->on_slider5_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 103: _t->on_btn_save_2_clicked(); break;
+        case 104: _t->on_btn_today_2_clicked(); break;
+        case 105: _t->on_mid_8_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -382,9 +372,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 109)
+        if (_id < 106)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 109;
+        _id -= 106;
     }
     return _id;
 }

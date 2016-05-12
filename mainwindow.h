@@ -246,8 +246,6 @@ private slots:
 
     void on_btn_today_clicked();
 
-    void on_Knob_valueChanged(double value);
-
     void on_btn_vote1_clicked();
 
     void on_btn_vote2_clicked();
@@ -268,8 +266,6 @@ private slots:
 
     void on_btn_option_table_clicked();
 
-    void on_tabWidget_3_currentChanged(int index);
-
     void on_btn_option_rate_clicked();
 
     void on_btn_option_quantity_clicked();
@@ -289,8 +285,6 @@ private slots:
     void on_slider2_sliderPressed();
 
     void on_slider3_sliderPressed();
-
-    void on_btn_save_serial_clicked();
 
     void on_tabWidget_currentChanged(int index);
 

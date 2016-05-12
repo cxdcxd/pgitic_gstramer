@@ -1445,26 +1445,34 @@ void MainWindow::on_btn_refresh_clicked()
 
     bool c1 = ui->chk_1->isChecked();
 
+    std::string table_name;
+
+    if (ui->rad_soft->isChecked())
+    table_name = "log";
+
+    if ( ui->rad_hard->isChecked())
+    table_name = "hardlog";
+
     if ( c1 == false )
     {
             if ( _sender != "")
             {
-                msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "'";
+                msg = "SELECT * FROM " + table_name + " Where sender ='" + _sender + "' and type ='" + _type + "'";
             }
             else
             {
-                msg = "SELECT * FROM log Where type ='" + _type + "'";
+                msg = "SELECT * FROM " + table_name + " Where type ='" + _type + "'";
             }
     }
     else
     {
         if ( _sender != "")
         {
-            msg = "SELECT * FROM log Where sender ='" + _sender + "' and type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
+            msg = "SELECT * FROM " + table_name + " Where sender ='" + _sender + "' and type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
         }
         else
         {
-            msg = "SELECT * FROM log Where type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
+            msg = "SELECT * FROM " + table_name + " Where type ='" + _type + "' and timestamp BETWEEN '" + date_1.toStdString() + "' AND '" + date_2.toStdString() + "'" ;
         }
     }
 
@@ -1573,7 +1581,7 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
             {
                 ui->liclock_2->hide();
 
-                std::cout<<mtlog->rememberme<<std::endl;
+                //std::cout<<mtlog->rememberme<<std::endl;
 
                 if ( mtlog->rememberme )
                 {
@@ -1581,7 +1589,7 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
                     ui->txt_username->setText("");
                     ui->txt_password->setText("");
                     tcpsocket->set_camera_mode(true);
-                    std::cout<<"ok"<<std::endl;
+                    //std::cout<<"ok"<<std::endl;
                 }
             }
             else
@@ -1766,10 +1774,7 @@ void MainWindow::on_btn_today_clicked()
 
 }
 
-void MainWindow::on_Knob_valueChanged(double value)
-{
 
-}
 
 void MainWindow::update_table()
 {
@@ -1992,10 +1997,7 @@ void MainWindow::on_btn_option_table_clicked()
     ui->mid_8->setCurrentIndex(1);
 }
 
-void MainWindow::on_tabWidget_3_currentChanged(int index)
-{
 
-}
 
 void MainWindow::on_btn_option_rate_clicked()
 {
@@ -2197,10 +2199,7 @@ void MainWindow::on_slider3_sliderPressed()
     last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
 }
 
-void MainWindow::on_btn_save_serial_clicked()
-{
 
-}
 
 void MainWindow::on_tabWidget_currentChanged(int index)
 {

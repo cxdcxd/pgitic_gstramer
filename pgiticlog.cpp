@@ -433,12 +433,12 @@ void  pgiticlog::insert_hard_log(QString sender,QString info,QString type,QStrin
     qry.prepare(command.c_str());
     //qry.bindValue(0, 'now');
 
-    std::cout<<command<<std::endl;
+    //std::cout<<command<<std::endl;
 
     if( !qry.exec() )
     {
          mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
-         std::cout<<"HARD ERROR"<<std::endl;
+         //std::cout<<"HARD ERROR"<<std::endl;
     }
 
 

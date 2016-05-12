@@ -389,7 +389,7 @@ void QThreadTCP::mainwrite(QByteArray buf, qint64 len)
     {
 
         QString message(buf);
-        std::cout<<message.toStdString()<<std::endl;
+        //std::cout<<message.toStdString()<<std::endl;
 
         mtserial->send(message.toStdString().c_str());
     }

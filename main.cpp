@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
     mtserial->baudrate = mtlog->serial1_baud;
     mtserial->port_name = "/dev/serial/by-id/" + mtlog->serial1_name;
 
-    std::cout<<mtserial->baudrate<<std::endl;
-    std::cout<<mtserial->port_name<<std::endl;
+   // std::cout<<mtserial->baudrate<<std::endl;
+   // std::cout<<mtserial->port_name<<std::endl;
 
     mtserial->open();
     mtserial->start();
