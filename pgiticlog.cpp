@@ -422,11 +422,12 @@ void  pgiticlog::insert_hard_log(QString sender,QString info,QString type,QStrin
 {
     QSqlQuery qry;
     std::string command;
-    command = "INSERT INTO hardlog (info, type, source, timestamp) VALUES ('" +
+    command = "INSERT INTO hardlog (sender, info, type, source, timestamp) VALUES ('" +
 
-               from.toStdString() + "','" +
+               sender.toStdString() + "','" +
                info.toStdString()   + "','" +
-               type.toStdString()   + "',"  +
+               type.toStdString()   + "','" +
+               from.toStdString()   + "',"  +
                "DateTime('now'))";
 
     qry.prepare(command.c_str());
