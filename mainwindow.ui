@@ -456,7 +456,7 @@ QTabBar::tab:!selected:hover
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_13">
      <attribute name="title">
@@ -5143,8 +5143,8 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QTextEdit" name="txt_baudrate1">
         <property name="geometry">
          <rect>
-          <x>440</x>
-          <y>80</y>
+          <x>320</x>
+          <y>90</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -5156,9 +5156,9 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QComboBox" name="cmb_serial1">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>440</x>
           <y>50</y>
-          <width>531</width>
+          <width>111</width>
           <height>24</height>
          </rect>
         </property>
@@ -5166,8 +5166,8 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QTextEdit" name="txt_baudrate2">
         <property name="geometry">
          <rect>
-          <x>440</x>
-          <y>190</y>
+          <x>320</x>
+          <y>200</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -5195,9 +5195,9 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QComboBox" name="cmb_serial2">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>440</x>
           <y>160</y>
-          <width>531</width>
+          <width>111</width>
           <height>24</height>
          </rect>
         </property>
@@ -5222,7 +5222,7 @@ background-color: rgb(255, 255, 255);</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>80</y>
+          <y>100</y>
           <width>121</width>
           <height>16</height>
          </rect>
@@ -5254,7 +5254,7 @@ background-color: rgb(255, 255, 255);</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>190</y>
+          <y>210</y>
           <width>121</width>
           <height>16</height>
          </rect>
@@ -5264,6 +5264,64 @@ background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>Baud Rate :</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="txt_serial_name1">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>411</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="txt_serial_name2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>160</y>
+          <width>411</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_select1">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>90</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_select2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>200</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>Select</string>
         </property>
        </widget>
       </widget>

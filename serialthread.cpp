@@ -6,7 +6,10 @@
 serialthread::serialthread(QObject *parent) :
     QThread(parent)
 {
-
+    device_id = -1;
+    active = false;
+    countert1 = 0;
+    buffer.clear();
 
 }
 
@@ -154,7 +157,15 @@ void serialthread::close()
 
 void serialthread::send(std::string message)
 {
+    std::cout<<"sending :"<<message<<std::endl;
     if ( device_id < 0 ) return;
+    try
+    {
     serialPrintf(device_id,message.c_str());
     bar_info = "Send...!";
+    }
+    catch ( std::exception e)
+    {
+         std::cout<<"error "<<std::endl;
+    }
 }

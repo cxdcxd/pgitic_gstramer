@@ -49,9 +49,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.setWindowFlags(Qt::WindowStaysOnTopHint);
-    w.showFullScreen();
+   // w.showFullScreen();
 
-    //w.show();
+    w.show();
 
     volumethread mtvolume;
     mtvolume.start();
@@ -68,21 +68,25 @@ int main(int argc, char *argv[])
     //Create USB/Serial Connection Interface
     //This Serial Interface is for communicating with PGITIC CU device
     mtserial = new serialthread();
+
+    std::cout<<mtlog->serial1_baud<<std::endl;
+    std::cout<<mtlog->serial2_baud<<std::endl;
+
+    std::cout<<mtlog->serial1_name<<std::endl;
+    std::cout<<mtlog->serial2_name<<std::endl;
+
+
     mtserial->baudrate = mtlog->serial1_baud;
-    mtserial->port_name = "/dev/serial/by-id/" + mtlog->serial1_name;
-
-   // std::cout<<mtserial->baudrate<<std::endl;
-   // std::cout<<mtserial->port_name<<std::endl;
-
+    mtserial->port_name = "/dev/" + mtlog->serial1_name;
     mtserial->open();
     mtserial->start();
 
     //This Serial Interface is for communicationg with PGITIC Voting device
     mtserial2 = new serialthread();
-    //mtserial2->baudrate = mtlog->serial2_baud;
-    //mtserial2->port_name = mtlog->serial2_name;
+    mtserial2->baudrate = mtlog->serial2_baud;
+    mtserial2->port_name = "/dev/" +  mtlog->serial2_name;
+    mtserial2->open();
     //mtserial2->start();
-    //mtserial2->open();
 
     //Create gstreamer recording thread interface
     mtgclientrecord = new mythreadgclientrecord();

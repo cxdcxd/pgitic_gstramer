@@ -230,31 +230,35 @@ int old_serials = 0;
 
 void MainWindow::update_serial_ports()
 {
-    QDir directory("/dev/serial/by-id/");
+
+    QDir directory("/dev/","tty*",QDir::Name,QDir::System);
     QStringList txtFilesAndDirectories = directory.entryList();
 
-    int serial_detected = txtFilesAndDirectories.size() - 2;
+    int serial_detected = txtFilesAndDirectories.size();
+    std::cout<<serial_detected<<std::endl;
 
     if ( serial_detected != old_serials )
     {
         ui->cmb_serial1->clear();
         ui->cmb_serial2->clear();
-        list_serials.clear();
 
-        for ( int i = 0 ; i < txtFilesAndDirectories.size() ; i++ )
+
+        for ( int i = 0 ; i < serial_detected ; i++ )
         {
             QString a = txtFilesAndDirectories.at(i);
+            std::cout<<a.toStdString()<<std::endl;
 
-            if ( a.size() > 2)
-            {
+
             ui->cmb_serial1->addItem(a);
             ui->cmb_serial2->addItem(a);
-            list_serials.push_back(a.toStdString());
-            }
+
+
         }
 
         old_serials = serial_detected;
+
     }
+
 }
 
 bool MainWindow::isusbconnected()
@@ -353,6 +357,7 @@ void MainWindow::update_folder_content()
 
 void MainWindow::update_ui()
 {
+
     bool isusbconnected_result = isusbconnected();
     if ( isusbconnected_result )
     {
@@ -398,6 +403,17 @@ void MainWindow::update_ui()
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
         ui->monitor_serial->setStyleSheet(a);
+    }
+
+    if ( mtserial2->active)
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial2->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial2->setStyleSheet(a);
     }
 
     if ( isusbconnected_bool )
@@ -1543,24 +1559,16 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
         ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
         ui->chm_joyx->setChecked(mtlog->joyx);
         ui->chm_joyy->setChecked(mtlog->joyy);
-        //ui->chm_logout->setChecked(mtlog->logout_idle);
+        ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
+        ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
+        ui->txt_serial_name1->setPlainText(mtlog->serial1_name.c_str());
+        ui->txt_serial_name2->setPlainText(mtlog->serial2_name.c_str());
         ui->chm_loop->setChecked(mtlog->cmd_loop);
+
+
         QString camera_model = mtlog->camera_model.c_str();
         QString controller_model = mtlog->controller_model.c_str();
 
-        int index = -1;
-        for ( int i = 0 ; i < list_camera_models.size() ; i++)
-            if ( camera_model.toStdString() == list_camera_models.at(i)) {index = i; break;}
-
-        if ( index != -1)
-        ui->cmodel->setCurrentIndex(index);
-
-        index = -1;
-        for ( int i = 0 ; i < list_controller_models.size() ; i++)
-            if ( controller_model.toStdString() == list_controller_models.at(i)) {index = i; break;}
-
-        if ( index != -1)
-        ui->smodel->setCurrentIndex(index);
 
         if ( arg1 == "Recording and Playback")
         {
@@ -1622,34 +1630,22 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
             }
         }
 
-        ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
-        ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
+        int index = -1;
+        for ( int i = 0 ; i < list_camera_models.size() ; i++)
+            if ( camera_model.toStdString() == list_camera_models.at(i)) {index = i; break;}
 
-        int index1 = -1;
-        for ( int i = 0 ; i < list_serials.size() ; i++)
-        {
-            if ( list_serials.at(i) == mtlog->serial1_name )
-            {
-                  index1 = i;
-                  break;
-            }
-        }
+        if ( index != -1)
+        ui->cmodel->setCurrentIndex(index);
 
-        int index2 = -1;
-        for ( int i = 0 ; i < list_serials.size() ; i++)
-        {
-            if ( list_serials.at(i) == mtlog->serial2_name )
-            {
-                  index2 = i;
-                  break;
-            }
-        }
+        index = -1;
+        for ( int i = 0 ; i < list_controller_models.size() ; i++)
+            if ( controller_model.toStdString() == list_controller_models.at(i)) {index = i; break;}
 
-        if ( index1 != -1)
-        ui->cmb_serial1->setCurrentIndex(index1);
+        if ( index != -1)
+        ui->smodel->setCurrentIndex(index);
 
-        if ( index2 != -1)
-        ui->cmb_serial2->setCurrentIndex(index2);
+
+
 
 
 
@@ -2208,6 +2204,11 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_pushButton_clicked()
 {
+    mtserial->close();
+    mtserial2->close();
+
+
+    QGst::cleanup();
     QApplication::quit();
 }
 
@@ -2233,8 +2234,8 @@ void MainWindow::on_btn_save_2_clicked()
 {
     mtlog->serial1_baud = ui->txt_baudrate1->toPlainText().toInt();
     mtlog->serial2_baud = ui->txt_baudrate2->toPlainText().toInt();
-    mtlog->serial1_name = ui->cmb_serial1->currentText().toStdString();
-    mtlog->serial2_name = ui->cmb_serial2->currentText().toStdString();
+    mtlog->serial1_name = ui->txt_serial_name1->toPlainText().toStdString();
+    mtlog->serial2_name = ui->txt_serial_name2->toPlainText().toStdString();
 
      bool r = mtlog->save_config();
      if ( r )
@@ -2265,4 +2266,14 @@ void MainWindow::on_mid_8_currentChanged(int index)
         ui->btn_option_quantity->hide();
         ui->btn_option_rate->hide();
     }
+}
+
+void MainWindow::on_btn_select1_clicked()
+{
+    ui->txt_serial_name1->setPlainText(ui->cmb_serial1->currentText());
+}
+
+void MainWindow::on_btn_select2_clicked()
+{
+    ui->txt_serial_name2->setPlainText(ui->cmb_serial2->currentText());
 }

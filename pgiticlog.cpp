@@ -127,6 +127,7 @@ bool pgiticlog::save_config()
 
     command.append(" WHERE id = 1" );
 
+    std::cout<<command<<std::endl;
 
     // mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
 
@@ -411,7 +412,7 @@ void  pgiticlog::insert_log(QString sender,QString info,QString type)
             "DateTime('now'))";
 
     qry.prepare(command.c_str());
-    //qry.bindValue(0, 'now');
+
 
     if( !qry.exec() )
          mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
@@ -431,14 +432,12 @@ void  pgiticlog::insert_hard_log(QString sender,QString info,QString type,QStrin
                "DateTime('now'))";
 
     qry.prepare(command.c_str());
-    //qry.bindValue(0, 'now');
 
-    //std::cout<<command<<std::endl;
 
     if( !qry.exec() )
     {
          mtlog->insert_log("pgiticlog",qry.lastError().text(),"ERROR");
-         //std::cout<<"HARD ERROR"<<std::endl;
+
     }
 
 
@@ -447,7 +446,7 @@ void  pgiticlog::insert_hard_log(QString sender,QString info,QString type,QStrin
 void pgiticlog::open()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/pi/pgitic/oldproject/database/data.db");
+    db.setDatabaseName("/home/pi/database/data.db");
     bool result = db.open();
     if ( result )
     mtlog->insert_log("pgiticlog","Database opened","DEBUG");

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed May 11 12:51:23 2016
+** Created: Thu May 12 12:54:06 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -265,6 +265,10 @@ public:
     QLabel *label_27;
     QLabel *label_54;
     QLabel *label_55;
+    QTextEdit *txt_serial_name1;
+    QTextEdit *txt_serial_name2;
+    QPushButton *btn_select1;
+    QPushButton *btn_select2;
     QGroupBox *groupBox;
     QCheckBox *chm_joyx;
     QCheckBox *chm_joyy;
@@ -2199,14 +2203,14 @@ public:
         label_25->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         txt_baudrate1 = new QTextEdit(groupBox_7);
         txt_baudrate1->setObjectName(QString::fromUtf8("txt_baudrate1"));
-        txt_baudrate1->setGeometry(QRect(440, 80, 111, 31));
+        txt_baudrate1->setGeometry(QRect(320, 90, 111, 31));
         txt_baudrate1->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         cmb_serial1 = new QComboBox(groupBox_7);
         cmb_serial1->setObjectName(QString::fromUtf8("cmb_serial1"));
-        cmb_serial1->setGeometry(QRect(20, 50, 531, 24));
+        cmb_serial1->setGeometry(QRect(440, 50, 111, 24));
         txt_baudrate2 = new QTextEdit(groupBox_7);
         txt_baudrate2->setObjectName(QString::fromUtf8("txt_baudrate2"));
-        txt_baudrate2->setGeometry(QRect(440, 190, 111, 31));
+        txt_baudrate2->setGeometry(QRect(320, 200, 111, 31));
         txt_baudrate2->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         label_26 = new QLabel(groupBox_7);
         label_26->setObjectName(QString::fromUtf8("label_26"));
@@ -2214,14 +2218,14 @@ public:
         label_26->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         cmb_serial2 = new QComboBox(groupBox_7);
         cmb_serial2->setObjectName(QString::fromUtf8("cmb_serial2"));
-        cmb_serial2->setGeometry(QRect(20, 160, 531, 24));
+        cmb_serial2->setGeometry(QRect(440, 160, 111, 24));
         label_53 = new QLabel(groupBox_7);
         label_53->setObjectName(QString::fromUtf8("label_53"));
         label_53->setGeometry(QRect(20, 140, 101, 16));
         label_53->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label_27 = new QLabel(groupBox_7);
         label_27->setObjectName(QString::fromUtf8("label_27"));
-        label_27->setGeometry(QRect(20, 80, 121, 16));
+        label_27->setGeometry(QRect(20, 100, 121, 16));
         label_27->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label_54 = new QLabel(groupBox_7);
         label_54->setObjectName(QString::fromUtf8("label_54"));
@@ -2229,8 +2233,24 @@ public:
         label_54->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         label_55 = new QLabel(groupBox_7);
         label_55->setObjectName(QString::fromUtf8("label_55"));
-        label_55->setGeometry(QRect(20, 190, 121, 16));
+        label_55->setGeometry(QRect(20, 210, 121, 16));
         label_55->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        txt_serial_name1 = new QTextEdit(groupBox_7);
+        txt_serial_name1->setObjectName(QString::fromUtf8("txt_serial_name1"));
+        txt_serial_name1->setGeometry(QRect(20, 50, 411, 31));
+        txt_serial_name1->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        txt_serial_name2 = new QTextEdit(groupBox_7);
+        txt_serial_name2->setObjectName(QString::fromUtf8("txt_serial_name2"));
+        txt_serial_name2->setGeometry(QRect(20, 160, 411, 31));
+        txt_serial_name2->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        btn_select1 = new QPushButton(groupBox_7);
+        btn_select1->setObjectName(QString::fromUtf8("btn_select1"));
+        btn_select1->setGeometry(QRect(440, 90, 111, 31));
+        btn_select1->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        btn_select2 = new QPushButton(groupBox_7);
+        btn_select2->setObjectName(QString::fromUtf8("btn_select2"));
+        btn_select2->setGeometry(QRect(440, 200, 111, 31));
+        btn_select2->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
         groupBox = new QGroupBox(mid_5);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(10, 10, 581, 341));
@@ -2529,7 +2549,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(6);
+        tabWidget->setCurrentIndex(5);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_4->setCurrentIndex(1);
         mid_8->setCurrentIndex(0);
@@ -2723,6 +2743,8 @@ public:
         label_27->setText(QApplication::translate("MainWindow", "Baud Rate :", 0, QApplication::UnicodeUTF8));
         label_54->setText(QApplication::translate("MainWindow", "Port Name :", 0, QApplication::UnicodeUTF8));
         label_55->setText(QApplication::translate("MainWindow", "Baud Rate :", 0, QApplication::UnicodeUTF8));
+        btn_select1->setText(QApplication::translate("MainWindow", "Select", 0, QApplication::UnicodeUTF8));
+        btn_select2->setText(QApplication::translate("MainWindow", "Select", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "DCU Settings", 0, QApplication::UnicodeUTF8));
         chm_joyx->setText(QApplication::translate("MainWindow", "Joystic X reversed", 0, QApplication::UnicodeUTF8));
         chm_joyy->setText(QApplication::translate("MainWindow", "Joystic Y reversed", 0, QApplication::UnicodeUTF8));

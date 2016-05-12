@@ -8,6 +8,14 @@
 #include <joystickscene.h>
 #include "vector"
 
+#include "mediaapp.h"
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QtWidgets/QApplication>
+#else
+#include <QtGui/QApplication>
+#endif
+#include <QGst/Init>
+
 namespace Ui {
 class MainWindow;
 }
@@ -301,6 +309,10 @@ private slots:
     void on_btn_today_2_clicked();
 
     void on_mid_8_currentChanged(int index);
+
+    void on_btn_select1_clicked();
+
+    void on_btn_select2_clicked();
 
 private:
     Ui::MainWindow *ui;
