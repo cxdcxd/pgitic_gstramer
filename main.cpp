@@ -101,9 +101,9 @@ int main(int argc, char *argv[])
     tcpsocket->connect();
     tcpsocket->start(); //start internal thread for connection managment
 
-    MediaApp media;
-    media.setWindowFlags(Qt::WindowStaysOnTopHint);
-    media.show();
+    //MediaApp media;
+    //media.setWindowFlags(Qt::WindowStaysOnTopHint);
+    //media.show();
     //Application Loop
     int exit_code = a.exec();
 
