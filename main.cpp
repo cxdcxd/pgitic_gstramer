@@ -49,9 +49,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.setWindowFlags(Qt::WindowStaysOnTopHint);
-   // w.showFullScreen();
+    w.showFullScreen();
 
-    w.show();
+   // w.show();
 
     volumethread mtvolume;
     mtvolume.start();
@@ -82,10 +82,10 @@ int main(int argc, char *argv[])
     mtserial->start();
 
     //This Serial Interface is for communicationg with PGITIC Voting device
-    mtserial2 = new serialthread();
-    mtserial2->baudrate = mtlog->serial2_baud;
-    mtserial2->port_name = "/dev/" +  mtlog->serial2_name;
-    mtserial2->open();
+    //mtserial2 = new serialthread();
+    //mtserial2->baudrate = mtlog->serial2_baud;
+    //mtserial2->port_name = "/dev/" +  mtlog->serial2_name;
+    //mtserial2->open();
     //mtserial2->start();
 
     //Create gstreamer recording thread interface

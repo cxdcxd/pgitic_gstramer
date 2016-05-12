@@ -405,16 +405,16 @@ void MainWindow::update_ui()
         ui->monitor_serial->setStyleSheet(a);
     }
 
-    if ( mtserial2->active)
-    {
-        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
-        ui->monitor_serial2->setStyleSheet(a);
-    }
-    else
-    {
-        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
-        ui->monitor_serial2->setStyleSheet(a);
-    }
+//    if ( mtserial2->active)
+//    {
+//        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
+//        ui->monitor_serial2->setStyleSheet(a);
+//    }
+//    else
+//    {
+//        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
+//        ui->monitor_serial2->setStyleSheet(a);
+//    }
 
     if ( isusbconnected_bool )
     {
@@ -1569,7 +1569,6 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
         QString camera_model = mtlog->camera_model.c_str();
         QString controller_model = mtlog->controller_model.c_str();
 
-
         if ( arg1 == "Recording and Playback")
         {
             if ( _lic1)
@@ -1643,11 +1642,6 @@ void MainWindow::on_tabWidget_selected(const QString &arg1)
 
         if ( index != -1)
         ui->smodel->setCurrentIndex(index);
-
-
-
-
-
 
 }
 
