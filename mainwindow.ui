@@ -456,7 +456,7 @@ QTabBar::tab:!selected:hover
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab_13">
      <attribute name="title">
@@ -1934,9 +1934,9 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>390</y>
+           <y>0</y>
            <width>1281</width>
-           <height>181</height>
+           <height>571</height>
           </rect>
          </property>
          <property name="frameShape">
@@ -3840,6 +3840,23 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
           </size>
          </property>
         </widget>
+        <zorder>label_13</zorder>
+        <zorder>txt_totalnum</zorder>
+        <zorder>frame_5</zorder>
+        <zorder>txt_camnum</zorder>
+        <zorder>status</zorder>
+        <zorder>label_14</zorder>
+        <zorder>frame_6</zorder>
+        <zorder>cs6</zorder>
+        <zorder>label_12</zorder>
+        <zorder>cs5</zorder>
+        <zorder>cs4</zorder>
+        <zorder>frame_4</zorder>
+        <zorder>txt_micnum</zorder>
+        <zorder>cs2</zorder>
+        <zorder>cs1</zorder>
+        <zorder>cs3</zorder>
+        <zorder>frm_lock</zorder>
        </widget>
        <zorder>mid_14</zorder>
        <zorder>mid_11</zorder>
@@ -4439,7 +4456,7 @@ p, li { white-space: pre-wrap; }
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="elideMode">
          <enum>Qt::ElideNone</enum>
@@ -4969,48 +4986,6 @@ background-color: rgb(255, 255, 255);</string>
            <number>90</number>
           </attribute>
          </widget>
-         <widget class="QFrame" name="liclock_4">
-          <property name="geometry">
-           <rect>
-            <x>1220</x>
-            <y>30</y>
-            <width>41</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <widget class="QLabel" name="label_65">
-           <property name="geometry">
-            <rect>
-             <x>410</x>
-             <y>200</y>
-             <width>481</width>
-             <height>91</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>20</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 0, 0);</string>
-           </property>
-           <property name="text">
-            <string>License is not active !</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </widget>
         </widget>
        </widget>
       </widget>
@@ -5073,6 +5048,55 @@ background-color: rgb(255, 255, 255);</string>
        <string>Quantity</string>
       </property>
      </widget>
+     <widget class="QFrame" name="liclock_4">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>10</y>
+        <width>1241</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <widget class="QLabel" name="label_65">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>200</y>
+         <width>481</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>License is not active !</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <zorder>tabWidget_4</zorder>
+     <zorder>groupBox_5</zorder>
+     <zorder>btn_option_chart</zorder>
+     <zorder>btn_option_table</zorder>
+     <zorder>btn_option_rate</zorder>
+     <zorder>btn_option_quantity</zorder>
+     <zorder>liclock_4</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">

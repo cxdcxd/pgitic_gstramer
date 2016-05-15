@@ -25,7 +25,7 @@ void serialthread::process()
 
     QString _get_str = get_str.c_str();
 
-   // std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
+    std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
 
     if (_get_str.contains("\n") && _get_str.contains("\r") && get_str.length() == 2)
     {
@@ -36,12 +36,6 @@ void serialthread::process()
     if (get_str == "\n") return;
 
     //std::cout<<_get_str.toStdString()<<std::endl;
-
-    if ( dcu_serial_mode == true )
-    {
-        tcpsocket->final_process(_get_str);
-    }
-
     //======================= log data to hardware log
 
     _get_str = _get_str.replace("(", "");
@@ -52,7 +46,7 @@ void serialthread::process()
 
     try
     {
-        if ( pieces.length() > 0 )
+        if ( pieces.length() > 1 )
         {
           //we have data
           QString sender = pieces.at(0);
@@ -62,6 +56,15 @@ void serialthread::process()
 
           mtlog->insert_hard_log(sender,info,type,from);
 
+          if ( dcu_serial_mode == true )
+          {
+              tcpsocket->final_process(info);
+          }
+
+        }
+        else
+        {
+             mtlog->insert_log("pgiticlog","Bad serial format","ERROR");
         }
     }
     catch ( std::exception e)
@@ -163,6 +166,7 @@ void serialthread::send(std::string message)
     {
     serialPrintf(device_id,message.c_str());
     bar_info = "Send...!";
+    mtlog->insert_hard_log("PI",message.c_str(),"INFO",name.c_str());
     }
     catch ( std::exception e)
     {

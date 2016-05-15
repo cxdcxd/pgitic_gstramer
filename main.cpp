@@ -47,11 +47,7 @@ int main(int argc, char *argv[])
 
     app_exit = false;
 
-    MainWindow w;
-    w.setWindowFlags(Qt::WindowStaysOnTopHint);
-    w.showFullScreen();
 
-   // w.show();
 
     volumethread mtvolume;
     mtvolume.start();
@@ -78,6 +74,7 @@ int main(int argc, char *argv[])
 
     mtserial->baudrate = mtlog->serial1_baud;
     mtserial->port_name = "/dev/" + mtlog->serial1_name;
+    mtserial->name = "DCU";
     mtserial->open();
     mtserial->start();
 
@@ -109,6 +106,13 @@ int main(int argc, char *argv[])
     //media.setWindowFlags(Qt::WindowStaysOnTopHint);
     //media.show();
     //Application Loop
+
+    MainWindow w;
+    w.setWindowFlags(Qt::WindowStaysOnTopHint);
+    w.showFullScreen();
+
+    // w.show();
+
     int exit_code = a.exec();
 
     mtlog->insert_log("core","PGITIC CORE DOWN","INFO");

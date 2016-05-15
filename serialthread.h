@@ -23,6 +23,7 @@ public:
     void process();
     std::vector<char> buffer;
     int countert1;
+    std::string name;
 
 };
 

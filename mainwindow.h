@@ -48,6 +48,7 @@ public:
     std::string chart_names[5];
     int chart_mode;
     bool isresize_ui;
+    bool dcu_page;
 
     QPixmap *pic_cam_10;
     QPixmap *pic_cam_20;
@@ -97,6 +98,7 @@ public:
 
 private slots:
 
+    void tab_update(const QString &arg1);
 
     void TimerEvent();
 

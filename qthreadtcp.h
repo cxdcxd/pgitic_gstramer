@@ -39,7 +39,7 @@ public:
     void stop_focus();
     void stop_iris();
     void stop_zoom();
-
+    bool dcu_mode_state;
     bool isconnected;
     void final_process(QString item);
 

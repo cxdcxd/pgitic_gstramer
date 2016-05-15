@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     isresize_ui = false;
 
+    dcu_page = false;
+
     joyscene = new joystickscene(ui->view_joystick);
     ui->view_joystick->setScene(joyscene);
 
@@ -190,7 +192,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //   for ( int j = 0 ; j < list_controller_models.size() ; j++)
     //      ui->smodel->addItem(list_controller_models.at(j).c_str());
 
+    tab_update("main");
+
+    if ( tcpsocket )
+      tcpsocket->set_camera_mode(false);
+
     init_done = true;
+
 }
 
 MainWindow::~MainWindow()
@@ -990,11 +998,11 @@ void MainWindow::on_sok_clicked()
 {
     if (user_mode != "admin") return;
 
-    if ( tcpsocket->isconnected == false)
+    if ( mtserial->active == false)
     {
         mode = "IDLE";
         input = "";
-        show_message("Please Check your server connection");
+        show_message("Please Check your dcu serial connection");
         return;
     }
 
@@ -1552,97 +1560,110 @@ void MainWindow::on_btn_refresh_clicked()
     }
 }
 
+void MainWindow::tab_update(const QString &arg1)
+{
+    ui->txt_ip->setText( mtlog->remote_ip.c_str());
+    ui->txt_port->setText(mtlog->remote_port.c_str());
+    ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
+    ui->chm_joyx->setChecked(mtlog->joyx);
+    ui->chm_joyy->setChecked(mtlog->joyy);
+    ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
+    ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
+    ui->txt_serial_name1->setPlainText(mtlog->serial1_name.c_str());
+    ui->txt_serial_name2->setPlainText(mtlog->serial2_name.c_str());
+    ui->chm_loop->setChecked(mtlog->cmd_loop);
+
+
+    QString camera_model = mtlog->camera_model.c_str();
+    QString controller_model = mtlog->controller_model.c_str();
+
+    if ( arg1 == "Recording and Playback")
+    {
+        if ( _lic1)
+        {
+            ui->liclock_1->hide();
+        }
+        else
+        {
+            ui->liclock_1->show();
+        }
+    }
+
+    if ( arg1 == "Camera Control DCU" )
+    {
+
+        if (_lic3)
+        {
+            ui->liclock_2->hide();
+
+            //std::cout<<mtlog->rememberme<<std::endl;
+
+            if ( mtlog->rememberme )
+            {
+                ui->frm_lock->hide();
+                ui->txt_username->setText("");
+                ui->txt_password->setText("");
+                if ( tcpsocket )
+                tcpsocket->set_camera_mode(true);
+                //std::cout<<"ok"<<std::endl;
+            }
+        }
+        else
+        {
+            ui->liclock_2->show();
+        }
+    }
+    else
+    {
+        if ( _lic3 )
+        {
+            if ( tcpsocket )
+              tcpsocket->set_camera_mode(false);
+        }
+    }
+
+    if ( arg1 == "Michrophones")
+    {
+        if ( _lic2)
+        {
+            ui->liclock_3->hide();
+        }
+        else
+        {
+            ui->liclock_3->show();
+        }
+    }
+
+    if ( arg1 == "Voting System")
+    {
+        if (_lic4)
+        {
+            ui->liclock_4->hide();
+        }
+        else
+        {
+            ui->liclock_4->show();
+        }
+    }
+
+    int index = -1;
+    for ( int i = 0 ; i < list_camera_models.size() ; i++)
+        if ( camera_model.toStdString() == list_camera_models.at(i)) {index = i; break;}
+
+    if ( index != -1)
+    ui->cmodel->setCurrentIndex(index);
+
+    index = -1;
+    for ( int i = 0 ; i < list_controller_models.size() ; i++)
+        if ( controller_model.toStdString() == list_controller_models.at(i)) {index = i; break;}
+
+    if ( index != -1)
+    ui->smodel->setCurrentIndex(index);
+}
+
 void MainWindow::on_tabWidget_selected(const QString &arg1)
 {
-        ui->txt_ip->setText( mtlog->remote_ip.c_str());
-        ui->txt_port->setText(mtlog->remote_port.c_str());
-        ui->txt_loop_value->setText(QString::number(mtlog->loop_value));
-        ui->chm_joyx->setChecked(mtlog->joyx);
-        ui->chm_joyy->setChecked(mtlog->joyy);
-        ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
-        ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
-        ui->txt_serial_name1->setPlainText(mtlog->serial1_name.c_str());
-        ui->txt_serial_name2->setPlainText(mtlog->serial2_name.c_str());
-        ui->chm_loop->setChecked(mtlog->cmd_loop);
-
-
-        QString camera_model = mtlog->camera_model.c_str();
-        QString controller_model = mtlog->controller_model.c_str();
-
-        if ( arg1 == "Recording and Playback")
-        {
-            if ( _lic1)
-            {
-                ui->liclock_1->hide();
-            }
-            else
-            {
-                ui->liclock_1->show();
-            }
-        }
-
-        if ( arg1 == "Camera Control DCU" )
-        {
-
-            if (_lic3)
-            {
-                ui->liclock_2->hide();
-
-                //std::cout<<mtlog->rememberme<<std::endl;
-
-                if ( mtlog->rememberme )
-                {
-                    ui->frm_lock->hide();
-                    ui->txt_username->setText("");
-                    ui->txt_password->setText("");
-                    tcpsocket->set_camera_mode(true);
-                    //std::cout<<"ok"<<std::endl;
-                }
-            }
-            else
-            {
-                ui->liclock_2->show();
-            }
-        }
-
-        if ( arg1 == "Michrophones")
-        {
-            if ( _lic2)
-            {
-                ui->liclock_3->hide();
-            }
-            else
-            {
-                ui->liclock_3->show();
-            }
-        }
-
-        if ( arg1 == "Voting System")
-        {
-            if (_lic4)
-            {
-                ui->liclock_4->hide();
-            }
-            else
-            {
-                ui->liclock_4->show();
-            }
-        }
-
-        int index = -1;
-        for ( int i = 0 ; i < list_camera_models.size() ; i++)
-            if ( camera_model.toStdString() == list_camera_models.at(i)) {index = i; break;}
-
-        if ( index != -1)
-        ui->cmodel->setCurrentIndex(index);
-
-        index = -1;
-        for ( int i = 0 ; i < list_controller_models.size() ; i++)
-            if ( controller_model.toStdString() == list_controller_models.at(i)) {index = i; break;}
-
-        if ( index != -1)
-        ui->smodel->setCurrentIndex(index);
-
+    tab_update(arg1);
 }
 
 void MainWindow::on_btn_logout_clicked()
@@ -2198,11 +2219,6 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_pushButton_clicked()
 {
-    mtserial->close();
-    mtserial2->close();
-
-
-    QGst::cleanup();
     QApplication::quit();
 }
 

@@ -8,7 +8,7 @@
 QThreadTCP::QThreadTCP(QObject *parent) :
     QThread(parent)
 {
-
+   dcu_mode_state = true;
 
 }
 int flag = false;
@@ -73,6 +73,7 @@ void QThreadTCP::set_camera_number(int number)
 
 }
 
+
 void QThreadTCP::set_camera_mode(bool manual)
 {
     std::string command;
@@ -83,13 +84,21 @@ void QThreadTCP::set_camera_mode(bool manual)
     QString _num2 = QString::number(mtlog->camera_speed);
     std::string _number2 = _num2.toStdString();
 
-    if (manual)
-        command = "(MODE,M;" + _number1 + ":S." + _number2 + ")";
-    else
-        command = "(MODE,A;" + _number1 + ":S." + _number2 + ")";
+    if (   dcu_mode_state != manual )
+    {
+        dcu_mode_state = manual;
 
-    QByteArray array = command.c_str();
-    mainwrite(array,array.size());
+        if (manual)
+            command = "(MODE,M;" + _number1 + ":S." + _number2 + ")";
+        else
+            command = "(MODE,A;" + _number1 + ":S." + _number2 + ")";
+
+        QByteArray array = command.c_str();
+        mainwrite(array,array.size());
+    }
+
+
+
 }
 
 void QThreadTCP::set_controller_model(std::string name)
@@ -468,9 +477,7 @@ void QThreadTCP::bytesWritten(qint64 bytes)
 void QThreadTCP::final_process(QString item)
 {
     //=====================================
-    item = item.replace("(", "");
-    item = item.replace(")", "");
-    item = item.trimmed();
+
 
     if (item.contains("Cam Mode"))
     {
@@ -480,7 +487,7 @@ void QThreadTCP::final_process(QString item)
     else
         if (item.contains("RMICN"))
         {
-            QStringList pieces = item.split(",");
+            QStringList pieces = item.split(";");
 
             if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
             mic_number = pieces.value(1).toStdString();
@@ -490,7 +497,7 @@ void QThreadTCP::final_process(QString item)
             if (item.contains("Active Mic:*"))
             {
                 mic_number = "00";
-                QStringList pieces = item.split(",");
+                QStringList pieces = item.split(";");
                 if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
                 total_number = pieces.value(1).toStdString();
                 cam_number = "00";
@@ -500,7 +507,7 @@ void QThreadTCP::final_process(QString item)
             else
                 if (item.contains("Mic:"))
                 {
-                    QStringList pieces = item.split(",");
+                    QStringList pieces = item.split(";");
 
                     if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
                     if (pieces.value(3).length() == 1) pieces.value(3) = "0" + pieces.value(3);
@@ -511,7 +518,7 @@ void QThreadTCP::final_process(QString item)
                 else
                     if (item.contains("Call point"))
                     {
-                        QStringList pieces = item.split(",");
+                        QStringList pieces = item.split(";");
 
                         if (pieces.value(1).length() == 1) pieces.value(1) = "0" + pieces.value(1);
                         if (pieces.value(3).length() == 1) pieces.value(3) = "0" + pieces.value(3);
@@ -528,7 +535,7 @@ void QThreadTCP::final_process(QString item)
                         else
                             if (item.contains("TCAM"))
                             {
-                                QStringList pieces = item.split(",");
+                                QStringList pieces = item.split(";");
                                 std::string rx = pieces.value(1).toStdString() + " | " + pieces.value(2).toStdString() + " | " + pieces.value(3).toStdString() + " | " + pieces.value(4).toStdString();
                                 bar_info = rx;
                             }
@@ -536,7 +543,7 @@ void QThreadTCP::final_process(QString item)
                             {
                                 if (item.contains("RHADV"))
                                 {
-                                    QStringList pieces = item.split(",");
+                                    QStringList pieces = item.split(";");
                                     std::string rx = pieces.value(1).toStdString();
                                     bar_info = rx;
                                 }

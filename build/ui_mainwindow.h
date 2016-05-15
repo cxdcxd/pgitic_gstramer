@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu May 12 12:54:06 2016
+** Created: Sun May 15 04:41:16 2016
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -245,12 +245,12 @@ public:
     QLabel *lbl_lable5;
     QWidget *tab_12;
     QTableWidget *table_result;
-    QFrame *liclock_4;
-    QLabel *label_65;
     QPushButton *btn_option_chart;
     QPushButton *btn_option_table;
     QPushButton *btn_option_rate;
     QPushButton *btn_option_quantity;
+    QFrame *liclock_4;
+    QLabel *label_65;
     QWidget *tab_4;
     QFrame *mid_5;
     QGroupBox *groupBox_7;
@@ -1260,7 +1260,7 @@ public:
         frm_lock->setFrameShadow(QFrame::Plain);
         liclock_2 = new QFrame(frm_lock);
         liclock_2->setObjectName(QString::fromUtf8("liclock_2"));
-        liclock_2->setGeometry(QRect(0, 390, 1281, 181));
+        liclock_2->setGeometry(QRect(0, 0, 1281, 571));
         liclock_2->setFrameShape(QFrame::NoFrame);
         liclock_2->setFrameShadow(QFrame::Plain);
         label_63 = new QLabel(liclock_2);
@@ -1816,6 +1816,23 @@ public:
         icon17.addFile(QString::fromUtf8(":/new/images/Resource/Dcu/dcu_cam3_0.png"), QSize(), QIcon::Normal, QIcon::Off);
         cs3->setIcon(icon17);
         cs3->setIconSize(QSize(50, 50));
+        label_13->raise();
+        txt_totalnum->raise();
+        frame_5->raise();
+        txt_camnum->raise();
+        status->raise();
+        label_14->raise();
+        frame_6->raise();
+        cs6->raise();
+        label_12->raise();
+        cs5->raise();
+        cs4->raise();
+        frame_4->raise();
+        txt_micnum->raise();
+        cs2->raise();
+        cs1->raise();
+        cs3->raise();
+        frm_lock->raise();
         tabWidget_2->addTab(tab_10, QString());
         mid_14->raise();
         mid_11->raise();
@@ -2154,17 +2171,6 @@ public:
         table_result->setGridStyle(Qt::SolidLine);
         table_result->horizontalHeader()->setDefaultSectionSize(385);
         table_result->verticalHeader()->setDefaultSectionSize(90);
-        liclock_4 = new QFrame(tab_12);
-        liclock_4->setObjectName(QString::fromUtf8("liclock_4"));
-        liclock_4->setGeometry(QRect(1220, 30, 41, 41));
-        liclock_4->setFrameShape(QFrame::NoFrame);
-        liclock_4->setFrameShadow(QFrame::Plain);
-        label_65 = new QLabel(liclock_4);
-        label_65->setObjectName(QString::fromUtf8("label_65"));
-        label_65->setGeometry(QRect(410, 200, 481, 91));
-        label_65->setFont(font4);
-        label_65->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        label_65->setAlignment(Qt::AlignCenter);
         mid_8->addTab(tab_12, QString());
         tabWidget_4->addTab(tab_3, QString());
         btn_option_chart = new QPushButton(tab_7);
@@ -2181,7 +2187,25 @@ public:
         btn_option_quantity->setObjectName(QString::fromUtf8("btn_option_quantity"));
         btn_option_quantity->setGeometry(QRect(630, 615, 83, 31));
         btn_option_quantity->setStyleSheet(QString::fromUtf8(""));
+        liclock_4 = new QFrame(tab_7);
+        liclock_4->setObjectName(QString::fromUtf8("liclock_4"));
+        liclock_4->setGeometry(QRect(-10, 10, 1241, 601));
+        liclock_4->setFrameShape(QFrame::NoFrame);
+        liclock_4->setFrameShadow(QFrame::Plain);
+        label_65 = new QLabel(liclock_4);
+        label_65->setObjectName(QString::fromUtf8("label_65"));
+        label_65->setGeometry(QRect(410, 200, 481, 91));
+        label_65->setFont(font4);
+        label_65->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label_65->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_7, QString());
+        tabWidget_4->raise();
+        groupBox_5->raise();
+        btn_option_chart->raise();
+        btn_option_table->raise();
+        btn_option_rate->raise();
+        btn_option_quantity->raise();
+        liclock_4->raise();
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         mid_5 = new QFrame(tab_4);
@@ -2549,10 +2573,10 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(4);
         tabWidget_2->setCurrentIndex(0);
         tabWidget_4->setCurrentIndex(1);
-        mid_8->setCurrentIndex(0);
+        mid_8->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2727,13 +2751,13 @@ public:
         lbl_chart_5->setText(QApplication::translate("MainWindow", "0 %", 0, QApplication::UnicodeUTF8));
         lbl_lable5->setText(QApplication::translate("MainWindow", "Name 5", 0, QApplication::UnicodeUTF8));
         mid_8->setTabText(mid_8->indexOf(tab_9), QApplication::translate("MainWindow", "Chart", 0, QApplication::UnicodeUTF8));
-        label_65->setText(QApplication::translate("MainWindow", "License is not active !", 0, QApplication::UnicodeUTF8));
         mid_8->setTabText(mid_8->indexOf(tab_12), QApplication::translate("MainWindow", "Table", 0, QApplication::UnicodeUTF8));
         tabWidget_4->setTabText(tabWidget_4->indexOf(tab_3), QApplication::translate("MainWindow", "Results", 0, QApplication::UnicodeUTF8));
         btn_option_chart->setText(QApplication::translate("MainWindow", "chart", 0, QApplication::UnicodeUTF8));
         btn_option_table->setText(QApplication::translate("MainWindow", "table", 0, QApplication::UnicodeUTF8));
         btn_option_rate->setText(QApplication::translate("MainWindow", "Rate", 0, QApplication::UnicodeUTF8));
         btn_option_quantity->setText(QApplication::translate("MainWindow", "Quantity", 0, QApplication::UnicodeUTF8));
+        label_65->setText(QApplication::translate("MainWindow", "License is not active !", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("MainWindow", "Voting System", 0, QApplication::UnicodeUTF8));
         groupBox_7->setTitle(QApplication::translate("MainWindow", "USB/Serial Settings", 0, QApplication::UnicodeUTF8));
         btn_save_2->setText(QApplication::translate("MainWindow", "Save Settings", 0, QApplication::UnicodeUTF8));
