@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sun May 15 06:37:19 2016
+** Created: Thu May 19 12:38:24 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-     109,   14, // methods
+     111,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -140,6 +140,8 @@ static const uint qt_meta_data_MainWindow[] = {
     2465, 2066,   36,   36, 0x08,
     2494,   36,   36,   36, 0x08,
     2519,   36,   36,   36, 0x08,
+    2544,   36,   36,   36, 0x08,
+    2572,   36,   36,   36, 0x08,
 
        0        // eod
 };
@@ -226,6 +228,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_mid_8_currentChanged(int)\0"
     "on_btn_select1_clicked()\0"
     "on_btn_select2_clicked()\0"
+    "on_chm_log_enable_clicked()\0"
+    "on_chm_idle_loop_clicked()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -343,6 +347,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 106: _t->on_mid_8_currentChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 107: _t->on_btn_select1_clicked(); break;
         case 108: _t->on_btn_select2_clicked(); break;
+        case 109: _t->on_chm_log_enable_clicked(); break;
+        case 110: _t->on_chm_idle_loop_clicked(); break;
         default: ;
         }
     }
@@ -380,9 +386,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 109)
+        if (_id < 111)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 109;
+        _id -= 111;
     }
     return _id;
 }

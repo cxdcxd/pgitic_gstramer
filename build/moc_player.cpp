@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'player.h'
 **
-** Created: Wed May 11 12:21:02 2016
+** Created: Tue May 17 12:05:41 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

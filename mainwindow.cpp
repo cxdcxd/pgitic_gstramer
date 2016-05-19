@@ -243,7 +243,7 @@ void MainWindow::update_serial_ports()
     QStringList txtFilesAndDirectories = directory.entryList();
 
     int serial_detected = txtFilesAndDirectories.size();
-    std::cout<<serial_detected<<std::endl;
+   // std::cout<<serial_detected<<std::endl;
 
     if ( serial_detected != old_serials )
     {
@@ -254,7 +254,7 @@ void MainWindow::update_serial_ports()
         for ( int i = 0 ; i < serial_detected ; i++ )
         {
             QString a = txtFilesAndDirectories.at(i);
-            std::cout<<a.toStdString()<<std::endl;
+          //  std::cout<<a.toStdString()<<std::endl;
 
 
             ui->cmb_serial1->addItem(a);
@@ -269,6 +269,41 @@ void MainWindow::update_serial_ports()
 
 }
 
+bool MainWindow::isserialconnected()
+{
+    QDir directory("/dev/","tty*",QDir::Name,QDir::System);
+    QStringList txtFilesAndDirectories = directory.entryList();
+    int serial_detected = txtFilesAndDirectories.size();
+
+    bool valid1 = false;
+    bool valid2 = false;
+
+    for ( int i = 0 ; i < serial_detected ; i++ )
+    {
+        QString a = txtFilesAndDirectories.at(i);
+
+        if ( a.toStdString() == mtlog->serial1_name )
+        {
+            valid1 = true;
+        }
+
+        if ( a.toStdString() == mtlog->serial2_name )
+        {
+            valid2 = true;
+        }
+    }
+
+    if ( mtserial->active == false && valid1 )
+    {
+        mtserial->open();
+    }
+    else
+    if ( mtserial->active && valid1 == false)
+    {
+        mtserial->close();
+    }
+}
+
 bool MainWindow::isusbconnected()
 {
     QDir directory("/media/");
@@ -279,7 +314,9 @@ bool MainWindow::isusbconnected()
     for ( int i =0 ; i < txtFilesAndDirectories.size() ; i++)
     {
         QString a = txtFilesAndDirectories.at(i);
-        if ( a.size() > 2)
+        //std::cout<<a.toStdString()<<std::endl;
+
+        if ( a != "." && a != "..")
         {
             itemv = a.toStdString();
             valid = true;
@@ -302,11 +339,12 @@ bool MainWindow::isusbconnected()
 
             usb_storage_path = filedir;
 
-           // std::cout<<usb_storage_path<<std::endl;
+
             return true;
         }
         else
         {
+
             return false;
         }
     }
@@ -392,13 +430,13 @@ void MainWindow::update_ui()
     if ( tcpsocket->isconnected )
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/wific.png)  0 0 0 0 100 stretch";
-        ui->status->setStyleSheet(a);
+        //ui->status->setStyleSheet(a);
         ui->monitor_dcu->setStyleSheet(a);
     }
     else
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/wifid.png)  0 0 0 0 100 stretch";
-        ui->status->setStyleSheet(a);
+        //ui->status->setStyleSheet(a);
         ui->monitor_dcu->setStyleSheet(a);
     }
 
@@ -406,23 +444,25 @@ void MainWindow::update_ui()
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
         ui->monitor_serial->setStyleSheet(a);
+        ui->status->setStyleSheet(a);
     }
     else
     {
         QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
         ui->monitor_serial->setStyleSheet(a);
+        ui->status->setStyleSheet(a);
     }
 
-//    if ( mtserial2->active)
-//    {
-//        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
-//        ui->monitor_serial2->setStyleSheet(a);
-//    }
-//    else
-//    {
-//        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
-//        ui->monitor_serial2->setStyleSheet(a);
-//    }
+    if ( mtserial2->active)
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/serialc.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial2->setStyleSheet(a);
+    }
+    else
+    {
+        QString a = "border-image:  url(:/new/images/Resource/Dcu/seriald.png)  0 0 0 0 100 stretch";
+        ui->monitor_serial2->setStyleSheet(a);
+    }
 
     if ( isusbconnected_bool )
     {
@@ -552,11 +592,13 @@ void MainWindow::update_ui()
     }
 
      update_serial_ports();
+     isserialconnected();
 
 }
 
 int update_counter;
-
+std::string temp_last_command;
+bool first_shot = false;
 
 void MainWindow::TimerEvent()
 {
@@ -604,7 +646,27 @@ void MainWindow::TimerEvent()
         }
     }
 
-    //======================================== camera_loop 100ms
+
+    //======================================== camera_loop 50ms
+    if ( first_shot == false)
+    {
+        if ( last_command.size() != 0)
+        {
+            temp_last_command = last_command.at(0);
+            QByteArray array = last_command.at(0).c_str();
+            last_command.erase(last_command.begin());
+            tcpsocket->mainwrite(array,array.size());
+            first_shot = true;
+        }
+    }
+    else
+    {
+        if ( last_command.size() == 0 )
+        {
+            first_shot = false;
+        }
+    }
+
     sended = false;
     camera_send_tick++;
 
@@ -613,6 +675,7 @@ void MainWindow::TimerEvent()
         camera_stop_dir = false;
         sended = true;
         tcpsocket->stop_cam();
+        last_command.clear();
     }
     else
         if (camera_stop_focus)
@@ -620,6 +683,7 @@ void MainWindow::TimerEvent()
             camera_stop_focus = false;
             sended = true;
             tcpsocket->stop_focus();
+             last_command.clear();
         }
         else
             if (camera_stop_iris)
@@ -627,6 +691,7 @@ void MainWindow::TimerEvent()
                 camera_stop_iris = false;
                 sended = true;
                 tcpsocket->stop_iris();
+                 last_command.clear();
             }
             else
                 if (camera_stop_zoom)
@@ -634,6 +699,7 @@ void MainWindow::TimerEvent()
                     camera_stop_zoom = false;
                     sended = true;
                     tcpsocket->stop_zoom();
+                     last_command.clear();
                 }
 
     //=================================
@@ -643,17 +709,48 @@ void MainWindow::TimerEvent()
         {
             camera_send_tick = 0;
 
+
+
             if (camera_stop_zoom == false && camera_stop_focus == false && camera_stop_iris == false && camera_stop_dir == false)
             {
-                if (camera_loop_mode)
+                if ( sended == false )
                 {
-                    if (sended == false)
+
+
+                    if (camera_loop_mode)
                     {
-                        QByteArray array = last_command.c_str();
-                        tcpsocket->mainwrite(array,array.size());
+                            if (   last_command.size() > 0 )
+                            {
+                                temp_last_command = last_command.at(0);
+                                QByteArray array = last_command.at(0).c_str();
+                                last_command.erase(last_command.begin());
+                                tcpsocket->mainwrite(array,array.size());
+                            }
+                            else
+                               if ( temp_last_command != "")
+                               {
+                                        QByteArray array = temp_last_command.c_str();
+                                        tcpsocket->mainwrite(array,array.size());
+                                        //std::cout<<"CMDLOOP"<<std::endl;
+                               }
+                    }
+                    else
+                    {
+                        if (  last_command.size() > 0 )
+                        {
+                            temp_last_command = last_command.at(0);
+                            QByteArray array = last_command.at(0).c_str();
+                            last_command.erase(last_command.begin());
+                            tcpsocket->mainwrite(array,array.size());
+                        }
+                        else
+                        if ( current_tab_name == "Camera Control DCU")
+                        {
+                             if ( idle_loop)
+                             tcpsocket->stop_cam();
+                        }
 
                     }
-
                 }
             }
         }
@@ -666,23 +763,39 @@ void MainWindow::TimerEvent()
 
             if (camera_stop_zoom == false && camera_stop_focus == false && camera_stop_iris == false && camera_stop_dir == false)
             {
-                if (camera_loop_mode)
+
+                if ( sended == false )
                 {
-
-                    if (sended == false)
+                    if (camera_loop_mode)
                     {
-                        if (temp_command != last_command)
+                        if ( last_command.size() > 0)
                         {
-                            temp_command = last_command;
+                           std::string a  = last_command.at(0).c_str();
+                           last_command.erase(last_command.begin());
 
-                            QByteArray array = last_command.c_str();
-                            tcpsocket->mainwrite(array,array.size());
-
+                            if (temp_command != a)
+                            {
+                                temp_command = a;
+                                QByteArray array = a.c_str();
+                                tcpsocket->mainwrite(array,array.size());
+                            }
                         }
+
+                    }
+                    else
+                    {
+                        if (  last_command.size() > 0 )
+                        {
+                            temp_last_command = last_command.at(0);
+                            QByteArray array = last_command.at(0).c_str();
+                            last_command.erase(last_command.begin());
+                            tcpsocket->mainwrite(array,array.size());
+                        }
+
                     }
                 }
-            }
         }
+    }
     }
 }
 
@@ -1166,7 +1279,8 @@ void MainWindow::on_smodel_currentIndexChanged(const QString &arg1)
 void MainWindow::on_d1_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1174,7 +1288,8 @@ void MainWindow::on_d1_released()
 void MainWindow::on_d2_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1182,7 +1297,8 @@ void MainWindow::on_d2_released()
 void MainWindow::on_d3_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1190,7 +1306,8 @@ void MainWindow::on_d3_released()
 void MainWindow::on_d4_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1198,7 +1315,8 @@ void MainWindow::on_d4_released()
 void MainWindow::on_d5_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1206,7 +1324,8 @@ void MainWindow::on_d5_released()
 void MainWindow::on_d6_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1214,7 +1333,8 @@ void MainWindow::on_d6_released()
 void MainWindow::on_d7_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1222,7 +1342,8 @@ void MainWindow::on_d7_released()
 void MainWindow::on_d8_released()
 {
     if (user_mode != "admin") return;
-    tcpsocket->set_camera_dir(0);
+
+    //tcpsocket->set_camera_dir(0);
     camera_stop_dir = true;
     camera_loop_mode = false;
 }
@@ -1251,7 +1372,7 @@ void MainWindow::on_slider1_sliderReleased()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")" );
 
 }
 
@@ -1269,7 +1390,7 @@ void MainWindow::on_slider2_sliderReleased()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")");
 
 }
 
@@ -1287,7 +1408,7 @@ void MainWindow::on_slider3_sliderReleased()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")");
 }
 
 void MainWindow::on_slider4_sliderReleased()
@@ -1455,7 +1576,12 @@ void MainWindow::on_btn_change_admin_clicked()
 
 void MainWindow::on_btn_refresh_clicked()
 {
+    if ( ui->rad_soft->isChecked() )
     ui->lst_log->clear();
+    if ( ui->rad_hard->isChecked() )
+    ui->lst_log_2->clear();
+
+    //===========================================
 
     std::string msg;
     std::string _sender = ui->txt_log_sender->toPlainText().toStdString();
@@ -1524,7 +1650,11 @@ void MainWindow::on_btn_refresh_clicked()
             if ( item.contains(_INFO) )
             itemc->setForeground(Qt::white);
             itemc->setText(item);
+
+
             ui->lst_log->addItem(itemc);
+
+
         }
      }
 
@@ -1555,7 +1685,9 @@ void MainWindow::on_btn_refresh_clicked()
             if ( item.contains(_INFO) )
             itemc->setForeground(Qt::white);
             itemc->setText(item);
-            ui->lst_log->addItem(itemc);
+
+
+            ui->lst_log_2->addItem(itemc);
         }
     }
 }
@@ -1576,6 +1708,8 @@ void MainWindow::tab_update(const QString &arg1)
 
     QString camera_model = mtlog->camera_model.c_str();
     QString controller_model = mtlog->controller_model.c_str();
+
+    current_tab_name = arg1.toStdString();
 
     if ( arg1 == "Recording and Playback")
     {
@@ -1740,7 +1874,11 @@ void MainWindow::on_btn_manual_set_clicked()
 
 void MainWindow::on_btn_log_delete_clicked()
 {
+    if ( ui->rad_soft->isChecked() )
     ui->lst_log->clear();
+
+    if ( ui->rad_hard->isChecked() )
+    ui->lst_log_2->clear();
 
     if ( ui->rad_soft->isChecked() )
     mtlog->deletealllogs();
@@ -1753,7 +1891,16 @@ void MainWindow::on_btn_log_delete_clicked()
 
 void MainWindow::on_btn_refresh_all_clicked()
 {
+    if ( ui->rad_soft->isChecked() )
     ui->lst_log->clear();
+
+    if ( ui->rad_hard->isChecked() )
+    ui->lst_log_2->clear();
+
+    QString _WARN = "(WARN)";
+    QString _INFO = "(INFO)";
+    QString _ERROR = "(ERROR)";
+    QString _DEBUG = "(DEBUG)";
 
     if ( ui->rad_soft->isChecked() )
     {
@@ -1761,8 +1908,21 @@ void MainWindow::on_btn_refresh_all_clicked()
 
         for ( int i = 0 ; i < data.size() ; i++)
         {
+            QListWidgetItem *itemc = new QListWidgetItem("");
+            itemc->setBackground(Qt::black);
             QString item = data.at(i).c_str();
-            ui->lst_log->addItem(item);
+
+            if ( item.contains(_DEBUG))
+            itemc->setForeground(Qt::green);
+            if ( item.contains(_WARN))
+            itemc->setForeground(Qt::yellow);
+            if ( item.contains(_ERROR))
+            itemc->setForeground(Qt::red);
+            if ( item.contains(_INFO) )
+            itemc->setForeground(Qt::white);
+            itemc->setText(item);
+
+            ui->lst_log->addItem(itemc);
         }
     }
 
@@ -1772,8 +1932,21 @@ void MainWindow::on_btn_refresh_all_clicked()
 
         for ( int i = 0 ; i < data.size() ; i++)
         {
+            QListWidgetItem *itemc = new QListWidgetItem("");
+            itemc->setBackground(Qt::black);
             QString item = data.at(i).c_str();
-            ui->lst_log->addItem(item);
+
+            if ( item.contains(_DEBUG))
+            itemc->setForeground(Qt::green);
+            if ( item.contains(_WARN))
+            itemc->setForeground(Qt::yellow);
+            if ( item.contains(_ERROR))
+            itemc->setForeground(Qt::red);
+            if ( item.contains(_INFO) )
+            itemc->setForeground(Qt::white);
+            itemc->setText(item);
+
+            ui->lst_log_2->addItem(itemc);
         }
     }
 }
@@ -2064,8 +2237,10 @@ void MainWindow::on_slider1_sliderPressed()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":ZS." + _num2 + ")");
 }
+
+int slider_mode = 0;
 
 void MainWindow::on_slider1_sliderMoved(int position)
 {
@@ -2079,23 +2254,29 @@ void MainWindow::on_slider1_sliderMoved(int position)
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    if ( value >= 0 && value <= 10  )
+    if ( value >= 0 && value <= 10  && slider_mode != 1 )
     {
         //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZI." + _num2 + ")";
+        last_command.push_back("(CAM," + mtlog->camera_model + ";" + _num1 + ":ZI." + _num2 + ")");
            ui->lbl_slider1->setText("I");
+
+           slider_mode = 1;
     }
-    if ( value > 10 && value <= 20 )
+    if ( value > 10 && value <= 20 && slider_mode != 0)
     {
         //mid
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZS." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZS." + _num2 + ")");
          ui->lbl_slider1->setText("-");
+
+          slider_mode = 0;
     }
-    if ( value > 20 && value <= 30)
+    if ( value > 20 && value <= 30 && slider_mode != -1)
     {
         //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZO." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":ZO." + _num2 + ")");
          ui->lbl_slider1->setText("O");
+
+          slider_mode = -1;
     }
 }
 
@@ -2111,23 +2292,29 @@ void MainWindow::on_slider2_sliderMoved(int position)
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    if ( value >= 0 && value <= 10 )
+    if ( value >= 0 && value <= 10 && slider_mode != 1)
     {
          ui->lbl_slider2->setText("I");
         //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FF." + _num2 + ")";
+        last_command.push_back("(CAM," + mtlog->camera_model + ";" + _num1 + ":FF." + _num2 + ")");
+
+         slider_mode = 1;
     }
-    if ( value > 10 && value <= 20 )
+    if ( value > 10 && value <= 20 && slider_mode != 0)
     {
         //mid
         ui->lbl_slider2->setText("-");
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FS." + _num2 + ")";
+        last_command.push_back("(CAM," + mtlog->camera_model + ";" + _num1 + ":FS." + _num2 + ")");
+
+         slider_mode = 0;
     }
-    if ( value > 20 && value <= 30 )
+    if ( value > 20 && value <= 30 && slider_mode != -1)
     {
         //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":FN." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":FN." + _num2 + ")");
          ui->lbl_slider2->setText("O");
+
+          slider_mode = -1;
     }
 }
 
@@ -2153,23 +2340,26 @@ void MainWindow::on_slider3_sliderMoved(int position)
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    if (value >= 0 && value <= 10)
+    if (value >= 0 && value <= 10 && slider_mode != 1)
     {
         ui->lbl_slider3->setText("I");
         //up
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":II." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":II." + _num2 + ")");
+        slider_mode = 1;
     }
-    if (value > 10 && value <= 20)
+    if (value > 10 && value <= 20 && slider_mode != 0)
     {
         ui->lbl_slider3->setText("-");
         //mid
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IS." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":IS." + _num2 + ")");
+        slider_mode = 0;
     }
-    if (value > 20 && value <= 30)
+    if (value > 20 && value <= 30 && slider_mode != -1)
     {
         ui->lbl_slider3->setText("O");
         //down
-        last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":IO." + _num2 + ")";
+        last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":IO." + _num2 + ")");
+        slider_mode = -1;
     }
 }
 
@@ -2191,7 +2381,7 @@ void MainWindow::on_slider2_sliderPressed()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":FS." + _num2 + ")");
 }
 
 void MainWindow::on_slider3_sliderPressed()
@@ -2207,7 +2397,7 @@ void MainWindow::on_slider3_sliderPressed()
     QString num2 = QString::number(mtlog->camera_speed);
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")";
+    //last_command.push_back( "(CAM," + mtlog->camera_model + ";" +  _num1 + ":IS." + _num2 + ")");
 }
 
 
@@ -2286,4 +2476,14 @@ void MainWindow::on_btn_select1_clicked()
 void MainWindow::on_btn_select2_clicked()
 {
     ui->txt_serial_name2->setPlainText(ui->cmb_serial2->currentText());
+}
+
+void MainWindow::on_chm_log_enable_clicked()
+{
+    serial_log_enable = ui->chm_log_enable->isChecked();
+}
+
+void MainWindow::on_chm_idle_loop_clicked()
+{
+    idle_loop = ui->chm_idle_loop->isChecked();
 }

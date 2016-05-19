@@ -41,7 +41,7 @@ int camera_id;
 
 std::string status;
 std::string user_mode;
-std::string last_command;
+std::vector<std::string> last_command;
 bool camera_loop_mode;
 std::string bar_info;
 bool camera_stop_zoom;
@@ -65,6 +65,8 @@ bool _lic4;
 bool init_done;
 int speaker_volume_temp;
 bool dcu_serial_mode;
+bool serial_log_enable;
+bool idle_loop;
 
 
 

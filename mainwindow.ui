@@ -456,7 +456,7 @@ QTabBar::tab:!selected:hover
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_13">
      <attribute name="title">
@@ -1115,7 +1115,7 @@ url(:/new/images/Resource/nico/tool.png)  0 0 0 0 100 stretch;
        <property name="geometry">
         <rect>
          <x>510</x>
-         <y>210</y>
+         <y>220</y>
          <width>131</width>
          <height>16</height>
         </rect>
@@ -1444,9 +1444,9 @@ url(:/new/images/Resource/nico/core_splash.png)  0 0 0 0 100 stretch;
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>20</y>
         <width>1301</width>
-        <height>551</height>
+        <height>541</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1518,28 +1518,6 @@ url(:/new/images/Resource/nico/core_splash.png)  0 0 0 0 100 stretch;
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QFrame" name="img_usbstorage1">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>64</width>
-          <height>64</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/new/images/Resource/Play/x6.png) 0 0 0 0 100 stretch;
-
-
-</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
       </widget>
       <widget class="QTextEdit" name="txt_recname">
        <property name="geometry">
@@ -1920,7 +1898,7 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>1281</width>
+          <width>1231</width>
           <height>571</height>
          </rect>
         </property>
@@ -1935,7 +1913,7 @@ p, li { white-space: pre-wrap; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>1281</width>
+           <width>1221</width>
            <height>571</height>
           </rect>
          </property>
@@ -3840,23 +3818,6 @@ url(:/new/images/Resource/nico/camera.png)  0 0 0 0 100 stretch;
           </size>
          </property>
         </widget>
-        <zorder>label_13</zorder>
-        <zorder>txt_totalnum</zorder>
-        <zorder>frame_5</zorder>
-        <zorder>txt_camnum</zorder>
-        <zorder>status</zorder>
-        <zorder>label_14</zorder>
-        <zorder>frame_6</zorder>
-        <zorder>cs6</zorder>
-        <zorder>label_12</zorder>
-        <zorder>cs5</zorder>
-        <zorder>cs4</zorder>
-        <zorder>frame_4</zorder>
-        <zorder>txt_micnum</zorder>
-        <zorder>cs2</zorder>
-        <zorder>cs1</zorder>
-        <zorder>cs3</zorder>
-        <zorder>frm_lock</zorder>
        </widget>
        <zorder>mid_14</zorder>
        <zorder>mid_11</zorder>
@@ -5348,6 +5309,32 @@ background-color: rgb(255, 255, 255);</string>
          <string>Select</string>
         </property>
        </widget>
+       <widget class="QCheckBox" name="chm_log_enable">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>270</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Serial Log Enable</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="chm_idle_loop">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>270</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>chm_idle_loop</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox">
        <property name="geometry">
@@ -5753,9 +5740,9 @@ color: rgb(0, 0, 0);</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>110</y>
-        <width>1001</width>
-        <height>401</height>
+        <y>30</y>
+        <width>1121</width>
+        <height>551</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -5764,31 +5751,12 @@ color: rgb(0, 0, 0);</string>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>630</x>
-         <y>140</y>
-         <width>351</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>TCPServer : Connected Clients</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
       <widget class="QGroupBox" name="groupBox_4">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1001</width>
+         <width>821</width>
          <height>131</height>
         </rect>
        </property>
@@ -5801,8 +5769,8 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="btn_refresh_all">
         <property name="geometry">
          <rect>
-          <x>890</x>
-          <y>90</y>
+          <x>710</x>
+          <y>80</y>
           <width>81</width>
           <height>31</height>
          </rect>
@@ -5833,7 +5801,7 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="btn_log_delete">
         <property name="geometry">
          <rect>
-          <x>890</x>
+          <x>710</x>
           <y>40</y>
           <width>81</width>
           <height>31</height>
@@ -6032,8 +6000,8 @@ color: rgb(0, 0, 0);</string>
        <widget class="QRadioButton" name="rad_soft">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>50</y>
+          <x>500</x>
+          <y>40</y>
           <width>100</width>
           <height>20</height>
          </rect>
@@ -6048,8 +6016,8 @@ color: rgb(0, 0, 0);</string>
        <widget class="QRadioButton" name="rad_hard">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>80</y>
+          <x>500</x>
+          <y>60</y>
           <width>100</width>
           <height>20</height>
          </rect>
@@ -6160,31 +6128,61 @@ color: rgb(0, 0, 0);</string>
         <rect>
          <x>0</x>
          <y>160</y>
-         <width>631</width>
-         <height>241</height>
+         <width>550</width>
+         <height>391</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lst_log_2">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>160</y>
+         <width>550</width>
+         <height>391</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>50</y>
+         <width>261</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>TCPServer : Connected Clients</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QListWidget" name="lst_clients">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>160</y>
-         <width>361</width>
-         <height>241</height>
+         <x>840</x>
+         <y>80</y>
+         <width>261</width>
+         <height>51</height>
         </rect>
        </property>
       </widget>
       <zorder>lbl_db_size</zorder>
-      <zorder>label_4</zorder>
       <zorder>groupBox_4</zorder>
       <zorder>label_46</zorder>
       <zorder>lbl_freespace</zorder>
       <zorder>label_44</zorder>
       <zorder>lst_log</zorder>
-      <zorder>lst_clients</zorder>
       <zorder>lbl_storage</zorder>
       <zorder>label_48</zorder>
+      <zorder>lst_log_2</zorder>
+      <zorder>label_4</zorder>
+      <zorder>lst_clients</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_14">

@@ -231,17 +231,17 @@ void QThreadTCP::boost_run()
 
 
 
-    while ( app_exit == false)
-    {
+//    while ( app_exit == false)
+//    {
 
 
 
-        update();
+//        update();
 
 
-       qDebug("brun");
-       boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
-    }
+//       qDebug("brun");
+//       boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
+//    }
 }
 
 void QThreadTCP::connect()
@@ -271,7 +271,7 @@ void QThreadTCP::connect()
     QThreadTCP::QObject:: connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
 
-    timer->start(10000);
+    //timer->start(10000);
 }
 
 void QThreadTCP::set_camera_dir(int mode)
@@ -380,7 +380,7 @@ void QThreadTCP::set_camera_dir(int mode)
     std::string _num1 = num1.toStdString();
     std::string _num2 = num2.toStdString();
 
-    last_command = "(CAM," + mtlog->camera_model + ";" + _num1 + ":" + status + "."  + _num2 + ")";
+    last_command.push_back( "(CAM," + mtlog->camera_model + ";" + _num1 + ":" + status + "."  + _num2 + ")");
 
 }
 

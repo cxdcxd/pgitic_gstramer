@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'pgiticlog.h'
 **
-** Created: Thu May 12 10:32:33 2016
+** Created: Tue May 17 12:06:52 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

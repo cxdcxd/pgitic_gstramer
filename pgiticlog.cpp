@@ -50,7 +50,8 @@ QString encodeText(const QString &rawText, const QString &key) {
         return hex;
     }
 
-QString decodeText(const QString &hexEncodedText, const QString &key) {
+QString decodeText(const QString &hexEncodedText, const QString &key)
+{
         QCryptographicHash hash(QCryptographicHash::Md5);
         hash.addData(key.toUtf8());
         QByteArray keyData = hash.result();
@@ -70,7 +71,7 @@ QString decodeText(const QString &hexEncodedText, const QString &key) {
         const ushort *decodedData = static_cast<ushort*>(data);
         QString result = QString::fromUtf16(decodedData);
         return result;
-    }
+}
 
 bool pgiticlog::save_config()
 {
@@ -124,10 +125,9 @@ bool pgiticlog::save_config()
     command.append(", serial2baudrate = ")    ; command.append(_serial2_baud);
     command.append(", serial3baudrate = ")    ; command.append(_serial3_baud);
 
-
     command.append(" WHERE id = 1" );
 
-    std::cout<<command<<std::endl;
+    //std::cout<<command<<std::endl;
 
     // mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
 
@@ -295,7 +295,7 @@ std::vector<std::string>  pgiticlog::get_log()
 {
     std::vector<std::string> list;
     QSqlQuery query;
-    if(query.exec("SELECT * FROM log"))
+    if(query.exec("SELECT * FROM log order by id DESC limit 100"))
     {
         while(query.next())
         {
@@ -321,7 +321,7 @@ std::vector<std::string>  pgiticlog::get_hard_log()
 {
     std::vector<std::string> list;
     QSqlQuery query;
-    if(query.exec("SELECT * FROM hardlog"))
+    if(query.exec("SELECT * FROM hardlog order by id DESC limit 100"))
     {
         while(query.next())
         {

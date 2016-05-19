@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mygclientrecord.h'
 **
-** Created: Wed May 11 11:38:23 2016
+** Created: Tue May 17 12:06:16 2016
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

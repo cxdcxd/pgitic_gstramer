@@ -25,7 +25,7 @@ void serialthread::process()
 
     QString _get_str = get_str.c_str();
 
-    std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
+    //std::cout<<"GET :"<<_get_str.toStdString()<<std::endl;
 
     if (_get_str.contains("\n") && _get_str.contains("\r") && get_str.length() == 2)
     {
@@ -54,6 +54,7 @@ void serialthread::process()
           QString from = pieces.at(2);
           QString info = pieces.at(3);
 
+          if ( serial_log_enable )
           mtlog->insert_hard_log(sender,info,type,from);
 
           if ( dcu_serial_mode == true )
@@ -64,6 +65,7 @@ void serialthread::process()
         }
         else
         {
+             if ( serial_log_enable )
              mtlog->insert_log("pgiticlog","Bad serial format","ERROR");
         }
     }
@@ -160,16 +162,17 @@ void serialthread::close()
 
 void serialthread::send(std::string message)
 {
-    std::cout<<"sending :"<<message<<std::endl;
+    //std::cout<<"sending :"<<message<<std::endl;
     if ( device_id < 0 ) return;
     try
     {
     serialPrintf(device_id,message.c_str());
-    bar_info = "Send...!";
+    // bar_info = "Send...!";
+    if ( serial_log_enable )
     mtlog->insert_hard_log("PI",message.c_str(),"INFO",name.c_str());
     }
     catch ( std::exception e)
     {
-         std::cout<<"error "<<std::endl;
+        // std::cout<<"error "<<std::endl;
     }
 }

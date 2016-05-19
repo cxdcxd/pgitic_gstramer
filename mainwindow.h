@@ -36,6 +36,7 @@ public:
     joystickscene *joyscene;
     void resize_ui();
     void update_serial_ports();
+    bool isserialconnected();
 
     void show_message(QString msg);
     void updatecs();
@@ -93,8 +94,7 @@ public:
     bool slider2_active;
     bool slider3_active;
 
-
-
+    std::string current_tab_name;
 
 private slots:
 
@@ -315,6 +315,10 @@ private slots:
     void on_btn_select1_clicked();
 
     void on_btn_select2_clicked();
+
+    void on_chm_log_enable_clicked();
+
+    void on_chm_idle_loop_clicked();
 
 private:
     Ui::MainWindow *ui;

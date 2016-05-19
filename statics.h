@@ -67,7 +67,7 @@ extern std::string user_mode;
 extern std::string mic_number;
 extern std::string cam_number;
 extern std::string total_number;
-extern std::string last_command;
+extern std::vector<std::string> last_command;
 extern std::string temp_command;
 extern bool camera_loop_mode;
 extern bool camera_stop_zoom;
@@ -84,6 +84,8 @@ extern std::string HID;
 extern bool init_done;
 extern int speaker_volume_temp;
 extern bool dcu_serial_mode;
+extern bool serial_log_enable;
+extern bool idle_loop;
 
 
 

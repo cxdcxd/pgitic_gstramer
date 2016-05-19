@@ -65,11 +65,11 @@ int main(int argc, char *argv[])
     //This Serial Interface is for communicating with PGITIC CU device
     mtserial = new serialthread();
 
-    std::cout<<mtlog->serial1_baud<<std::endl;
-    std::cout<<mtlog->serial2_baud<<std::endl;
+    //std::cout<<mtlog->serial1_baud<<std::endl;
+    //std::cout<<mtlog->serial2_baud<<std::endl;
 
-    std::cout<<mtlog->serial1_name<<std::endl;
-    std::cout<<mtlog->serial2_name<<std::endl;
+    //std::cout<<mtlog->serial1_name<<std::endl;
+    //std::cout<<mtlog->serial2_name<<std::endl;
 
 
     mtserial->baudrate = mtlog->serial1_baud;
@@ -79,9 +79,9 @@ int main(int argc, char *argv[])
     mtserial->start();
 
     //This Serial Interface is for communicationg with PGITIC Voting device
-    //mtserial2 = new serialthread();
-    //mtserial2->baudrate = mtlog->serial2_baud;
-    //mtserial2->port_name = "/dev/" +  mtlog->serial2_name;
+    mtserial2 = new serialthread();
+    mtserial2->baudrate = mtlog->serial2_baud;
+    mtserial2->port_name = "/dev/" +  mtlog->serial2_name;
     //mtserial2->open();
     //mtserial2->start();
 
