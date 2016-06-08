@@ -108,8 +108,8 @@ int main(int argc, char *argv[])
     //Application Loop
 
     MainWindow w;
-    w.setWindowFlags(Qt::WindowStaysOnTopHint);
-   // w.showFullScreen();
+    //w.setWindowFlags(Qt::WindowStaysOnTopHint);
+    w.showFullScreen();
 
     w.show();
 
