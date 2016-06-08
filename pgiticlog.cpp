@@ -127,7 +127,7 @@ bool pgiticlog::save_config()
 
     command.append(" WHERE id = 1" );
 
-    //std::cout<<command<<std::endl;
+    std::cout<<command<<std::endl;
 
     // mtlog->insert_log("pgiticlog",command.c_str(),"DEBUG");
 

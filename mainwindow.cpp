@@ -30,6 +30,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btn_recstop->hide();
     ui->btn_playstop->hide();
 
+    ui->txt_baudrate1->setValidator( new QIntValidator(100,1000000));
+    ui->txt_baudrate2->setValidator( new QIntValidator(100,1000000));
+    ui->txt_port->setValidator( new QIntValidator(1000,5000));
+    ui->txt_loop_value->setValidator( new QIntValidator(100,2000));
 
     speaker_volume_temp = mtlog->speaker_volume;
 
@@ -304,6 +308,8 @@ bool MainWindow::isserialconnected()
     }
 }
 
+int usb_counter = 0;
+
 bool MainWindow::isusbconnected()
 {
     QDir directory("/media/");
@@ -333,23 +339,41 @@ bool MainWindow::isusbconnected()
 
         if ( QDir(filedir2.c_str()).exists())
         {
-            //Check records folder is exist or not , if no create records folder
+//            //Check records folder is exist or not , if no create records folder
             std::string filedir = "/media/" + itemv + "/records/";
-            if ( QDir(filedir.c_str()).exists() == false ) {QDir().mkdir(filedir.c_str());};
+            if ( QDir(filedir.c_str()).exists() == false && QDir(filedir2.c_str()).exists())
+            {
+                usb_counter++;
+            };
 
-            usb_storage_path = filedir;
+            if ( usb_counter > 2)
+            {
+                usb_counter = 0;
+                QDir().mkdir(filedir.c_str());
+            }
 
+            if ( QDir(filedir.c_str()).exists() && QDir(filedir2.c_str()).exists())
+            {
+                usb_storage_path = filedir;
+                std::cout<<"YES"<<std::endl;
+                return true;
+            };
 
-            return true;
+            std::cout<<"NO0"<<std::endl;
+            return false;
+
         }
         else
         {
-
+            usb_counter = 0;
+            std::cout<<"NO1"<<std::endl;
             return false;
         }
     }
     else
     {
+         usb_counter = 0;
+         std::cout<<"NO2"<<std::endl;
          return false;
     }
 
@@ -1500,13 +1524,13 @@ void MainWindow::on_d8_pressed()
 
 void MainWindow::on_btn_save_clicked()
 {
- mtlog->remote_ip = ui->txt_ip->toPlainText().toStdString().c_str();
- mtlog->remote_port = ui->txt_port->toPlainText().toStdString().c_str();
+ mtlog->remote_ip = ui->txt_ip->text().toStdString().c_str();
+ mtlog->remote_port = ui->txt_port->text().toStdString().c_str();
  mtlog->cmd_loop = ui->chm_loop->isChecked();
  mtlog->joyx = ui->chm_joyx->isChecked();
  mtlog->joyy = ui->chm_joyy->isChecked();
  //mtlog->logout_idle = ui->chm_logout->isChecked();
- mtlog->loop_value = ui->txt_loop_value->toPlainText().toInt();
+ mtlog->loop_value = ui->txt_loop_value->text().toInt();
  mtlog->camera_model = ui->cmodel->currentText().toStdString();
  mtlog->controller_model = ui->smodel->currentText().toStdString();
 
@@ -1701,8 +1725,8 @@ void MainWindow::tab_update(const QString &arg1)
     ui->chm_joyy->setChecked(mtlog->joyy);
     ui->txt_baudrate1->setText(QString::number(mtlog->serial1_baud));
     ui->txt_baudrate2->setText(QString::number(mtlog->serial2_baud));
-    ui->txt_serial_name1->setPlainText(mtlog->serial1_name.c_str());
-    ui->txt_serial_name2->setPlainText(mtlog->serial2_name.c_str());
+    ui->txt_serial_name1->setText(mtlog->serial1_name.c_str());
+    ui->txt_serial_name2->setText(mtlog->serial2_name.c_str());
     ui->chm_loop->setChecked(mtlog->cmd_loop);
 
 
@@ -2409,7 +2433,10 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_pushButton_clicked()
 {
+    if ( ui->txt_exit->toPlainText() == "2525")
     QApplication::quit();
+    else
+        ui->txt_exit->setPlainText("");
 }
 
 void MainWindow::on_slider5_valueChanged(int value)
@@ -2432,10 +2459,11 @@ void MainWindow::on_slider5_sliderMoved(int position)
 
 void MainWindow::on_btn_save_2_clicked()
 {
-    mtlog->serial1_baud = ui->txt_baudrate1->toPlainText().toInt();
-    mtlog->serial2_baud = ui->txt_baudrate2->toPlainText().toInt();
-    mtlog->serial1_name = ui->txt_serial_name1->toPlainText().toStdString();
-    mtlog->serial2_name = ui->txt_serial_name2->toPlainText().toStdString();
+   // ui->txt_baudrate1->setv
+    mtlog->serial1_baud = ui->txt_baudrate1->text().toInt();
+    mtlog->serial2_baud = ui->txt_baudrate2->text().toInt();
+    mtlog->serial1_name = ui->txt_serial_name1->text().toStdString();
+    mtlog->serial2_name = ui->txt_serial_name2->text().toStdString();
 
      bool r = mtlog->save_config();
      if ( r )
@@ -2470,12 +2498,12 @@ void MainWindow::on_mid_8_currentChanged(int index)
 
 void MainWindow::on_btn_select1_clicked()
 {
-    ui->txt_serial_name1->setPlainText(ui->cmb_serial1->currentText());
+    ui->txt_serial_name1->setText(ui->cmb_serial1->currentText());
 }
 
 void MainWindow::on_btn_select2_clicked()
 {
-    ui->txt_serial_name2->setPlainText(ui->cmb_serial2->currentText());
+    ui->txt_serial_name2->setText(ui->cmb_serial2->currentText());
 }
 
 void MainWindow::on_chm_log_enable_clicked()

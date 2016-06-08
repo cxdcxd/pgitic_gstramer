@@ -5125,40 +5125,14 @@ background-color: rgb(255, 255, 255);</string>
          <string>MCU Interface | </string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="txt_baudrate1">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>90</y>
-          <width>111</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
        <widget class="QComboBox" name="cmb_serial1">
         <property name="geometry">
          <rect>
-          <x>440</x>
+          <x>430</x>
           <y>50</y>
-          <width>111</width>
+          <width>121</width>
           <height>24</height>
          </rect>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="txt_baudrate2">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>200</y>
-          <width>111</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_26">
@@ -5251,38 +5225,12 @@ background-color: rgb(255, 255, 255);</string>
          <string>Baud Rate :</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="txt_serial_name1">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>411</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="txt_serial_name2">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>160</y>
-          <width>411</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 255, 255);</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="btn_select1">
         <property name="geometry">
          <rect>
-          <x>440</x>
+          <x>430</x>
           <y>90</y>
-          <width>111</width>
+          <width>121</width>
           <height>31</height>
          </rect>
         </property>
@@ -5333,6 +5281,52 @@ background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>chm_idle_loop</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_baudrate1">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>90</y>
+          <width>113</width>
+          <height>24</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_baudrate2">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>200</y>
+          <width>113</width>
+          <height>24</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_serial_name1">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>401</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_serial_name2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>160</y>
+          <width>411</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -5445,16 +5439,6 @@ color: rgb(0, 0, 0);</string>
          <string>CMD Loop</string>
         </property>
        </widget>
-       <widget class="QTextEdit" name="txt_loop_value">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>30</y>
-          <width>104</width>
-          <height>31</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_19">
         <property name="geometry">
          <rect>
@@ -5522,26 +5506,6 @@ color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Remote Server Port:</string>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="txt_ip">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>90</y>
-          <width>104</width>
-          <height>31</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QTextEdit" name="txt_port">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>90</y>
-          <width>104</width>
-          <height>31</height>
-         </rect>
         </property>
        </widget>
        <widget class="QLabel" name="label_22">
@@ -5727,6 +5691,36 @@ color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Save Settings</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_ip">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>100</y>
+          <width>113</width>
+          <height>24</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_port">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>100</y>
+          <width>111</width>
+          <height>24</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="txt_loop_value">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>30</y>
+          <width>111</width>
+          <height>24</height>
+         </rect>
         </property>
        </widget>
       </widget>
@@ -6197,10 +6191,10 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
+        <x>130</x>
+        <y>10</y>
         <width>83</width>
-        <height>25</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -6311,8 +6305,19 @@ color: rgb(0, 0, 0);</string>
        </property>
       </widget>
      </widget>
+     <widget class="QPlainTextEdit" name="txt_exit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>104</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
      <zorder>mid_1</zorder>
      <zorder>pushButton</zorder>
+     <zorder>txt_exit</zorder>
     </widget>
     <widget class="QWidget" name="tab_15">
      <attribute name="title">

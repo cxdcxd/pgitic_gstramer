@@ -16,7 +16,7 @@ void volumethread::run()
     while(app_exit == false)
     {
 
-        if ( speaker_volume_temp != mtlog->speaker_volume)
+        if ( speaker_volume_temp != mtlog->speaker_volume && speaker_volume_temp != 0)
         {
            // std::cout<<"changed"<<std::endl;
             mtlog->speaker_volume = speaker_volume_temp;
@@ -24,6 +24,9 @@ void volumethread::run()
             volume_process->start("amixer",QStringList() << "sset" << "Master" <<  _val.c_str());
             volume_process->waitForFinished();
             mtlog->save_config();
+
+             std::cout<<mtlog->speaker_volume<<std::endl;
+
         }
         else
         {
