@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
     tcpsocket->connect();
     tcpsocket->start(); //start internal thread for connection managment
 
+
     //MediaApp media;
     //media.setWindowFlags(Qt::WindowStaysOnTopHint);
     //media.show();
